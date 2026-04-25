@@ -49,6 +49,7 @@
   }
   .nav-links a:hover { color: var(--text); }
   .nav-actions { justify-self: end; display: flex; align-items: center; gap: 10px; }
+  .mobile-menu-actions { display: none; }
   .nav-cta {
     background: var(--accent); color: #fff;
     border: none; padding: 10px 24px; border-radius: 8px;
@@ -550,6 +551,17 @@
   @media (max-width: 900px) {
     nav { grid-template-columns: 1fr auto; }
     .nav-links { display: none; }
+    .nav-actions .nav-cta { display: none; }
+    .mobile-menu-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 6px;
+    }
+    .mobile-menu-actions .nav-cta {
+      width: 100%;
+      text-align: center;
+    }
     .burger { display: flex; }
     .why-grid, .adv-grid, .cases-grid, .trust-grid, .reviews-grid, .tech-cats, .faq-grid, .contact-inner { grid-template-columns: 1fr; }
     .process-steps { grid-template-columns: 1fr 1fr; }

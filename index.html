@@ -22,10 +22,14 @@
     <li><a href="#process">Процесс</a></li>
     <li><a href="#tech">Технологии</a></li>
     <li><a href="#faq">FAQ</a></li>
+    <li class="mobile-menu-actions">
+      <button class="nav-cta" type="button" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'}); toggleMenu();">Обсудить проект</button>
+      <button class="nav-cta" type="button" onclick="toggleTheme()" data-theme-toggle aria-label="Сменить тему" title="Сменить тему">☀</button>
+    </li>
   </ul>
   <div class="nav-actions">
     <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Обсудить проект</button>
-    <button id="theme-toggle" class="nav-cta" type="button" onclick="toggleTheme()" aria-label="Сменить тему" title="Сменить тему">☀</button>
+    <button class="nav-cta" type="button" onclick="toggleTheme()" data-theme-toggle aria-label="Сменить тему" title="Сменить тему">☀</button>
     <div class="burger" onclick="toggleMenu()">
       <span></span><span></span><span></span>
     </div>
@@ -770,14 +774,25 @@
 <script>
   const darkThemeLink = document.getElementById('theme-dark');
   const lightThemeLink = document.getElementById('theme-light');
-  const themeToggleBtn = document.getElementById('theme-toggle');
+  const themeToggleBtns = document.querySelectorAll('[data-theme-toggle]');
+  let menuOpen = false;
 
   function applyTheme(theme) {
     const isLight = theme === 'light';
     lightThemeLink.disabled = !isLight;
     darkThemeLink.disabled = isLight;
     document.body.dataset.theme = theme;
-    themeToggleBtn.textContent = isLight ? '🌙' : '☀';
+    themeToggleBtns.forEach((btn) => {
+      btn.textContent = isLight ? '🌙' : '☀';
+    });
+
+    if (menuOpen) {
+      const links = document.querySelector('.nav-links');
+      links.style.background = isLight
+        ? 'rgba(248,249,252,0.98)'
+        : 'rgba(6,10,18,0.98)';
+    }
+
     localStorage.setItem('nexora-theme', theme);
   }
 
@@ -790,7 +805,6 @@
   applyTheme(savedTheme === 'light' ? 'light' : 'dark');
 
   // Mobile menu
-  let menuOpen = false;
   function toggleMenu() {
     menuOpen = !menuOpen;
     const links = document.querySelector('.nav-links');
