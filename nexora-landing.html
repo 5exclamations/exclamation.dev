@@ -7,6 +7,8 @@
 <meta name="description" content="EXCLAMATION — создаём сайты, веб-приложения, CRM, ERP, мобильные приложения, SaaS-платформы и AI-решения под ключ. Полный цикл разработки для бизнеса."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;700;900&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link id="theme-dark" rel="stylesheet" href="style_dark.css"/>
+<link id="theme-light" rel="stylesheet" href="style_light.css" disabled/>
 
 </head>
 <body>
@@ -22,6 +24,7 @@
     <li><a href="#faq">FAQ</a></li>
   </ul>
   <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Обсудить проект</button>
+  <button id="theme-toggle" class="nav-cta" type="button" onclick="toggleTheme()">Светлая тема</button>
   <div class="burger" onclick="toggleMenu()">
     <span></span><span></span><span></span>
   </div>
@@ -763,6 +766,27 @@
 </footer>
 
 <script>
+  const darkThemeLink = document.getElementById('theme-dark');
+  const lightThemeLink = document.getElementById('theme-light');
+  const themeToggleBtn = document.getElementById('theme-toggle');
+
+  function applyTheme(theme) {
+    const isLight = theme === 'light';
+    lightThemeLink.disabled = !isLight;
+    darkThemeLink.disabled = isLight;
+    document.body.dataset.theme = theme;
+    themeToggleBtn.textContent = isLight ? 'Тёмная тема' : 'Светлая тема';
+    localStorage.setItem('nexora-theme', theme);
+  }
+
+  function toggleTheme() {
+    const nextTheme = document.body.dataset.theme === 'light' ? 'dark' : 'light';
+    applyTheme(nextTheme);
+  }
+
+  const savedTheme = localStorage.getItem('nexora-theme');
+  applyTheme(savedTheme === 'light' ? 'light' : 'dark');
+
   // Mobile menu
   let menuOpen = false;
   function toggleMenu() {
@@ -774,7 +798,9 @@
     links.style.top = '70px';
     links.style.left = '0';
     links.style.right = '0';
-    links.style.background = 'rgba(6,10,18,0.98)';
+    links.style.background = document.body.dataset.theme === 'light'
+      ? 'rgba(248,249,252,0.98)'
+      : 'rgba(6,10,18,0.98)';
     links.style.padding = '24px 5%';
     links.style.gap = '20px';
     links.style.zIndex = '99';
