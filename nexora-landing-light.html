@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>NEXORA — Разработка цифровых решений любой сложности</title>
+<meta name="description" content="NEXORA — создаём сайты, веб-приложения, CRM, ERP, мобильные приложения, SaaS-платформы и AI-решения под ключ. Полный цикл разработки для бизнеса."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;700;900&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">EXCLAMATION</div>
+  <ul class="nav-links">
+    <li><a href="#services">Услуги</a></li>
+    <li><a href="#cases">Кейсы</a></li>
+    <li><a href="#process">Процесс</a></li>
+    <li><a href="#tech">Технологии</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Обсудить проект</button>
+  <div class="burger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-noise"></div>
+  <div class="hero-dots"></div>
+  <div class="hero-inner">
+    <div class="hero-badge"><div class="badge-dot"></div>Digital Product Studio</div>
+    <h1>Создаём цифровые продукты,<br/><span>которые работают на ваш бизнес</span></h1>
+    <p class="hero-sub">
+      Разрабатываем сайты, веб-приложения, CRM и ERP-системы, мобильные приложения, SaaS-платформы, Telegram-боты и AI-решения. Полный цикл — от идеи до запуска и поддержки.
+    </p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Обсудить проект</button>
+      <button class="btn-outline" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Получить оценку стоимости</button>
+      <button class="btn-ghost" onclick="document.getElementById('cases').scrollIntoView({behavior:'smooth'})">Посмотреть кейсы</button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">80+</div>
+        <div class="stat-label">Проектов запущено</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">6 лет</div>
+        <div class="stat-label">На рынке разработки</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">40+</div>
+        <div class="stat-label">Технологий в стеке</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">95%</div>
+        <div class="stat-label">Клиентов возвращаются</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-header reveal">
+    <div class="section-tag">Что мы разрабатываем</div>
+    <h2 class="section-title">Закрываем практически любую<br/>задачу в сфере IT</h2>
+    <p class="section-sub">Один подрядчик — весь спектр цифровых решений. От простого лендинга до комплексных корпоративных систем.</p>
+  </div>
+  <div class="services-grid reveal">
+    <div class="service-cat">
+      <div class="cat-icon" style="background:rgba(29,78,216,.08)">🌐</div>
+      <div class="cat-title">Веб-разработка</div>
+      <ul class="cat-items">
+        <li>Корпоративные сайты</li>
+        <li>Лендинги и промо-страницы</li>
+        <li>Интернет-магазины</li>
+        <li>Каталоги товаров и услуг</li>
+        <li>Новостные и контент-порталы</li>
+        <li>Многоязычные сайты</li>
+      </ul>
+    </div>
+    <div class="service-cat">
+      <div class="cat-icon" style="background:rgba(14,165,233,.08)">⚙️</div>
+      <div class="cat-title">Веб-приложения и платформы</div>
+      <ul class="cat-items">
+        <li>SaaS-платформы под ключ</li>
+        <li>Личные кабинеты и порталы</li>
+        <li>Админ-панели и бэк-офис</li>
+        <li>Маркетплейсы</li>
+        <li>Системы бронирования</li>
+        <li>B2B и B2C веб-сервисы</li>
+      </ul>
+    </div>
+    <div class="service-cat">
+      <div class="cat-icon" style="background:rgba(124,58,237,.07)">🏢</div>
+      <div class="cat-title">Корпоративные системы</div>
+      <ul class="cat-items">
+        <li>CRM-системы</li>
+        <li>ERP-системы</li>
+        <li>Внутренние порталы сотрудников</li>
+        <li>Системы управления заказами</li>
+        <li>Документооборот (ЭДО)</li>
+        <li>HR-системы</li>
+      </ul>
+    </div>
+    <div class="service-cat">
+      <div class="cat-icon" style="background:rgba(5,150,105,.07)">📱</div>
+      <div class="cat-title">Мобильные приложения</div>
+      <ul class="cat-items">
+        <li>iOS (Swift / SwiftUI)</li>
+        <li>Android (Kotlin)</li>
+        <li>Кроссплатформа (Flutter, React Native)</li>
+        <li>Приложения для клиентов</li>
+        <li>Внутренние корпоративные приложения</li>
+        <li>Интеграция с устройствами и IoT</li>
+      </ul>
+    </div>
+    <div class="service-cat">
+      <div class="cat-icon" style="background:rgba(217,119,6,.07)">🤖</div>
+      <div class="cat-title">Боты и AI-решения</div>
+      <ul class="cat-items">
+        <li>Telegram-боты и мини-приложения</li>
+        <li>Чат-боты для сайта и мессенджеров</li>
+        <li>AI-помощники и ассистенты</li>
+        <li>Автоматическая обработка документов</li>
+        <li>Умные рекомендательные системы</li>
+        <li>Интеграция LLM в продукты</li>
+      </ul>
+    </div>
+    <div class="service-cat">
+      <div class="cat-icon" style="background:rgba(220,38,38,.06)">📊</div>
+      <div class="cat-title">Аналитика и учёт</div>
+      <ul class="cat-items">
+        <li>BI-дашборды и отчётность</li>
+        <li>Системы учёта и аналитики</li>
+        <li>Бухгалтерские и финансовые модули</li>
+        <li>Складские системы</li>
+        <li>Логистические системы</li>
+        <li>KPI-панели для управления</li>
+      </ul>
+    </div>
+    <div class="service-cat">
+      <div class="cat-icon" style="background:rgba(29,78,216,.07)">🔗</div>
+      <div class="cat-title">Интеграции и автоматизация</div>
+      <ul class="cat-items">
+        <li>Интеграция с платёжными системами</li>
+        <li>API-интеграции с сервисами</li>
+        <li>Автоматизация бизнес-процессов</li>
+        <li>Интеграция с 1С, SAP, AmoCRM</li>
+        <li>Синхронизация данных между системами</li>
+        <li>Webhook и event-driven сценарии</li>
+      </ul>
+    </div>
+    <div class="service-cat">
+      <div class="cat-icon" style="background:rgba(14,165,233,.07)">🛡️</div>
+      <div class="cat-title">Особые и нишевые решения</div>
+      <ul class="cat-items">
+        <li>Финтех и платёжные платформы</li>
+        <li>EdTech и онлайн-обучение</li>
+        <li>HealthTech и медицинские системы</li>
+        <li>Облачные сервисы и DevOps</li>
+        <li>Аудит кода и оптимизация</li>
+        <li>Кибербезопасность и защита данных</li>
+      </ul>
+    </div>
+    <div class="service-cat">
+      <div class="cat-icon" style="background:rgba(124,58,237,.07)">🔄</div>
+      <div class="cat-title">Модернизация и поддержка</div>
+      <ul class="cat-items">
+        <li>Редизайн устаревших систем</li>
+        <li>Перенос на современный стек</li>
+        <li>Улучшение производительности</li>
+        <li>Техническая поддержка 24/7</li>
+        <li>Развитие продукта после запуска</li>
+        <li>DevOps и инфраструктурная поддержка</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section id="why">
+  <div class="section-header reveal">
+    <div class="section-tag">Зачем вам это нужно</div>
+    <h2 class="section-title">Цифровые продукты — это не расходы.<br/>Это ваши активы</h2>
+    <p class="section-sub">Правильно выстроенная цифровая инфраструктура напрямую влияет на выручку, операционные издержки и удержание клиентов.</p>
+  </div>
+  <div class="why-grid reveal">
+    <div class="why-card">
+      <div class="why-emoji">🌍</div>
+      <div class="why-title">Сайт — ваш менеджер по продажам, работающий 24/7</div>
+      <div class="why-text">Профессиональный сайт генерирует заявки пока вы спите. Без сайта или со слабым — вы теряете клиентов в пользу конкурентов ежедневно. Первое впечатление формируется за 3 секунды.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-emoji">🎯</div>
+      <div class="why-title">CRM — чтобы ни одна заявка не потерялась</div>
+      <div class="why-text">Без CRM до 35% лидов теряется в мессенджерах, почте и блокнотах. Система автоматически ведёт клиента по воронке, напоминает о задачах и даёт полную картину продаж.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-emoji">🏭</div>
+      <div class="why-title">ERP — весь бизнес в одном месте</div>
+      <div class="why-text">Разрозненные Excel-таблицы и разные программы для каждого отдела — это хаос и ошибки. ERP объединяет производство, склад, финансы, кадры и продажи в единую систему.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-emoji">📲</div>
+      <div class="why-title">Приложение повышает лояльность и удержание</div>
+      <div class="why-text">Приложение — это прямой канал к клиенту в его кармане. Push-уведомления, программа лояльности, удобный заказ — и клиент возвращается в 2–3 раза чаще.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-emoji">⚡</div>
+      <div class="why-title">Автоматизация — экономия времени и снижение ошибок</div>
+      <div class="why-text">Ручные процессы — это время сотрудников и риск ошибок. Автоматизированные сценарии обрабатывают данные, формируют документы и отправляют уведомления без участия человека.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-emoji">📈</div>
+      <div class="why-title">Аналитика — принимайте решения на основе данных</div>
+      <div class="why-text">Интуиция — это хорошо. Данные — лучше. BI-дашборд в реальном времени показывает узкие места, рост выручки, эффективность команд и прогноз на следующий квартал.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-emoji">🔒</div>
+      <div class="why-title">Личный кабинет снижает нагрузку на поддержку</div>
+      <div class="why-text">Если клиент может сам отследить заказ, скачать документы или изменить данные — он не пишет в поддержку. Это снижает нагрузку на команду и улучшает клиентский опыт.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-emoji">🔌</div>
+      <div class="why-title">Интеграции объединяют весь цифровой ландшафт</div>
+      <div class="why-text">Ваша CRM не знает о заказах из интернет-магазина? Склад не видит продажи? Интеграции синхронизируют все системы — данные актуальны везде и всегда без ручного переноса.</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO -->
+<section id="who">
+  <div class="section-header reveal">
+    <div class="section-tag">Кому это нужно</div>
+    <h2 class="section-title">Мы работаем с бизнесом<br/>любого масштаба и ниши</h2>
+    <p class="section-sub">Каждому сегменту — подходящее решение: от MVP за 3 недели до масштабной корпоративной платформы.</p>
+  </div>
+  <div class="who-grid reveal">
+    <div class="who-card"><span class="who-icon">🚀</span><div class="who-name">Стартапы</div></div>
+    <div class="who-card"><span class="who-icon">🏪</span><div class="who-name">Малый бизнес</div></div>
+    <div class="who-card"><span class="who-icon">🏢</span><div class="who-name">Средний бизнес</div></div>
+    <div class="who-card"><span class="who-icon">🌐</span><div class="who-name">Крупные компании</div></div>
+    <div class="who-card"><span class="who-icon">🛒</span><div class="who-name">Интернет-магазины</div></div>
+    <div class="who-card"><span class="who-icon">🏭</span><div class="who-name">Производство</div></div>
+    <div class="who-card"><span class="who-icon">✂️</span><div class="who-name">Сфера услуг</div></div>
+    <div class="who-card"><span class="who-icon">🚛</span><div class="who-name">Логистика</div></div>
+    <div class="who-card"><span class="who-icon">🎓</span><div class="who-name">Образование</div></div>
+    <div class="who-card"><span class="who-icon">🏥</span><div class="who-name">Медицина</div></div>
+    <div class="who-card"><span class="who-icon">🏠</span><div class="who-name">Недвижимость</div></div>
+    <div class="who-card"><span class="who-icon">💰</span><div class="who-name">Финансы</div></div>
+    <div class="who-card"><span class="who-icon">🏛️</span><div class="who-name">Госструктуры</div></div>
+    <div class="who-card"><span class="who-icon">⚡</span><div class="who-name">Любая компания</div></div>
+  </div>
+</section>
+
+<!-- ADVANTAGES -->
+<section id="advantages">
+  <div class="section-header reveal">
+    <div class="section-tag">Наши преимущества</div>
+    <h2 class="section-title">Почему нас выбирают<br/>и возвращаются снова</h2>
+    <p class="section-sub">Не слова — система. Каждое преимущество закреплено в процессе работы, договоре и результатах проектов.</p>
+  </div>
+  <div class="adv-grid reveal">
+    <div class="adv-item">
+      <div class="adv-num">01</div>
+      <div class="adv-title">Индивидуальный подход</div>
+      <div class="adv-text">Никаких шаблонных решений. Мы погружаемся в бизнес-задачу и предлагаем архитектуру, оптимальную именно для вашего кейса.</div>
+    </div>
+    <div class="adv-item">
+      <div class="adv-num">02</div>
+      <div class="adv-title">Разработка под ключ</div>
+      <div class="adv-text">Берём полную ответственность: аналитика, дизайн, разработка, тестирование, запуск и поддержка — всё в одних руках.</div>
+    </div>
+    <div class="adv-item">
+      <div class="adv-num">03</div>
+      <div class="adv-title">Понятная коммуникация</div>
+      <div class="adv-text">Прозрачный трекер задач, еженедельные отчёты, доступный PM и никакой технической воды в переписке. Вы всегда знаете, что происходит.</div>
+    </div>
+    <div class="adv-item">
+      <div class="adv-num">04</div>
+      <div class="adv-title">Современный стек технологий</div>
+      <div class="adv-text">React, FastAPI, Go, Flutter, PostgreSQL, AWS — мы используем технологии, которые обеспечивают производительность, масштабируемость и долгую жизнь продукта.</div>
+    </div>
+    <div class="adv-item">
+      <div class="adv-num">05</div>
+      <div class="adv-title">Надёжная архитектура</div>
+      <div class="adv-text">Проектируем системы, которые выдерживают рост. Микросервисы, API-first подход, CI/CD и автоматическое тестирование — с первого дня.</div>
+    </div>
+    <div class="adv-item">
+      <div class="adv-num">06</div>
+      <div class="adv-title">UI/UX-дизайн мирового уровня</div>
+      <div class="adv-text">Продукт, которым приятно пользоваться — конкурентное преимущество. Дизайн-система, пользовательские сценарии и A/B-тестирование гипотез.</div>
+    </div>
+    <div class="adv-item">
+      <div class="adv-num">07</div>
+      <div class="adv-title">Соблюдение сроков</div>
+      <div class="adv-text">Жёсткие дедлайны — наша норма. Agile-спринты, буфер на непредвиденное и честный разговор, если что-то меняется. Никаких сюрпризов.</div>
+    </div>
+    <div class="adv-item">
+      <div class="adv-num">08</div>
+      <div class="adv-title">Поддержка и развитие после запуска</div>
+      <div class="adv-text">Запуск — не конец. Мы остаёмся с вами: мониторинг, исправление ошибок, доработки и стратегическое развитие продукта по roadmap.</div>
+    </div>
+    <div class="adv-item">
+      <div class="adv-num">09</div>
+      <div class="adv-title">Ориентация на результат</div>
+      <div class="adv-text">Нас интересует не код как таковой, а рост вашего бизнеса. Мы предлагаем решения, которые влияют на конверсию, выручку и операционную эффективность.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="section-header reveal">
+    <div class="section-tag">Как мы работаем</div>
+    <h2 class="section-title">Прозрачный процесс<br/>от брифа до запуска</h2>
+    <p class="section-sub">Восемь последовательных этапов — без скрытых шагов, с понятным результатом на каждом из них.</p>
+  </div>
+  <div class="process-steps reveal">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-title">Анализ и брифинг</div>
+      <div class="step-text">Изучаем бизнес, цели, конкурентов и аудиторию. Формируем техническое задание.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-title">Подбор решения</div>
+      <div class="step-text">Предлагаем стек, архитектуру и план с оценкой сроков и стоимости.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-title">Проектирование</div>
+      <div class="step-text">Прорабатываем структуру, сценарии, wireframes и логику всех блоков.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-title">Дизайн</div>
+      <div class="step-text">Создаём дизайн-систему, макеты экранов и адаптивные версии. Согласуем итерациями.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">05</div>
+      <div class="step-title">Разработка</div>
+      <div class="step-text">Пишем чистый масштабируемый код. Спринты по 2 недели, демо после каждого.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">06</div>
+      <div class="step-title">Тестирование</div>
+      <div class="step-text">QA на всех уровнях: функциональное, нагрузочное, кроссбраузерное, безопасность.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">07</div>
+      <div class="step-title">Запуск</div>
+      <div class="step-text">Настройка хостинга, CI/CD, мониторинг, обучение команды и мягкий запуск с откатом.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">08</div>
+      <div class="step-title">Поддержка</div>
+      <div class="step-text">Техническое сопровождение, плановые доработки, аналитика и развитие продукта.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CASES -->
+<section id="cases">
+  <div class="section-header reveal">
+    <div class="section-tag">Портфолио / Кейсы</div>
+    <h2 class="section-title">Проекты, которые изменили<br/>бизнес клиентов</h2>
+    <p class="section-sub">Реальные задачи, конкретные решения, измеримые результаты.</p>
+  </div>
+  <div class="cases-grid reveal">
+    <div class="case-card">
+      <div class="case-top">
+        <div class="case-tag">CRM-система</div>
+        <div class="case-title">Sales Hub — CRM для отдела продаж строительной компании</div>
+        <div class="case-desc"><strong>Задача:</strong> 12 менеджеров вели клиентов в разных таблицах, заявки терялись, руководитель не видел воронку в реальном времени.</div>
+        <div class="case-desc"><strong>Решение:</strong> CRM с воронкой продаж, автораспределением лидов, интеграцией с мессенджерами, KPI-отчётами и мобильным приложением.</div>
+      </div>
+      <div class="case-divider"></div>
+      <div class="case-bottom">
+        <ul class="case-results">
+          <li><span class="result-tag">+40%</span>конверсия из заявки в сделку</li>
+          <li><span class="result-tag">-30%</span>потеря лидов устранена</li>
+          <li><span class="result-tag">3 мес.</span>срок разработки и запуска</li>
+        </ul>
+      </div>
+    </div>
+    <div class="case-card">
+      <div class="case-top">
+        <div class="case-tag">Интернет-магазин</div>
+        <div class="case-title">UrbanStore — e-commerce для бренда одежды с 50 000+ SKU</div>
+        <div class="case-desc"><strong>Задача:</strong> Устаревший движок тормозил, падал при акциях и не поддерживал интеграции с ERP и маркетинговыми инструментами.</div>
+        <div class="case-desc"><strong>Решение:</strong> Новый магазин на Next.js + FastAPI с интеграцией 1С, платёжными системами и персонализацией.</div>
+      </div>
+      <div class="case-divider"></div>
+      <div class="case-bottom">
+        <ul class="case-results">
+          <li><span class="result-tag">+65%</span>рост конверсии после редизайна</li>
+          <li><span class="result-tag">0.8s</span>время загрузки страницы</li>
+          <li><span class="result-tag">+120%</span>выручка за первые 6 месяцев</li>
+        </ul>
+      </div>
+    </div>
+    <div class="case-card">
+      <div class="case-top">
+        <div class="case-tag">ERP-система</div>
+        <div class="case-title">FactoryOS — ERP для производственного предприятия</div>
+        <div class="case-desc"><strong>Задача:</strong> Производство, склад, закупки и финансы работали в разных системах, данные не синхронизировались.</div>
+        <div class="case-desc"><strong>Решение:</strong> Единая платформа: управление производством, склад, закупки, HR, финансы, отчётность в одном интерфейсе.</div>
+      </div>
+      <div class="case-divider"></div>
+      <div class="case-bottom">
+        <ul class="case-results">
+          <li><span class="result-tag">-40%</span>операционные издержки</li>
+          <li><span class="result-tag">3x</span>скорость формирования отчётов</li>
+          <li><span class="result-tag">6 мес.</span>срок внедрения под ключ</li>
+        </ul>
+      </div>
+    </div>
+    <div class="case-card">
+      <div class="case-top">
+        <div class="case-tag">Мобильное приложение</div>
+        <div class="case-title">MedApp — приложение для сети медицинских клиник</div>
+        <div class="case-desc"><strong>Задача:</strong> Запись через колл-центр перегружена, пациенты недовольны ожиданием, повторные визиты слабо конвертируются.</div>
+        <div class="case-desc"><strong>Решение:</strong> iOS и Android с онлайн-записью, картой пациента, push-напоминаниями, телемедициной и программой лояльности.</div>
+      </div>
+      <div class="case-divider"></div>
+      <div class="case-bottom">
+        <ul class="case-results">
+          <li><span class="result-tag">70%</span>записей теперь через приложение</li>
+          <li><span class="result-tag">-50%</span>нагрузка на колл-центр</li>
+          <li><span class="result-tag">4.8★</span>рейтинг в App Store</li>
+        </ul>
+      </div>
+    </div>
+    <div class="case-card">
+      <div class="case-top">
+        <div class="case-tag">SaaS-платформа</div>
+        <div class="case-title">BookingPro — платформа бронирования для сети отелей</div>
+        <div class="case-desc"><strong>Задача:</strong> Сеть из 8 отелей работала через OTA с комиссией 15–20%, прямых бронирований — менее 12%.</div>
+        <div class="case-desc"><strong>Решение:</strong> Собственная система бронирования с динамическим ценообразованием, Channel Manager и аналитикой.</div>
+      </div>
+      <div class="case-divider"></div>
+      <div class="case-bottom">
+        <ul class="case-results">
+          <li><span class="result-tag">+38%</span>прямых бронирований за год</li>
+          <li><span class="result-tag">$200k</span>экономия на комиссиях OTA</li>
+          <li><span class="result-tag">4 мес.</span>до первого бронирования</li>
+        </ul>
+      </div>
+    </div>
+    <div class="case-card">
+      <div class="case-top">
+        <div class="case-tag">Автоматизация</div>
+        <div class="case-title">AutoFlow — автоматизация документооборота для юридической фирмы</div>
+        <div class="case-desc"><strong>Задача:</strong> 3 юриста тратили 30% времени на подготовку типовых договоров и актов вручную с высоким риском ошибок.</div>
+        <div class="case-desc"><strong>Решение:</strong> Генерация документов по шаблонам с AI-подстановкой, электронной подписью, архивом и интеграцией с CRM.</div>
+      </div>
+      <div class="case-divider"></div>
+      <div class="case-bottom">
+        <ul class="case-results">
+          <li><span class="result-tag">-80%</span>время на подготовку документов</li>
+          <li><span class="result-tag">0</span>ошибок в типовых документах</li>
+          <li><span class="result-tag">6 нед.</span>срок внедрения</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section id="trust">
+  <div class="section-header reveal">
+    <div class="section-tag">Доверие и гарантии</div>
+    <h2 class="section-title">Работаем официально.<br/>Несём ответственность</h2>
+  </div>
+  <div class="trust-grid reveal">
+    <div class="trust-item">
+      <div class="trust-icon">📋</div>
+      <div class="trust-title">Официальный договор</div>
+      <div class="trust-text">Фиксируем сроки, стоимость, функционал и условия оплаты. Никаких устных договорённостей.</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">🔐</div>
+      <div class="trust-title">NDA по запросу</div>
+      <div class="trust-text">Готовы подписать соглашение о неразглашении до начала обсуждения деталей проекта.</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">⏱️</div>
+      <div class="trust-title">Фиксированные сроки</div>
+      <div class="trust-text">Этапы прописаны в договоре. Если что-то меняется — сразу сообщаем и согласовываем.</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">🛡️</div>
+      <div class="trust-title">Безопасность данных</div>
+      <div class="trust-text">Шифрование, разграничение доступов, GDPR-совместимость. Ваши данные под защитой.</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">💬</div>
+      <div class="trust-title">Консультация бесплатно</div>
+      <div class="trust-text">Первичный анализ задачи и предложение решения — без предоплаты и обязательств.</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">🔄</div>
+      <div class="trust-title">Поддержка после запуска</div>
+      <div class="trust-text">Гарантийный период, техподдержка и дальнейшее развитие по roadmap.</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">📊</div>
+      <div class="trust-title">Прозрачная отчётность</div>
+      <div class="trust-text">Доступ к трекеру задач, еженедельные отчёты и открытый код в вашем репозитории.</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">🚀</div>
+      <div class="trust-title">Начать можно с MVP</div>
+      <div class="trust-text">MVP за 4–8 недель позволяет проверить гипотезу с минимальным бюджетом.</div>
+    </div>
+  </div>
+  <div class="reviews-grid reveal">
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">«NEXORA реализовали нашу CRM точно в срок и в бюджет. Команда всегда на связи, предлагала улучшения, о которых мы сами не думали. Конверсия выросла на 40% в первый же месяц.»</div>
+      <div class="reviewer">
+        <div class="reviewer-avatar">АК</div>
+        <div>
+          <div class="reviewer-name">Алексей Красников</div>
+          <div class="reviewer-role">CEO, строительная компания "СтройГрупп"</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">«Передали нам готовый интернет-магазин за 2,5 месяца. Сделано профессионально: от дизайна до интеграции с 1С. Теперь магазин загружается за секунду и не падает на пиковых нагрузках.»</div>
+      <div class="reviewer">
+        <div class="reviewer-avatar">МС</div>
+        <div>
+          <div class="reviewer-name">Мария Светлова</div>
+          <div class="reviewer-role">Директор по маркетингу, UrbanStore</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">«Внедрили ERP для нашего производства за 6 месяцев. Команда погрузилась глубоко и сделала именно то, что нам нужно. Теперь всё управление в одном окне.»</div>
+      <div class="reviewer">
+        <div class="reviewer-avatar">ДВ</div>
+        <div>
+          <div class="reviewer-name">Дмитрий Волков</div>
+          <div class="reviewer-role">Операционный директор, "МеталлПроизводство"</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH -->
+<section id="tech">
+  <div class="section-header reveal">
+    <div class="section-tag">Технологии</div>
+    <h2 class="section-title">Современный стек —<br/>надёжный фундамент</h2>
+    <p class="section-sub">Используем технологии, которые обеспечивают производительность, масштабируемость и долгий жизненный цикл продукта.</p>
+  </div>
+  <div class="tech-cats reveal">
+    <div class="tech-cat">
+      <div class="tech-cat-name">Frontend</div>
+      <div class="tech-tags">
+        <span class="tech-tag">React</span><span class="tech-tag">Next.js</span>
+        <span class="tech-tag">Vue.js</span><span class="tech-tag">TypeScript</span>
+        <span class="tech-tag">Tailwind CSS</span><span class="tech-tag">Vite</span>
+      </div>
+    </div>
+    <div class="tech-cat">
+      <div class="tech-cat-name">Backend</div>
+      <div class="tech-tags">
+        <span class="tech-tag">FastAPI</span><span class="tech-tag">Python</span>
+        <span class="tech-tag">Go</span><span class="tech-tag">Node.js</span>
+        <span class="tech-tag">Django</span><span class="tech-tag">GraphQL</span>
+        <span class="tech-tag">REST API</span>
+      </div>
+    </div>
+    <div class="tech-cat">
+      <div class="tech-cat-name">Mobile</div>
+      <div class="tech-tags">
+        <span class="tech-tag">Flutter</span><span class="tech-tag">React Native</span>
+        <span class="tech-tag">Swift</span><span class="tech-tag">Kotlin</span>
+        <span class="tech-tag">Expo</span>
+      </div>
+    </div>
+    <div class="tech-cat">
+      <div class="tech-cat-name">Databases</div>
+      <div class="tech-tags">
+        <span class="tech-tag">PostgreSQL</span><span class="tech-tag">MySQL</span>
+        <span class="tech-tag">MongoDB</span><span class="tech-tag">Redis</span>
+        <span class="tech-tag">ClickHouse</span><span class="tech-tag">Elasticsearch</span>
+      </div>
+    </div>
+    <div class="tech-cat">
+      <div class="tech-cat-name">Cloud / DevOps</div>
+      <div class="tech-tags">
+        <span class="tech-tag">AWS</span><span class="tech-tag">GCP</span>
+        <span class="tech-tag">Docker</span><span class="tech-tag">Kubernetes</span>
+        <span class="tech-tag">CI/CD</span><span class="tech-tag">Nginx</span>
+        <span class="tech-tag">Terraform</span>
+      </div>
+    </div>
+    <div class="tech-cat">
+      <div class="tech-cat-name">AI / Integrations</div>
+      <div class="tech-tags">
+        <span class="tech-tag">OpenAI API</span><span class="tech-tag">LangChain</span>
+        <span class="tech-tag">RAG</span><span class="tech-tag">Celery</span>
+        <span class="tech-tag">RabbitMQ</span><span class="tech-tag">Kafka</span>
+        <span class="tech-tag">Webhooks</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner reveal">
+    <div class="contact-info">
+      <div class="section-tag">Контакты</div>
+      <h2>Готовы обсудить<br/>ваш проект</h2>
+      <p>Расскажите о задаче — бесплатно проконсультируем, предложим решение и дадим первичную оценку сроков и стоимости.</p>
+      <div class="contact-channels">
+        <a class="channel" href="tel:+79001234567">
+          <span class="channel-icon">📞</span>
+          <div><div class="channel-label">Телефон</div><div class="channel-val">+7 (900) 123-45-67</div></div>
+        </a>
+        <a class="channel" href="mailto:hello@nexora.dev">
+          <span class="channel-icon">✉️</span>
+          <div><div class="channel-label">Email</div><div class="channel-val">hello@nexora.dev</div></div>
+        </a>
+        <a class="channel" href="https://t.me/nexoradev" target="_blank">
+          <span class="channel-icon">✈️</span>
+          <div><div class="channel-label">Telegram</div><div class="channel-val">@nexoradev</div></div>
+        </a>
+        <a class="channel" href="https://wa.me/79001234567" target="_blank">
+          <span class="channel-icon">💬</span>
+          <div><div class="channel-label">WhatsApp</div><div class="channel-val">+7 (900) 123-45-67</div></div>
+        </a>
+      </div>
+    </div>
+    <div class="contact-form">
+      <div class="form-title">Оставить заявку</div>
+      <div class="form-group">
+        <label>Ваше имя</label>
+        <input type="text" placeholder="Иван Иванов"/>
+      </div>
+      <div class="form-group">
+        <label>Телефон или Email</label>
+        <input type="text" placeholder="+7 (___) ___-__-__ или email@mail.ru"/>
+      </div>
+      <div class="form-group">
+        <label>Тип проекта</label>
+        <select>
+          <option>Сайт или лендинг</option>
+          <option>Веб-приложение / SaaS</option>
+          <option>CRM / ERP система</option>
+          <option>Мобильное приложение</option>
+          <option>Telegram-бот / AI-решение</option>
+          <option>Интеграции / Автоматизация</option>
+          <option>Другое</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Кратко о задаче</label>
+        <textarea rows="4" placeholder="Что нужно сделать, какие основные функции, есть ли дедлайн..."></textarea>
+      </div>
+      <button class="form-submit">Получить консультацию →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="section-header reveal">
+    <div class="section-tag">Вопросы и ответы</div>
+    <h2 class="section-title">Отвечаем на<br/>частые вопросы</h2>
+  </div>
+  <div class="faq-grid reveal">
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Сколько стоит разработка? <span class="faq-arrow">▼</span></button>
+      <div class="faq-a">Стоимость зависит от сложности задачи. Простой лендинг — от 80 000 ₽. Интернет-магазин — от 250 000 ₽. CRM или ERP — от 500 000 ₽. Мобильное приложение — от 400 000 ₽. После брифа даём точную оценку бесплатно.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Сколько длится проект? <span class="faq-arrow">▼</span></button>
+      <div class="faq-a">Сроки зависят от объёма: лендинг — 2–3 недели, интернет-магазин — 2–3 месяца, CRM/ERP — 3–6 месяцев, сложная платформа — 6–12 месяцев. Называем точные сроки после составления ТЗ.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Можно ли доработать существующий сайт или систему? <span class="faq-arrow">▼</span></button>
+      <div class="faq-a">Да, мы регулярно берём проекты на поддержку и развитие. Проводим аудит текущего кода, оцениваем состояние системы и предлагаем план доработок. Работаем с любым стеком.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Делаете ли вы MVP? <span class="faq-arrow">▼</span></button>
+      <div class="faq-a">Да, MVP — одно из наших ключевых направлений. За 4–8 недель собираем минимально жизнеспособный продукт с ключевыми функциями для проверки гипотезы. Это оптимально для стартапов и новых идей.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Работаете ли вы по официальному договору? <span class="faq-arrow">▼</span></button>
+      <div class="faq-a">Да, работаем только официально. Заключаем договор подряда с фиксацией объёма, сроков, стоимости и условий оплаты. Готовы к работе с ИП, ООО и крупными корпорациями. По запросу подписываем NDA.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Поддерживаете ли проект после запуска? <span class="faq-arrow">▼</span></button>
+      <div class="faq-a">Обязательно. Предлагаем гарантийный период (как правило, 3 месяца) и тарифы технической поддержки: мониторинг, исправление ошибок, плановые обновления и дальнейшее развитие продукта.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Можно ли интегрировать CRM с другими системами? <span class="faq-arrow">▼</span></button>
+      <div class="faq-a">Да, интеграции — наша сильная сторона. Подключаем 1С, AmoCRM, Bitrix24, Telegram, WhatsApp, платёжные системы, маркетинговые инструменты и практически любой сервис через API или webhook.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Нужно ли мне разбираться в технологиях? <span class="faq-arrow">▼</span></button>
+      <div class="faq-a">Нет. Мы берём на себя всё техническое — вам нужно лишь понимать бизнес-задачу. Объясняем сложное простыми словами на каждом этапе без лишних технических деталей.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section id="finalcta">
+  <div class="cta-deco"></div>
+  <div class="cta-blob"></div>
+  <div class="finalcta-inner reveal">
+    <div class="cta-eyebrow">Начните прямо сейчас</div>
+    <h2 class="cta-h">Расскажите о задаче —<br/>мы <span>предложим лучшее решение</span></h2>
+    <p class="cta-sub">Бесплатная консультация, оценка сроков и стоимости без обязательств.<br/>Первый шаг занимает 5 минут.</p>
+    <div class="cta-btns">
+      <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Обсудить проект</button>
+      <button class="btn-outline" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Получить оценку стоимости</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">NEXORA</div>
+  <div class="footer-copy">© 2025 NEXORA. Все права защищены.</div>
+  <div class="footer-links">
+    <a href="#services">Услуги</a>
+    <a href="#cases">Кейсы</a>
+    <a href="#contact">Контакты</a>
+  </div>
+</footer>
+
+<script>
+  let menuOpen = false;
+  function toggleMenu() {
+    menuOpen = !menuOpen;
+    const links = document.querySelector('.nav-links');
+    links.style.display = menuOpen ? 'flex' : 'none';
+    links.style.flexDirection = 'column';
+    links.style.position = 'fixed';
+    links.style.top = '64px';
+    links.style.left = '0'; links.style.right = '0';
+    links.style.background = 'rgba(248,249,252,0.98)';
+    links.style.padding = '24px 5%';
+    links.style.gap = '20px'; links.style.zIndex = '99';
+    links.style.borderBottom = '1px solid #E2E8F0';
+    links.style.backdropFilter = 'blur(20px)';
+  }
+
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('in'), i * 60);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  revealEls.forEach(el => observer.observe(el));
+
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    if (window.scrollY > 50) {
+      nav.style.padding = '12px 5%';
+      nav.style.boxShadow = '0 2px 20px rgba(15,23,42,0.08)';
+    } else {
+      nav.style.padding = '18px 5%';
+      nav.style.boxShadow = 'none';
+    }
+  });
+
+  document.querySelector('.form-submit').addEventListener('click', function() {
+    this.textContent = '✓ Заявка отправлена! Свяжемся скоро.';
+    this.style.background = 'linear-gradient(135deg, #059669, #047857)';
+    this.style.boxShadow = '0 4px 20px rgba(5,150,105,.3)';
+    setTimeout(() => {
+      this.textContent = 'Получить консультацию →';
+      this.style.background = '';
+      this.style.boxShadow = '';
+    }, 4000);
+  });
+</script>
+</body>
+</html>
