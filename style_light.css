@@ -505,7 +505,8 @@
 
   /* ── FAQ ── */
   #faq { background: var(--bg2); }
-  .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: start; }
+  .faq-col { display: flex; flex-direction: column; gap: 14px; }
   .faq-item {
     background: var(--bg); border: 1.5px solid var(--border);
     border-radius: 12px; overflow: hidden; box-shadow: var(--shadow);
@@ -605,7 +606,8 @@
       text-align: center;
     }
     .burger { display: flex; }
-    .why-grid, .adv-grid, .cases-grid, .trust-grid, .reviews-grid, .tech-cats, .faq-grid, .contact-inner { grid-template-columns: 1fr; }
+    .why-grid, .adv-grid, .cases-grid, .trust-grid, .reviews-grid, .tech-cats, .contact-inner { grid-template-columns: 1fr; }
+    .faq-grid { grid-template-columns: 1fr; }
     .process-steps { grid-template-columns: 1fr 1fr; }
     .step::after {
       left: calc(50% + 35px);
