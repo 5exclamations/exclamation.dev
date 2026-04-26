@@ -673,19 +673,29 @@
         </a>
       </div>
     </div>
-    <div class="contact-form">
+    <form id="contact-form" class="contact-form" action="https://formspree.io/f/mdayvkzp" method="POST">
       <div class="form-title">Оставить заявку</div>
+      <div data-fs-success class="form-group" aria-live="polite"></div>
+      <div data-fs-error class="form-group" aria-live="polite"></div>
+
       <div class="form-group">
-        <label>Ваше имя</label>
-        <input type="text" placeholder="Иван Иванов"/>
+        <label for="contact-name">Ваше имя</label>
+        <input id="contact-name" type="text" name="name" placeholder="Иван Иванов" required data-fs-field/>
+        <span data-fs-error="name"></span>
       </div>
       <div class="form-group">
-        <label>Телефон или Email</label>
-        <input type="text" placeholder="+7 (___) ___-__-__ или email@mail.ru"/>
+        <label for="contact-email">Email</label>
+        <input id="contact-email" type="email" name="email" placeholder="email@mail.ru" required data-fs-field/>
+        <span data-fs-error="email"></span>
       </div>
       <div class="form-group">
-        <label>Тип проекта</label>
-        <select>
+        <label for="contact-phone">Телефон (необязательно)</label>
+        <input id="contact-phone" type="tel" name="contact" placeholder="+7 (___) ___-__-__" data-fs-field/>
+        <span data-fs-error="contact"></span>
+      </div>
+      <div class="form-group">
+        <label for="contact-project-type">Тип проекта</label>
+        <select id="contact-project-type" name="project_type" data-fs-field>
           <option>Сайт или лендинг</option>
           <option>Веб-приложение / SaaS</option>
           <option>CRM / ERP система</option>
@@ -696,11 +706,14 @@
         </select>
       </div>
       <div class="form-group">
-        <label>Кратко о задаче</label>
-        <textarea rows="4" placeholder="Что нужно сделать, какие основные функции, есть ли дедлайн..."></textarea>
+        <label for="contact-brief">Кратко о задаче</label>
+        <textarea id="contact-brief" name="message" rows="4" placeholder="Что нужно сделать, какие основные функции, есть ли дедлайн..." required data-fs-field></textarea>
+        <span data-fs-error="message"></span>
       </div>
-      <button class="form-submit">Получить консультацию →</button>
-    </div>
+
+      <input type="hidden" name="_subject" value="Новая заявка с сайта EXCLAMATION"/>
+      <button class="form-submit" type="submit" data-fs-submit-btn>Получить консультацию →</button>
+    </form>
   </div>
 </section>
 
@@ -848,15 +861,14 @@
     nav.style.padding = window.scrollY > 50 ? '14px 5%' : '20px 5%';
   });
 
-  // Form submit
-  document.querySelector('.form-submit').addEventListener('click', function() {
-    this.textContent = '✓ Заявка отправлена! Свяжемся скоро.';
-    this.style.background = 'linear-gradient(135deg, #059669, #047857)';
-    setTimeout(() => {
-      this.textContent = 'Получить консультацию →';
-      this.style.background = '';
-    }, 4000);
+  window.formspree = window.formspree || function () {
+    (formspree.q = formspree.q || []).push(arguments);
+  };
+  formspree('initForm', {
+    formElement: '#contact-form',
+    formId: 'mdayvkzp'
   });
 </script>
+<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 </body>
 </html>
