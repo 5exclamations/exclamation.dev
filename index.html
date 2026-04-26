@@ -24,12 +24,12 @@
     <li><a href="#faq">FAQ</a></li>
     <li class="mobile-menu-actions">
       <button class="nav-cta" type="button" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'}); toggleMenu();">Обсудить проект</button>
-      <button class="nav-cta" type="button" onclick="toggleTheme()" data-theme-toggle aria-label="Сменить тему" title="Сменить тему">☀</button>
+      <button class="nav-cta" type="button" onclick="toggleTheme()" data-theme-toggle aria-label="Сменить тему" title="Сменить тему">◐</button>
     </li>
   </ul>
   <div class="nav-actions">
     <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Обсудить проект</button>
-    <button class="nav-cta" type="button" onclick="toggleTheme()" data-theme-toggle aria-label="Сменить тему" title="Сменить тему">☀</button>
+    <button class="nav-cta" type="button" onclick="toggleTheme()" data-theme-toggle aria-label="Сменить тему" title="Сменить тему">◐</button>
     <div class="burger" onclick="toggleMenu()">
       <span></span><span></span><span></span>
     </div>
@@ -383,7 +383,7 @@
     <p class="section-sub">Реальные задачи, конкретные решения, измеримые результаты.</p>
   </div>
   <div class="cases-grid reveal">
-    <div class="case-card">
+    <div class="case-card" data-case-id="crm">
       <div class="case-top">
         <div class="case-tag">CRM-система</div>
         <div class="case-title">Sales Hub — CRM для отдела продаж строительной компании</div>
@@ -399,7 +399,7 @@
         </ul>
       </div>
     </div>
-    <div class="case-card">
+    <div class="case-card" data-case-id="ecommerce">
       <div class="case-top">
         <div class="case-tag">Интернет-магазин</div>
         <div class="case-title">UrbanStore — e-commerce для бренда одежды с 50 000+ SKU</div>
@@ -415,12 +415,12 @@
         </ul>
       </div>
     </div>
-    <div class="case-card">
+    <div class="case-card" data-case-id="erp">
       <div class="case-top">
         <div class="case-tag">ERP-система</div>
         <div class="case-title">FLEKS — ERP для психологического центра</div>
         <div class="case-desc"><strong>Задача:</strong> Сотрудники вели клиентов в таблицах, балансы считали вручную, чеки печатали из Word. Данные терялись, ошибки в оплатах были нормой, руководитель не видел картину по клиентам в реальном времени.</div>
-        <div class="case-desc"><strong>Решение:</strong>  Разработали внутреннюю CRM-панель на Django: учёт клиентов и балансов, списание оплат за сеансы, подсчёт уроков, автоматическая генерация PDF-чеков и финансовая отчётность — всё в одном интерфейсе.</div>
+        <div class="case-desc"><strong>Решение:</strong> Разработали внутреннюю ERP-панель на Django: учёт клиентов и балансов, списание оплат за сеансы, подсчёт уроков, автоматическая генерация PDF-чеков и финансовая отчётность — всё в одном интерфейсе.</div>
       </div>
       <div class="case-divider"></div>
       <div class="case-bottom">
@@ -431,7 +431,7 @@
         </ul>
       </div>
     </div>
-    <div class="case-card">
+    <div class="case-card" data-case-id="medapp">
       <div class="case-top">
         <div class="case-tag">Мобильное приложение</div>
         <div class="case-title">MedApp — приложение для сети медицинских клиник</div>
@@ -447,7 +447,7 @@
         </ul>
       </div>
     </div>
-    <div class="case-card">
+    <div class="case-card" data-case-id="bookingpro">
       <div class="case-top">
         <div class="case-tag">SaaS-платформа</div>
         <div class="case-title">BookingPro — платформа бронирования для сети отелей</div>
@@ -463,7 +463,7 @@
         </ul>
       </div>
     </div>
-    <div class="case-card">
+    <div class="case-card" data-case-id="autoflow">
       <div class="case-top">
         <div class="case-tag">Автоматизация</div>
         <div class="case-title">AutoFlow — автоматизация документооборота для юридической фирмы</div>
@@ -777,6 +777,24 @@
   </div>
 </section>
 
+<!-- CASE GALLERY LIGHTBOX -->
+<div id="case-lightbox" class="case-lightbox" hidden aria-hidden="true">
+  <div class="case-lightbox-backdrop" data-lightbox-close></div>
+  <div class="case-lightbox-dialog" role="dialog" aria-modal="true" aria-label="Просмотр кейса">
+    <button class="case-lightbox-close" type="button" data-lightbox-close aria-label="Закрыть">×</button>
+    <div class="case-lightbox-top">
+      <div id="case-lightbox-title" class="case-lightbox-title"></div>
+      <div id="case-lightbox-counter" class="case-lightbox-counter"></div>
+    </div>
+    <div class="case-lightbox-stage">
+      <button class="case-lightbox-nav prev" type="button" id="case-lightbox-prev" aria-label="Предыдущее фото">‹</button>
+      <img id="case-lightbox-image" class="case-lightbox-image" src="" alt=""/>
+      <button class="case-lightbox-nav next" type="button" id="case-lightbox-next" aria-label="Следующее фото">›</button>
+    </div>
+    <div id="case-lightbox-thumbs" class="case-lightbox-thumbs"></div>
+  </div>
+</div>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">EXCLAMATION</div>
@@ -794,13 +812,18 @@
   const themeToggleBtns = document.querySelectorAll('[data-theme-toggle]');
   let menuOpen = false;
 
+  const THEME_ICON_MOON = '<svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="display:block;margin:0 auto"><path fill="currentColor" d="M20.74 15.34A9 9 0 0 1 8.66 3.26a.75.75 0 0 0-.94-.94A10.5 10.5 0 1 0 21.68 16.28a.75.75 0 0 0-.94-.94z"/></svg>';
+  const THEME_ICON_SUN = '<svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="display:block;margin:0 auto"><circle cx="12" cy="12" r="4" fill="currentColor"/><g stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="12" y1="2.5" x2="12" y2="5.1"/><line x1="12" y1="18.9" x2="12" y2="21.5"/><line x1="2.5" y1="12" x2="5.1" y2="12"/><line x1="18.9" y1="12" x2="21.5" y2="12"/><line x1="5.2" y1="5.2" x2="7.1" y2="7.1"/><line x1="16.9" y1="16.9" x2="18.8" y2="18.8"/><line x1="16.9" y1="7.1" x2="18.8" y2="5.2"/><line x1="5.2" y1="18.8" x2="7.1" y2="16.9"/></g></svg>';
+
   function applyTheme(theme) {
     const isLight = theme === 'light';
     lightThemeLink.disabled = !isLight;
     darkThemeLink.disabled = isLight;
     document.body.dataset.theme = theme;
     themeToggleBtns.forEach((btn) => {
-      btn.textContent = isLight ? '🌙' : '☀';
+      btn.innerHTML = isLight ? THEME_ICON_MOON : THEME_ICON_SUN;
+      btn.setAttribute('aria-label', isLight ? 'Включить темную тему' : 'Включить светлую тему');
+      btn.setAttribute('title', isLight ? 'Включить темную тему' : 'Включить светлую тему');
     });
 
     if (menuOpen) {
@@ -901,6 +924,165 @@
       if (phoneInput.value === '+994 (') phoneInput.value = '';
     });
   }
+
+  const caseGalleryData = {
+    erp: [
+      { src: 'pics/ERP/photo_1_2026-04-27_01-03-50.jpg', alt: 'ERP FLEKS - экран 1' },
+      { src: 'pics/ERP/photo_2_2026-04-27_01-03-50.jpg', alt: 'ERP FLEKS - экран 2' },
+      { src: 'pics/ERP/photo_3_2026-04-27_01-03-50.jpg', alt: 'ERP FLEKS - экран 3' }
+    ]
+  };
+
+  const lightboxState = { caseId: null, index: 0 };
+  const lightboxEl = document.getElementById('case-lightbox');
+  const lightboxImageEl = document.getElementById('case-lightbox-image');
+  const lightboxTitleEl = document.getElementById('case-lightbox-title');
+  const lightboxCounterEl = document.getElementById('case-lightbox-counter');
+  const lightboxThumbsEl = document.getElementById('case-lightbox-thumbs');
+  const lightboxPrevEl = document.getElementById('case-lightbox-prev');
+  const lightboxNextEl = document.getElementById('case-lightbox-next');
+
+  function getCaseTitle(caseId) {
+    const card = document.querySelector(`.case-card[data-case-id="${caseId}"]`);
+    return card ? card.querySelector('.case-title')?.textContent?.trim() || 'Кейс' : 'Кейс';
+  }
+
+  function renderLightboxThumbs(caseId, activeIndex) {
+    const images = caseGalleryData[caseId] || [];
+    lightboxThumbsEl.innerHTML = '';
+    images.forEach((image, index) => {
+      const thumbBtn = document.createElement('button');
+      thumbBtn.type = 'button';
+      thumbBtn.className = 'case-lightbox-thumb' + (index === activeIndex ? ' active' : '');
+      thumbBtn.setAttribute('aria-label', `Открыть фото ${index + 1}`);
+
+      const thumbImg = document.createElement('img');
+      thumbImg.src = image.src;
+      thumbImg.alt = image.alt || `Фото ${index + 1}`;
+      thumbBtn.appendChild(thumbImg);
+
+      thumbBtn.addEventListener('click', () => {
+        lightboxState.index = index;
+        updateLightbox();
+      });
+
+      lightboxThumbsEl.appendChild(thumbBtn);
+    });
+  }
+
+  function updateLightbox() {
+    const images = caseGalleryData[lightboxState.caseId] || [];
+    if (!images.length) return;
+
+    const safeIndex = ((lightboxState.index % images.length) + images.length) % images.length;
+    lightboxState.index = safeIndex;
+    const current = images[safeIndex];
+
+    lightboxImageEl.src = current.src;
+    lightboxImageEl.alt = current.alt || `Фото ${safeIndex + 1}`;
+    lightboxTitleEl.textContent = getCaseTitle(lightboxState.caseId);
+    lightboxCounterEl.textContent = `${safeIndex + 1} / ${images.length}`;
+
+    renderLightboxThumbs(lightboxState.caseId, safeIndex);
+  }
+
+  function openCaseLightbox(caseId, index) {
+    if (!caseGalleryData[caseId]?.length) return;
+    lightboxState.caseId = caseId;
+    lightboxState.index = index;
+    lightboxEl.hidden = false;
+    lightboxEl.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    updateLightbox();
+  }
+
+  function closeCaseLightbox() {
+    lightboxEl.hidden = true;
+    lightboxEl.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  function renderCaseGalleries() {
+    document.querySelectorAll('.case-card[data-case-id]').forEach((card) => {
+      const caseId = card.dataset.caseId;
+      const images = caseGalleryData[caseId] || [];
+      if (!images.length) return;
+
+      const divider = card.querySelector('.case-divider');
+      if (!divider) return;
+
+      const gallery = document.createElement('div');
+      gallery.className = 'case-gallery';
+
+      const previewButton = document.createElement('button');
+      previewButton.type = 'button';
+      previewButton.className = 'case-preview-btn';
+      previewButton.setAttribute('aria-label', 'Открыть галерею кейса');
+
+      const previewImage = document.createElement('img');
+      previewImage.className = 'case-preview-image';
+      previewImage.src = images[0].src;
+      previewImage.alt = images[0].alt || 'Превью кейса';
+      previewButton.appendChild(previewImage);
+
+      const previewBadge = document.createElement('span');
+      previewBadge.className = 'case-preview-badge';
+      previewBadge.textContent = `+${images.length} фото`;
+      previewButton.appendChild(previewBadge);
+
+      previewButton.addEventListener('click', () => openCaseLightbox(caseId, 0));
+      gallery.appendChild(previewButton);
+
+      const thumbs = document.createElement('div');
+      thumbs.className = 'case-thumbs';
+      images.slice(0, 4).forEach((image, index) => {
+        const thumbButton = document.createElement('button');
+        thumbButton.type = 'button';
+        thumbButton.className = 'case-thumb-btn';
+        thumbButton.setAttribute('aria-label', `Открыть фото ${index + 1}`);
+
+        const thumbImage = document.createElement('img');
+        thumbImage.src = image.src;
+        thumbImage.alt = image.alt || `Фото ${index + 1}`;
+        thumbButton.appendChild(thumbImage);
+
+        thumbButton.addEventListener('click', () => openCaseLightbox(caseId, index));
+        thumbs.appendChild(thumbButton);
+      });
+
+      gallery.appendChild(thumbs);
+      card.insertBefore(gallery, divider);
+    });
+  }
+
+  lightboxPrevEl.addEventListener('click', () => {
+    lightboxState.index -= 1;
+    updateLightbox();
+  });
+
+  lightboxNextEl.addEventListener('click', () => {
+    lightboxState.index += 1;
+    updateLightbox();
+  });
+
+  lightboxEl.querySelectorAll('[data-lightbox-close]').forEach((el) => {
+    el.addEventListener('click', closeCaseLightbox);
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (lightboxEl.hidden) return;
+    if (event.key === 'Escape') closeCaseLightbox();
+    if (event.key === 'ArrowLeft') {
+      lightboxState.index -= 1;
+      updateLightbox();
+    }
+    if (event.key === 'ArrowRight') {
+      lightboxState.index += 1;
+      updateLightbox();
+    }
+  });
+
+  renderCaseGalleries();
 
   window.formspree = window.formspree || function () {
     (formspree.q = formspree.q || []).push(arguments);
