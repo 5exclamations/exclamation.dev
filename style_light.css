@@ -450,13 +450,16 @@
     display: block; font-size: .73rem; font-weight: 700; color: var(--muted);
     margin-bottom: 8px; letter-spacing: .06em; text-transform: uppercase;
   }
-  [data-fs-success] {
-    background: rgba(5,150,105,.08);
-    border: 1px solid rgba(5,150,105,.2);
-    color: #047857;
+  #contact .contact-form [data-fs-success] {
+    background: rgba(29,78,216,.08) !important;
+    border: 1px solid rgba(29,78,216,.22) !important;
+    color: #1D4ED8 !important;
     border-radius: 8px;
     padding: 10px 12px;
     font-size: .82rem;
+  }
+  #contact .contact-form [data-fs-success] * {
+    color: #1D4ED8 !important;
   }
   [data-fs-error] {
     background: rgba(220,38,38,.07);

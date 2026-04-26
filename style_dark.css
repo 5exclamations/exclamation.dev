@@ -481,10 +481,10 @@
   .form-title { font-family: 'Unbounded', sans-serif; font-weight: 600; font-size: 1.1rem; margin-bottom: 28px; }
   .form-group { margin-bottom: 18px; }
   .form-group label { display: block; font-size: .8rem; font-weight: 600; color: #94A3B8; margin-bottom: 8px; letter-spacing: .04em; text-transform: uppercase; }
-  [data-fs-success] {
-    background: rgba(16,185,129,.12);
-    border: 1px solid rgba(16,185,129,.35);
-    color: #34D399;
+  #contact .contact-form [data-fs-success] {
+    background: rgba(59,130,246,.16) !important;
+    border: 1px solid rgba(59,130,246,.5) !important;
+    color: #93C5FD !important;
     border-radius: 8px;
     padding: 10px 12px;
     font-size: .82rem;
