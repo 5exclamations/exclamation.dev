@@ -842,7 +842,29 @@
   }
 
   const savedTheme = localStorage.getItem('nexora-theme');
-  applyTheme(savedTheme === 'light' ? 'light' : 'dark');
+  const systemThemeQuery = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+
+  if (savedTheme === 'light' || savedTheme === 'dark') {
+    applyTheme(savedTheme);
+  } else if (systemThemeQuery && typeof systemThemeQuery.matches === 'boolean') {
+    applyTheme(systemThemeQuery.matches ? 'dark' : 'light');
+  } else {
+    applyTheme('light');
+  }
+
+  if (systemThemeQuery) {
+    const syncThemeWithSystem = (event) => {
+      if (!localStorage.getItem('nexora-theme')) {
+        applyTheme(event.matches ? 'dark' : 'light');
+      }
+    };
+
+    if (typeof systemThemeQuery.addEventListener === 'function') {
+      systemThemeQuery.addEventListener('change', syncThemeWithSystem);
+    } else if (typeof systemThemeQuery.addListener === 'function') {
+      systemThemeQuery.addListener(syncThemeWithSystem);
+    }
+  }
 
   // Mobile menu
   function toggleMenu() {
