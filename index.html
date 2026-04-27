@@ -24,11 +24,13 @@
     <li><a href="#faq">FAQ</a></li>
     <li class="mobile-menu-actions">
       <button class="nav-cta" type="button" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'}); toggleMenu();">Обсудить проект</button>
+      <button class="nav-cta" type="button" onclick="cycleLanguage()" data-lang-toggle aria-label="Сменить язык" title="Сменить язык">RU</button>
       <button class="nav-cta" type="button" onclick="toggleTheme()" data-theme-toggle aria-label="Сменить тему" title="Сменить тему">◐</button>
     </li>
   </ul>
   <div class="nav-actions">
     <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Обсудить проект</button>
+    <button class="nav-cta" type="button" onclick="cycleLanguage()" data-lang-toggle aria-label="Сменить язык" title="Сменить язык">RU</button>
     <button class="nav-cta" type="button" onclick="toggleTheme()" data-theme-toggle aria-label="Сменить тему" title="Сменить тему">◐</button>
     <div class="burger" onclick="toggleMenu()">
       <span></span><span></span><span></span>
@@ -195,50 +197,50 @@
 <!-- WHY -->
 <section id="why">
   <div class="section-header reveal">
-    <div class="section-tag">Зачем вам это нужно</div>
-    <h2 class="section-title">Цифровые продукты — это не расходы.<br/>Это ваши активы</h2>
-    <p class="section-sub">Правильно выстроенная цифровая инфраструктура напрямую влияет на выручку, операционные издержки и удержание клиентов.</p>
+    <div class="section-tag">Bu sizə niyə lazımdır</div>
+    <h2 class="section-title">Rəqəmsal məhsullar xərc deyil.<br/>Sizin aktivlərinizdir</h2>
+    <p class="section-sub">Düzgün qurulmuş rəqəmsal infrastruktur gəlirə, əməliyyat xərclərinə və müştəri saxlanmasına birbaşa təsir edir.</p>
   </div>
   <div class="why-grid reveal">
     <div class="why-card">
       <div class="why-emoji">🌍</div>
-      <div class="why-title">Сайт — ваш менеджер по продажам, работающий 24/7</div>
-      <div class="why-text">Профессиональный сайт генерирует заявки пока вы спите. Без сайта или со слабым — вы теряете клиентов в пользу конкурентов ежедневно. Первое впечатление формируется за 3 секунды.</div>
+      <div class="why-title">Sayt 24/7 işləyən satış menecerinizdir</div>
+      <div class="why-text">Peşəkar sayt siz yatarkən belə müraciət gətirir. Sayt yoxdursa və ya zəifdirsə, hər gün müştəriləri rəqiblərə uduzursunuz. İlk təəssürat cəmi 3 saniyəyə formalaşır.</div>
     </div>
     <div class="why-card">
       <div class="why-emoji">🎯</div>
-      <div class="why-title">CRM — чтобы ни одна заявка не потерялась</div>
-      <div class="why-text">Без CRM до 35% лидов теряется в мессенджерах, почте и блокнотах. Система автоматически ведёт клиента по воронке, напоминает о задачах и даёт полную картину продаж.</div>
+      <div class="why-title">CRM heç bir müraciətin itirilməməsi üçündür</div>
+      <div class="why-text">CRM olmadan lidlərin 35%-ə qədəri messencer, e-poçt və qeydlərdə itir. Sistem müştərini satış hunisi ilə avtomatik aparır, tapşırıqları xatırladır və satışları tam göstərir.</div>
     </div>
     <div class="why-card">
       <div class="why-emoji">🏭</div>
-      <div class="why-title">ERP — весь бизнес в одном месте</div>
-      <div class="why-text">Разрозненные Excel-таблицы и разные программы для каждого отдела — это хаос и ошибки. ERP объединяет производство, склад, финансы, кадры и продажи в единую систему.</div>
+      <div class="why-title">ERP bütün biznesi bir yerdə birləşdirir</div>
+      <div class="why-text">Pərakəndə Excel cədvəlləri və hər şöbə üçün ayrı proqramlar xaos və səhvlər yaradır. ERP istehsal, anbar, maliyyə, kadr və satışları vahid sistemdə birləşdirir.</div>
     </div>
     <div class="why-card">
       <div class="why-emoji">📲</div>
-      <div class="why-title">Приложение повышает лояльность и удержание</div>
-      <div class="why-text">Приложение — это прямой канал к клиенту в его кармане. Push-уведомления, программа лояльности, удобный заказ — и клиент возвращается в 2–3 раза чаще.</div>
+      <div class="why-title">Tətbiq loyallığı və saxlanmanı artırır</div>
+      <div class="why-text">Mobil tətbiq müştərinin cibində birbaşa kanaldır. Push bildirişləri, loyallıq proqramı və rahat sifariş prosesi müştərinin 2-3 dəfə daha tez qayıtmasına kömək edir.</div>
     </div>
     <div class="why-card">
       <div class="why-emoji">⚡</div>
-      <div class="why-title">Автоматизация — экономия времени и снижение ошибок</div>
-      <div class="why-text">Ручные процессы — это время сотрудников и риск ошибок. Автоматизированные сценарии обрабатывают данные, формируют документы и отправляют уведомления без участия человека.</div>
+      <div class="why-title">Avtomatlaşdırma vaxta qənaət edir və səhvləri azaldır</div>
+      <div class="why-text">Əl ilə görülən proseslər əməkdaş vaxtını alır və səhv riskini artırır. Avtomatlaşdırılmış ssenarilər məlumatları emal edir, sənədləri yaradır və insan iştirakı olmadan bildiriş göndərir.</div>
     </div>
     <div class="why-card">
       <div class="why-emoji">📈</div>
-      <div class="why-title">Аналитика — принимайте решения на основе данных</div>
-      <div class="why-text">Интуиция — это хорошо. Данные — лучше. BI-дашборд в реальном времени показывает узкие места, рост выручки, эффективность команд и прогноз на следующий квартал.</div>
+      <div class="why-title">Analitika ilə qərarları dataya əsasən verin</div>
+      <div class="why-text">İntuisiya yaxşıdır, data isə daha yaxşıdır. Real vaxt BI paneli zəif nöqtələri, gəlir artımını, komanda effektivliyini və növbəti rüb proqnozunu göstərir.</div>
     </div>
     <div class="why-card">
       <div class="why-emoji">🔒</div>
-      <div class="why-title">Личный кабинет снижает нагрузку на поддержку</div>
-      <div class="why-text">Если клиент может сам отследить заказ, скачать документы или изменить данные — он не пишет в поддержку. Это снижает нагрузку на команду и улучшает клиентский опыт.</div>
+      <div class="why-title">Şəxsi kabinet dəstək yükünü azaldır</div>
+      <div class="why-text">Müştəri sifarişi özü izləyə, sənədi yükləyə və məlumatlarını dəyişə bilirsə, dəstəyə yazmır. Bu, komanda yükünü azaldır və müştəri təcrübəsini yaxşılaşdırır.</div>
     </div>
     <div class="why-card">
       <div class="why-emoji">🔌</div>
-      <div class="why-title">Интеграции объединяют весь цифровой ландшафт</div>
-      <div class="why-text">Ваша CRM не знает о заказах из интернет-магазина? Склад не видит продажи? Интеграции синхронизируют все системы — данные актуальны везде и всегда без ручного переноса.</div>
+      <div class="why-title">İnteqrasiyalar bütün rəqəmsal mühiti birləşdirir</div>
+      <div class="why-text">CRM onlayn mağaza sifarişlərini görmür? Anbar satışlardan xəbərsizdir? İnteqrasiyalar bütün sistemləri sinxron edir və məlumatı əl köçürməsi olmadan hər yerdə aktual saxlayır.</div>
     </div>
   </div>
 </section>
@@ -246,80 +248,80 @@
 <!-- WHO -->
 <section id="who">
   <div class="section-header reveal">
-    <div class="section-tag">Кому это нужно</div>
-    <h2 class="section-title">Мы работаем с бизнесом<br/>любого масштаба и ниши</h2>
-    <p class="section-sub">Каждому сегменту — подходящее решение: от MVP за 3 недели до масштабной корпоративной платформы.</p>
+    <div class="section-tag">Kimlər üçün uyğundur</div>
+    <h2 class="section-title">İstənilən miqyas və sahədə<br/>bizneslə işləyirik</h2>
+    <p class="section-sub">Hər seqment üçün uyğun həll: bir neçə günlük MVP-dən böyük korporativ platformaya qədər.</p>
   </div>
   <div class="who-grid reveal">
-    <div class="who-card"><span class="who-icon">🚀</span><div class="who-name">Стартапы</div></div>
-    <div class="who-card"><span class="who-icon">🏪</span><div class="who-name">Малый бизнес</div></div>
-    <div class="who-card"><span class="who-icon">🏢</span><div class="who-name">Средний бизнес</div></div>
-    <div class="who-card"><span class="who-icon">🌐</span><div class="who-name">Крупные компании</div></div>
-    <div class="who-card"><span class="who-icon">🛒</span><div class="who-name">Интернет-магазины</div></div>
-    <div class="who-card"><span class="who-icon">🏭</span><div class="who-name">Производство</div></div>
-    <div class="who-card"><span class="who-icon">✂️</span><div class="who-name">Сфера услуг</div></div>
-    <div class="who-card"><span class="who-icon">🚛</span><div class="who-name">Логистика</div></div>
-    <div class="who-card"><span class="who-icon">🎓</span><div class="who-name">Образование</div></div>
-    <div class="who-card"><span class="who-icon">🏥</span><div class="who-name">Медицина</div></div>
-    <div class="who-card"><span class="who-icon">🏠</span><div class="who-name">Недвижимость</div></div>
-    <div class="who-card"><span class="who-icon">💰</span><div class="who-name">Финансы</div></div>
-    <div class="who-card"><span class="who-icon">🏛️</span><div class="who-name">Госструктуры</div></div>
-    <div class="who-card"><span class="who-icon">⚡</span><div class="who-name">Любая компания</div></div>
+    <div class="who-card"><span class="who-icon">🚀</span><div class="who-name">Startaplar</div></div>
+    <div class="who-card"><span class="who-icon">🏪</span><div class="who-name">Kiçik biznes</div></div>
+    <div class="who-card"><span class="who-icon">🏢</span><div class="who-name">Orta biznes</div></div>
+    <div class="who-card"><span class="who-icon">🌐</span><div class="who-name">Böyük şirkətlər</div></div>
+    <div class="who-card"><span class="who-icon">🛒</span><div class="who-name">Onlayn mağazalar</div></div>
+    <div class="who-card"><span class="who-icon">🏭</span><div class="who-name">İstehsal</div></div>
+    <div class="who-card"><span class="who-icon">✂️</span><div class="who-name">Xidmət sektoru</div></div>
+    <div class="who-card"><span class="who-icon">🚛</span><div class="who-name">Logistika</div></div>
+    <div class="who-card"><span class="who-icon">🎓</span><div class="who-name">Təhsil</div></div>
+    <div class="who-card"><span class="who-icon">🏥</span><div class="who-name">Tibb</div></div>
+    <div class="who-card"><span class="who-icon">🏠</span><div class="who-name">Daşınmaz əmlak</div></div>
+    <div class="who-card"><span class="who-icon">💰</span><div class="who-name">Maliyyə</div></div>
+    <div class="who-card"><span class="who-icon">🏛️</span><div class="who-name">Dövlət sektoru</div></div>
+    <div class="who-card"><span class="who-icon">⚡</span><div class="who-name">İstənilən şirkət</div></div>
   </div>
 </section>
 
 <!-- ADVANTAGES -->
 <section id="advantages">
   <div class="section-header reveal">
-    <div class="section-tag">Наши преимущества</div>
-    <h2 class="section-title">Почему нас выбирают<br/>и возвращаются снова</h2>
-    <p class="section-sub">Не слова — система. Каждое преимущество закреплено в процессе работы, договоре и результатах проектов.</p>
+    <div class="section-tag">Üstünlüklərimiz</div>
+    <h2 class="section-title">Niyə bizi seçirlər<br/>və yenidən qayıdırlar</h2>
+    <p class="section-sub">Söz deyil, sistemdir. Hər üstünlük iş prosesində, müqavilədə və layihə nəticələrində təsdiqlənir.</p>
   </div>
   <div class="adv-grid reveal">
     <div class="adv-item">
       <div class="adv-num">01</div>
-      <div class="adv-title">Индивидуальный подход</div>
-      <div class="adv-text">Никаких шаблонных решений. Мы погружаемся в бизнес-задачу и предлагаем архитектуру, оптимальную именно для вашего кейса.</div>
+      <div class="adv-title">Fərdi yanaşma</div>
+      <div class="adv-text">Şablon həllərdən istifadə etmirik. Biznes tapşırığını dərindən anlayır və məhz sizin case üçün optimal arxitektura təklif edirik.</div>
     </div>
     <div class="adv-item">
       <div class="adv-num">02</div>
-      <div class="adv-title">Разработка под ключ</div>
-      <div class="adv-text">Берём полную ответственность: аналитика, дизайн, разработка, тестирование, запуск и поддержка — всё в одних руках.</div>
+      <div class="adv-title">Açar təslim inkişaf</div>
+      <div class="adv-text">Tam məsuliyyət götürürük: analitika, dizayn, development, test, buraxılış və dəstək - hamısı bir komandada.</div>
     </div>
     <div class="adv-item">
       <div class="adv-num">03</div>
-      <div class="adv-title">Понятная коммуникация</div>
-      <div class="adv-text">Прозрачный трекер задач, еженедельные отчёты, доступный PM и никакой технической воды в переписке. Вы всегда знаете, что происходит.</div>
+      <div class="adv-title">Aydın kommunikasiya</div>
+      <div class="adv-text">Şəffaf task tracker, həftəlik hesabatlar, əlçatan PM və yazışmada artıq texniki söz yığını yoxdur. Hər an nə baş verdiyini bilirsiniz.</div>
     </div>
     <div class="adv-item">
       <div class="adv-num">04</div>
-      <div class="adv-title">Современный стек технологий</div>
-      <div class="adv-text">React, FastAPI, Go, Flutter, PostgreSQL, AWS — мы используем технологии, которые обеспечивают производительность, масштабируемость и долгую жизнь продукта.</div>
+      <div class="adv-title">Müasir texnologiya stack-i</div>
+      <div class="adv-text">React, FastAPI, Go, Flutter, PostgreSQL, AWS kimi texnologiyalarla məhsulun performansını, miqyaslanmasını və uzunömürlülüyünü təmin edirik.</div>
     </div>
     <div class="adv-item">
       <div class="adv-num">05</div>
-      <div class="adv-title">Надёжная архитектура</div>
-      <div class="adv-text">Проектируем системы, которые выдерживают рост. Микросервисы, API-first подход, CI/CD и автоматическое тестирование — с первого дня.</div>
+      <div class="adv-title">Etibarlı arxitektura</div>
+      <div class="adv-text">Artımı daşıyan sistemlər qururuq. Mikroxidmətlər, API-first yanaşma, CI/CD və avtomatik testlər ilk gündən tətbiq olunur.</div>
     </div>
     <div class="adv-item">
       <div class="adv-num">06</div>
-      <div class="adv-title">UI/UX-дизайн мирового уровня</div>
-      <div class="adv-text">Продукт, которым приятно пользоваться — конкурентное преимущество. Дизайн-система, пользовательские сценарии и A/B-тестирование гипотез.</div>
+      <div class="adv-title">Dünya səviyyəli UI/UX dizayn</div>
+      <div class="adv-text">İstifadəsi rahat məhsul birbaşa rəqabət üstünlüyüdür. Dizayn sistemi, istifadəçi ssenariləri və A/B testləri ilə işləyirik.</div>
     </div>
     <div class="adv-item">
       <div class="adv-num">07</div>
-      <div class="adv-title">Соблюдение сроков</div>
-      <div class="adv-text">Жёсткие дедлайны — наша норма. Agile-спринты, буфер на непредвиденное и честный разговор, если что-то меняется. Никаких сюрпризов за день до дедлайна.</div>
+      <div class="adv-title">Müddətlərə riayət</div>
+      <div class="adv-text">Sıx deadline bizim üçün standartdır. Agile sprintlər, risk buferi və dəyişiklik olanda açıq kommunikasiya - deadline öncəsi sürpriz olmur.</div>
     </div>
     <div class="adv-item">
       <div class="adv-num">08</div>
-      <div class="adv-title">Поддержка и развитие после запуска</div>
-      <div class="adv-text">Запуск — не конец. Мы остаёмся с вами: мониторинг, исправление ошибок, доработки и стратегическое развитие продукта по roadmap.</div>
+      <div class="adv-title">Buraxılışdan sonra dəstək və inkişaf</div>
+      <div class="adv-text">Buraxılış son nöqtə deyil. Monitorinq, bug fix, əlavə inkişaf və roadmap üzrə strateji inkişafda yanınızda qalırıq.</div>
     </div>
     <div class="adv-item">
       <div class="adv-num">09</div>
-      <div class="adv-title">Ориентация на результат</div>
-      <div class="adv-text">Нас интересует не код как таковой, а рост вашего бизнеса. Мы предлагаем решения, которые влияют на конверсию, выручку и операционную эффективность.</div>
+      <div class="adv-title">Nəticəyə fokus</div>
+      <div class="adv-text">Bizim üçün məqsəd yalnız kod deyil, biznesinizin böyüməsidir. Konversiya, gəlir və əməliyyat effektivliyinə təsir edən həllər təqdim edirik.</div>
     </div>
   </div>
 </section>
@@ -327,50 +329,50 @@
 <!-- PROCESS -->
 <section id="process">
   <div class="section-header reveal">
-    <div class="section-tag">Как мы работаем</div>
-    <h2 class="section-title">Прозрачный процесс<br/>от брифа до запуска</h2>
-    <p class="section-sub">Восемь последовательных этапов — без скрытых шагов, с понятным результатом на каждом из них.</p>
+    <div class="section-tag">Necə işləyirik</div>
+    <h2 class="section-title">Brifdən buraxılışa qədər<br/>şəffaf proses</h2>
+    <p class="section-sub">Səkkiz ardıcıl mərhələ: gizli addım yoxdur, hər mərhələnin nəticəsi aydındır.</p>
   </div>
   <div class="process-steps reveal">
     <div class="step">
       <div class="step-num">01</div>
-      <div class="step-title">Анализ и брифинг</div>
-      <div class="step-text">Изучаем бизнес, цели, конкурентов и целевую аудиторию. Формируем техническое задание.</div>
+      <div class="step-title">Analiz və brifinq</div>
+      <div class="step-text">Biznesi, məqsədləri, rəqibləri və hədəf auditoriyanı araşdırırıq. Texniki tapşırığı formalaşdırırıq.</div>
     </div>
     <div class="step">
       <div class="step-num">02</div>
-      <div class="step-title">Подбор решения</div>
-      <div class="step-text">Предлагаем оптимальный технологический стек, архитектуру и план с оценкой сроков и стоимости.</div>
+      <div class="step-title">Həllin seçimi</div>
+      <div class="step-text">Optimal texnoloji stack, arxitektura və müddət-dəyər qiymətləndirməsi ilə plan təqdim edirik.</div>
     </div>
     <div class="step">
       <div class="step-num">03</div>
-      <div class="step-title">Проектирование</div>
-      <div class="step-text">Прорабатываем структуру, пользовательские сценарии, wireframes и логику всех блоков системы.</div>
+      <div class="step-title">Layihələndirmə</div>
+      <div class="step-text">Strukturu, istifadəçi ssenarilərini, wireframe-ləri və sistem bloklarının məntiqini hazırlayırıq.</div>
     </div>
     <div class="step">
       <div class="step-num">04</div>
-      <div class="step-title">Дизайн</div>
-      <div class="step-text">Создаём дизайн-систему, макеты всех экранов и адаптивные версии. Согласуем итерациями.</div>
+      <div class="step-title">Dizayn</div>
+      <div class="step-text">Dizayn sistemi, bütün ekran maketləri və adaptiv versiyalar hazırlanır. İterasiyalarla razılaşdırılır.</div>
     </div>
     <div class="step">
       <div class="step-num">05</div>
-      <div class="step-title">Разработка</div>
-      <div class="step-text">Пишем чистый, масштабируемый код. Спринты по 2 недели, демо после каждого итерации.</div>
+      <div class="step-title">Development</div>
+      <div class="step-text">Təmiz və miqyaslana bilən kod yazırıq. 2 həftəlik sprintlər və hər iterasiyadan sonra demo təqdimatı.</div>
     </div>
     <div class="step">
       <div class="step-num">06</div>
-      <div class="step-title">Тестирование</div>
-      <div class="step-text">QA на всех уровнях: функциональное, нагрузочное, кроссбраузерное, безопасность.</div>
+      <div class="step-title">Test</div>
+      <div class="step-text">Bütün səviyyələrdə QA: funksional test, yük testləri, cross-browser yoxlaması və təhlükəsizlik.</div>
     </div>
     <div class="step">
       <div class="step-num">07</div>
-      <div class="step-title">Запуск</div>
-      <div class="step-text">Настройка хостинга, CI/CD, мониторинг, обучение команды и мягкий запуск с откатом.</div>
+      <div class="step-title">Buraxılış</div>
+      <div class="step-text">Hosting, CI/CD və monitorinq qurulur, komanda təlim alır və rollback imkanlı yumşaq buraxılış edilir.</div>
     </div>
     <div class="step">
       <div class="step-num">08</div>
-      <div class="step-title">Поддержка</div>
-      <div class="step-text">Техническое сопровождение, плановые доработки, аналитика и стратегическое развитие продукта.</div>
+      <div class="step-title">Dəstək</div>
+      <div class="step-text">Texniki müşayiət, planlı təkmilləşdirmə, analitika və məhsulun strateji inkişafı təmin olunur.</div>
     </div>
   </div>
 </section>
@@ -805,24 +807,265 @@
   </div>
 </footer>
 
+<script src="translations.js"></script>
 <script>
   const darkThemeLink = document.getElementById('theme-dark');
   const lightThemeLink = document.getElementById('theme-light');
   const themeToggleBtns = document.querySelectorAll('[data-theme-toggle]');
+  const languageToggleBtns = document.querySelectorAll('[data-lang-toggle]');
+  const translations = window.siteTranslations || {};
+  const languageOrder = window.siteLanguageOrder || ['ru', 'az', 'en'];
+  let currentLanguage = localStorage.getItem('nexora-language');
+  if (!languageOrder.includes(currentLanguage)) currentLanguage = 'ru';
   let menuOpen = false;
+
+  function getLocale() {
+    return translations[currentLanguage] || translations.ru;
+  }
+
+  function setNodeText(node, text) {
+    if (node && typeof text === 'string') node.textContent = text;
+  }
+
+  function setSelectorText(selector, text) {
+    setNodeText(document.querySelector(selector), text);
+  }
+
+  function setSelectorHTML(selector, html) {
+    const node = document.querySelector(selector);
+    if (node && typeof html === 'string') node.innerHTML = html;
+  }
+
+  function setListTexts(selector, values) {
+    const nodes = document.querySelectorAll(selector);
+    nodes.forEach((node, index) => {
+      if (values && values[index] !== undefined) node.textContent = values[index];
+    });
+  }
+
+  function applyCaseTranslation(caseId, data, labels) {
+    const card = document.querySelector(`.case-card[data-case-id="${caseId}"]`);
+    if (!card || !data) return;
+
+    setNodeText(card.querySelector('.case-tag'), data.tag);
+    setNodeText(card.querySelector('.case-title'), data.title);
+
+    const descriptions = card.querySelectorAll('.case-desc');
+    if (descriptions[0]) descriptions[0].innerHTML = `<strong>${labels.task}</strong> ${data.task}`;
+    if (descriptions[1]) descriptions[1].innerHTML = `<strong>${labels.solution}</strong> ${data.solution}`;
+
+    const results = card.querySelectorAll('.case-results li');
+    (data.results || []).forEach((result, index) => {
+      const li = results[index];
+      if (!li) return;
+
+      const resultTag = li.querySelector('.result-tag');
+      if (resultTag) resultTag.textContent = result.tag;
+
+      li.innerHTML = '';
+      if (resultTag) li.appendChild(resultTag);
+      li.appendChild(document.createTextNode(result.text));
+    });
+  }
+
+  function applyLanguage(lang) {
+    if (!translations[lang]) lang = 'ru';
+    currentLanguage = lang;
+    localStorage.setItem('nexora-language', currentLanguage);
+
+    const locale = getLocale();
+    document.documentElement.lang = currentLanguage;
+    document.title = locale.metaTitle;
+
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) metaDescription.setAttribute('content', locale.metaDescription);
+
+    setListTexts('.nav-links > li:not(.mobile-menu-actions) > a', locale.navLinks);
+    document.querySelectorAll('.mobile-menu-actions > button:first-child, .nav-actions > button:first-child').forEach((btn) => {
+      btn.textContent = locale.discussButton;
+    });
+
+    languageToggleBtns.forEach((btn) => {
+      btn.textContent = currentLanguage.toUpperCase();
+      btn.setAttribute('aria-label', locale.languageToggleLabel);
+      btn.setAttribute('title', locale.languageToggleLabel);
+    });
+
+    setSelectorHTML('#hero .hero-badge', `<div class="badge-dot"></div>${locale.heroBadge}`);
+    setSelectorHTML('#hero h1', locale.heroTitleHtml);
+    setSelectorText('#hero .hero-sub', locale.heroSub);
+    setListTexts('#hero .hero-btns button', locale.heroButtons);
+
+    const heroStatNums = document.querySelectorAll('#hero .stat-num');
+    if (heroStatNums[1]) heroStatNums[1].textContent = locale.heroStatYears;
+    setListTexts('#hero .stat-label', locale.heroStatLabels);
+
+    setSelectorText('#services .section-tag', locale.servicesTag);
+    setSelectorHTML('#services .section-title', locale.servicesTitleHtml);
+    setSelectorText('#services .section-sub', locale.servicesSub);
+    const serviceCards = document.querySelectorAll('#services .service-cat');
+    locale.servicesCategories.forEach((category, cardIndex) => {
+      const card = serviceCards[cardIndex];
+      if (!card) return;
+      setNodeText(card.querySelector('.cat-title'), category.title);
+      const items = card.querySelectorAll('.cat-items li');
+      items.forEach((item, itemIndex) => {
+        if (category.items[itemIndex] !== undefined) item.textContent = category.items[itemIndex];
+      });
+    });
+
+    setSelectorText('#why .section-tag', locale.whyTag);
+    setSelectorHTML('#why .section-title', locale.whyTitleHtml);
+    setSelectorText('#why .section-sub', locale.whySub);
+    const whyCards = document.querySelectorAll('#why .why-card');
+    locale.whyCards.forEach((cardData, index) => {
+      const card = whyCards[index];
+      if (!card) return;
+      setNodeText(card.querySelector('.why-title'), cardData.title);
+      setNodeText(card.querySelector('.why-text'), cardData.text);
+    });
+
+    setSelectorText('#who .section-tag', locale.whoTag);
+    setSelectorHTML('#who .section-title', locale.whoTitleHtml);
+    setSelectorText('#who .section-sub', locale.whoSub);
+    setListTexts('#who .who-name', locale.whoNames);
+
+    setSelectorText('#advantages .section-tag', locale.advantagesTag);
+    setSelectorHTML('#advantages .section-title', locale.advantagesTitleHtml);
+    setSelectorText('#advantages .section-sub', locale.advantagesSub);
+    const advItems = document.querySelectorAll('#advantages .adv-item');
+    locale.advantagesItems.forEach((itemData, index) => {
+      const item = advItems[index];
+      if (!item) return;
+      setNodeText(item.querySelector('.adv-title'), itemData.title);
+      setNodeText(item.querySelector('.adv-text'), itemData.text);
+    });
+
+    setSelectorText('#process .section-tag', locale.processTag);
+    setSelectorHTML('#process .section-title', locale.processTitleHtml);
+    setSelectorText('#process .section-sub', locale.processSub);
+    const processSteps = document.querySelectorAll('#process .step');
+    locale.processSteps.forEach((stepData, index) => {
+      const step = processSteps[index];
+      if (!step) return;
+      setNodeText(step.querySelector('.step-title'), stepData.title);
+      setNodeText(step.querySelector('.step-text'), stepData.text);
+    });
+
+    setSelectorText('#cases .section-tag', locale.casesTag);
+    setSelectorHTML('#cases .section-title', locale.casesTitleHtml);
+    setSelectorText('#cases .section-sub', locale.casesSub);
+    applyCaseTranslation('crm', locale.cases.crm, locale.caseLabels);
+    applyCaseTranslation('bookingpro', locale.cases.bookingpro, locale.caseLabels);
+    applyCaseTranslation('erp', locale.cases.erp, locale.caseLabels);
+    applyCaseTranslation('medapp', locale.cases.medapp, locale.caseLabels);
+    applyCaseTranslation('ecommerce', locale.cases.ecommerce, locale.caseLabels);
+    applyCaseTranslation('autoflow', locale.cases.autoflow, locale.caseLabels);
+
+    setSelectorText('#trust .section-tag', locale.trustTag);
+    setSelectorHTML('#trust .section-title', locale.trustTitleHtml);
+    const trustItems = document.querySelectorAll('#trust .trust-grid .trust-item');
+    locale.trustItems.forEach((itemData, index) => {
+      const item = trustItems[index];
+      if (!item) return;
+      setNodeText(item.querySelector('.trust-title'), itemData.title);
+      setNodeText(item.querySelector('.trust-text'), itemData.text);
+    });
+
+    const reviewCards = document.querySelectorAll('#trust .review-card');
+    locale.reviews.forEach((reviewData, index) => {
+      const card = reviewCards[index];
+      if (!card) return;
+      setNodeText(card.querySelector('.review-text'), reviewData.text);
+      setNodeText(card.querySelector('.reviewer-name'), reviewData.name);
+      setNodeText(card.querySelector('.reviewer-role'), reviewData.role);
+    });
+
+    setSelectorText('#tech .section-tag', locale.techTag);
+    setSelectorHTML('#tech .section-title', locale.techTitleHtml);
+    setSelectorText('#tech .section-sub', locale.techSub);
+    setListTexts('#tech .tech-cat-name', locale.techCategoryNames);
+
+    setSelectorText('#contact .contact-info .section-tag', locale.contactTag);
+    setSelectorHTML('#contact .contact-info h2', locale.contactTitleHtml);
+    setSelectorText('#contact .contact-info p', locale.contactSub);
+    setListTexts('#contact .channel-label', locale.channelLabels);
+
+    setSelectorText('#contact .form-title', locale.formTitle);
+    setSelectorText('label[for="contact-name"]', locale.formLabels.name);
+    setSelectorText('label[for="contact-email"]', locale.formLabels.email);
+    setSelectorText('label[for="contact-phone"]', locale.formLabels.phone);
+    setSelectorText('label[for="contact-project-type"]', locale.formLabels.projectType);
+    setSelectorText('label[for="contact-brief"]', locale.formLabels.brief);
+
+    const contactNameInput = document.getElementById('contact-name');
+    const contactEmailInput = document.getElementById('contact-email');
+    const contactPhoneInput = document.getElementById('contact-phone');
+    const contactBriefInput = document.getElementById('contact-brief');
+    if (contactNameInput) contactNameInput.setAttribute('placeholder', locale.formPlaceholders.name);
+    if (contactEmailInput) contactEmailInput.setAttribute('placeholder', locale.formPlaceholders.email);
+    if (contactPhoneInput) contactPhoneInput.setAttribute('placeholder', locale.formPlaceholders.phone);
+    if (contactBriefInput) contactBriefInput.setAttribute('placeholder', locale.formPlaceholders.brief);
+
+    const projectTypeOptions = document.querySelectorAll('#contact-project-type option');
+    projectTypeOptions.forEach((option, index) => {
+      if (locale.projectTypeOptions[index] !== undefined) option.textContent = locale.projectTypeOptions[index];
+    });
+
+    const subjectInput = document.querySelector('input[name="_subject"]');
+    if (subjectInput) subjectInput.value = locale.formSubject;
+
+    const submitBtn = document.querySelector('[data-fs-submit-btn]');
+    if (submitBtn) submitBtn.textContent = locale.formSubmit;
+
+    setSelectorText('#faq .section-tag', locale.faqTag);
+    setSelectorHTML('#faq .section-title', locale.faqTitleHtml);
+    const faqButtons = document.querySelectorAll('#faq .faq-q');
+    faqButtons.forEach((button, index) => {
+      if (locale.faqQuestions[index] !== undefined) {
+        button.innerHTML = `${locale.faqQuestions[index]} <span class="faq-arrow">▼</span>`;
+      }
+    });
+    setListTexts('#faq .faq-a', locale.faqAnswers);
+
+    setSelectorText('#finalcta .cta-eyebrow', locale.finalEyebrow);
+    setSelectorHTML('#finalcta .cta-h', locale.finalTitleHtml);
+    setSelectorText('#finalcta .cta-sub', locale.finalSub);
+    setListTexts('#finalcta .cta-btns button', locale.finalButtons);
+
+    setSelectorText('.footer-copy', locale.footerCopy);
+    setListTexts('footer .footer-links a', locale.footerLinks);
+
+    const lightboxDialog = document.querySelector('.case-lightbox-dialog');
+    const lightboxCloseBtn = document.querySelector('.case-lightbox-close');
+    if (lightboxDialog) lightboxDialog.setAttribute('aria-label', locale.lightbox.dialog);
+    if (lightboxCloseBtn) lightboxCloseBtn.setAttribute('aria-label', locale.lightbox.close);
+    if (lightboxPrevEl) lightboxPrevEl.setAttribute('aria-label', locale.lightbox.prev);
+    if (lightboxNextEl) lightboxNextEl.setAttribute('aria-label', locale.lightbox.next);
+
+    applyTheme(document.body.dataset.theme === 'dark' ? 'dark' : 'light');
+    renderCaseGalleries();
+  }
+
+  function cycleLanguage() {
+    const currentIndex = languageOrder.indexOf(currentLanguage);
+    const nextLanguage = languageOrder[(currentIndex + 1) % languageOrder.length];
+    applyLanguage(nextLanguage);
+  }
 
   const THEME_ICON_MOON = '<svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="display:block;margin:0 auto"><path fill="currentColor" d="M20.74 15.34A9 9 0 0 1 8.66 3.26a.75.75 0 0 0-.94-.94A10.5 10.5 0 1 0 21.68 16.28a.75.75 0 0 0-.94-.94z"/></svg>';
   const THEME_ICON_SUN = '<svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="display:block;margin:0 auto"><circle cx="12" cy="12" r="4" fill="currentColor"/><g stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="12" y1="2.5" x2="12" y2="5.1"/><line x1="12" y1="18.9" x2="12" y2="21.5"/><line x1="2.5" y1="12" x2="5.1" y2="12"/><line x1="18.9" y1="12" x2="21.5" y2="12"/><line x1="5.2" y1="5.2" x2="7.1" y2="7.1"/><line x1="16.9" y1="16.9" x2="18.8" y2="18.8"/><line x1="16.9" y1="7.1" x2="18.8" y2="5.2"/><line x1="5.2" y1="18.8" x2="7.1" y2="16.9"/></g></svg>';
 
   function applyTheme(theme) {
+    const locale = getLocale();
     const isLight = theme === 'light';
     lightThemeLink.disabled = !isLight;
     darkThemeLink.disabled = isLight;
     document.body.dataset.theme = theme;
     themeToggleBtns.forEach((btn) => {
       btn.innerHTML = isLight ? THEME_ICON_MOON : THEME_ICON_SUN;
-      btn.setAttribute('aria-label', isLight ? 'Включить темную тему' : 'Включить светлую тему');
-      btn.setAttribute('title', isLight ? 'Включить темную тему' : 'Включить светлую тему');
+      btn.setAttribute('aria-label', isLight ? locale.theme.dark : locale.theme.light);
+      btn.setAttribute('title', isLight ? locale.theme.dark : locale.theme.light);
     });
 
     if (menuOpen) {
@@ -979,22 +1222,24 @@
   const lightboxNextEl = document.getElementById('case-lightbox-next');
 
   function getCaseTitle(caseId) {
+    const locale = getLocale();
     const card = document.querySelector(`.case-card[data-case-id="${caseId}"]`);
-    return card ? card.querySelector('.case-title')?.textContent?.trim() || 'Кейс' : 'Кейс';
+    return card ? card.querySelector('.case-title')?.textContent?.trim() || locale.lightbox.caseFallback : locale.lightbox.caseFallback;
   }
 
   function renderLightboxThumbs(caseId, activeIndex) {
+    const locale = getLocale();
     const images = caseGalleryData[caseId] || [];
     lightboxThumbsEl.innerHTML = '';
     images.forEach((image, index) => {
       const thumbBtn = document.createElement('button');
       thumbBtn.type = 'button';
       thumbBtn.className = 'case-lightbox-thumb' + (index === activeIndex ? ' active' : '');
-      thumbBtn.setAttribute('aria-label', `Открыть фото ${index + 1}`);
+      thumbBtn.setAttribute('aria-label', `${locale.lightbox.openPhoto} ${index + 1}`);
 
       const thumbImg = document.createElement('img');
       thumbImg.src = image.src;
-      thumbImg.alt = image.alt || `Фото ${index + 1}`;
+      thumbImg.alt = `${getCaseTitle(caseId)} - ${locale.lightbox.photoWord} ${index + 1}`;
       thumbBtn.appendChild(thumbImg);
 
       thumbBtn.addEventListener('click', () => {
@@ -1007,6 +1252,7 @@
   }
 
   function updateLightbox() {
+    const locale = getLocale();
     const images = caseGalleryData[lightboxState.caseId] || [];
     if (!images.length) return;
 
@@ -1015,7 +1261,7 @@
     const current = images[safeIndex];
 
     lightboxImageEl.src = current.src;
-    lightboxImageEl.alt = current.alt || `Фото ${safeIndex + 1}`;
+    lightboxImageEl.alt = `${getCaseTitle(lightboxState.caseId)} - ${locale.lightbox.photoWord} ${safeIndex + 1}`;
     lightboxTitleEl.textContent = getCaseTitle(lightboxState.caseId);
     lightboxCounterEl.textContent = `${safeIndex + 1} / ${images.length}`;
 
@@ -1039,10 +1285,14 @@
   }
 
   function renderCaseGalleries() {
+    const locale = getLocale();
     document.querySelectorAll('.case-card[data-case-id]').forEach((card) => {
       const caseId = card.dataset.caseId;
       const images = caseGalleryData[caseId] || [];
       if (!images.length) return;
+
+      const existingGallery = card.querySelector('.case-gallery');
+      if (existingGallery) existingGallery.remove();
 
       const divider = card.querySelector('.case-divider');
       if (!divider) return;
@@ -1053,17 +1303,17 @@
       const previewButton = document.createElement('button');
       previewButton.type = 'button';
       previewButton.className = 'case-preview-btn';
-      previewButton.setAttribute('aria-label', 'Открыть галерею кейса');
+      previewButton.setAttribute('aria-label', locale.lightbox.openGallery);
 
       const previewImage = document.createElement('img');
       previewImage.className = 'case-preview-image';
       previewImage.src = images[0].src;
-      previewImage.alt = images[0].alt || 'Превью кейса';
+      previewImage.alt = `${getCaseTitle(caseId)} - ${locale.lightbox.preview}`;
       previewButton.appendChild(previewImage);
 
       const previewBadge = document.createElement('span');
       previewBadge.className = 'case-preview-badge';
-      previewBadge.textContent = `+${images.length} фото`;
+      previewBadge.textContent = `+${images.length} ${locale.lightbox.photos}`;
       previewButton.appendChild(previewBadge);
 
       previewButton.addEventListener('click', () => openCaseLightbox(caseId, 0));
@@ -1075,11 +1325,11 @@
         const thumbButton = document.createElement('button');
         thumbButton.type = 'button';
         thumbButton.className = 'case-thumb-btn';
-        thumbButton.setAttribute('aria-label', `Открыть фото ${index + 1}`);
+        thumbButton.setAttribute('aria-label', `${locale.lightbox.openPhoto} ${index + 1}`);
 
         const thumbImage = document.createElement('img');
         thumbImage.src = image.src;
-        thumbImage.alt = image.alt || `Фото ${index + 1}`;
+        thumbImage.alt = `${getCaseTitle(caseId)} - ${locale.lightbox.photoWord} ${index + 1}`;
         thumbButton.appendChild(thumbImage);
 
         thumbButton.addEventListener('click', () => openCaseLightbox(caseId, index));
@@ -1118,7 +1368,7 @@
     }
   });
 
-  renderCaseGalleries();
+  applyLanguage(currentLanguage);
 
   window.formspree = window.formspree || function () {
     (formspree.q = formspree.q || []).push(arguments);
