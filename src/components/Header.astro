@@ -1,0 +1,342 @@
+---
+import Icon from './Icon.astro';
+import { localePath, localeNames, locales, type Locale, type Dict } from '../i18n';
+
+interface Props {
+  locale: Locale;
+  dict: Dict;
+}
+const { locale, dict } = Astro.props;
+const nav = dict.nav;
+
+const links = [
+  { href: '#services', label: nav.services },
+  { href: '#process', label: nav.process },
+  { href: '#work', label: nav.work },
+  { href: '#contact', label: nav.contact },
+];
+---
+
+<header class="site-header">
+  <div class="shell bar">
+    <a class="brand" href={localePath(locale)} aria-label="EXCLAMATION">
+      <svg class="brand-mark" width="10" height="26" viewBox="0 0 10 26" aria-hidden="true">
+        <rect x="3" y="0" width="4" height="17" fill="currentColor"></rect>
+        <rect x="3" y="21" width="4" height="4" fill="currentColor"></rect>
+      </svg>
+      <span class="brand-word">EXCLAMATION</span>
+    </a>
+
+    <nav class="nav-desktop" aria-label={nav.menuTitle}>
+      <ul>
+        {links.map((l) => (
+          <li><a href={l.href}>{l.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="bar-actions">
+      <ul class="langs" aria-label={nav.langLabel}>
+        {locales.map((l) => (
+          <li>
+            <a
+              href={localePath(l)}
+              hreflang={l}
+              lang={l}
+              aria-current={l === locale ? 'true' : undefined}
+            >{localeNames[l]}</a>
+          </li>
+        ))}
+      </ul>
+
+      <button
+        type="button"
+        class="icon-btn theme-toggle"
+        data-theme-toggle
+        data-label-light={nav.themeToLight}
+        data-label-dark={nav.themeToDark}
+        aria-label={nav.themeToDark}
+      >
+        <Icon name="theme" size={20} />
+      </button>
+
+      <button type="button" class="icon-btn menu-open" data-menu-open aria-label={nav.menuOpen}>
+        <Icon name="menu" size={22} />
+      </button>
+    </div>
+  </div>
+</header>
+
+<dialog class="menu" data-menu aria-label={nav.menuTitle}>
+  <div class="menu-inner">
+    <div class="menu-top shell">
+      <span class="mono">{nav.menuTitle}</span>
+      <button type="button" class="icon-btn" data-menu-close aria-label={nav.menuClose}>
+        <Icon name="close" size={22} />
+      </button>
+    </div>
+    <nav class="menu-nav shell" aria-label={nav.menuTitle}>
+      <ul>
+        {links.map((l) => (
+          <li><a href={l.href} data-menu-link>{l.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+    <div class="menu-foot shell">
+      <ul class="langs langs-big" aria-label={nav.langLabel}>
+        {locales.map((l) => (
+          <li>
+            <a
+              href={localePath(l)}
+              hreflang={l}
+              lang={l}
+              aria-current={l === locale ? 'true' : undefined}
+            >{localeNames[l]}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</dialog>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 160ms linear;
+  }
+  :global(html[data-scrolled]) .site-header {
+    border-bottom-color: var(--line);
+  }
+
+  .bar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    min-height: 4.25rem;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    text-decoration: none;
+    margin-right: auto;
+    min-height: 2.75rem;
+  }
+  .brand-mark {
+    color: var(--accent);
+    height: 1.125rem;
+    width: auto;
+  }
+  .brand-word {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: var(--fs-200);
+    letter-spacing: 0.16em;
+  }
+
+  .nav-desktop {
+    display: none;
+  }
+  .nav-desktop ul {
+    display: flex;
+    gap: clamp(1rem, 2.4vw, 2rem);
+  }
+  .nav-desktop a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    font-size: var(--fs-200);
+    color: var(--fg-muted);
+    text-decoration: none;
+    transition: color 140ms var(--ease);
+  }
+  .nav-desktop a:hover {
+    color: var(--fg);
+  }
+
+  .bar-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .langs {
+    display: none;
+    align-items: center;
+  }
+  .langs a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+    font-family: var(--font-mono);
+    font-size: var(--fs-100);
+    letter-spacing: 0.06em;
+    color: var(--fg-muted);
+    text-decoration: none;
+    transition: color 140ms var(--ease);
+  }
+  .langs a:hover {
+    color: var(--fg);
+  }
+  .langs a[aria-current] {
+    color: var(--fg);
+  }
+
+  .icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    color: var(--fg-muted);
+    transition: color 140ms var(--ease);
+  }
+  .icon-btn:hover {
+    color: var(--fg);
+  }
+  .theme-toggle :global(svg) {
+    transition: transform 220ms var(--ease);
+  }
+  .theme-toggle:hover :global(svg) {
+    transform: rotate(180deg);
+  }
+
+  @media (min-width: 900px) {
+    .nav-desktop,
+    .langs {
+      display: flex;
+    }
+    .menu-open {
+      display: none;
+    }
+    .bar-actions {
+      gap: 0.5rem;
+    }
+  }
+
+  /* ---- mobile menu ---- */
+  .menu {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    max-height: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: var(--bg);
+    color: var(--fg);
+  }
+  .menu::backdrop {
+    background: color-mix(in srgb, var(--ink) 60%, transparent);
+  }
+  .menu-inner {
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .menu-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 4.25rem;
+  }
+  .menu-nav {
+    padding-block: var(--sp-block);
+  }
+  .menu-nav ul {
+    display: flex;
+    flex-direction: column;
+  }
+  .menu-nav a {
+    display: flex;
+    align-items: center;
+    min-height: 3.5rem;
+    font-family: var(--font-display);
+    font-size: var(--fs-600);
+    font-weight: 300;
+    letter-spacing: -0.03em;
+    text-decoration: none;
+    border-bottom: 1px solid var(--line);
+  }
+  .menu-foot {
+    margin-top: auto;
+    padding-block: var(--sp-block);
+  }
+  .langs-big {
+    display: flex;
+    gap: 0.5rem;
+  }
+  .langs-big a {
+    min-width: 3.25rem;
+    min-height: 3rem;
+    border: 1px solid var(--line);
+    font-size: var(--fs-200);
+  }
+  .langs-big a[aria-current] {
+    border-color: var(--fg);
+    color: var(--fg);
+  }
+</style>
+
+<script>
+  const root = document.documentElement;
+
+  // theme
+  const applyLabel = (btn: HTMLElement) => {
+    const dark = root.dataset.theme === 'dark';
+    btn.setAttribute(
+      'aria-label',
+      dark ? btn.dataset.labelLight ?? '' : btn.dataset.labelDark ?? ''
+    );
+  };
+  document.querySelectorAll<HTMLElement>('[data-theme-toggle]').forEach((btn) => {
+    applyLabel(btn);
+    btn.addEventListener('click', () => {
+      const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+      root.dataset.theme = next;
+      try {
+        localStorage.setItem('exclamation-theme', next);
+      } catch {}
+      document.querySelectorAll<HTMLElement>('[data-theme-toggle]').forEach(applyLabel);
+    });
+  });
+
+  // header border on scroll
+  const onScroll = () => {
+    if (window.scrollY > 8) root.setAttribute('data-scrolled', '');
+    else root.removeAttribute('data-scrolled');
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // mobile menu: native <dialog> gives focus trapping and Escape for free
+  const dialog = document.querySelector<HTMLDialogElement>('[data-menu]');
+  const openBtn = document.querySelector<HTMLButtonElement>('[data-menu-open]');
+  if (dialog && openBtn) {
+    const close = () => dialog.close();
+    openBtn.addEventListener('click', () => {
+      dialog.showModal();
+      document.body.style.overflow = 'hidden';
+    });
+    dialog.addEventListener('close', () => {
+      document.body.style.overflow = '';
+      openBtn.focus();
+    });
+    dialog.querySelector('[data-menu-close]')?.addEventListener('click', close);
+    dialog.querySelectorAll('[data-menu-link]').forEach((a) => a.addEventListener('click', close));
+    // close when the menu no longer has a reason to exist
+    const mq = window.matchMedia('(min-width: 900px)');
+    mq.addEventListener('change', (e) => {
+      if (e.matches && dialog.open) close();
+    });
+  }
+</script>

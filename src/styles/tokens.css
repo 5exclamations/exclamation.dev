@@ -1,0 +1,104 @@
+@layer tokens {
+  :root {
+    /* ---- palette: six named hex, nothing else ---- */
+    --ink: #0b0e11;
+    --slate: #161a1f;
+    --bone: #e8e6e0;
+    --ash: #8b949e;
+    --signal: #ff4a1e;
+    --ember: #b32e0a;
+
+    /* ---- light theme (default) ---- */
+    --bg: var(--bone);
+    --bg-raised: color-mix(in srgb, var(--bone) 55%, #fff);
+    --bg-invert: var(--ink);
+    --fg: var(--ink);
+    --fg-invert: var(--bone);
+    --fg-muted: color-mix(in srgb, var(--ink) 62%, var(--bone));
+    --line: color-mix(in srgb, var(--ink) 14%, var(--bone));
+    --line-strong: color-mix(in srgb, var(--ink) 28%, var(--bone));
+    --accent: var(--ember);
+    --accent-flat: var(--signal);
+    --accent-wash: color-mix(in srgb, var(--signal) 14%, transparent);
+    --on-accent: var(--ink);
+
+    /* ---- type ---- */
+    --font-display: 'Geologica', system-ui, sans-serif;
+    --font-text: 'Commissioner', system-ui, sans-serif;
+    /* Commissioner sits in the mono stack on purpose: JetBrains Mono has no
+       manat sign (U+20BC), so that one glyph resolves to a face that does. */
+    --font-mono: 'JetBrains Mono', 'Commissioner', ui-monospace, monospace;
+
+    --fs-100: clamp(0.6875rem, 0.66rem + 0.14vw, 0.8125rem);
+    --fs-200: clamp(0.8125rem, 0.79rem + 0.12vw, 0.9375rem);
+    --fs-300: clamp(0.9375rem, 0.91rem + 0.14vw, 1.0625rem);
+    --fs-400: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+    --fs-500: clamp(1.25rem, 1.1rem + 0.75vw, 1.75rem);
+    --fs-600: clamp(1.625rem, 1.3rem + 1.6vw, 2.75rem);
+    --fs-700: clamp(2rem, 1.5rem + 2.5vw, 3.75rem);
+    --fs-800: clamp(2.25rem, 1.5rem + 3.6vw, 3.75rem);
+
+    /* ---- vertical rhythm: four steps, chosen by meaning ---- */
+    --sp-block: clamp(2rem, 4vw, 3rem);
+    --sp-section: clamp(3.5rem, 7vw, 6rem);
+    --sp-chapter: clamp(5rem, 11vw, 10rem);
+    --sp-major: clamp(7rem, 15vw, 14rem);
+
+    /* ---- grid ---- */
+    --container: 1240px;
+    --gutter: clamp(1.25rem, 4vw, 3.5rem);
+    --rail: 0px;
+
+    /* ---- motion ---- */
+    --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+    --dur-reveal: 200ms;
+
+    color-scheme: light;
+  }
+
+  @media (min-width: 768px) {
+    :root {
+      --rail: 3.5rem;
+    }
+  }
+  @media (min-width: 1240px) {
+    :root {
+      --rail: 5.5rem;
+    }
+  }
+
+  :root[data-theme='dark'] {
+    --bg: var(--ink);
+    --bg-raised: var(--slate);
+    --bg-invert: var(--bone);
+    --fg: var(--bone);
+    --fg-invert: var(--ink);
+    --fg-muted: var(--ash);
+    --line: color-mix(in srgb, var(--bone) 14%, var(--ink));
+    --line-strong: color-mix(in srgb, var(--bone) 26%, var(--ink));
+    --accent: var(--signal);
+    --accent-flat: var(--signal);
+    --accent-wash: color-mix(in srgb, var(--signal) 18%, transparent);
+    --on-accent: var(--ink);
+
+    color-scheme: dark;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme='light']) {
+      --bg: var(--ink);
+      --bg-raised: var(--slate);
+      --bg-invert: var(--bone);
+      --fg: var(--bone);
+      --fg-invert: var(--ink);
+      --fg-muted: var(--ash);
+      --line: color-mix(in srgb, var(--bone) 14%, var(--ink));
+      --line-strong: color-mix(in srgb, var(--bone) 26%, var(--ink));
+      --accent: var(--signal);
+      --accent-flat: var(--signal);
+      --accent-wash: color-mix(in srgb, var(--signal) 18%, transparent);
+
+      color-scheme: dark;
+    }
+  }
+}

@@ -1,0 +1,281 @@
+---
+import Icon from './Icon.astro';
+import type { Dict } from '../i18n';
+
+interface Props {
+  dict: Dict;
+}
+const { dict } = Astro.props;
+const hero = dict.hero;
+---
+
+<section class="hero" aria-labelledby="hero-title">
+  <div class="shell">
+    <div class="hero-inner">
+      <p class="mono hero-eyebrow anim" style="--d: 100ms">{hero.eyebrow}</p>
+
+      <h1 class="hero-title" id="hero-title">
+        <span class="line"><span class="line-in muted" style="--d: 140ms">{hero.titleMuted}</span></span>
+        <span class="line"><span class="line-in" style="--d: 210ms">{hero.titleMain}</span></span>
+      </h1>
+
+      <div class="hero-cols">
+        <p class="hero-sub anim" style="--d: 320ms">{hero.sub}</p>
+
+        <div class="diff">
+          {hero.diff.map((row, i) => (
+            <p class="diff-row anim" data-sign={row.sign} style={`--d: ${360 + i * 40}ms`}>
+              <span class="diff-num" aria-hidden="true">{14 + i}</span>
+              <span class="diff-sign" aria-hidden="true">{row.sign}</span>
+              <span class="diff-text">{row.text}</span>
+            </p>
+          ))}
+        </div>
+
+        <p class="hero-cta anim" style="--d: 440ms">
+          <a class="btn" href="#contact">
+            {hero.cta}
+            <Icon name="arrow-right" size={18} />
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="shell">
+    <figure class="hero-shot anim" style="--d: 460ms">
+      <div class="hero-shot-frame">
+        <img
+          src="/pics/crm/screen1.png"
+          alt={hero.shotAlt}
+          width="1600"
+          height="1280"
+          fetchpriority="high"
+          decoding="async"
+        />
+      </div>
+      <figcaption class="mono">{hero.shotCaption}</figcaption>
+    </figure>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-inner {
+    padding-left: var(--rail);
+    padding-top: clamp(2.5rem, 7vh, 5.5rem);
+    padding-bottom: clamp(2.5rem, 6vh, 4.5rem);
+  }
+
+  .hero-eyebrow {
+    margin-bottom: clamp(1.5rem, 4vh, 2.5rem);
+  }
+
+  .hero-title {
+    font-size: var(--fs-800);
+    font-weight: 700;
+    letter-spacing: -0.045em;
+    margin-bottom: clamp(1.25rem, 3vh, 2rem);
+  }
+  .hero-title .line {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 0.08em;
+    margin-bottom: -0.08em;
+  }
+  .hero-title .line-in {
+    display: block;
+  }
+  .hero-title .muted {
+    color: var(--fg-muted);
+  }
+
+  .hero-cols {
+    display: grid;
+    gap: clamp(1.75rem, 4vh, 2.5rem) clamp(1.5rem, 4vw, 3rem);
+  }
+  @media (min-width: 1024px) {
+    .hero-cols {
+      grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+      align-items: start;
+    }
+    .hero-sub {
+      grid-column: 1;
+      grid-row: 1;
+    }
+    .hero-cta {
+      grid-column: 1;
+      grid-row: 2;
+      align-self: start;
+    }
+    .diff {
+      grid-column: 2;
+      grid-row: 1 / span 2;
+    }
+  }
+
+  .hero-sub {
+    font-size: var(--fs-400);
+    line-height: 1.5;
+    color: var(--fg-muted);
+    max-width: 42ch;
+  }
+
+  .diff {
+    border-left: 1px solid var(--line);
+    max-width: 34rem;
+  }
+  .diff-row {
+    display: flex;
+    align-items: baseline;
+    gap: 0.625rem;
+    padding: 0.375rem 0 0.375rem 0.875rem;
+    font-family: var(--font-mono);
+    font-size: var(--fs-200);
+    font-variant-numeric: tabular-nums;
+  }
+  /* wraps on narrow screens instead of scrolling out of sight */
+  .diff-text {
+    min-width: 0;
+  }
+  @media (min-width: 560px) {
+    .diff-row {
+      white-space: nowrap;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .diff-row::-webkit-scrollbar {
+      display: none;
+    }
+  }
+  .diff-num {
+    color: var(--fg-muted);
+    font-size: var(--fs-100);
+    flex: none;
+  }
+  .diff-sign {
+    flex: none;
+  }
+  .diff-row[data-sign='−'] {
+    color: var(--fg-muted);
+  }
+  .diff-row[data-sign='−'] .diff-text {
+    text-decoration: line-through;
+    text-decoration-thickness: 1px;
+    text-decoration-color: var(--line-strong);
+  }
+  .diff-row[data-sign='+'] {
+    color: var(--fg);
+    box-shadow: inset 2px 0 0 var(--accent-flat);
+  }
+  .diff-row[data-sign='+'] .diff-sign {
+    color: var(--accent);
+  }
+
+  @media (max-width: 479px) {
+    .diff-num {
+      display: none;
+    }
+  }
+
+  .hero-shot {
+    margin-left: var(--rail);
+    margin-top: clamp(1.75rem, 5vh, 4rem);
+    margin-bottom: var(--sp-section);
+  }
+  .hero-shot-frame {
+    position: relative;
+    background: var(--bg-raised);
+    border: 1px solid var(--line);
+    overflow: hidden;
+    /* narrow screens get a detail crop of the real screen instead of a
+       full desktop UI shrunk down to an illegible thumbnail */
+    aspect-ratio: 4 / 3;
+  }
+  .hero-shot img {
+    position: absolute;
+    width: 780px;
+    max-width: none;
+    height: auto;
+    left: -155px;
+    top: -95px;
+  }
+  .hero-shot figcaption {
+    padding-top: 0.75rem;
+    text-transform: none;
+    letter-spacing: 0.02em;
+  }
+  @media (min-width: 640px) {
+    .hero-shot-frame {
+      aspect-ratio: 16 / 10;
+    }
+    .hero-shot img {
+      position: static;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+  }
+  @media (min-width: 1024px) {
+    .hero-shot-frame {
+      aspect-ratio: 16 / 9;
+    }
+  }
+
+  /* ---- one orchestrated opening, nothing after it loops ---- */
+  .anim,
+  .hero-title .line-in {
+    animation-duration: 420ms;
+    animation-timing-function: var(--ease);
+    animation-delay: var(--d, 0ms);
+    animation-fill-mode: both;
+  }
+  .anim {
+    animation-name: rise;
+  }
+  .hero-title .line-in {
+    animation-name: lift;
+  }
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes lift {
+    from {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .anim,
+    .hero-title .line-in {
+      animation-name: fade;
+      animation-duration: 160ms;
+    }
+    @keyframes fade {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  }
+</style>

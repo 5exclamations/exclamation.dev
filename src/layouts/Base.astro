@@ -1,0 +1,108 @@
+---
+import '../styles/app.css';
+import Header from '../components/Header.astro';
+import { localePath, locales, localeSubset, type Locale, type Dict } from '../i18n';
+
+interface Props {
+  locale: Locale;
+  dict: Dict;
+}
+const { locale, dict } = Astro.props;
+const subset = localeSubset[locale];
+const site = Astro.site?.toString().replace(/\/$/, '') ?? '';
+---
+
+<!doctype html>
+<html lang={dict.htmlLang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{dict.meta.title}</title>
+    <meta name="description" content={dict.meta.description} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="canonical" href={`${site}${localePath(locale)}`} />
+    {locales.map((l) => (
+      <link rel="alternate" hreflang={l} href={`${site}${localePath(l)}`} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={`${site}/`} />
+
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href={`/fonts/Geologica-${subset}.woff2`}
+      crossorigin
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href={`/fonts/Commissioner-${subset}.woff2`}
+      crossorigin
+    />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={dict.meta.title} />
+    <meta property="og:description" content={dict.meta.description} />
+    <meta property="og:locale" content={locale} />
+
+    <script is:inline>
+      (() => {
+        try {
+          const stored = localStorage.getItem('exclamation-theme');
+          if (stored === 'dark' || stored === 'light') {
+            document.documentElement.dataset.theme = stored;
+          } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.dataset.theme = 'dark';
+          } else {
+            document.documentElement.dataset.theme = 'light';
+          }
+        } catch {
+          document.documentElement.dataset.theme = 'light';
+        }
+      })();
+    </script>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">{dict.nav.skip}</a>
+
+    <div class="page">
+      <div class="spine-wrap" aria-hidden="true">
+        <div class="shell spine-shell"><span class="spine"></span></div>
+      </div>
+      <Header locale={locale} dict={dict} />
+      <main id="main" tabindex="-1">
+        <slot />
+      </main>
+    </div>
+  </body>
+</html>
+
+<style>
+  .page {
+    position: relative;
+  }
+  main:focus {
+    outline: none;
+  }
+
+  /* the spine draws itself once, on load, as part of the opening scene */
+  .spine {
+    transform-origin: top;
+    animation: draw 420ms var(--ease) both;
+  }
+  @keyframes draw {
+    from {
+      transform: scaleY(0);
+    }
+    to {
+      transform: scaleY(1);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .spine {
+      animation: none;
+    }
+  }
+</style>

@@ -1,0 +1,12 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import { t } from '../i18n';
+
+const locale = 'az' as const;
+const dict = t(locale);
+---
+
+<Base locale={locale} dict={dict}>
+  <Hero dict={dict} />
+</Base>
