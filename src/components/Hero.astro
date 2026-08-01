@@ -1,6 +1,6 @@
 ---
 import Icon from './Icon.astro';
-import type { Dict } from '../i18n';
+import { fill, type Dict } from '../i18n';
 
 interface Props {
   dict: Dict;
@@ -12,7 +12,7 @@ const hero = dict.hero;
 <section class="hero" aria-labelledby="hero-title">
   <div class="shell">
     <div class="hero-inner">
-      <p class="mono hero-eyebrow anim" style="--d: 100ms">{hero.eyebrow}</p>
+      <p class="mono hero-eyebrow anim" style="--d: 100ms">{fill(hero.eyebrow)}</p>
 
       <h1 class="hero-title" id="hero-title">
         <span class="line"><span class="line-in muted" style="--d: 140ms">{hero.titleMuted}</span></span>
@@ -268,6 +268,8 @@ const hero = dict.hero;
     .hero-title .line-in {
       animation-name: fade;
       animation-duration: 160ms;
+      /* no staggering either: the whole screen arrives at once */
+      animation-delay: 0ms;
     }
     @keyframes fade {
       from {

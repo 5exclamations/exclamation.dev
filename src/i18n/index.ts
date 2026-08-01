@@ -5,6 +5,17 @@ import en from './en';
 export const locales = ['az', 'ru', 'en'] as const;
 export type Locale = (typeof locales)[number];
 
+/**
+ * Single source of truth for the studio's age. Copy carries {year} and
+ * {years} placeholders so the founding year and the count can never drift
+ * apart the way "since 2019" and "6 years" did.
+ */
+export const FOUNDED = 2019;
+export const YEARS = new Date().getFullYear() - FOUNDED;
+
+export const fill = (s: string): string =>
+  s.replaceAll('{year}', String(FOUNDED)).replaceAll('{years}', String(YEARS));
+
 export const dictionaries = { az, ru, en };
 
 export type Dict = typeof az;

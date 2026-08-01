@@ -20,7 +20,7 @@ export default {
     skip: 'Skip to content',
   },
   hero: {
-    eyebrow: 'Baku · since 2019',
+    eyebrow: 'Baku · since {year}',
     titleMuted: 'Software isn’t a cost line.',
     titleMain: 'It’s an asset.',
     sub: 'Websites, CRM, ERP, mobile apps, bots and AI. Full cycle from brief to release — with one team.',
@@ -32,5 +32,140 @@ export default {
     shotCaption: 'CRM Portal — CRM for real-estate agencies',
     shotAlt:
       'CRM Portal interface: client card, interaction history and a list of matching property listings',
+  },
+  services: {
+    eyebrow: 'What we build',
+    titleMuted: 'Nine directions,',
+    titleMain: 'one team.',
+    note: 'From a landing page to a corporate platform. One contractor for the whole range — one contract, one line of responsibility.',
+    cta: 'Start the brief',
+    countLabel: 'services',
+    items: [
+      {
+        title: 'Web Development',
+        items: [
+          'Corporate websites',
+          'Landing pages and promos',
+          'Online stores',
+          'Product and service catalogs',
+          'News and content portals',
+          'Multilingual websites',
+        ],
+      },
+      {
+        title: 'Web Applications & Platforms',
+        items: [
+          'Turnkey SaaS platforms',
+          'User accounts and portals',
+          'Admin panels and back office',
+          'Marketplaces',
+          'Booking systems',
+          'B2B and B2C web services',
+        ],
+      },
+      {
+        title: 'Enterprise Systems',
+        items: [
+          'CRM systems',
+          'ERP systems',
+          'Internal employee portals',
+          'Order management systems',
+          'Document workflow',
+          'HR systems',
+        ],
+      },
+      {
+        title: 'Mobile Applications',
+        items: [
+          'iOS (Swift / SwiftUI)',
+          'Android (Kotlin)',
+          'Cross-platform (Flutter, React Native)',
+          'Customer-facing apps',
+          'Internal corporate apps',
+          'Device and IoT integration',
+        ],
+      },
+      {
+        title: 'Bots & AI Solutions',
+        items: [
+          'Telegram bots and mini apps',
+          'Website and messenger chatbots',
+          'AI assistants',
+          'Automated document processing',
+          'Smart recommendation systems',
+          'LLM integration into products',
+        ],
+      },
+      {
+        title: 'Analytics & Accounting',
+        items: [
+          'BI dashboards and reporting',
+          'Accounting and analytics systems',
+          'Financial modules',
+          'Warehouse systems',
+          'Logistics systems',
+          'KPI management dashboards',
+        ],
+      },
+      {
+        title: 'Integrations & Automation',
+        items: [
+          'Payment system integration',
+          'API integrations',
+          'Business process automation',
+          'Integration with 1C, SAP, AmoCRM',
+          'Cross-system data synchronization',
+          'Webhook and event-driven scenarios',
+        ],
+      },
+      {
+        title: 'Specialized Solutions',
+        items: [
+          'Fintech and payment platforms',
+          'EdTech and online learning',
+          'HealthTech and medical systems',
+          'Cloud services and DevOps',
+          'Code audit and optimization',
+          'Cybersecurity and data protection',
+        ],
+      },
+      {
+        title: 'Modernization & Support',
+        items: [
+          'Legacy system redesign',
+          'Migration to modern stack',
+          'Performance improvements',
+          '24/7 technical support',
+          'Post-launch product growth',
+          'DevOps and infrastructure support',
+        ],
+      },
+    ],
+  },
+  why: {
+    eyebrow: 'Why it pays',
+    titleMuted: 'A system looks like a cost,',
+    titleMain: 'and not having one spends money daily.',
+    paras: [
+      'If the site is missing or weak, you hand customers to competitors every day. First impressions form in **3 seconds** — after that a visitor either stays or hits back.',
+      'Without a CRM, up to **35% of leads** disappear into messengers, inboxes and notebooks. A system walks the customer down the funnel, chases the task and shows exactly where a deal stalled.',
+      'Manual reporting takes **2–3 hours a day** from someone and raises the odds of an error. An automated routine does the same work at three in the morning, without complaints or typos.',
+      'All of it is measurable. The figures below come from our own projects, counted by the client after launch.',
+    ],
+    barsTitle: 'Measured on real projects',
+    bars: [
+      { label: 'Sales conversion', value: '+45%', pct: 45, source: 'CRM Portal' },
+      { label: 'Time spent updating the database', value: '−70%', pct: 70, source: 'CRM Portal' },
+      { label: 'Issuing payments and receipts', value: '−80%', pct: 80, source: 'FLEKS' },
+    ],
+  },
+  metrics: {
+    label: 'The studio in numbers',
+    items: [
+      { value: '40+', label: 'projects shipped' },
+      { value: '{years}', label: 'years in business' },
+      { value: '40+', label: 'technologies in the stack' },
+      { value: '3', label: 'working languages' },
+    ],
   },
 } as const;

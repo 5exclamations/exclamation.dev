@@ -20,7 +20,7 @@ export default {
     skip: 'Əsas məzmuna keç',
   },
   hero: {
-    eyebrow: 'Bakı · 2019-dan bəri',
+    eyebrow: 'Bakı · {year}-dan bəri',
     titleMuted: 'Rəqəmsal məhsullar xərc deyil.',
     titleMain: 'Sizin aktivinizdir.',
     sub: 'Sayt, CRM, ERP, mobil tətbiq, bot və AI həlləri. Brifdən relizə qədər tam dövr — bir komanda ilə.',
@@ -32,5 +32,140 @@ export default {
     shotCaption: 'CRM Portal — daşınmaz əmlak agentlikləri üçün CRM',
     shotAlt:
       'CRM Portal interfeysi: müştəri kartı, interaksiya tarixçəsi və uyğun gələn obyektlərin siyahısı',
+  },
+  services: {
+    eyebrow: 'Nə qururuq',
+    titleMuted: 'Doqquz istiqamət,',
+    titleMain: 'bir komanda.',
+    note: 'Landing səhifəsindən korporativ platformaya qədər. Bir podratçı — bütün spektr, bir müqavilə, bir məsuliyyət.',
+    cta: 'Brifə keç',
+    countLabel: 'xidmət',
+    items: [
+      {
+        title: 'Veb inkişaf',
+        items: [
+          'Korporativ saytlar',
+          'Landing və promo səhifələr',
+          'Onlayn mağazalar',
+          'Məhsul və xidmət kataloqları',
+          'Xəbər və kontent portalları',
+          'Çoxdilli saytlar',
+        ],
+      },
+      {
+        title: 'Veb tətbiqlər və platformalar',
+        items: [
+          'Açar təslim SaaS platformaları',
+          'Şəxsi kabinetlər və portallar',
+          'Admin panel və back-office',
+          'Marketplace-lər',
+          'Bron sistemləri',
+          'B2B və B2C veb servis-lər',
+        ],
+      },
+      {
+        title: 'Korporativ sistemlər',
+        items: [
+          'CRM sistemləri',
+          'ERP sistemləri',
+          'Daxili əməkdaş portalları',
+          'Sifariş idarəetmə sistemləri',
+          'Sənəd dövriyyəsi (EDO)',
+          'HR sistemləri',
+        ],
+      },
+      {
+        title: 'Mobil tətbiqlər',
+        items: [
+          'iOS (Swift / SwiftUI)',
+          'Android (Kotlin)',
+          'Kross-platforma (Flutter, React Native)',
+          'Müştəri tətbiqləri',
+          'Daxili korporativ tətbiqlər',
+          'Cihaz və IoT inteqrasiyası',
+        ],
+      },
+      {
+        title: 'Botlar və AI həlləri',
+        items: [
+          'Telegram botları və mini tətbiqlər',
+          'Sayt və messencer üçün çat-botlar',
+          'AI köməkçiləri və assistentlər',
+          'Sənədlərin avtomatik emalı',
+          'Ağıllı tövsiyə sistemləri',
+          'Məhsullara LLM inteqrasiyası',
+        ],
+      },
+      {
+        title: 'Analitika və uçot',
+        items: [
+          'BI panel və hesabatlılıq',
+          'Uçot və analitika sistemləri',
+          'Mühasibat və maliyyə modulları',
+          'Anbar sistemləri',
+          'Logistika sistemləri',
+          'İdarəetmə üçün KPI panelləri',
+        ],
+      },
+      {
+        title: 'İnteqrasiya və avtomatlaşdırma',
+        items: [
+          'Ödəniş sistemləri ilə inteqrasiya',
+          'Servislərlə API inteqrasiyası',
+          'Biznes proseslərinin avtomatlaşdırılması',
+          '1C, SAP, AmoCRM ilə inteqrasiya',
+          'Sistemlər arasında məlumat sinxronu',
+          'Webhook və event-driven ssenarilər',
+        ],
+      },
+      {
+        title: 'Xüsusi və niş həllər',
+        items: [
+          'Fintech və ödəniş platformaları',
+          'EdTech və onlayn təhsil',
+          'HealthTech və tibbi sistemlər',
+          'Bulud servis və DevOps',
+          'Kod auditi və optimizasiya',
+          'Kibertəhlükəsizlik və data qorunması',
+        ],
+      },
+      {
+        title: 'Modernizasiya və dəstək',
+        items: [
+          'Köhnə sistemlərin redizaynı',
+          'Müasir stack-ə miqrasiya',
+          'Performansın yaxşılaşdırılması',
+          '24/7 texniki dəstək',
+          'Buraxılışdan sonra məhsul inkişafı',
+          'DevOps və infrastruktur dəstəyi',
+        ],
+      },
+    ],
+  },
+  why: {
+    eyebrow: 'Niyə bu lazımdır',
+    titleMuted: 'Sistem qurmaq xərc kimi görünür,',
+    titleMain: 'onun olmaması isə hər gün pul aparır.',
+    paras: [
+      'Saytınız yoxdursa və ya zəifdirsə, müştəriləri hər gün rəqiblərə uduzursunuz. İlk təəssürat **3 saniyəyə** formalaşır və ondan sonra insan ya qalır, ya da geri düyməsini basır.',
+      'CRM olmadan lidlərin **35%-ə qədəri** messencerdə, e-poçtda və qeyd dəftərində itir. Sistem müştərini huni ilə özü aparır, tapşırığı xatırladır və satışın harada dayandığını göstərir.',
+      'Əl ilə görülən hesabat bir əməkdaşın **gündə 2–3 saatını** alır və səhv riskini artırır. Avtomatlaşdırılmış ssenari eyni işi gecə saat üçdə, şikayətsiz və səhvsiz görür.',
+      'Bunların hamısı ölçülür. Aşağıdakı rəqəmlər bizim öz layihələrimizdən — müştərinin buraxılışdan sonra ölçdüyü nəticələr.',
+    ],
+    barsTitle: 'Layihələrdən ölçülmüş nəticələr',
+    bars: [
+      { label: 'Satış konversiyası', value: '+45%', pct: 45, source: 'CRM Portal' },
+      { label: 'Bazanın yenilənməsinə vaxt', value: '−70%', pct: 70, source: 'CRM Portal' },
+      { label: 'Ödəniş və çek hazırlığı', value: '−80%', pct: 80, source: 'FLEKS' },
+    ],
+  },
+  metrics: {
+    label: 'Studiya haqqında rəqəmlərlə',
+    items: [
+      { value: '40+', label: 'buraxılmış layihə' },
+      { value: '{years}', label: 'il bazarda' },
+      { value: '40+', label: 'stekdə texnologiya' },
+      { value: '3', label: 'dildə işləyirik' },
+    ],
   },
 } as const;
