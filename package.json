@@ -11,7 +11,11 @@
   },
   "devDependencies": {
     "astro": "^5.14.1",
+    "harfbuzzjs": "^1.5.0",
     "playwright": "^1.62.1",
-    "sharp": "^0.35.3"
+    "satori": "^0.29.0",
+    "sharp": "^0.35.3",
+    "wawoff2": "^2.0.1",
+    "wrangler": "^4.118.0"
   }
 }

@@ -1,0 +1,89 @@
+name: Weekly rebuild
+
+# Several numbers on the site are computed at build time and then frozen into
+# static HTML: the studio's age ({years}), the copyright year ({now}) and the
+# technology count ({tech}). Without a rebuild, a site deployed in December
+# still claims last year's copyright in January.
+#
+# This fires a Cloudflare Pages deploy hook once a week so the output never
+# drifts more than seven days from the truth. It also catches the case where
+# nobody has pushed for months and the build has quietly stopped working.
+
+on:
+  schedule:
+    # 04:17 UTC every Monday. Not on the hour: GitHub's scheduler is busiest
+    # then and delays runs by up to a quarter of an hour.
+    - cron: '17 4 * * 1'
+  workflow_dispatch:
+
+concurrency:
+  group: weekly-rebuild
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    name: Build and check the computed values
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      # A green build is not the point — the point is that the dates moved.
+      # If the build succeeds but still emits a stale year, the deploy hook
+      # would happily publish the same wrong number, so fail loudly instead.
+      - name: Build
+        run: npm run build
+        env:
+          FORMSPREE_ID: ${{ secrets.FORMSPREE_ID }}
+          TURNSTILE_SITE_KEY: ${{ secrets.TURNSTILE_SITE_KEY }}
+
+      - name: Assert the copyright year is the current one
+        run: |
+          year=$(date -u +%Y)
+          if ! grep -q "© $year EXCLAMATION" dist/index.html; then
+            echo "::error::dist/index.html does not carry the current year ($year)."
+            grep -o '© [0-9]* EXCLAMATION' dist/index.html | head -1
+            exit 1
+          fi
+          echo "copyright reads $year"
+
+      - name: Assert the studio age matches FOUNDED
+        run: |
+          expected=$(node -e "
+            const m = require('fs').readFileSync('src/i18n/index.ts','utf8').match(/FOUNDED = (\d+)/);
+            console.log(new Date().getUTCFullYear() - Number(m[1]));
+          ")
+          # anchored to the metrics value span; a bare >7< would match anything
+          if ! grep -qE "metric-value num\"[^>]*>$expected<" dist/index.html; then
+            echo "::error::the metrics band does not show $expected years."
+            grep -oE 'metric-value num"[^>]*>[^<]*<' dist/index.html | head -3
+            exit 1
+          fi
+          echo "age reads $expected"
+
+  deploy:
+    name: Trigger the Cloudflare Pages rebuild
+    needs: verify
+    runs-on: ubuntu-latest
+    # the `secrets` context is not available in step-level `if`, so the hook
+    # is mapped to an env var and that is what the conditions test
+    env:
+      HOOK: ${{ secrets.CLOUDFLARE_DEPLOY_HOOK }}
+    steps:
+      # Set CLOUDFLARE_DEPLOY_HOOK in the repository secrets to the hook URL
+      # from Pages > Settings > Builds & deployments > Deploy hooks. Until it
+      # exists this step is skipped rather than failing the run, so the weekly
+      # build check is useful on its own before the cutover happens.
+      - name: Call the deploy hook
+        if: env.HOOK != ''
+        run: curl -fsS -X POST "$HOOK"
+
+      - name: Note when no hook is configured
+        if: env.HOOK == ''
+        run: echo "::notice::CLOUDFLARE_DEPLOY_HOOK is not set — built and verified, but nothing was deployed."

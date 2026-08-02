@@ -95,11 +95,6 @@ separate task.
   because there are no per-service routes. Temporary until service pages
   exist; the labels are kept because they are useful scanning targets.
   Six of the nine categories is a deliberate choice, not a truncation bug.
-- **`/ru/404` and `/en/404` build as directories**, not `.html`. Astro only
-  special-cases the root `404.astro`, so Cloudflare will serve the
-  Azerbaijani `/404.html` for every miss regardless of language. They are
-  valid pages and the language switcher moves between them; making them fire
-  as error pages is a cutover task.
 - **Nothing here about the spine any more.** It terminates on every route:
   `SpineEnd.astro` sits in `Base.astro` above the footer and owns the dot.
   `finalcta` is now only the landing page's closing call.
@@ -262,18 +257,15 @@ blocks review; several items block launch.
   the widget and its server-side verification exist, the only spam defence on
   the form is the `_gotcha` honeypot, which stops bots and nothing else.
 - **No `sitemap.xml`, no `robots.txt`.** Neither is generated.
-- **No `og:image`.** `og:title` and `og:description` are set, so every shared
-  link previews as a bare text card.
-- **Formspree plan limits are unverified.** The free tier caps submissions per
-  month; nobody has checked which plan this id sits on.
-- **Per-locale 404s do not fire.** See §3.
+- **`CLOUDFLARE_DEPLOY_HOOK` is not set.** The weekly rebuild builds and
+  verifies but deploys nothing until that repository secret exists.
 
 **Degrades quality, does not block**
 
-- **Computed dates go stale between builds.** `{years}`, `{now}` and `{tech}`
-  are evaluated at build time. A site built in December and not rebuilt will
-  show last year's copyright in January. Either schedule a periodic rebuild
-  or accept the drift knowingly.
+- **Fifteen unused originals ship in `dist/_astro`.** Astro emits the source
+  file for every imported image even when only the generated variants are
+  referenced. About 2.1 MB, never downloaded by a visitor, but it does pad
+  the deploy.
 
 **Open decisions, not defects**
 
@@ -284,3 +276,45 @@ blocks review; several items block launch.
 - **No testimonials section, by decision.** Three fake ones were removed from
   the old site. Nothing goes back until there are two real quotes with a name
   and a company attached; no placeholder in the meantime.
+
+---
+
+## 8. Build-time generation
+
+Three things are produced during `astro build` rather than checked in.
+
+**Images.** `src/assets/pics` goes through `<Picture>`: avif with a webp
+fallback, four widths each. Anything under `public/` is copied through
+untouched, which is why the screenshots do not live there any more. On the
+cropped views — the hero below 640 and the case galleries — `sizes` states the
+crop width, not `100vw`: those render at a fixed pixel width and slide under
+the frame, so a viewport-based `sizes` makes the browser pick a candidate
+narrower than the pixels it paints, and the crop goes soft.
+
+**Open Graph cards.** `src/pages/og/[key].png.ts`, satori to SVG, sharp to
+PNG, 24 cards: `home-<locale>`, `page-<locale>` and `case-<slug>-<locale>`.
+Pages choose one with the `ogKey` prop on `Base.astro`; `page` is the default
+and is what the 404 uses, and it is where service pages should point when they
+exist. Two traps are already paid for:
+
+- satori cannot read the site's woff2 — they are variable fonts and its
+  opentype.js fork dies on `fvar`, because the subsetter dropped the `name`
+  records that table points at. `src/lib/instance-font.ts` pins each face to
+  one weight with the hb-subset wasm inside harfbuzzjs. Stripping `fvar`
+  instead "works" but leaves the default master, which for Geologica is
+  wght=100 — every heading renders Thin.
+- the locale subsets do not overlap. `latin-ext` carries `ə ğ ı ş`, not
+  `A–Z`. Registering the locale face and the latin face under the same family
+  name gives you tofu for the basic alphabet, because satori matches a family
+  and stops. They need distinct names and a `'Locale, Latin'` stack.
+
+**Localised 404s.** Astro only special-cases the root `404.astro`; the other
+two build to `ru/404/index.html`, which Cloudflare's error-page lookup never
+finds. The `localised-404` integration in `astro.config.mjs` copies each to
+the sibling `404.html` that lookup expects.
+
+Verified against the real Pages runtime with `npx wrangler pages dev dist` —
+`/ru/no-such-page` and `/ru/is/nope` both answer 404 in Russian, `/en/...` in
+English, everything else in Azerbaijani. That is the Cloudflare worker running
+locally, not a preview deploy on their infrastructure; re-check once the
+project is actually connected.
