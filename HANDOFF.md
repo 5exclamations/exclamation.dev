@@ -15,7 +15,7 @@ Three commits, on `main`, on top of the old static site.
 | `4a23447` | Astro skeleton + rebuilt first screen (az/ru/en) |
 | `b9260de` | Sections 02–04: services index, why, metrics band |
 | `40f7cfb` | Sections 05–06: work index, six case pages, process |
-| `5b009e5` | Sections 07–08: tech (the one inverted band), facts |
+| `7f5ab8f` | Sections 07–08: tech (the one inverted band), facts |
 
 **Stack decisions.** Astro `output: 'static'`, plain CSS with `@layer` and
 custom properties, no Tailwind, no React. Locale routing: `az` at `/`, `ru`
