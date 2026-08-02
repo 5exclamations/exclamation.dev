@@ -1,14 +1,14 @@
 # HANDOFF — EXCLAMATION redesign
 
 Written 2026-08-02 for an agent picking this up cold. The site is being
-rewritten from scratch on Astro. The first screen and five sections are done;
-the rest of the landing page is not.
+rewritten from scratch on Astro. Every section of the landing page is built;
+what remains is the cutover. See §7 for what is genuinely unfinished.
 
 ---
 
 ## 1. What this session did
 
-Three commits, on `main`, on top of the old static site.
+Six commits, on `main`, on top of the old static site.
 
 | Commit | Contents |
 | --- | --- |
@@ -16,10 +16,12 @@ Three commits, on `main`, on top of the old static site.
 | `b9260de` | Sections 02–04: services index, why, metrics band |
 | `40f7cfb` | Sections 05–06: work index, six case pages, process |
 | `7f5ab8f` | Sections 07–08: tech (the one inverted band), facts |
+| `cb0b788` | Sections 09–10 plus the footer: faq, contact |
+| _(this batch)_ | Section 11 plus 404: finalcta, the terminating dot |
 
 **Stack decisions.** Astro `output: 'static'`, plain CSS with `@layer` and
 custom properties, no Tailwind, no React. Locale routing: `az` at `/`, `ru`
-and `en` prefixed. 21 pages build today (3 home + 18 case pages).
+and `en` prefixed. 24 pages build today (3 home + 18 case + 3 404).
 
 **Design system.** Approved by the art director before any section beyond the
 first screen was built, and written down in
@@ -77,23 +79,31 @@ adjacent sections may share a skeleton. Built so far: `hero`, `services`,
 `why`, `work`, `metrics`, `process`, `tech`, `facts`, `faq`, `contact`, and
 the footer (in `Base.astro`, so every route has it).
 
-1. **`finalcta`** — the square dot that terminates the exclamation mark the
-   spine draws down the page. This is the payoff of the whole signature; do
-   not make it a generic CTA band. It goes between `contact` and the footer.
-   The footer deliberately reuses the header's full `!` lockup rather than a
-   bare square, so this dot is still unspent.
-2. **404 page** — required, not built.
-3. **Cutover** — Cloudflare Pages, then delete the legacy files above and
-   turn off GitHub Pages. See §5 for the build environment variables.
+Every section in the approved order is built. What remains:
+
+1. **Cutover** — Cloudflare Pages, then delete the legacy files above and
+   turn off GitHub Pages. See §6 for the build environment variables and §7
+   for what has to be decided or fixed at the same time.
 
 Deferred by the client, not forgotten: a full **`/faq/` page** of 25–30
 questions. The eight on the home page stay as they are; the page is a
 separate task.
 
-Also outstanding: the reviews component is supposed to exist as a placeholder
-(three fake testimonials were removed from the old site and must not return),
-and `astro:assets` image optimisation was skipped — the `sharp` postinstall
-was blocked by npm, so images ship as-is.
+### Known debt, carried deliberately
+
+- **Footer service links point at one anchor.** Six labels, all `#services`,
+  because there are no per-service routes. Temporary until service pages
+  exist; the labels are kept because they are useful scanning targets.
+  Six of the nine categories is a deliberate choice, not a truncation bug.
+- **`/ru/404` and `/en/404` build as directories**, not `.html`. Astro only
+  special-cases the root `404.astro`, so Cloudflare will serve the
+  Azerbaijani `/404.html` for every miss regardless of language. They are
+  valid pages and the language switcher moves between them; making them fire
+  as error pages is a cutover task.
+- **The spine terminates only on the home page.** Case pages and the 404 run
+  the stroke down to the footer, which cuts it — there is no dot, because
+  `finalcta` is a landing-page section. If the mark should complete
+  everywhere, that is a decision to take, not a bug to fix quietly.
 
 **Working agreement with the art director:** show two or three sections at a
 time, never one. Before showing anything, run the six widths in both themes
@@ -238,3 +248,48 @@ The form is progressively enhanced with about thirty lines of `fetch`, not
 `@formspree/ajax` — the site has no runtime dependencies and this keeps it
 that way. Without JS the form posts natively and Formspree renders its own
 confirmation page.
+
+---
+
+## 7. What is not finished
+
+Written by the agent that built sections 07–11, listing what it considers
+genuinely outstanding rather than what the plan happens to say. Nothing here
+blocks review; several items block launch.
+
+**Blocks launch**
+
+- **Turnstile is a stub.** The slot renders and nothing mounts in it. Until
+  the widget and its server-side verification exist, the only spam defence on
+  the form is the `_gotcha` honeypot, which stops bots and nothing else.
+- **No `sitemap.xml`, no `robots.txt`.** Neither is generated.
+- **No `og:image`.** `og:title` and `og:description` are set, so every shared
+  link previews as a bare text card.
+- **Formspree plan limits are unverified.** The free tier caps submissions per
+  month; nobody has checked which plan this id sits on.
+- **Per-locale 404s do not fire.** See §3.
+
+**Degrades quality, does not block**
+
+- **`astro:assets` image optimisation was never enabled** — the `sharp`
+  postinstall was blocked by npm, so every screenshot ships at full weight,
+  unresized and in its original format. This is the single largest
+  performance item on the site.
+- **Computed dates go stale between builds.** `{years}`, `{now}` and `{tech}`
+  are evaluated at build time. A site built in December and not rebuilt will
+  show last year's copyright in January. Either schedule a periodic rebuild
+  or accept the drift knowingly.
+- **`40+ projects` sits next to `40 technologies`** in the metrics band. The
+  technologies figure is computed; the projects figure is a client claim that
+  was left alone. Two adjacent forties read like a mistake even though
+  neither is one.
+- **The reviews placeholder still does not exist.** Three fake testimonials
+  were removed from the old site and must not return. Whether a real
+  testimonials block is wanted at all is an open question, not a build task.
+
+**Open decisions, not defects**
+
+- **Navigation lists four of eleven sections** (services, process, work,
+  contact). `tech`, `facts` and `faq` are reachable only by scrolling.
+- **No analytics of any kind** is installed.
+- **No print stylesheet.**

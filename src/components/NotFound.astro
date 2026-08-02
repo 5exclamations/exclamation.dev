@@ -1,0 +1,80 @@
+---
+import Icon from './Icon.astro';
+import { localePath, type Dict, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+  dict: Dict;
+}
+const { locale, dict } = Astro.props;
+const nf = dict.notFound;
+---
+
+<section class="nf">
+  <div class="shell">
+    <div class="nf-body">
+      <p class="mono nf-code num">{nf.code}</p>
+      <h1 id="nf-title">
+        <span class="muted">{nf.titleMuted}</span> {nf.titleMain}
+      </h1>
+      <p class="nf-note">{nf.note}</p>
+      <ul class="nf-links">
+        <li>
+          <a class="btn" href={localePath(locale, '/')}>
+            {nf.home}
+            <Icon name="arrow-right" size={17} />
+          </a>
+        </li>
+        <li>
+          <a class="btn-quiet" href={`${localePath(locale, '/')}#work`}>{dict.nav.work}</a>
+        </li>
+        <li>
+          <a class="btn-quiet" href={`${localePath(locale, '/')}#contact`}>{dict.nav.contact}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* short page: push it down far enough that the header is not sitting on
+     the headline, and let the footer do the rest of the work */
+  .nf {
+    position: relative;
+    z-index: 1;
+    padding-block: var(--sp-major) var(--sp-chapter);
+  }
+
+  .nf-body {
+    padding-left: var(--rail);
+  }
+
+  .nf-code {
+    color: var(--fg-muted);
+    letter-spacing: 0.18em;
+  }
+
+  .nf h1 {
+    margin-top: 1rem;
+    font-size: var(--fs-700);
+    font-weight: 300;
+    max-width: 16ch;
+  }
+  .nf h1 .muted {
+    color: var(--fg-muted);
+  }
+
+  .nf-note {
+    margin-top: 1.5rem;
+    color: var(--fg-muted);
+    max-width: 46ch;
+  }
+
+  .nf-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 2rem;
+    margin-top: var(--sp-block);
+  }
+</style>

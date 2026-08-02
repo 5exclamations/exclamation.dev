@@ -1,0 +1,20 @@
+---
+import Base from '../layouts/Base.astro';
+import NotFound from '../components/NotFound.astro';
+import { t } from '../i18n';
+
+const locale = 'az' as const;
+const dict = t(locale);
+---
+
+<Base
+  locale={locale}
+  dict={dict}
+  noindex
+  meta={{
+    title: '404 — səhifə tapılmadı | EXCLAMATION',
+    description: 'Belə səhifə yoxdur. Ana səhifəyə qayıdın və ya işlərə baxın.',
+  }}
+>
+  <NotFound locale={locale} dict={dict} />
+</Base>

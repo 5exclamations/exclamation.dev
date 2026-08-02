@@ -46,9 +46,9 @@ scripts/
   motion-check.mjs  доказывает, что prefers-reduced-motion срабатывает
 ```
 
-Готовые секции: `hero`, `services`, `why`, `work`, `metrics`, `process`,
-`tech`, `facts`, `faq`, `contact`, футер и шесть страниц кейсов. Оставшееся
-и его порядок — в `HANDOFF.md`.
+Все секции лендинга собраны: `hero`, `services`, `why`, `work`, `metrics`,
+`process`, `tech`, `facts`, `faq`, `contact`, `finalcta`, футер, 404 и шесть
+страниц кейсов. Что реально не доделано — §7 `HANDOFF.md`.
 
 Возраст студии считается из `FOUNDED` в `src/i18n/index.ts`; в текстах стоят
 плейсхолдеры `{year}` и `{years}`, руками цифру не писать.

@@ -9,8 +9,10 @@ interface Props {
   dict: Dict;
   /** per-page overrides; the dictionary supplies the home page defaults */
   meta?: { title: string; description: string };
+  /** error pages: keep them out of the index and off the hreflang cluster */
+  noindex?: boolean;
 }
-const { locale, dict, meta } = Astro.props;
+const { locale, dict, meta, noindex = false } = Astro.props;
 const head = meta ?? dict.meta;
 const subset = localeSubset[locale];
 const site = Astro.site?.toString().replace(/\/$/, '') ?? '';
@@ -30,11 +32,17 @@ const current = (Astro.url.pathname.replace(/\/+$/, '') || '/').replace(
     <title>{head.title}</title>
     <meta name="description" content={head.description} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="canonical" href={`${site}${localePath(locale, current)}`} />
-    {locales.map((l) => (
-      <link rel="alternate" hreflang={l} href={`${site}${localePath(l, current)}`} />
-    ))}
-    <link rel="alternate" hreflang="x-default" href={`${site}${current}`} />
+    {noindex ? (
+      <meta name="robots" content="noindex, follow" />
+    ) : (
+      <>
+        <link rel="canonical" href={`${site}${localePath(locale, current)}`} />
+        {locales.map((l) => (
+          <link rel="alternate" hreflang={l} href={`${site}${localePath(l, current)}`} />
+        ))}
+        <link rel="alternate" hreflang="x-default" href={`${site}${current}`} />
+      </>
+    )}
 
     <link
       rel="preload"

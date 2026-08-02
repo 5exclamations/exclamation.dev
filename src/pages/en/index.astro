@@ -10,6 +10,7 @@ import Tech from '../../components/Tech.astro';
 import Facts from '../../components/Facts.astro';
 import Faq from '../../components/Faq.astro';
 import Contact from '../../components/Contact.astro';
+import FinalCta from '../../components/FinalCta.astro';
 import { t } from '../../i18n';
 
 const locale = 'en' as const;
@@ -27,4 +28,5 @@ const dict = t(locale);
   <Facts dict={dict} />
   <Faq dict={dict} />
   <Contact dict={dict} />
+  <FinalCta dict={dict} />
 </Base>

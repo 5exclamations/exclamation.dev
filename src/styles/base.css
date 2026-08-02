@@ -220,8 +220,12 @@
   .btn-quiet {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
     min-height: 2.75rem;
+    /* a short label ("Work", "İşlər") would otherwise be a 35px-wide target;
+       centring keeps the rule under it symmetrical when min-width binds */
+    min-width: 2.75rem;
     font-family: var(--font-display);
     font-weight: 400;
     color: var(--fg);

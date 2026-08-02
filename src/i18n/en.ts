@@ -316,14 +316,14 @@ export default {
   },
   tech: {
     eyebrow: 'Stack',
-    titleMuted: 'A modern stack —',
+    titleMuted: 'A modern stack —',
     titleMain: 'a solid foundation.',
     note: 'Technologies picked for performance, scalability and a long product life. Not all of them run on any one project — only what the task actually calls for.',
     countLabel: 'technologies in the stack',
   },
   facts: {
     eyebrow: 'Facts',
-    titleMuted: 'Not slogans —',
+    titleMuted: 'Not slogans —',
     titleMain: 'a number, a duration and a tool name.',
     items: [
       {
@@ -387,7 +387,7 @@ export default {
   },
   contact: {
     eyebrow: 'Contact',
-    titleMuted: 'Tell us about the task —',
+    titleMuted: 'Tell us about the task —',
     titleMain: 'we will propose a solution and a price.',
     note: 'A short brief is enough. We will clarify the open questions and move to the estimating stage.',
     channelsLabel: 'Direct channels',
@@ -413,6 +413,18 @@ export default {
       errorMailto: 'Write to us directly:',
       required: 'required',
     },
+  },
+  finalcta: {
+    titleMuted: 'The next step —',
+    titleMain: 'a short brief.',
+    note: 'We clarify the open questions and come back within 3–5 days with an architecture, a timeline and an estimate. That stage is not billed.',
+  },
+  notFound: {
+    code: '404',
+    titleMuted: 'No such page —',
+    titleMain: 'check the address.',
+    note: 'The page was removed or renamed, or there is a typo in the link.',
+    home: 'Home',
   },
   footer: {
     tagline: 'Digital product studio in Baku. Since {year}.',

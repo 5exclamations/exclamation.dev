@@ -316,14 +316,14 @@ export default {
   },
   tech: {
     eyebrow: 'Stek',
-    titleMuted: 'Müasir stek —',
+    titleMuted: 'Müasir stek —',
     titleMain: 'etibarlı təməl.',
     note: 'Performans, miqyaslanma və məhsulun uzun ömrü üçün seçilmiş texnologiyalar. Bir layihədə hamısı işlənmir — tapşırığa uyğun olanı seçilir.',
     countLabel: 'texnologiya stekdə',
   },
   facts: {
     eyebrow: 'Faktlar',
-    titleMuted: 'Şüar yox —',
+    titleMuted: 'Şüar yox —',
     titleMain: 'rəqəm, müddət və alət adı.',
     items: [
       {
@@ -387,7 +387,7 @@ export default {
   },
   contact: {
     eyebrow: 'Əlaqə',
-    titleMuted: 'Tapşırığınızı danışın —',
+    titleMuted: 'Tapşırığınızı danışın —',
     titleMain: 'həlli və qiyməti təklif edək.',
     note: 'Qısa brif kifayətdir. Sualları dəqiqləşdiririk və qiymətləndirmə mərhələsinə keçirik.',
     channelsLabel: 'Birbaşa əlaqə',
@@ -413,6 +413,18 @@ export default {
       errorMailto: 'Birbaşa yazın:',
       required: 'zəruri',
     },
+  },
+  finalcta: {
+    titleMuted: 'Növbəti addım —',
+    titleMain: 'qısa brif.',
+    note: 'Sualları dəqiqləşdiririk və 3–5 gün ərzində arxitektura, müddət və smeta veririk. Bu mərhələ ödənişsizdir.',
+  },
+  notFound: {
+    code: '404',
+    titleMuted: 'Belə səhifə yoxdur —',
+    titleMain: 'ünvanı yoxlayın.',
+    note: 'Səhifə silinib, adı dəyişib və ya keçiddə səhv var.',
+    home: 'Ana səhifə',
   },
   footer: {
     tagline: 'Bakıda rəqəmsal məhsul studiyası. {year}-dan bəri.',
