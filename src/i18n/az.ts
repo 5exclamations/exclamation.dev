@@ -314,4 +314,36 @@ export default {
       { title: 'Dəstək', time: '3 ay zəmanət', text: 'Monitorinq, bug fix və roadmap üzrə inkişaf. Buraxılış son nöqtə deyil.' },
     ],
   },
+  tech: {
+    eyebrow: 'Stek',
+    titleMuted: 'Müasir stek —',
+    titleMain: 'etibarlı təməl.',
+    note: 'Performans, miqyaslanma və məhsulun uzun ömrü üçün seçilmiş texnologiyalar. Bir layihədə hamısı işlənmir — tapşırığa uyğun olanı seçilir.',
+    countLabel: 'texnologiya stekdə',
+  },
+  facts: {
+    eyebrow: 'Faktlar',
+    titleMuted: 'Şüar yox —',
+    titleMain: 'rəqəm, müddət və alət adı.',
+    items: [
+      {
+        label: 'MVP',
+        value: '7–14 gün',
+        rest: ' — ilk işlək versiyaya qədər',
+        text: 'Scope müqavilədə yazılır: nəyin daxil olduğu və nəyin olmadığı. Razılaşdırılmış qiymət iş gedişində dəyişmir.',
+      },
+      {
+        label: 'Ritm',
+        value: '2 həftə',
+        rest: ' — sprint, sonunda demo',
+        text: 'Task tracker-ə giriş sizin tərəfdədir: tapşırığın statusunu hesabat gözləmədən özünüz görürsünüz.',
+      },
+      {
+        label: 'Buraxılışdan sonra',
+        value: '3 ay',
+        rest: ' — zəmanət və monitorinq',
+        text: 'Repozitoriya ilk gündən sizin hesabınızdadır. Kod sizindir, biz podratçıyıq.',
+      },
+    ],
+  },
 } as const;

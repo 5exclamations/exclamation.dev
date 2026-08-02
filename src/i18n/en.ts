@@ -314,4 +314,36 @@ export default {
       { title: 'Support', time: '3-month warranty', text: 'Monitoring, bug fixes and roadmap work. The release is not the finish line.' },
     ],
   },
+  tech: {
+    eyebrow: 'Stack',
+    titleMuted: 'A modern stack —',
+    titleMain: 'a solid foundation.',
+    note: 'Technologies picked for performance, scalability and a long product life. Not all of them run on any one project — only what the task actually calls for.',
+    countLabel: 'technologies in the stack',
+  },
+  facts: {
+    eyebrow: 'Facts',
+    titleMuted: 'Not slogans —',
+    titleMain: 'a number, a duration and a tool name.',
+    items: [
+      {
+        label: 'MVP',
+        value: '7–14 days',
+        rest: ' — to the first working version',
+        text: 'The scope is fixed in the contract: what is included and what is not. The agreed price does not move mid-project.',
+      },
+      {
+        label: 'Rhythm',
+        value: '2 weeks',
+        rest: ' — a sprint, ending in a demo',
+        text: 'Tracker access sits on your side: you see the status of a task yourself, without waiting for a report.',
+      },
+      {
+        label: 'After release',
+        value: '3 months',
+        rest: ' — warranty and monitoring',
+        text: 'The repository is in your account from day one. You own the code; we are the contractor.',
+      },
+    ],
+  },
 } as const;

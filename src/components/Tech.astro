@@ -1,0 +1,155 @@
+---
+import { techCats, techCount } from '../data/tech';
+import type { Dict } from '../i18n';
+
+interface Props {
+  dict: Dict;
+}
+const { dict } = Astro.props;
+const s = dict.tech;
+---
+
+<section class="tech invert" id="tech" aria-labelledby="tech-title">
+  {/* the page's spine is painted over by this section's ground, so it is
+      redrawn here in the inverted --line and stays unbroken */}
+  <div class="spine-wrap" aria-hidden="true">
+    <div class="shell spine-shell"><span class="spine"></span></div>
+  </div>
+
+  <div class="shell tech-in">
+    <header class="tech-head">
+      <p class="mono">{s.eyebrow}</p>
+      <h2 id="tech-title" data-reveal>
+        <span class="muted">{s.titleMuted}</span> {s.titleMain}
+      </h2>
+      <p class="tech-note" data-reveal>{s.note}</p>
+    </header>
+
+    <div class="tech-cats">
+      {techCats.map((cat) => (
+        <div class="tech-cat" data-reveal>
+          {/* lang="en": CSS uppercase follows the document language, and the
+              az page turns "Mobile" into "MOBİLE" — Azerbaijani casing rules
+              applied to English product names. */}
+          <h3 class="tech-cat-name mono" lang="en">{cat.name}</h3>
+          <ul class="tech-items">
+            {cat.items.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <p class="tech-total mono num" data-reveal>
+      <span class="tech-total-n">{techCount}</span> {s.countLabel}
+    </p>
+  </div>
+</section>
+
+<style>
+  /* the one inverted section: full-bleed ground, dense index of names.
+     .invert (tokens.css) re-derives the role tokens against that ground. */
+  .tech {
+    position: relative;
+    z-index: 1;
+    padding-block: var(--sp-chapter);
+    background: var(--bg);
+    color: var(--fg);
+  }
+
+  .tech-in {
+    position: relative;
+    z-index: 1;
+  }
+
+  .tech-head {
+    padding-left: var(--rail);
+    margin-bottom: var(--sp-section);
+  }
+  .tech-head h2 {
+    margin-top: 1rem;
+    font-size: var(--fs-600);
+    font-weight: 300;
+    max-width: 18ch;
+  }
+  .tech-head h2 .muted {
+    color: var(--fg-muted);
+  }
+  .tech-note {
+    margin-top: 1.25rem;
+    color: var(--fg-muted);
+    max-width: 48ch;
+  }
+  /* the note moves alongside the heading rather than leaving the right half
+     of a dense section empty */
+  @media (min-width: 900px) {
+    .tech-head {
+      display: grid;
+      grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+      column-gap: clamp(2rem, 5vw, 4rem);
+      align-items: end;
+    }
+    .tech-head .mono {
+      grid-column: 1 / -1;
+    }
+    .tech-note {
+      margin-top: 0;
+      padding-bottom: 0.35rem;
+    }
+  }
+
+  /* an index, not a row of cards: six stacks of names under hairline heads.
+     Deliberately not the process/services skeleton, which runs horizontally. */
+  .tech-cats {
+    padding-left: var(--rail);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    column-gap: clamp(1rem, 2.5vw, 2rem);
+    row-gap: var(--sp-block);
+  }
+  /* two abreast as soon as a column can hold "AI / INTEGRATIONS" on one line:
+     below that the label wraps and the hairlines stop lining up across the row */
+  @media (min-width: 360px) {
+    .tech-cats {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (min-width: 900px) {
+    .tech-cats {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  /* six abreast only once each column can hold "React Native" on one line */
+  @media (min-width: 1240px) {
+    .tech-cats {
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      row-gap: 0;
+    }
+  }
+
+  .tech-cat-name {
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .tech-items {
+    margin-top: 0.875rem;
+    font-family: var(--font-mono);
+    font-size: var(--fs-200);
+    line-height: 1.4;
+  }
+  .tech-items li + li {
+    margin-top: 0.5rem;
+  }
+
+  .tech-total {
+    margin-top: var(--sp-block);
+    padding-left: var(--rail);
+    text-transform: none;
+    letter-spacing: 0.04em;
+  }
+  .tech-total-n {
+    color: var(--fg);
+  }
+</style>

@@ -15,6 +15,7 @@ Three commits, on `main`, on top of the old static site.
 | `4a23447` | Astro skeleton + rebuilt first screen (az/ru/en) |
 | `b9260de` | Sections 02–04: services index, why, metrics band |
 | `40f7cfb` | Sections 05–06: work index, six case pages, process |
+| `5b009e5` | Sections 07–08: tech (the one inverted band), facts |
 
 **Stack decisions.** Astro `output: 'static'`, plain CSS with `@layer` and
 custom properties, no Tailwind, no React. Locale routing: `az` at `/`, `ru`
@@ -73,31 +74,23 @@ Two things are deliberately still in the repo and not yet removed:
 
 The section order is fixed in SKILL.md §3 and must not be reshuffled: no two
 adjacent sections may share a skeleton. Built so far: `hero`, `services`,
-`why`, `work`, `metrics`, `process`.
+`why`, `work`, `metrics`, `process`, `tech`, `facts`.
 
-1. **`tech`** — the one inverted full-bleed section (`--bg-invert`), dense.
-   Content is in `translations.js` under `techCats` (six groups, ~40 items).
-   Do not use pill-shaped chips; the rest of the page is hairlines and type.
-2. **`facts`** — three asymmetric blocks replacing the old nine numbered
-   "advantages". Approved copy: MVP in 7–14 days with a fixed scope in the
-   contract; two-week sprints with a demo and tracker access; repository on
-   the client's side, 3-month warranty, monitoring. Every claim carries a
-   number, a duration or a tool name.
-3. **`faq`** — single-column accordion, eight questions, content in
+1. **`faq`** — single-column accordion, eight questions, content in
    `translations.js` under `faqItems`. Prices contain `₼` — check it renders
    from Commissioner and not a fallback.
-4. **`contact`** — 5 + 7 columns with the form. Formspree endpoint
+2. **`contact`** — 5 + 7 columns with the form. Formspree endpoint
    `https://formspree.io/f/mdayvkzp`, progressive enhancement via
    `@formspree/ajax`. **Inputs must be ≥16px** or Safari zooms on focus.
    Contacts: `tel:+994706565909`, `info@exclamationdev.com`,
    `t.me/exclamationdev`, `wa.me/994702054171`.
-5. **`finalcta`** — the square dot that terminates the exclamation mark the
+3. **`finalcta`** — the square dot that terminates the exclamation mark the
    spine draws down the page. This is the payoff of the whole signature; do
    not make it a generic CTA band.
-6. **Footer** — the case pages currently have no footer. It arrives with the
+4. **Footer** — the case pages currently have no footer. It arrives with the
    contact batch and must be added to `Base.astro` so every route has it.
-7. **404 page** — required, not built.
-8. **Cutover** — Cloudflare Pages, then delete the legacy files above and
+5. **404 page** — required, not built.
+6. **Cutover** — Cloudflare Pages, then delete the legacy files above and
    turn off GitHub Pages.
 
 Also outstanding: the reviews component is supposed to exist as a placeholder
@@ -149,6 +142,26 @@ keyframes lived in the parent's scoped `<style>`. Shared motion utilities are
 now in `src/styles/base.css` (`.anim`, `.anim-lift`). Same trap applies to any
 grid placement you try to apply to a child component's root — wrap it in a
 div you own.
+
+**CSS `text-transform: uppercase` follows the document language.** On the az
+page it applies Azerbaijani casing, so `.mono` turned the English category
+names "Mobile" and "AI / Integrations" into **MOBİLE** and **INTEGRATİONS**.
+Correct for real Azerbaijani words (`Ritm` → `RİTM` is right), wrong for
+product names. Any uppercased English string on the az page needs `lang="en"`
+on its element — see `Tech.astro`.
+
+**The inverted section needs the opposite theme's role tokens, not just
+`--bg-invert`.** `--fg-muted` and `--line` are mixes *against the ground*;
+left unflipped on `--bg-invert` they land near 1.5:1. `tokens.css` now has an
+`.invert` block that re-binds the whole role set for both themes, so
+components keep writing `--fg-muted` and get 6.29:1 (light page) / 5.05:1
+(dark page). Measured on the live page, both directions.
+
+**A solid section background paints over the spine.** The spine lives in one
+absolutely-positioned `.spine-wrap` on `.page`, behind sections. `Tech.astro`
+redraws it inside its own ground, in the inverted `--line`; both land at the
+same x (144 at 1440), so the stroke stays unbroken. Any future full-bleed
+section with a background must do the same.
 
 **A third grey fails contrast.** `--fg-faint` measured 2.73:1 and was deleted.
 There are exactly two text levels. Recede with size, weight or strike-through,

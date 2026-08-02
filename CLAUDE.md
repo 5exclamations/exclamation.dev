@@ -32,6 +32,7 @@
 src/
   i18n/          az.ts / ru.ts / en.ts — весь копирайт; index.ts — FOUNDED, fill()
   data/cases.ts  скриншоты кейсов: пути, реальные размеры, кропы
+  data/tech.ts   стек: шесть групп, названия продуктов — вне i18n
   layouts/       Base.astro — head, canonical, тема без FOUC, полоса, reveal
   components/    секции и Diff / Icon / CaseView / CaseChat
   styles/        tokens.css → base.css → fonts.css, собираются в app.css
@@ -44,8 +45,9 @@ scripts/
   motion-check.mjs  доказывает, что prefers-reduced-motion срабатывает
 ```
 
-Готовые секции: `hero`, `services`, `why`, `work`, `metrics`, `process` и шесть
-страниц кейсов. Оставшееся и его порядок — в `HANDOFF.md`.
+Готовые секции: `hero`, `services`, `why`, `work`, `metrics`, `process`,
+`tech`, `facts` и шесть страниц кейсов. Оставшееся и его порядок —
+в `HANDOFF.md`.
 
 Возраст студии считается из `FOUNDED` в `src/i18n/index.ts`; в текстах стоят
 плейсхолдеры `{year}` и `{years}`, руками цифру не писать.

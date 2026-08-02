@@ -1,0 +1,126 @@
+---
+import type { Dict } from '../i18n';
+
+interface Props {
+  dict: Dict;
+}
+const { dict } = Astro.props;
+const f = dict.facts;
+---
+
+<section class="facts" id="facts" aria-labelledby="facts-title">
+  <div class="shell">
+    <header class="facts-head">
+      <p class="mono">{f.eyebrow}</p>
+      <h2 id="facts-title" data-reveal>
+        <span class="muted">{f.titleMuted}</span> {f.titleMain}
+      </h2>
+    </header>
+
+    <div class="facts-grid">
+      {f.items.map((item) => (
+        <div class="fact" data-reveal>
+          <p class="mono fact-label">{item.label}</p>
+          <p class="fact-claim">
+            <span class="fact-value num">{item.value}</span>
+            <span class="fact-rest">{item.rest}</span>
+          </p>
+          <p class="fact-text">{item.text}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  /* sparse, after the inverted band: no rules, no cards, no numbering —
+     three blocks set at different widths and offsets, and air around them */
+  .facts {
+    position: relative;
+    z-index: 1;
+    padding-block: var(--sp-major) var(--sp-chapter);
+  }
+
+  .facts-head {
+    padding-left: var(--rail);
+    margin-bottom: var(--sp-section);
+  }
+  .facts-head h2 {
+    margin-top: 1rem;
+    font-size: var(--fs-600);
+    font-weight: 300;
+    max-width: 20ch;
+  }
+  .facts-head h2 .muted {
+    color: var(--fg-muted);
+  }
+
+  .facts-grid {
+    padding-left: var(--rail);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: var(--sp-section);
+  }
+  /* the stagger: left, right, and back to the middle. Only from 900 — at 768
+     a seven-column block cuts the claim mid-clause and orphans a word. */
+  @media (min-width: 900px) {
+    .facts-grid {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      column-gap: clamp(1rem, 2.4vw, 2rem);
+    }
+    .fact:nth-child(1) {
+      grid-column: 1 / 9;
+    }
+    .fact:nth-child(2) {
+      grid-column: 5 / 13;
+    }
+    .fact:nth-child(3) {
+      grid-column: 3 / 12;
+    }
+  }
+
+  .fact-label {
+    color: var(--fg-muted);
+  }
+
+  .fact-claim {
+    margin-top: 0.875rem;
+    font-family: var(--font-display);
+    font-size: var(--fs-500);
+    font-weight: 300;
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+  /* the figure is the point of the block; the clause hangs off it. It only
+     goes on the same line where the widest locale (en) still fits — below
+     that it drops, rather than breaking itself across two lines. */
+  .fact-value {
+    display: block;
+    font-size: var(--fs-600);
+    white-space: nowrap;
+  }
+  .fact-rest {
+    display: block;
+    margin-top: 0.25rem;
+    color: var(--fg-muted);
+  }
+  @media (min-width: 1200px) {
+    .fact-value {
+      display: inline;
+      margin-right: 0.2em;
+    }
+    .fact-rest {
+      display: inline;
+      margin-top: 0;
+    }
+  }
+
+  .fact-text {
+    margin-top: 1rem;
+    color: var(--fg-muted);
+    font-size: var(--fs-200);
+    line-height: 1.6;
+    max-width: 46ch;
+  }
+</style>

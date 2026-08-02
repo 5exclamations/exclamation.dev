@@ -67,6 +67,28 @@
     }
   }
 
+  /* The one inverted section stands on the opposite ground, so every role
+     token *derived* from the ground has to flip with it: --fg-muted and
+     --line are mixes against the background, and left unflipped they land at
+     1.5:1 instead of 6.29:1. Same six hex, same formulas, other side — no new
+     colour, and components keep using the role names they already use. */
+  .invert {
+    --bg: var(--ink);
+    --bg-raised: var(--slate);
+    --bg-invert: var(--bone);
+    --fg: var(--bone);
+    --fg-invert: var(--ink);
+    --fg-muted: var(--ash);
+    --line: color-mix(in srgb, var(--bone) 14%, var(--ink));
+    --line-strong: color-mix(in srgb, var(--bone) 26%, var(--ink));
+    --accent: var(--signal);
+    --accent-flat: var(--signal);
+    --accent-wash: color-mix(in srgb, var(--signal) 18%, transparent);
+    --on-accent: var(--ink);
+
+    color-scheme: dark;
+  }
+
   :root[data-theme='dark'] {
     --bg: var(--ink);
     --bg-raised: var(--slate);
@@ -84,6 +106,21 @@
     color-scheme: dark;
   }
 
+  :root[data-theme='dark'] .invert {
+    --bg: var(--bone);
+    --bg-raised: color-mix(in srgb, var(--bone) 55%, #fff);
+    --bg-invert: var(--ink);
+    --fg: var(--ink);
+    --fg-invert: var(--bone);
+    --fg-muted: color-mix(in srgb, var(--ink) 62%, var(--bone));
+    --line: color-mix(in srgb, var(--ink) 14%, var(--bone));
+    --line-strong: color-mix(in srgb, var(--ink) 28%, var(--bone));
+    --accent: var(--ember);
+    --accent-wash: color-mix(in srgb, var(--signal) 14%, transparent);
+
+    color-scheme: light;
+  }
+
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme='light']) {
       --bg: var(--ink);
@@ -99,6 +136,21 @@
       --accent-wash: color-mix(in srgb, var(--signal) 18%, transparent);
 
       color-scheme: dark;
+    }
+
+    :root:not([data-theme='light']) .invert {
+      --bg: var(--bone);
+      --bg-raised: color-mix(in srgb, var(--bone) 55%, #fff);
+      --bg-invert: var(--ink);
+      --fg: var(--ink);
+      --fg-invert: var(--bone);
+      --fg-muted: color-mix(in srgb, var(--ink) 62%, var(--bone));
+      --line: color-mix(in srgb, var(--ink) 14%, var(--bone));
+      --line-strong: color-mix(in srgb, var(--ink) 28%, var(--bone));
+      --accent: var(--ember);
+      --accent-wash: color-mix(in srgb, var(--signal) 14%, transparent);
+
+      color-scheme: light;
     }
   }
 }
