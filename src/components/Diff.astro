@@ -1,0 +1,91 @@
+---
+/**
+ * The signature block. Lives in exactly three places: the hero, and the top of
+ * every case page. Removal reads through the strike-through, never through hue.
+ */
+interface Props {
+  rows: readonly { sign: string; text: string }[] | readonly string[];
+  startLine?: number;
+  /** per-row animation delays; omit for a plain reveal */
+  delays?: number[];
+  class?: string;
+}
+const { rows, startLine = 14, delays, class: className } = Astro.props;
+
+const normalised = rows.map((row, i) =>
+  typeof row === 'string' ? { sign: i === 0 ? '−' : '+', text: row } : row
+);
+---
+
+<div class:list={['diff', className]}>
+  {normalised.map((row, i) => (
+    <p
+      class:list={['diff-row', delays && 'anim']}
+      data-sign={row.sign}
+      style={delays ? `--d: ${delays[i]}ms` : undefined}
+    >
+      <span class="diff-num" aria-hidden="true">{startLine + i}</span>
+      <span class="diff-sign" aria-hidden="true">{row.sign}</span>
+      <span class="diff-text">{row.text}</span>
+    </p>
+  ))}
+</div>
+
+<style>
+  .diff {
+    border-left: 1px solid var(--line);
+    max-width: 34rem;
+  }
+  .diff-row {
+    display: flex;
+    align-items: baseline;
+    gap: 0.625rem;
+    padding: 0.375rem 0 0.375rem 0.875rem;
+    font-family: var(--font-mono);
+    font-size: var(--fs-200);
+    font-variant-numeric: tabular-nums;
+  }
+  /* wraps on narrow screens instead of scrolling out of sight */
+  .diff-text {
+    min-width: 0;
+  }
+  @media (min-width: 560px) {
+    .diff-row {
+      white-space: nowrap;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .diff-row::-webkit-scrollbar {
+      display: none;
+    }
+  }
+  .diff-num {
+    color: var(--fg-muted);
+    font-size: var(--fs-100);
+    flex: none;
+  }
+  .diff-sign {
+    flex: none;
+  }
+  .diff-row[data-sign='−'] {
+    color: var(--fg-muted);
+  }
+  .diff-row[data-sign='−'] .diff-text {
+    text-decoration: line-through;
+    text-decoration-thickness: 1px;
+    text-decoration-color: var(--line-strong);
+  }
+  .diff-row[data-sign='+'] {
+    color: var(--fg);
+    box-shadow: inset 2px 0 0 var(--accent-flat);
+  }
+  .diff-row[data-sign='+'] .diff-sign {
+    color: var(--accent);
+  }
+
+  @media (max-width: 479px) {
+    .diff-num {
+      display: none;
+    }
+  }
+</style>

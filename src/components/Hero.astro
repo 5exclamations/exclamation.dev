@@ -1,5 +1,6 @@
 ---
 import Icon from './Icon.astro';
+import Diff from './Diff.astro';
 import { fill, type Dict } from '../i18n';
 
 interface Props {
@@ -15,22 +16,14 @@ const hero = dict.hero;
       <p class="mono hero-eyebrow anim" style="--d: 100ms">{fill(hero.eyebrow)}</p>
 
       <h1 class="hero-title" id="hero-title">
-        <span class="line"><span class="line-in muted" style="--d: 140ms">{hero.titleMuted}</span></span>
-        <span class="line"><span class="line-in" style="--d: 210ms">{hero.titleMain}</span></span>
+        <span class="line"><span class="line-in anim-lift muted" style="--d: 140ms">{hero.titleMuted}</span></span>
+        <span class="line"><span class="line-in anim-lift" style="--d: 210ms">{hero.titleMain}</span></span>
       </h1>
 
       <div class="hero-cols">
         <p class="hero-sub anim" style="--d: 320ms">{hero.sub}</p>
 
-        <div class="diff">
-          {hero.diff.map((row, i) => (
-            <p class="diff-row anim" data-sign={row.sign} style={`--d: ${360 + i * 40}ms`}>
-              <span class="diff-num" aria-hidden="true">{14 + i}</span>
-              <span class="diff-sign" aria-hidden="true">{row.sign}</span>
-              <span class="diff-text">{row.text}</span>
-            </p>
-          ))}
-        </div>
+        <div class="hero-diff"><Diff rows={hero.diff} delays={[360, 400]} /></div>
 
         <p class="hero-cta anim" style="--d: 440ms">
           <a class="btn" href="#contact">
@@ -112,7 +105,7 @@ const hero = dict.hero;
       grid-row: 2;
       align-self: start;
     }
-    .diff {
+    .hero-diff {
       grid-column: 2;
       grid-row: 1 / span 2;
     }
@@ -123,63 +116,6 @@ const hero = dict.hero;
     line-height: 1.5;
     color: var(--fg-muted);
     max-width: 42ch;
-  }
-
-  .diff {
-    border-left: 1px solid var(--line);
-    max-width: 34rem;
-  }
-  .diff-row {
-    display: flex;
-    align-items: baseline;
-    gap: 0.625rem;
-    padding: 0.375rem 0 0.375rem 0.875rem;
-    font-family: var(--font-mono);
-    font-size: var(--fs-200);
-    font-variant-numeric: tabular-nums;
-  }
-  /* wraps on narrow screens instead of scrolling out of sight */
-  .diff-text {
-    min-width: 0;
-  }
-  @media (min-width: 560px) {
-    .diff-row {
-      white-space: nowrap;
-      overflow-x: auto;
-      scrollbar-width: none;
-    }
-    .diff-row::-webkit-scrollbar {
-      display: none;
-    }
-  }
-  .diff-num {
-    color: var(--fg-muted);
-    font-size: var(--fs-100);
-    flex: none;
-  }
-  .diff-sign {
-    flex: none;
-  }
-  .diff-row[data-sign='−'] {
-    color: var(--fg-muted);
-  }
-  .diff-row[data-sign='−'] .diff-text {
-    text-decoration: line-through;
-    text-decoration-thickness: 1px;
-    text-decoration-color: var(--line-strong);
-  }
-  .diff-row[data-sign='+'] {
-    color: var(--fg);
-    box-shadow: inset 2px 0 0 var(--accent-flat);
-  }
-  .diff-row[data-sign='+'] .diff-sign {
-    color: var(--accent);
-  }
-
-  @media (max-width: 479px) {
-    .diff-num {
-      display: none;
-    }
   }
 
   .hero-shot {
@@ -227,57 +163,4 @@ const hero = dict.hero;
     }
   }
 
-  /* ---- one orchestrated opening, nothing after it loops ---- */
-  .anim,
-  .hero-title .line-in {
-    animation-duration: 420ms;
-    animation-timing-function: var(--ease);
-    animation-delay: var(--d, 0ms);
-    animation-fill-mode: both;
-  }
-  .anim {
-    animation-name: rise;
-  }
-  .hero-title .line-in {
-    animation-name: lift;
-  }
-
-  @keyframes rise {
-    from {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    to {
-      opacity: 1;
-      transform: none;
-    }
-  }
-  @keyframes lift {
-    from {
-      opacity: 0;
-      transform: translateY(100%);
-    }
-    to {
-      opacity: 1;
-      transform: none;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .anim,
-    .hero-title .line-in {
-      animation-name: fade;
-      animation-duration: 160ms;
-      /* no staggering either: the whole screen arrives at once */
-      animation-delay: 0ms;
-    }
-    @keyframes fade {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
-    }
-  }
 </style>

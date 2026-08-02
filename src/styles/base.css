@@ -240,6 +240,61 @@
     display: none !important;
   }
 
+  /* the opening scene's two motions, shared by the hero and the diff block
+     so a child component animates on the same clock as its parent */
+  .anim,
+  .anim-lift {
+    animation-duration: 420ms;
+    animation-timing-function: var(--ease);
+    animation-delay: var(--d, 0ms);
+    animation-fill-mode: both;
+  }
+  .anim {
+    animation-name: rise;
+  }
+  .anim-lift {
+    animation-name: lift;
+  }
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes lift {
+    from {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes fade {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .anim,
+    .anim-lift {
+      animation-name: fade;
+      animation-duration: 160ms;
+      /* no staggering either: the screen arrives at once */
+      animation-delay: 0ms;
+    }
+  }
+
   /* scroll reveal: 10px, 220ms, once. Only armed when JS is running, so a
      failed script can never leave the page blank. */
   @media (prefers-reduced-motion: no-preference) {

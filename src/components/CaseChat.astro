@@ -1,0 +1,92 @@
+---
+/**
+ * The AI assistant case has no screenshot, so the screen is drawn in markup:
+ * a transcript with the tool calls the assistant actually makes. No image,
+ * no laptop, no gradient.
+ */
+import type { Dict } from '../i18n';
+
+interface Props {
+  dict: Dict;
+  compact?: boolean;
+}
+const { dict, compact = false } = Astro.props;
+const ui = dict.caseUi;
+---
+
+<div class:list={['chat', compact && 'chat-compact']}>
+  <p class="chat-head mono">{ui.mockTitle}</p>
+  <ol class="chat-log">
+    {ui.mockLines.map((line) => (
+      <li class:list={['chat-line', `is-${line.who}`]}>
+        {line.who === 'tool' ? (
+          <code class="chat-tool">{line.text}</code>
+        ) : (
+          <span class="chat-bubble">{line.text}</span>
+        )}
+      </li>
+    ))}
+  </ol>
+</div>
+
+<style>
+  .chat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+    height: 100%;
+    padding: clamp(1rem, 3vw, 1.75rem);
+    background: var(--bg-raised);
+  }
+  .chat-head {
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .chat-log {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+  .chat-line {
+    display: flex;
+  }
+  .chat-line.is-user {
+    justify-content: flex-end;
+  }
+  .chat-bubble {
+    max-width: 82%;
+    padding: 0.5rem 0.75rem;
+    font-size: var(--fs-200);
+    line-height: 1.45;
+    border: 1px solid var(--line);
+  }
+  .is-user .chat-bubble {
+    background: var(--bg);
+    border-color: var(--line-strong);
+  }
+  .chat-tool {
+    font-family: var(--font-mono);
+    font-size: var(--fs-100);
+    color: var(--fg-muted);
+    padding: 0.375rem 0 0.375rem 0.75rem;
+    box-shadow: inset 2px 0 0 var(--line-strong);
+    overflow-x: auto;
+    white-space: nowrap;
+    max-width: 100%;
+  }
+  /* the thumbnail shows the first exchange only; a clipped bubble reads
+     as a broken card, not as a preview */
+  .chat-compact {
+    gap: 0.625rem;
+    padding: clamp(0.875rem, 2.5vw, 1.25rem);
+  }
+  .chat-compact .chat-log {
+    gap: 0.5rem;
+  }
+  .chat-compact .chat-line:nth-child(n + 4) {
+    display: none;
+  }
+  .chat-compact .chat-bubble {
+    font-size: var(--fs-100);
+  }
+</style>

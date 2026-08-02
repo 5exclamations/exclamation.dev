@@ -91,6 +91,25 @@ for (const colorScheme of THEMES) {
       reducedMotion: 'reduce', // settle instantly so shots are deterministic
     });
     await page.goto(base + path, { waitUntil: 'load' });
+    // walk the page so lazy images below the fold actually decode
+    await page.evaluate(async () => {
+      const step = window.innerHeight;
+      for (let y = 0; y < document.body.scrollHeight; y += step) {
+        window.scrollTo(0, y);
+        await new Promise((r) => setTimeout(r, 40));
+      }
+      window.scrollTo(0, 0);
+      await Promise.all(
+        [...document.images].map((img) =>
+          img.complete
+            ? null
+            : new Promise((r) => {
+                img.addEventListener('load', r, { once: true });
+                img.addEventListener('error', r, { once: true });
+              })
+        )
+      );
+    });
     await page.waitForTimeout(250);
 
     const target = selector ? page.locator(selector) : page;

@@ -6,10 +6,19 @@ import { localePath, locales, localeSubset, type Locale, type Dict } from '../i1
 interface Props {
   locale: Locale;
   dict: Dict;
+  /** per-page overrides; the dictionary supplies the home page defaults */
+  meta?: { title: string; description: string };
 }
-const { locale, dict } = Astro.props;
+const { locale, dict, meta } = Astro.props;
+const head = meta ?? dict.meta;
 const subset = localeSubset[locale];
 const site = Astro.site?.toString().replace(/\/$/, '') ?? '';
+
+/** the locale-free path, so canonical and hreflang work on every route */
+const current = (Astro.url.pathname.replace(/\/+$/, '') || '/').replace(
+  /^\/(ru|en)(?=\/|$)/,
+  ''
+) || '/';
 ---
 
 <!doctype html>
@@ -17,14 +26,14 @@ const site = Astro.site?.toString().replace(/\/$/, '') ?? '';
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <title>{dict.meta.title}</title>
-    <meta name="description" content={dict.meta.description} />
+    <title>{head.title}</title>
+    <meta name="description" content={head.description} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="canonical" href={`${site}${localePath(locale)}`} />
+    <link rel="canonical" href={`${site}${localePath(locale, current)}`} />
     {locales.map((l) => (
-      <link rel="alternate" hreflang={l} href={`${site}${localePath(l)}`} />
+      <link rel="alternate" hreflang={l} href={`${site}${localePath(l, current)}`} />
     ))}
-    <link rel="alternate" hreflang="x-default" href={`${site}/`} />
+    <link rel="alternate" hreflang="x-default" href={`${site}${current}`} />
 
     <link
       rel="preload"
@@ -42,8 +51,8 @@ const site = Astro.site?.toString().replace(/\/$/, '') ?? '';
     />
 
     <meta property="og:type" content="website" />
-    <meta property="og:title" content={dict.meta.title} />
-    <meta property="og:description" content={dict.meta.description} />
+    <meta property="og:title" content={head.title} />
+    <meta property="og:description" content={head.description} />
     <meta property="og:locale" content={locale} />
 
     <script is:inline>
@@ -72,7 +81,7 @@ const site = Astro.site?.toString().replace(/\/$/, '') ?? '';
       <div class="spine-wrap" aria-hidden="true">
         <div class="shell spine-shell"><span class="spine"></span></div>
       </div>
-      <Header locale={locale} dict={dict} />
+      <Header locale={locale} dict={dict} path={current} />
       <main id="main" tabindex="-1">
         <slot />
       </main>

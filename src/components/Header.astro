@@ -5,8 +5,10 @@ import { localePath, localeNames, locales, type Locale, type Dict } from '../i18
 interface Props {
   locale: Locale;
   dict: Dict;
+  /** locale-free path of the current page, so switching language stays put */
+  path?: string;
 }
-const { locale, dict } = Astro.props;
+const { locale, dict, path = '/' } = Astro.props;
 const nav = dict.nav;
 
 const links = [
@@ -40,7 +42,7 @@ const links = [
         {locales.map((l) => (
           <li>
             <a
-              href={localePath(l)}
+              href={localePath(l, path)}
               hreflang={l}
               lang={l}
               aria-current={l === locale ? 'true' : undefined}
@@ -87,7 +89,7 @@ const links = [
         {locales.map((l) => (
           <li>
             <a
-              href={localePath(l)}
+              href={localePath(l, path)}
               hreflang={l}
               lang={l}
               aria-current={l === locale ? 'true' : undefined}

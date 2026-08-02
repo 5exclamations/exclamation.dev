@@ -1,0 +1,210 @@
+---
+import Icon from './Icon.astro';
+import CaseChat from './CaseChat.astro';
+import { localePath, type Dict, type Locale } from '../i18n';
+import { mediaFor } from '../data/cases';
+
+interface Props {
+  locale: Locale;
+  dict: Dict;
+}
+const { locale, dict } = Astro.props;
+const w = dict.work;
+
+const cases = dict.cases.map((c) => ({ ...c, media: mediaFor(c.slug) }));
+const [lead, ...rest] = cases;
+---
+
+<section class="work" id="work" aria-labelledby="work-title">
+  <div class="shell">
+    <header class="work-head">
+      <p class="mono">{w.eyebrow}</p>
+      <h2 id="work-title" data-reveal>
+        <span class="muted">{w.titleMuted}</span> {w.titleMain}
+      </h2>
+    </header>
+
+    <a class="case-lead" href={localePath(locale, `/is/${lead.slug}`)} data-reveal>
+      <span class="frame frame-lead">
+        <img
+          src={lead.media.shots[0].src}
+          alt={lead.alts[0]}
+          width={lead.media.shots[0].w}
+          height={lead.media.shots[0].h}
+          loading="lazy"
+          decoding="async"
+        />
+      </span>
+      <span class="case-meta">
+        <span class="case-name">{lead.short}</span>
+        <span class="case-domain mono">{lead.domain}</span>
+        <span class="case-metric num">{lead.results[lead.media.headline].value}</span>
+        <span class="case-open">
+          {w.open}
+          <Icon name="arrow-right" size={16} />
+        </span>
+      </span>
+    </a>
+
+    <ul class="case-grid">
+      {rest.map((c) => (
+        <li data-reveal>
+          <a class="case-card" href={localePath(locale, `/is/${c.slug}`)}>
+            <span class:list={['frame', `fit-${c.media.fit}`]}>
+              {c.media.shots.length ? (
+                <img
+                  src={c.media.shots[0].src}
+                  alt={c.alts[0]}
+                  width={c.media.shots[0].w}
+                  height={c.media.shots[0].h}
+                  loading="lazy"
+                  decoding="async"
+                />
+              ) : (
+                <CaseChat dict={dict} compact />
+              )}
+            </span>
+            <span class="case-meta">
+              <span class="case-name">{c.short}</span>
+              <span class="case-domain mono">{c.domain}</span>
+              <span class="case-metric num">{c.results[c.media.headline].value}</span>
+              <span class="case-open">
+                {w.open}
+                <Icon name="arrow-right" size={16} />
+              </span>
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .work {
+    position: relative;
+    z-index: 1;
+    padding-block: var(--sp-chapter);
+    border-top: 1px solid var(--line);
+  }
+
+  .work-head {
+    padding-left: var(--rail);
+    margin-bottom: var(--sp-section);
+  }
+  .work-head h2 {
+    margin-top: 1rem;
+    font-size: var(--fs-600);
+    font-weight: 300;
+    max-width: 20ch;
+  }
+  .work-head h2 .muted {
+    color: var(--fg-muted);
+  }
+
+  /* images do the talking: name, domain, one number, nothing else */
+  .frame {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    background: var(--bg-raised);
+    border: 1px solid var(--line);
+    aspect-ratio: 4 / 3;
+  }
+  .frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
+  .frame.fit-contain img {
+    object-fit: contain;
+    object-position: center top;
+  }
+  .frame-lead {
+    aspect-ratio: 4 / 3;
+  }
+  @media (min-width: 640px) {
+    .frame-lead {
+      aspect-ratio: 16 / 9;
+    }
+  }
+
+  .case-lead,
+  .case-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+  .case-lead {
+    margin-left: var(--rail);
+  }
+
+  .case-grid {
+    display: grid;
+    gap: var(--sp-section) clamp(1rem, 2.5vw, 2rem);
+    margin-top: var(--sp-section);
+    margin-left: var(--rail);
+  }
+  @media (min-width: 640px) {
+    .case-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (min-width: 1024px) {
+    .case-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .case-meta {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: baseline;
+    column-gap: 1rem;
+    padding-top: 0.875rem;
+  }
+  .case-name {
+    font-family: var(--font-display);
+    font-size: var(--fs-400);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+  .case-metric {
+    font-family: var(--font-display);
+    font-size: var(--fs-400);
+    font-weight: 400;
+    text-align: right;
+  }
+  .case-domain {
+    grid-column: 1;
+    text-transform: none;
+    letter-spacing: 0.02em;
+    color: var(--fg-muted);
+  }
+  .case-open {
+    grid-column: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-size: var(--fs-200);
+    color: var(--fg-muted);
+    white-space: nowrap;
+    transition: color 140ms var(--ease);
+  }
+
+  @media (hover: hover) {
+    .case-lead:hover .frame,
+    .case-card:hover .frame {
+      border-color: var(--fg);
+    }
+    .case-lead:hover .case-open,
+    .case-card:hover .case-open {
+      color: var(--accent);
+    }
+  }
+  .case-lead:focus-visible,
+  .case-card:focus-visible {
+    outline-offset: 4px;
+  }
+</style>

@@ -1,0 +1,23 @@
+---
+import Base from '../../../layouts/Base.astro';
+import CaseView from '../../../components/CaseView.astro';
+import { t } from '../../../i18n';
+
+const locale = 'en' as const;
+const dict = t(locale);
+
+export function getStaticPaths() {
+  return t('en').cases.map((c) => ({ params: { slug: c.slug } }));
+}
+
+const { slug } = Astro.params;
+const item = dict.cases.find((c) => c.slug === slug)!;
+const meta = {
+  title: `${item.short} — EXCLAMATION`,
+  description: item.solution,
+};
+---
+
+<Base locale={locale} dict={dict} meta={meta}>
+  <CaseView locale={locale} dict={dict} slug={slug!} />
+</Base>
