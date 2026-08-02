@@ -1,0 +1,56 @@
+import type { APIRoute } from 'astro';
+import { locales, localePath, t } from '../i18n';
+
+/**
+ * Built from the same route list the pages are built from, so a page cannot
+ * exist without appearing here (or appear here without existing).
+ *
+ * Every URL carries an `xhtml:link alternate` for all three locales plus
+ * x-default, and every locale's variant of one page carries the identical
+ * alternates block — that is what tells a crawler the three are one document
+ * in three languages rather than three competing pages.
+ *
+ * Deliberately absent: the 404 routes (noindex, and an error page in a
+ * sitemap is a crawl instruction to index an error), and the OG image
+ * endpoints (images, not pages).
+ */
+const SITE = 'https://exclamationdev.com';
+
+export const GET: APIRoute = () => {
+  // locale-free paths; each becomes one <url> per locale
+  const paths = ['/', ...t('az').cases.map((c) => `/is/${c.slug}`)];
+
+  const urls = paths.flatMap((path) =>
+    locales.map((locale) => {
+      const alternates = [
+        ...locales.map(
+          (l) =>
+            `    <xhtml:link rel="alternate" hreflang="${l}" href="${SITE}${localePath(l, path)}"/>`
+        ),
+        `    <xhtml:link rel="alternate" hreflang="x-default" href="${SITE}${path}"/>`,
+      ].join('\n');
+
+      return [
+        '  <url>',
+        `    <loc>${SITE}${localePath(locale, path)}</loc>`,
+        alternates,
+        // the landing page is the entry point; the cases sit below it
+        `    <priority>${path === '/' ? '1.0' : '0.8'}</priority>`,
+        '  </url>',
+      ].join('\n');
+    })
+  );
+
+  const xml = [
+    '<?xml version="1.0" encoding="UTF-8"?>',
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"',
+    '        xmlns:xhtml="http://www.w3.org/1999/xhtml">',
+    ...urls,
+    '</urlset>',
+    '',
+  ].join('\n');
+
+  return new Response(xml, {
+    headers: { 'Content-Type': 'application/xml; charset=utf-8' },
+  });
+};

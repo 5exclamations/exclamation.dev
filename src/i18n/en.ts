@@ -2,9 +2,9 @@ export default {
   locale: 'en',
   htmlLang: 'en',
   meta: {
-    title: 'EXCLAMATION — digital product studio in Baku',
+    title: 'Web, CRM and app development in Baku — EXCLAMATION',
     description:
-      'Websites, CRM, ERP, mobile apps, bots and AI. A full-cycle team in Baku: from brief to release and support.',
+      'Websites, CRM, ERP, mobile apps and AI. MVP in 7–14 days, two-week sprints, a 3-month warranty. A full-cycle team in Baku, from brief to release.',
   },
   nav: {
     services: 'Services',
@@ -21,8 +21,8 @@ export default {
   },
   hero: {
     eyebrow: 'Baku · since {year}',
-    titleMuted: 'Software isn’t a cost line.',
-    titleMain: 'It’s an asset.',
+    titleMuted: 'Websites, CRM and mobile apps in Baku.',
+    titleMain: 'Not a cost — an asset.',
     sub: 'Websites, CRM, ERP, mobile apps, bots and AI. Full cycle from brief to release — with one team.',
     diff: [
       { sign: '−', text: 'Excel · WhatsApp · manual reports' },
@@ -432,5 +432,33 @@ export default {
     contactLabel: 'Contact',
     langLabel: 'Language',
     rights: '© {now} EXCLAMATION',
+  },
+  /* Written per page, not generated: the title leads with the query and
+     ends on the brand, the description carries a real figure. */
+  caseSeo: {
+    'crm-portal': {
+      title: 'CRM for real-estate agencies — EXCLAMATION',
+      description: 'A CRM for agents: listings database, Kanban pipeline, WhatsApp integration. Sales conversion +45%, time updating the database −70%, onboarding 2 weeks.',
+    },
+    'fleks': {
+      title: 'ERP for a psychology centre — EXCLAMATION',
+      description: 'A Django ERP: client balances, session charges, automatic PDF receipts. Issuing payments and receipts −80%, zero manual errors in balance calculation.',
+    },
+    'merkuri': {
+      title: 'Cloud B2B platform for logistics — EXCLAMATION',
+      description: 'One portal for freight and customs: real-time tracking, blockchain confirmation, customs database integration. Paperwork time −80%, transparency 100%.',
+    },
+    'mindtrick': {
+      title: 'Habit tracker mobile app — EXCLAMATION',
+      description: 'A Flutter app: streaks, heatmap and an insight engine that predicts a lapse before it happens. Retention over 8 weeks +52%, lapses −37%, streaks 3.1x.',
+    },
+    'smart-fashion': {
+      title: 'E-commerce store development — EXCLAMATION',
+      description: 'A Next.js store: recommendations, real-time stock, sales analytics. Conversion after the redesign +65%, pages load in 0.8s, revenue up 30% in 6 months.',
+    },
+    'ai-assistent': {
+      title: 'AI assistant for customer service — EXCLAMATION',
+      description: 'An LLM assistant: FAQ answers, stock checks and cart building inside the chat, 24/7. Operator load −60%, replies in under 30 seconds instead of 5 minutes.',
+    },
   },
 } as const;

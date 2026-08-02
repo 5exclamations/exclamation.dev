@@ -2,9 +2,9 @@ export default {
   locale: 'az',
   htmlLang: 'az',
   meta: {
-    title: 'EXCLAMATION — Bakıda rəqəmsal məhsul studiyası',
+    title: 'Sayt, CRM və mobil tətbiq, Bakı — EXCLAMATION',
     description:
-      'Sayt, CRM, ERP, mobil tətbiq, bot və AI həlləri. Bakıda tam dövrlü işləyən komanda: brifdən relizə və dəstəyə qədər.',
+      'Sayt, CRM, ERP, mobil tətbiq və AI həlləri. MVP 7–14 gün, 2 həftəlik sprint, 3 ay zəmanət. Bakıda tam dövrlü komanda: brifdən relizə və dəstəyə qədər.',
   },
   nav: {
     services: 'Xidmətlər',
@@ -21,8 +21,8 @@ export default {
   },
   hero: {
     eyebrow: 'Bakı · {year}-dan bəri',
-    titleMuted: 'Rəqəmsal məhsullar xərc deyil.',
-    titleMain: 'Sizin aktivinizdir.',
+    titleMuted: 'Bakıda sayt, CRM və mobil tətbiq.',
+    titleMain: 'Xərc yox — aktiv.',
     sub: 'Sayt, CRM, ERP, mobil tətbiq, bot və AI həlləri. Brifdən relizə qədər tam dövr — bir komanda ilə.',
     diff: [
       { sign: '−', text: 'Excel · WhatsApp · əl ilə hesabat' },
@@ -432,5 +432,33 @@ export default {
     contactLabel: 'Əlaqə',
     langLabel: 'Dil',
     rights: '© {now} EXCLAMATION',
+  },
+  /* Written per page, not generated: the title leads with the query and
+     ends on the brand, the description carries a real figure. */
+  caseSeo: {
+    'crm-portal': {
+      title: 'Daşınmaz əmlak üçün CRM sistemi — EXCLAMATION',
+      description: 'Rieltorlar üçün CRM: obyekt bazası, Kanban huni, WhatsApp inteqrasiyası. Satış konversiyası +45%, baza yeniləməyə vaxt −70%, adaptasiya 2 həftə.',
+    },
+    'fleks': {
+      title: 'Psixoloji mərkəz üçün ERP sistemi — EXCLAMATION',
+      description: 'Django üzərində ERP: müştəri balansı, seans ödənişləri, avtomatik PDF çeklər. Çek rəsmiləşdirmə vaxtı −80%, balans hesabında sıfır əl səhvi.',
+    },
+    'merkuri': {
+      title: 'Logistika üçün bulud B2B platforması — EXCLAMATION',
+      description: 'Yükdaşıma və gömrük üçün vahid portal: real vaxt izləmə, blokçeyn təsdiqi, gömrük bazaları ilə inteqrasiya. Sənədləşmə vaxtı −80%, şəffaflıq 100%.',
+    },
+    'mindtrick': {
+      title: 'Vərdiş trekeri mobil tətbiqi — EXCLAMATION',
+      description: 'Flutter tətbiqi: streak, heatmap və buraxma riskini əvvəlcədən görən insight sistemi. 8 həftədə saxlanma +52%, buraxma halları −37%, streak 3.1x.',
+    },
+    'smart-fashion': {
+      title: 'Onlayn mağaza hazırlanması — EXCLAMATION',
+      description: 'Next.js mağaza: tövsiyə sistemi, real vaxt anbar, satış analitikası. Redizayndan sonra konversiya +65%, səhifə 0.8 saniyəyə açılır, gəlir +30%.',
+    },
+    'ai-assistent': {
+      title: 'Müştəri servisi üçün AI assistent — EXCLAMATION',
+      description: 'LLM əsaslı assistent: FAQ cavabları, stok yoxlaması və səbətin çat içində yığılması, 24/7 rejimdə. Operator yükü −60%, cavab 5 dəqiqə əvəzinə 30 saniyədən az.',
+    },
   },
 } as const;

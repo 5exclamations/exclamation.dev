@@ -34,14 +34,18 @@ src/
   data/cases.ts  скриншоты кейсов: пути, реальные размеры, кропы
   data/tech.ts   стек: шесть групп, названия продуктов — вне i18n
   data/contacts.ts  телефон, почта, Telegram, WhatsApp — один источник
+  data/org.ts    каноническое имя бренда, sameAs, адрес — для JSON-LD
   lib/instance-font.ts  пинит вариативный шрифт в один вес для satori
   pages/og/[key].png.ts  OG-карточки: satori → sharp, 24 штуки на сборке
   assets/pics/   скриншоты кейсов — в src, иначе astro:assets их не видит
   layouts/       Base.astro — head, canonical, тема без FOUC, полоса, reveal
-  components/    секции и Diff / Icon / CaseView / CaseChat
+  components/    секции и Diff / Icon / CaseView / CaseChat / Schema
   styles/        tokens.css → base.css → fonts.css, собираются в app.css
   pages/         index + /is/[slug] для каждой локали
+  pages/sitemap.xml.ts  карта сайта с hreflang-альтернативами
 public/
+  robots.txt     явные Allow для AI-краулеров + ссылка на sitemap
+  llms.txt       краткая карта сайта для языковых моделей
   fonts/         самохостинг woff2, сабсеты latin / latin-ext / cyrillic
 scripts/
   shots.mjs      6 ширин × 2 темы + проверки переполнения, контраста, тап-зон
@@ -103,6 +107,7 @@ scripts/
 | Просмотр сборки | `npm run preview` |
 | Скриншоты и проверки | `node scripts/shots.mjs <label> [selector] [path]` |
 | Проверка reduced-motion | `node scripts/motion-check.mjs` |
+| Проверка JSON-LD | `node scripts/schema-check.mjs <schemaorg.jsonld>` |
 | Рантайм Cloudflare локально | `npx wrangler pages dev dist` |
 
 Node.js: требуется 18+. Локально стоит v24.18.0, npm 11.16.0.

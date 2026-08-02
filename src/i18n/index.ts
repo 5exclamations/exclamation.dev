@@ -36,10 +36,18 @@ export function t(locale: Locale): Dict {
   return dictionaries[locale] as Dict;
 }
 
-/** az lives at the root, the other two are prefixed. */
+/**
+ * az lives at the root, the other two are prefixed.
+ *
+ * Always ends in a slash. Cloudflare Pages 308-redirects `/ru` to `/ru/`, so
+ * a canonical, an hreflang or an internal href without the slash points at a
+ * redirect rather than at the page — verified against the Pages runtime, not
+ * assumed.
+ */
 export function localePath(locale: Locale, path = '/'): string {
   const clean = path.startsWith('/') ? path : `/${path}`;
-  return locale === 'az' ? clean : `/${locale}${clean === '/' ? '' : clean}`;
+  const withLocale = locale === 'az' ? clean : `/${locale}${clean === '/' ? '' : clean}`;
+  return withLocale.endsWith('/') ? withLocale : `${withLocale}/`;
 }
 
 export const localeNames: Record<Locale, string> = {

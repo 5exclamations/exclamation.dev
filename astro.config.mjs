@@ -30,12 +30,22 @@ const localisedErrorPages = () => ({
 export default defineConfig({
   site: 'https://exclamationdev.com',
   output: 'static',
+  // matches Cloudflare Pages, which 308s /ru to /ru/
+  trailingSlash: 'always',
   i18n: {
     defaultLocale: 'az',
     locales: ['az', 'ru', 'en'],
     routing: { prefixDefaultLocale: false },
   },
-  build: { inlineStylesheets: 'auto' },
+  build: {
+    /**
+     * 'auto' left two stylesheets external at ~3.7 kB gzip each. Their
+     * download is 0.2 ms; the cost is one render-blocking round trip apiece,
+     * measured at ~580 ms each on throttled 4G. Inlining trades ~7 kB of
+     * HTML for two fewer blocking requests on the critical path.
+     */
+    inlineStylesheets: 'always',
+  },
   devToolbar: { enabled: false },
   integrations: [localisedErrorPages()],
 });

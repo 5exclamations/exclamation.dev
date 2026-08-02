@@ -12,12 +12,10 @@ export function getStaticPaths() {
 
 const { slug } = Astro.params;
 const item = dict.cases.find((c) => c.slug === slug)!;
-const meta = {
-  title: `${item.short} — EXCLAMATION`,
-  description: item.solution,
-};
+// written per case in the dictionaries, not assembled from the case copy
+const meta = dict.caseSeo[slug as keyof typeof dict.caseSeo];
 ---
 
-<Base locale={locale} dict={dict} meta={meta} ogKey={`case-${slug}`}>
+<Base locale={locale} dict={dict} meta={meta} ogKey={`case-${slug}`} schemaKind="case">
   <CaseView locale={locale} dict={dict} slug={slug!} />
 </Base>

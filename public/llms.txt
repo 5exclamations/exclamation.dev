@@ -1,0 +1,33 @@
+# EXCLAMATION
+
+> Digital product studio in Baku, Azerbaijan, working since 2019. Websites, CRM, ERP, mobile apps, bots and AI solutions, full cycle from brief to release and support. Working languages: Azerbaijani, Russian, English.
+
+The site is one landing page per language plus a case page per project. Azerbaijani is the primary language and lives at the root; Russian and English are prefixed.
+
+## Main pages
+
+- [Home (Azerbaijani)](https://exclamationdev.com/): services, process, work, technology stack, facts, FAQ and the contact form — the whole offer on one page.
+- [Home (Russian)](https://exclamationdev.com/ru/): the same landing page in Russian.
+- [Home (English)](https://exclamationdev.com/en/): the same landing page in English.
+
+## Case studies
+
+- [CRM Portal](https://exclamationdev.com/en/is/crm-portal/): CRM for real-estate agencies — listings database, Kanban pipeline, WhatsApp integration. Sales conversion +45%, database update time −70%.
+- [FLEKS](https://exclamationdev.com/en/is/fleks/): ERP for a psychology centre — client balances, session charges, automatic PDF receipts. Payment and receipt handling −80%.
+- [Merkuri](https://exclamationdev.com/en/is/merkuri/): cloud B2B platform for freight and customs — real-time tracking, blockchain confirmation. Paperwork time −80%.
+- [MindTrick](https://exclamationdev.com/en/is/mindtrick/): habit tracker mobile app in Flutter — streaks, heatmap, lapse prediction. Retention over 8 weeks +52%.
+- [Smart Fashion](https://exclamationdev.com/en/is/smart-fashion/): data-driven e-commerce platform on Next.js — recommendations, real-time stock. Conversion +65%, pages load in 0.8s.
+- [AI assistant](https://exclamationdev.com/en/is/ai-assistent/): LLM assistant automating customer service — FAQ, stock checks, in-chat cart. Operator load −60%.
+
+## Working terms
+
+- MVP: a first working version in 7–14 days, with the scope fixed in the contract.
+- Delivery: two-week sprints, a demo at the end of each, client-side access to the task tracker.
+- After release: the repository sits in the client's account, three months of warranty, monitoring.
+- Estimates: no price list; the exact quote follows a short brief, and the estimating stage takes 3–5 days and is not billed.
+
+## Contact
+
+- Email: info@exclamationdev.com
+- Phone: +994 70 656 59 09
+- Telegram: https://t.me/exclamationdev

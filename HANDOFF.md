@@ -318,3 +318,66 @@ Verified against the real Pages runtime with `npx wrangler pages dev dist` —
 English, everything else in Azerbaijani. That is the Cloudflare worker running
 locally, not a preview deploy on their infrastructure; re-check once the
 project is actually connected.
+
+---
+
+## 8. SEO and machine readability
+
+Done, and how to re-check it:
+
+| Thing | Where | How it was verified |
+| --- | --- | --- |
+| `robots.txt` | `public/robots.txt` | 13 AI/answer crawlers named explicitly plus `*`, sitemap declared |
+| `sitemap.xml` | `src/pages/sitemap.xml.ts` | built from the same route list as the pages: 21 URLs, 4 `xhtml:link` alternates each, no 404s and no OG endpoints |
+| JSON-LD | `src/components/Schema.astro` | one `@graph` per page, checked against the official schema.org vocabulary — see below |
+| Canonical entity | `src/data/org.ts` | one `name` (EXCLAMATION), three `alternateName` |
+| Titles/descriptions | `meta` and `caseSeo` in each locale file | written per page; every title <= 60 chars, every description 140-160 |
+| `llms.txt` | `public/llms.txt` | sections with one-line descriptions; no markdown page duplicates |
+| OG cards | `src/pages/og/[key].png.ts` | 24 PNGs at build; look at them, do not trust the build log |
+
+**Validating the structured data.** `validator.schema.org` only accepts a
+public URL — its snippet endpoint answers `fetchError: NOT_FOUND` for a POSTed
+`code` parameter, so it cannot be used before the site is live. Until cutover,
+validate against the vocabulary directly:
+
+```bash
+curl -s -o /tmp/schemaorg.jsonld https://schema.org/version/latest/schemaorg-current-https.jsonld
+node scripts/schema-check.mjs /tmp/schemaorg.jsonld
+```
+
+That checks every `@type` exists, every property exists, and every property is
+declared on that type or a supertype. It already caught one real error
+(`availableLanguage` is not a property of `ProfessionalService`; it belongs on
+a `ContactPoint`). After cutover, run the hosted validator by URL as well.
+
+**Two fields are deliberately absent and need real values:**
+
+- **LinkedIn** is commented out of `SAME_AS` in `src/data/org.ts`. A `sameAs`
+  entry asserts the studio controls that URL, so a guessed one is worse than a
+  missing one.
+- **The street address.** `ADDRESS` is city-level and `GEO` is the centre of
+  Baku, not the office. If there is a real registered address, put it in; if
+  there is not, leave this alone rather than inventing one.
+
+**No `AggregateRating` and no `Review` anywhere**, and none until there are two
+real testimonials with a name and a company.
+
+### Measured, not assumed
+
+Core Web Vitals on the built site through the Cloudflare Pages runtime
+(`wrangler pages dev`), Chrome DevTools, 390x844 DPR 3, 4x CPU throttling:
+
+| Metric | Slow 4G | Fast 4G | Target |
+| --- | --- | --- | --- |
+| LCP | 1613 ms | 992 ms | < 1800 ms |
+| CLS | 0.00 | 0.00 | < 0.05 |
+| INP | - | 87 ms | < 200 ms |
+
+HTML after gzip: 20.5 kB (az), 22.0 kB (ru), 10.0 kB (case page) against a
+50 kB budget.
+
+Two changes got LCP there, both measured rather than guessed:
+`inlineStylesheets: 'always'` (two stylesheets at ~3.7 kB gzip were costing a
+render-blocking round trip each, ~580 ms apiece on throttled 4G), and a
+`<link rel=preload as=image>` for the hero built from the shared `HERO_IMAGE`
+config so the preload URL and the rendered URL cannot drift apart.

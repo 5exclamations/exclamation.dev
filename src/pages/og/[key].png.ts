@@ -91,7 +91,15 @@ const wordmark = () =>
 
 type Card = { eyebrow: string; title: string; muted?: string; foot: string; note?: string };
 
-function card(c: Card) {
+/**
+ * satori has no document language, so its `textTransform: uppercase` applies
+ * invariant casing and turns Azerbaijani "bəri" into "BƏRI" instead of
+ * "BƏRİ". The page gets this right because CSS casing follows `lang`; here it
+ * has to be done explicitly, with the locale.
+ */
+const upper = (s: string, locale: Locale) => s.toLocaleUpperCase(locale === 'az' ? 'az-AZ' : locale);
+
+function card(c: Card, locale: Locale) {
   return el(
     'div',
     {
@@ -134,10 +142,9 @@ function card(c: Card) {
             fontSize: 21,
             letterSpacing: 2,
             color: ASH,
-            textTransform: 'uppercase',
             marginBottom: 22,
           },
-          c.eyebrow
+          upper(c.eyebrow, locale)
         ),
         el(
           'div',
@@ -245,7 +252,7 @@ export const getStaticPaths = () => {
 
 export const GET: APIRoute = async ({ props }) => {
   const { locale, card: content } = props as { locale: Locale; card: Card };
-  const svg = await satori(card(content) as never, {
+  const svg = await satori(card(content, locale) as never, {
     width: W,
     height: H,
     fonts: await fontsFor(locale),

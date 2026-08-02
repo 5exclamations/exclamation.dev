@@ -1,0 +1,116 @@
+---
+import { localePath, type Dict, type Locale } from '../i18n';
+import { channels, EMAIL } from '../data/contacts';
+import {
+  ORG_NAME,
+  ORG_ALTERNATE_NAMES,
+  ORG_ID,
+  SERVICE_ID,
+  SAME_AS,
+  ADDRESS,
+  GEO,
+} from '../data/org';
+
+interface Props {
+  locale: Locale;
+  dict: Dict;
+  /** locale-free path of the current page */
+  path: string;
+  kind: 'home' | 'case' | 'other';
+  /** page title, for the breadcrumb leaf */
+  title: string;
+}
+const { locale, dict, path, kind, title } = Astro.props;
+
+const SITE = 'https://exclamationdev.com';
+const url = `${SITE}${localePath(locale, path)}`;
+const phone = channels.find((c) => c.key === 'phone')!.value.replace(/\s/g, '');
+
+/**
+ * One @graph per page rather than several loose blocks: the nodes reference
+ * each other by @id, which only works if they are in the same graph.
+ *
+ * No AggregateRating and no Review anywhere — there are no reviews, and
+ * inventing them is the one structured-data lie that gets a site penalised.
+ */
+const organization = {
+  '@type': 'Organization',
+  '@id': ORG_ID,
+  name: ORG_NAME,
+  alternateName: ORG_ALTERNATE_NAMES,
+  url: SITE,
+  email: EMAIL,
+  telephone: phone,
+  foundingDate: '2019',
+  ...(SAME_AS.length ? { sameAs: SAME_AS } : {}),
+  address: { '@type': 'PostalAddress', ...ADDRESS },
+};
+
+const service = {
+  '@type': 'ProfessionalService',
+  '@id': SERVICE_ID,
+  name: ORG_NAME,
+  url: SITE,
+  parentOrganization: { '@id': ORG_ID },
+  email: EMAIL,
+  telephone: phone,
+  address: { '@type': 'PostalAddress', ...ADDRESS },
+  geo: { '@type': 'GeoCoordinates', ...GEO },
+  areaServed: { '@type': 'Country', name: 'Azerbaijan', identifier: 'AZ' },
+  /**
+   * The languages hang off a ContactPoint, not off the service itself:
+   * `availableLanguage` is declared on ContactPoint, and schema.org's
+   * validator rejects it on ProfessionalService.
+   */
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'sales',
+    telephone: phone,
+    email: EMAIL,
+    availableLanguage: ['az', 'ru', 'en'],
+    areaServed: 'AZ',
+  },
+  knowsAbout: dict.services.items.map((s) => s.title),
+};
+
+/**
+ * Built from `dict.faq`, the same object the accordion renders, so the
+ * question and answer strings are identical to the visible text by
+ * construction rather than by somebody remembering to update both.
+ */
+const faqPage =
+  kind === 'home'
+    ? {
+        '@type': 'FAQPage',
+        '@id': `${url}#faq`,
+        inLanguage: locale,
+        mainEntity: dict.faq.items.map((item) => ({
+          '@type': 'Question',
+          name: item.q,
+          acceptedAnswer: { '@type': 'Answer', text: item.a },
+        })),
+      }
+    : null;
+
+const breadcrumb =
+  kind === 'home'
+    ? null
+    : {
+        '@type': 'BreadcrumbList',
+        '@id': `${url}#breadcrumb`,
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: ORG_NAME,
+            item: `${SITE}${localePath(locale, '/')}`,
+          },
+          { '@type': 'ListItem', position: 2, name: title, item: url },
+        ],
+      };
+
+const graph = [organization, service, faqPage, breadcrumb].filter(Boolean);
+const json = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph });
+---
+
+<script type="application/ld+json" is:inline set:html={json} />

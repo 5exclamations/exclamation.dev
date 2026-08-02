@@ -1,0 +1,50 @@
+# EXCLAMATION — exclamationdev.com
+
+# Answer engines and AI crawlers are explicitly welcome. Each is named rather
+# than covered by the wildcard: several of these ignore `User-agent: *` for
+# training or retrieval decisions, so an explicit Allow is the only signal
+# they act on.
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+# Everything else
+User-agent: *
+Allow: /
+
+Sitemap: https://exclamationdev.com/sitemap.xml
