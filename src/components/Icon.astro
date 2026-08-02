@@ -4,7 +4,7 @@
  * geometry limited to straight lines and 90 degree arcs. No emoji anywhere.
  */
 interface Props {
-  name: 'menu' | 'close' | 'theme' | 'arrow-right' | 'arrow-down';
+  name: 'menu' | 'close' | 'theme' | 'arrow-right' | 'arrow-down' | 'plus';
   size?: number;
   class?: string;
 }
@@ -15,6 +15,8 @@ const strokes: Partial<Record<Props['name'], string>> = {
   close: 'M5.25 5.25l13.5 13.5M18.75 5.25l-13.5 13.5',
   'arrow-right': 'M3.75 12h15.5M13.25 6l6 6-6 6',
   'arrow-down': 'M12 3.75v15.5M6 13.25l6 6 6-6',
+  /* rotated 45 degrees by the accordion when a row opens, so it reads as a close */
+  plus: 'M12 5.25v13.5M5.25 12h13.5',
 };
 ---
 

@@ -74,24 +74,21 @@ Two things are deliberately still in the repo and not yet removed:
 
 The section order is fixed in SKILL.md §3 and must not be reshuffled: no two
 adjacent sections may share a skeleton. Built so far: `hero`, `services`,
-`why`, `work`, `metrics`, `process`, `tech`, `facts`.
+`why`, `work`, `metrics`, `process`, `tech`, `facts`, `faq`, `contact`, and
+the footer (in `Base.astro`, so every route has it).
 
-1. **`faq`** — single-column accordion, eight questions, content in
-   `translations.js` under `faqItems`. Prices contain `₼` — check it renders
-   from Commissioner and not a fallback.
-2. **`contact`** — 5 + 7 columns with the form. Formspree endpoint
-   `https://formspree.io/f/mdayvkzp`, progressive enhancement via
-   `@formspree/ajax`. **Inputs must be ≥16px** or Safari zooms on focus.
-   Contacts: `tel:+994706565909`, `info@exclamationdev.com`,
-   `t.me/exclamationdev`, `wa.me/994702054171`.
-3. **`finalcta`** — the square dot that terminates the exclamation mark the
+1. **`finalcta`** — the square dot that terminates the exclamation mark the
    spine draws down the page. This is the payoff of the whole signature; do
-   not make it a generic CTA band.
-4. **Footer** — the case pages currently have no footer. It arrives with the
-   contact batch and must be added to `Base.astro` so every route has it.
-5. **404 page** — required, not built.
-6. **Cutover** — Cloudflare Pages, then delete the legacy files above and
-   turn off GitHub Pages.
+   not make it a generic CTA band. It goes between `contact` and the footer.
+   The footer deliberately reuses the header's full `!` lockup rather than a
+   bare square, so this dot is still unspent.
+2. **404 page** — required, not built.
+3. **Cutover** — Cloudflare Pages, then delete the legacy files above and
+   turn off GitHub Pages. See §5 for the build environment variables.
+
+Deferred by the client, not forgotten: a full **`/faq/` page** of 25–30
+questions. The eight on the home page stay as they are; the page is a
+separate task.
 
 Also outstanding: the reviews component is supposed to exist as a placeholder
 (three fake testimonials were removed from the old site and must not return),
@@ -142,6 +139,12 @@ keyframes lived in the parent's scoped `<style>`. Shared motion utilities are
 now in `src/styles/base.css` (`.anim`, `.anim-lift`). Same trap applies to any
 grid placement you try to apply to a child component's root — wrap it in a
 div you own.
+
+**Numbers in copy describe the data, never the reverse.** The metrics band
+said "40+ technologies" while the list held 38. It now carries `{tech}`, which
+`fill()` resolves from `techCats` in `src/data/tech.ts` at build time — trim
+two entries and the band reads 38 on its own. Same for `{years}` and `{now}`.
+If a figure and a list can disagree, compute the figure.
 
 **CSS `text-transform: uppercase` follows the document language.** On the az
 page it applies Azerbaijani casing, so `.mono` turned the English category
@@ -208,6 +211,30 @@ In this order:
    archetypes to imitate: sticky two-column dense, and typography-only sparse.
 8. **`scripts/shots.mjs`** — what "checked" means here.
 
-Then: `npm install && npm run build && npm run preview`, open
+Then: `cp .env.example .env`, fill it in (see below), then
+`npm install && npm run build && npm run preview`, open
 `http://localhost:4321`, and look at it in both themes and all three
 languages before touching anything.
+
+---
+
+## 6. Build environment
+
+Two variables, read in `Contact.astro` frontmatter at build time. Neither is
+committed; `.env` is gitignored and `.env.example` documents the shape. Set
+both in the Cloudflare Pages build environment at cutover.
+
+| Variable | Effect when unset |
+| --- | --- |
+| `FORMSPREE_ID` | form renders with an empty `action`, the submit script does not arm itself, and the build logs a warning. The mailto path under the button still works. |
+| `TURNSTILE_SITE_KEY` | the `.brief-turnstile` slot renders empty and collapses. **This is the deploy-step stub** — add the widget script and the server-side verification here. |
+
+The id is the part after `/f/` in the Formspree endpoint. Note the legacy
+`index.html` still carries the endpoint inline; that disappears when the old
+site is deleted at cutover, but it is already in git history, so treat the id
+as known rather than secret and rotate it if that matters.
+
+The form is progressively enhanced with about thirty lines of `fetch`, not
+`@formspree/ajax` — the site has no runtime dependencies and this keeps it
+that way. Without JS the form posts natively and Formspree renders its own
+confirmation page.

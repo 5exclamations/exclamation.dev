@@ -1,0 +1,201 @@
+---
+import { channels } from '../data/contacts';
+import { fill, localePath, locales, localeNames, type Dict, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+  dict: Dict;
+  /** locale-free path of the current page, so the language links stay put */
+  path: string;
+}
+const { locale, dict, path } = Astro.props;
+const ft = dict.footer;
+---
+
+<footer class="footer">
+  <div class="shell">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        {/* the same lockup as the header, not a bare square: the square dot
+            on its own belongs to the final CTA, which is the page's payoff */}
+        <p class="footer-mark">
+          <svg class="footer-glyph" width="10" height="26" viewBox="0 0 10 26" aria-hidden="true">
+            <rect x="3" y="0" width="4" height="17" fill="currentColor"></rect>
+            <rect x="3" y="21" width="4" height="4" fill="currentColor"></rect>
+          </svg>
+          EXCLAMATION
+        </p>
+        <p class="footer-tagline">{fill(ft.tagline)}</p>
+      </div>
+
+      <nav class="footer-col" aria-labelledby="foot-work">
+        <h2 class="mono" id="foot-work">{ft.workLabel}</h2>
+        <ul>
+          {dict.cases.map((item) => (
+            <li>
+              <a href={localePath(locale, `/is/${item.slug}`)}>{item.short}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <nav class="footer-col" aria-labelledby="foot-services">
+        <h2 class="mono" id="foot-services">{ft.servicesLabel}</h2>
+        <ul>
+          {dict.services.items.slice(0, 6).map((cat) => (
+            <li>
+              <a href={`${localePath(locale, '/')}#services`}>{cat.title}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <div class="footer-col">
+        <h2 class="mono">{ft.contactLabel}</h2>
+        <ul>
+          {channels.map((ch) => (
+            <li>
+              <a
+                href={ch.href}
+                {...(ch.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+              >
+                {ch.value}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-base">
+      {/* the year comes from the same build-time date as the studio's age */}
+      <p class="mono footer-rights num">{fill(ft.rights)}</p>
+      <nav class="footer-langs" aria-label={ft.langLabel}>
+        <ul>
+          {locales.map((l) => (
+            <li>
+              <a
+                class="mono"
+                href={localePath(l, path)}
+                lang={l}
+                hreflang={l}
+                aria-current={l === locale ? 'true' : undefined}
+              >
+                {localeNames[l]}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    position: relative;
+    z-index: 1;
+    padding-block: var(--sp-section);
+    border-top: 1px solid var(--line);
+  }
+
+  .footer-grid {
+    padding-left: var(--rail);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--sp-block) clamp(1.5rem, 3vw, 2.5rem);
+  }
+  @media (min-width: 600px) {
+    .footer-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (min-width: 1024px) {
+    .footer-grid {
+      grid-template-columns: minmax(0, 4fr) repeat(3, minmax(0, 2.6fr));
+    }
+  }
+
+  .footer-mark {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    font-family: var(--font-display);
+    font-size: var(--fs-300);
+    font-weight: 500;
+    letter-spacing: 0.14em;
+  }
+  .footer-glyph {
+    color: var(--accent);
+    height: 1.125rem;
+    width: auto;
+  }
+  .footer-tagline {
+    margin-top: 0.875rem;
+    font-size: var(--fs-200);
+    color: var(--fg-muted);
+    max-width: 32ch;
+    /* keeps "{year}-dan bəri" off a line of its own: the hyphen is a legal
+       break point and az splits it as "2019-" / "dan bəri" */
+    text-wrap: balance;
+  }
+
+  .footer-col h2 {
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .footer-col ul {
+    margin-top: 0.875rem;
+  }
+  .footer-col a {
+    display: flex;
+    align-items: center;
+    min-height: 2.75rem;
+    font-size: var(--fs-200);
+    color: var(--fg-muted);
+    text-decoration: none;
+    transition: color 140ms var(--ease);
+  }
+  .footer-col a:hover {
+    color: var(--accent);
+  }
+
+  /* margin, not padding: the rule has to start where the columns start,
+     not a rail-width to the left of them */
+  .footer-base {
+    margin-left: var(--rail);
+    margin-top: var(--sp-block);
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--line);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem 1.5rem;
+  }
+  .footer-rights {
+    text-transform: none;
+    letter-spacing: 0.06em;
+  }
+
+  .footer-langs ul {
+    display: flex;
+    gap: 0.25rem;
+  }
+  .footer-langs a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+    color: var(--fg-muted);
+    text-decoration: none;
+    transition: color 140ms var(--ease);
+  }
+  .footer-langs a:hover {
+    color: var(--fg);
+  }
+  .footer-langs a[aria-current='true'] {
+    color: var(--fg);
+  }
+</style>

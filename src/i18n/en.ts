@@ -164,7 +164,7 @@ export default {
     items: [
       { value: '40+', label: 'projects shipped' },
       { value: '{years}', label: 'years in business' },
-      { value: '40+', label: 'technologies in the stack' },
+      { value: '{tech}', label: 'technologies in the stack' },
       { value: '3', label: 'working languages' },
     ],
   },
@@ -345,5 +345,81 @@ export default {
         text: 'The repository is in your account from day one. You own the code; we are the contractor.',
       },
     ],
+  },
+  faq: {
+    eyebrow: 'Questions & answers',
+    titleMuted: 'Answers to',
+    titleMain: 'frequent questions.',
+    items: [
+      {
+        q: 'How much does development cost?',
+        a: 'It depends on the scope and the complexity of the task — we do not publish a price list. The exact estimate comes after the brief: the estimating stage takes 3–5 days and is not billed.',
+      },
+      {
+        q: 'Can you improve an existing site or system?',
+        a: 'Yes. We regularly take over other teams’ projects for support and growth: we audit the code, assess the state of the system and propose a plan of work. Any stack.',
+      },
+      {
+        q: 'Do you work under a formal contract?',
+        a: 'Formally only. Scope, timeline, cost and payment terms are fixed in the contract. We work with sole traders and with companies alike. NDA on request.',
+      },
+      {
+        q: 'Can a CRM be integrated with other systems?',
+        a: '1C, AmoCRM, Bitrix24, Telegram, WhatsApp, payment systems, warehouse software — practically any service that exposes an API or a webhook.',
+      },
+      {
+        q: 'How long does a project take?',
+        a: 'It depends on scope: a site or landing page — 3–5 days, an online store — 2–4 weeks, CRM/ERP — 4–8 weeks, a complex platform — 2–4 months. Firm dates follow a short brief.',
+      },
+      {
+        q: 'Do you build MVPs?',
+        a: 'Yes, it is one of our core directions. In 7–14 days we assemble a working product with the key functions — enough to test the idea on the market without spending the whole budget.',
+      },
+      {
+        q: 'Do you support the project after launch?',
+        a: 'Three months of warranty, then support plans: monitoring, bug fixes, scheduled updates and roadmap work.',
+      },
+      {
+        q: 'Do I need to understand the technology?',
+        a: 'No. We take the technical side entirely. What we need from you is the business goal and decisions at the key forks; we explain the complex parts in plain language at every stage.',
+      },
+    ],
+  },
+  contact: {
+    eyebrow: 'Contact',
+    titleMuted: 'Tell us about the task —',
+    titleMain: 'we will propose a solution and a price.',
+    note: 'A short brief is enough. We will clarify the open questions and move to the estimating stage.',
+    channelsLabel: 'Direct channels',
+    channels: {
+      phone: 'Phone',
+      email: 'Email',
+      telegram: 'Telegram',
+      whatsapp: 'WhatsApp',
+    },
+    form: {
+      title: 'Send a brief',
+      name: 'Name',
+      namePh: 'What to call you',
+      contact: 'Contact',
+      contactPh: 'Email or phone',
+      message: 'Task',
+      messagePh: 'What needs building, and by when',
+      consent: 'I agree to my personal data being processed in order to answer this enquiry.',
+      submit: 'Send the brief',
+      sending: 'Sending…',
+      success: 'Brief sent. We will get back to you.',
+      error: 'Could not send.',
+      errorMailto: 'Write to us directly:',
+      required: 'required',
+    },
+  },
+  footer: {
+    tagline: 'Digital product studio in Baku. Since {year}.',
+    workLabel: 'Work',
+    servicesLabel: 'Services',
+    contactLabel: 'Contact',
+    langLabel: 'Language',
+    rights: '© {now} EXCLAMATION',
   },
 } as const;

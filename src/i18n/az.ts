@@ -164,7 +164,7 @@ export default {
     items: [
       { value: '40+', label: 'buraxılmış layihə' },
       { value: '{years}', label: 'il bazarda' },
-      { value: '40+', label: 'stekdə texnologiya' },
+      { value: '{tech}', label: 'stekdə texnologiya' },
       { value: '3', label: 'dildə işləyirik' },
     ],
   },
@@ -345,5 +345,81 @@ export default {
         text: 'Repozitoriya ilk gündən sizin hesabınızdadır. Kod sizindir, biz podratçıyıq.',
       },
     ],
+  },
+  faq: {
+    eyebrow: 'Sual-cavab',
+    titleMuted: 'Ən çox verilən',
+    titleMain: 'sualları cavablandırırıq.',
+    items: [
+      {
+        q: 'Hazırlanmanın qiyməti nə qədərdir?',
+        a: 'Qiymət tapşırığın həcmindən və mürəkkəbliyindən asılıdır — hazır qiymət cədvəli vermirik. Dəqiq smetanı brifdən sonra veririk: qiymətləndirmə mərhələsi 3–5 gün çəkir və ödənişsizdir.',
+      },
+      {
+        q: 'Mövcud sayt və ya sistemi təkmilləşdirmək olar?',
+        a: 'Bəli. Hazır layihələri dəstək və inkişaf üçün götürürük: kod auditi edirik, sistemin vəziyyətini qiymətləndiririk və təkmilləşdirmə planı təqdim edirik. İstənilən steklə işləyirik.',
+      },
+      {
+        q: 'Rəsmi müqavilə ilə işləyirsiniz?',
+        a: 'Yalnız rəsmi. Müqavilədə həcm, müddət, dəyər və ödəniş şərtləri sabitlənir. Fərdi sahibkarla da, şirkətlə də işləyirik. Tələb olunarsa NDA imzalayırıq.',
+      },
+      {
+        q: 'CRM-i digər sistemlərlə inteqrasiya etmək olar?',
+        a: '1C, AmoCRM, Bitrix24, Telegram, WhatsApp, ödəniş sistemləri, anbar proqramları — API və ya webhook verən demək olar ki, istənilən servis.',
+      },
+      {
+        q: 'Layihə nə qədər vaxt aparır?',
+        a: 'Həcmdən asılıdır: sayt və ya landing — 3–5 gün, onlayn mağaza — 2–4 həftə, CRM/ERP — 4–8 həftə, kompleks platforma — 2–4 ay. Dəqiq müddəti qısa brifdən sonra deyirik.',
+      },
+      {
+        q: 'MVP hazırlayırsınız?',
+        a: 'Bəli, bu əsas istiqamətlərimizdən biridir. 7–14 günə əsas funksiyaları olan işlək məhsul yığırıq — ideyanı bütün büdcəni xərcləmədən bazarda yoxlamaq üçün.',
+      },
+      {
+        q: 'Buraxılışdan sonra dəstək verirsiniz?',
+        a: '3 ay zəmanət, sonra isə dəstək paketləri: monitorinq, bug fix, planlı yeniləmələr və roadmap üzrə inkişaf.',
+      },
+      {
+        q: 'Texnologiyanı mütləq bilməliyəm?',
+        a: 'Xeyr. Texniki hissəni tam biz götürürük. Sizdən biznes məqsədini qoymaq və açar qərarları təsdiqləmək gözlənilir — mürəkkəb şeyləri hər mərhələdə sadə dillə izah edirik.',
+      },
+    ],
+  },
+  contact: {
+    eyebrow: 'Əlaqə',
+    titleMuted: 'Tapşırığınızı danışın —',
+    titleMain: 'həlli və qiyməti təklif edək.',
+    note: 'Qısa brif kifayətdir. Sualları dəqiqləşdiririk və qiymətləndirmə mərhələsinə keçirik.',
+    channelsLabel: 'Birbaşa əlaqə',
+    channels: {
+      phone: 'Telefon',
+      email: 'E-poçt',
+      telegram: 'Telegram',
+      whatsapp: 'WhatsApp',
+    },
+    form: {
+      title: 'Brif göndər',
+      name: 'Ad',
+      namePh: 'Adınız',
+      contact: 'Əlaqə',
+      contactPh: 'E-poçt və ya telefon',
+      message: 'Tapşırıq',
+      messagePh: 'Nə qurmaq lazımdır və hansı müddətə',
+      consent: 'Müraciətin emalı üçün şəxsi məlumatlarımın işlənməsinə razıyam.',
+      submit: 'Brifi göndər',
+      sending: 'Göndərilir…',
+      success: 'Brif göndərildi. Sizinlə əlaqə saxlayacağıq.',
+      error: 'Göndərmək alınmadı.',
+      errorMailto: 'Birbaşa yazın:',
+      required: 'zəruri',
+    },
+  },
+  footer: {
+    tagline: 'Bakıda rəqəmsal məhsul studiyası. {year}-dan bəri.',
+    workLabel: 'İşlər',
+    servicesLabel: 'Xidmətlər',
+    contactLabel: 'Əlaqə',
+    langLabel: 'Dil',
+    rights: '© {now} EXCLAMATION',
   },
 } as const;

@@ -1,6 +1,7 @@
 import az from './az';
 import ru from './ru';
 import en from './en';
+import { techCount } from '../data/tech';
 
 export const locales = ['az', 'ru', 'en'] as const;
 export type Locale = (typeof locales)[number];
@@ -11,10 +12,21 @@ export type Locale = (typeof locales)[number];
  * apart the way "since 2019" and "6 years" did.
  */
 export const FOUNDED = 2019;
-export const YEARS = new Date().getFullYear() - FOUNDED;
+/** Build-time "now". The copyright line and the age come from this one date. */
+export const YEAR = new Date().getFullYear();
+export const YEARS = YEAR - FOUNDED;
 
+/**
+ * {tech} is counted from `data/tech.ts`, never typed. If the stack list is
+ * trimmed the metrics band follows it down — the number describes the data,
+ * the data is not padded to fit the number.
+ */
 export const fill = (s: string): string =>
-  s.replaceAll('{year}', String(FOUNDED)).replaceAll('{years}', String(YEARS));
+  s
+    .replaceAll('{year}', String(FOUNDED))
+    .replaceAll('{years}', String(YEARS))
+    .replaceAll('{now}', String(YEAR))
+    .replaceAll('{tech}', String(techCount));
 
 export const dictionaries = { az, ru, en };
 

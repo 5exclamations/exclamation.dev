@@ -8,6 +8,8 @@ import Metrics from '../../components/Metrics.astro';
 import Process from '../../components/Process.astro';
 import Tech from '../../components/Tech.astro';
 import Facts from '../../components/Facts.astro';
+import Faq from '../../components/Faq.astro';
+import Contact from '../../components/Contact.astro';
 import { t } from '../../i18n';
 
 const locale = 'en' as const;
@@ -23,4 +25,6 @@ const dict = t(locale);
   <Process dict={dict} />
   <Tech dict={dict} />
   <Facts dict={dict} />
+  <Faq dict={dict} />
+  <Contact dict={dict} />
 </Base>

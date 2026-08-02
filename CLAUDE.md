@@ -33,6 +33,7 @@ src/
   i18n/          az.ts / ru.ts / en.ts — весь копирайт; index.ts — FOUNDED, fill()
   data/cases.ts  скриншоты кейсов: пути, реальные размеры, кропы
   data/tech.ts   стек: шесть групп, названия продуктов — вне i18n
+  data/contacts.ts  телефон, почта, Telegram, WhatsApp — один источник
   layouts/       Base.astro — head, canonical, тема без FOUC, полоса, reveal
   components/    секции и Diff / Icon / CaseView / CaseChat
   styles/        tokens.css → base.css → fonts.css, собираются в app.css
@@ -46,8 +47,8 @@ scripts/
 ```
 
 Готовые секции: `hero`, `services`, `why`, `work`, `metrics`, `process`,
-`tech`, `facts` и шесть страниц кейсов. Оставшееся и его порядок —
-в `HANDOFF.md`.
+`tech`, `facts`, `faq`, `contact`, футер и шесть страниц кейсов. Оставшееся
+и его порядок — в `HANDOFF.md`.
 
 Возраст студии считается из `FOUNDED` в `src/i18n/index.ts`; в текстах стоят
 плейсхолдеры `{year}` и `{years}`, руками цифру не писать.
@@ -65,12 +66,13 @@ scripts/
 Осторожно: в `translations.js` продукт назван **MindTrack**, правильно —
 **MindTrick**. Проверяй названия по скриншотам, а не по переводам.
 
-Внешние зависимости, которые ещё предстоит перенести:
+Внешние зависимости:
 
-- Форма заявки: Formspree — `https://formspree.io/f/mdayvkzp`, прогрессивное
-  улучшение через `@formspree/ajax`.
-- Контакты: `tel:+994706565909`, `info@exclamationdev.com`,
-  `t.me/exclamationdev`, `wa.me/994702054171`.
+- Форма заявки: Formspree. Ключ эндпоинта — в переменной `FORMSPREE_ID`,
+  в репозиторий не коммитится; см. `.env.example` и §6 `HANDOFF.md`.
+  Прогрессивное улучшение — свой `fetch`, без зависимостей.
+- Turnstile: `TURNSTILE_SITE_KEY`, пустая заглушка до шага деплоя.
+- Контакты живут в `src/data/contacts.ts`, руками в разметку не писать.
 - `exclamation-bimi-logo.svg` — BIMI-логотип (127 KB, для фавикона не годится,
   фавикон отдельный в `public/favicon.svg`).
 
