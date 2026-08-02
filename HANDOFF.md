@@ -17,7 +17,7 @@ Six commits, on `main`, on top of the old static site.
 | `40f7cfb` | Sections 05–06: work index, six case pages, process |
 | `7f5ab8f` | Sections 07–08: tech (the one inverted band), facts |
 | `cb0b788` | Sections 09–10 plus the footer: faq, contact |
-| _(this batch)_ | Section 11 plus 404: finalcta, the terminating dot |
+| `2283e82` | Section 11 plus 404: finalcta, the terminating dot |
 
 **Stack decisions.** Astro `output: 'static'`, plain CSS with `@layer` and
 custom properties, no Tailwind, no React. Locale routing: `az` at `/`, `ru`
