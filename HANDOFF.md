@@ -100,10 +100,9 @@ separate task.
   Azerbaijani `/404.html` for every miss regardless of language. They are
   valid pages and the language switcher moves between them; making them fire
   as error pages is a cutover task.
-- **The spine terminates only on the home page.** Case pages and the 404 run
-  the stroke down to the footer, which cuts it — there is no dot, because
-  `finalcta` is a landing-page section. If the mark should complete
-  everywhere, that is a decision to take, not a bug to fix quietly.
+- **Nothing here about the spine any more.** It terminates on every route:
+  `SpineEnd.astro` sits in `Base.astro` above the footer and owns the dot.
+  `finalcta` is now only the landing page's closing call.
 
 **Working agreement with the art director:** show two or three sections at a
 time, never one. Before showing anything, run the six widths in both themes
@@ -271,25 +270,17 @@ blocks review; several items block launch.
 
 **Degrades quality, does not block**
 
-- **`astro:assets` image optimisation was never enabled** — the `sharp`
-  postinstall was blocked by npm, so every screenshot ships at full weight,
-  unresized and in its original format. This is the single largest
-  performance item on the site.
 - **Computed dates go stale between builds.** `{years}`, `{now}` and `{tech}`
   are evaluated at build time. A site built in December and not rebuilt will
   show last year's copyright in January. Either schedule a periodic rebuild
   or accept the drift knowingly.
-- **`40+ projects` sits next to `40 technologies`** in the metrics band. The
-  technologies figure is computed; the projects figure is a client claim that
-  was left alone. Two adjacent forties read like a mistake even though
-  neither is one.
-- **The reviews placeholder still does not exist.** Three fake testimonials
-  were removed from the old site and must not return. Whether a real
-  testimonials block is wanted at all is an open question, not a build task.
 
 **Open decisions, not defects**
 
 - **Navigation lists four of eleven sections** (services, process, work,
   contact). `tech`, `facts` and `faq` are reachable only by scrolling.
 - **No analytics of any kind** is installed.
-- **No print stylesheet.**
+- **No print stylesheet.** Decided against.
+- **No testimonials section, by decision.** Three fake ones were removed from
+  the old site. Nothing goes back until there are two real quotes with a name
+  and a company attached; no placeholder in the meantime.

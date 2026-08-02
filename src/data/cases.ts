@@ -1,13 +1,35 @@
 /**
- * Non-localised case metadata: which real screenshots belong to which project,
- * their true pixel sizes, and how each one should be framed. Copy lives in the
- * locale dictionaries; the two are joined by `slug`.
+ * Non-localised case metadata: which real screenshots belong to which project
+ * and how each one should be framed. Copy lives in the locale dictionaries;
+ * the two are joined by `slug`.
+ *
+ * The images are imported rather than referenced by URL. They live in
+ * `src/assets`, not `public`, because Astro only optimises what it can see at
+ * build time — anything under `public/` is copied through untouched. The
+ * import also carries the true intrinsic size, so the width/height that used
+ * to be typed by hand (and were wrong for every image at one point) now come
+ * from the file itself and cannot drift.
  */
+import type { ImageMetadata } from 'astro';
+
+import crm1 from '../assets/pics/crm/screen1.png';
+import crm2 from '../assets/pics/crm/screen2.png';
+import crm3 from '../assets/pics/crm/screen3.png';
+import erp1 from '../assets/pics/ERP/photo_1_2026-04-27_01-03-50.jpg';
+import erp2 from '../assets/pics/ERP/photo_2_2026-04-27_01-03-50.jpg';
+import erp3 from '../assets/pics/ERP/photo_3_2026-04-27_01-03-50.jpg';
+import merk1 from '../assets/pics/merk/screen1.png';
+import merk2 from '../assets/pics/merk/screen.png';
+import merk3 from '../assets/pics/merk/screen2.png';
+import mob1 from '../assets/pics/mobile/photo_2026-04-27_17-55-50.jpg';
+import mob2 from '../assets/pics/mobile/photo_2026-04-27_17-55-51.jpg';
+import mob3 from '../assets/pics/mobile/photo_2026-04-27_17-55-52.jpg';
+import shop1 from '../assets/pics/website/2.png';
+import shop2 from '../assets/pics/website/3.jpg';
+import shop3 from '../assets/pics/website/4.jpg';
+
 export type Shot = {
-  src: string;
-  /** real intrinsic size — wrong values here cause layout shift */
-  w: number;
-  h: number;
+  img: ImageMetadata;
   /** overrides the case-level crop when this screen's content sits elsewhere */
   crop?: [number, number, number];
 };
@@ -31,9 +53,9 @@ export const caseMedia: CaseMedia[] = [
     shape: 'desktop',
     fit: 'cover',
     shots: [
-      { src: '/pics/crm/screen1.png', w: 1600, h: 1280 },
-      { src: '/pics/crm/screen2.png', w: 1600, h: 1280, crop: [780, 150, 150] },
-      { src: '/pics/crm/screen3.png', w: 1600, h: 1280, crop: [780, 145, 95] },
+      { img: crm1 },
+      { img: crm2, crop: [780, 150, 150] },
+      { img: crm3, crop: [780, 145, 95] },
     ],
     crop: [780, 155, 95],
     headline: 0,
@@ -43,11 +65,7 @@ export const caseMedia: CaseMedia[] = [
     /** these are wide, shallow panels — cropping to 4:3 would eat the content */
     shape: 'desktop',
     fit: 'contain',
-    shots: [
-      { src: '/pics/ERP/photo_1_2026-04-27_01-03-50.jpg', w: 1280, h: 585 },
-      { src: '/pics/ERP/photo_2_2026-04-27_01-03-50.jpg', w: 1280, h: 583 },
-      { src: '/pics/ERP/photo_3_2026-04-27_01-03-50.jpg', w: 1280, h: 284 },
-    ],
+    shots: [{ img: erp1 }, { img: erp2 }, { img: erp3 }],
     crop: [900, 170, 40],
     headline: 0,
   },
@@ -56,9 +74,9 @@ export const caseMedia: CaseMedia[] = [
     shape: 'desktop',
     fit: 'cover',
     shots: [
-      { src: '/pics/merk/screen1.png', w: 1600, h: 1280 },
-      { src: '/pics/merk/screen.png', w: 1600, h: 1280, crop: [780, 165, 200] },
-      { src: '/pics/merk/screen2.png', w: 1600, h: 1280, crop: [780, 165, 130] },
+      { img: merk1 },
+      { img: merk2, crop: [780, 165, 200] },
+      { img: merk3, crop: [780, 165, 130] },
     ],
     crop: [780, 160, 100],
     headline: 0,
@@ -67,11 +85,7 @@ export const caseMedia: CaseMedia[] = [
     slug: 'mindtrick',
     shape: 'phone',
     fit: 'contain',
-    shots: [
-      { src: '/pics/mobile/photo_2026-04-27_17-55-50.jpg', w: 566, h: 1280 },
-      { src: '/pics/mobile/photo_2026-04-27_17-55-51.jpg', w: 566, h: 1280 },
-      { src: '/pics/mobile/photo_2026-04-27_17-55-52.jpg', w: 566, h: 1280 },
-    ],
+    shots: [{ img: mob1 }, { img: mob2 }, { img: mob3 }],
     crop: [420, 0, 0],
     headline: 0,
   },
@@ -79,11 +93,7 @@ export const caseMedia: CaseMedia[] = [
     slug: 'smart-fashion',
     shape: 'desktop',
     fit: 'cover',
-    shots: [
-      { src: '/pics/website/2.png', w: 737, h: 537 },
-      { src: '/pics/website/3.jpg', w: 882, h: 700 },
-      { src: '/pics/website/4.jpg', w: 633, h: 582 },
-    ],
+    shots: [{ img: shop1 }, { img: shop2 }, { img: shop3 }],
     crop: [740, 60, 40],
     headline: 0,
   },
@@ -99,3 +109,6 @@ export const caseMedia: CaseMedia[] = [
 ];
 
 export const mediaFor = (slug: string) => caseMedia.find((m) => m.slug === slug)!;
+
+/** the first screen's image, shown at the top of the landing page */
+export const heroShot = crm1;

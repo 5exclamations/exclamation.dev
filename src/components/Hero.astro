@@ -1,6 +1,8 @@
 ---
+import { Picture } from 'astro:assets';
 import Icon from './Icon.astro';
 import Diff from './Diff.astro';
+import { heroShot } from '../data/cases';
 import { fill, type Dict } from '../i18n';
 
 interface Props {
@@ -38,11 +40,18 @@ const hero = dict.hero;
   <div class="shell">
     <figure class="hero-shot anim" style="--d: 460ms">
       <div class="hero-shot-frame">
-        <img
-          src="/pics/crm/screen1.png"
+        {/* the one image above the fold: eager, high priority, and the only
+            place on the site that does not lazy-load */}
+        <Picture
+          src={heroShot}
           alt={hero.shotAlt}
-          width="1600"
-          height="1280"
+          widths={[640, 960, 1280, 1600]}
+          {/* 780px below 640: the narrow view is a detail crop at fixed width,
+              not the whole screen scaled down */}
+          sizes="(min-width: 1240px) 1160px, (min-width: 640px) 92vw, 780px"
+          formats={['avif', 'webp']}
+          fallbackFormat="webp"
+          loading="eager"
           fetchpriority="high"
           decoding="async"
         />

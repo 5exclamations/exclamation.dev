@@ -1,4 +1,5 @@
 ---
+import { Picture } from 'astro:assets';
 import Icon from './Icon.astro';
 import CaseChat from './CaseChat.astro';
 import { localePath, type Dict, type Locale } from '../i18n';
@@ -26,11 +27,13 @@ const [lead, ...rest] = cases;
 
     <a class="case-lead" href={localePath(locale, `/is/${lead.slug}`)} data-reveal>
       <span class="frame frame-lead">
-        <img
-          src={lead.media.shots[0].src}
+        <Picture
+          src={lead.media.shots[0].img}
           alt={lead.alts[0]}
-          width={lead.media.shots[0].w}
-          height={lead.media.shots[0].h}
+          widths={[640, 960, 1280]}
+          sizes="(min-width: 1240px) 1060px, 92vw"
+          formats={['avif', 'webp']}
+          fallbackFormat="webp"
           loading="lazy"
           decoding="async"
         />
@@ -52,11 +55,13 @@ const [lead, ...rest] = cases;
           <a class="case-card" href={localePath(locale, `/is/${c.slug}`)}>
             <span class:list={['frame', `fit-${c.media.fit}`]}>
               {c.media.shots.length ? (
-                <img
-                  src={c.media.shots[0].src}
+                <Picture
+                  src={c.media.shots[0].img}
                   alt={c.alts[0]}
-                  width={c.media.shots[0].w}
-                  height={c.media.shots[0].h}
+                  widths={[320, 480, 720]}
+                  sizes="(min-width: 1024px) 380px, (min-width: 640px) 46vw, 100vw"
+                  formats={['avif', 'webp']}
+                  fallbackFormat="webp"
                   loading="lazy"
                   decoding="async"
                 />

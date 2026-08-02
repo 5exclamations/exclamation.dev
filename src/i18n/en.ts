@@ -164,7 +164,6 @@ export default {
     items: [
       { value: '40+', label: 'projects shipped' },
       { value: '{years}', label: 'years in business' },
-      { value: '{tech}', label: 'technologies in the stack' },
       { value: '3', label: 'working languages' },
     ],
   },

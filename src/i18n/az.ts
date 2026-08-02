@@ -164,7 +164,6 @@ export default {
     items: [
       { value: '40+', label: 'buraxılmış layihə' },
       { value: '{years}', label: 'il bazarda' },
-      { value: '{tech}', label: 'stekdə texnologiya' },
       { value: '3', label: 'dildə işləyirik' },
     ],
   },

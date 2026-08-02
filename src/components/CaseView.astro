@@ -1,4 +1,5 @@
 ---
+import { Picture } from 'astro:assets';
 import Icon from './Icon.astro';
 import Diff from './Diff.astro';
 import CaseChat from './CaseChat.astro';
@@ -68,11 +69,17 @@ const media = mediaFor(slug);
             return (
             <figure data-reveal>
               <div class="frame">
-                <img
-                  src={shot.src}
+                <Picture
+                  src={shot.img}
                   alt={item.alts[i]}
-                  width={shot.w}
-                  height={shot.h}
+                  widths={[480, 780, 1200, shot.img.width]}
+                  {/* below 640 the image is not scaled to the viewport — it is
+                      rendered at the crop width and slid under the frame, so
+                      `sizes` has to say cw, not 100vw, or the browser picks a
+                      candidate narrower than the pixels it actually paints */}
+                  sizes={`(min-width: 1024px) 1100px, (min-width: 640px) 92vw, ${cw}px`}
+                  formats={['avif', 'webp']}
+                  fallbackFormat="webp"
                   loading="lazy"
                   decoding="async"
                   style={`--crop-w: ${cw}px; --crop-x: ${-cx}px; --crop-y: ${-cy}px`}

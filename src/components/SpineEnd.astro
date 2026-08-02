@@ -1,0 +1,52 @@
+---
+/**
+ * The dot that closes the exclamation mark, on every route.
+ *
+ * The spine draws a 1px stroke down the whole page. This block's opaque
+ * ground cuts that stroke, leaves a gap, and sets the square on the same
+ * axis — stroke, gap, dot. It sits immediately above the footer, so the mark
+ * closes on case pages and the 404 exactly as it does on the landing page,
+ * instead of the stroke running into the footer rule and reading as a break.
+ *
+ * Hidden below 768 along with the spine itself: there is no rail there, so
+ * there is no stroke for a dot to terminate.
+ */
+---
+
+<div class="spine-end" aria-hidden="true">
+  <div class="shell">
+    <span class="dot"></span>
+  </div>
+</div>
+
+<style>
+  .spine-end {
+    position: relative;
+    z-index: 1;
+    background: var(--bg);
+    display: none;
+  }
+  @media (min-width: 768px) {
+    .spine-end {
+      display: block;
+      /* the gap of the mark, then the square, then the footer rule */
+      padding-top: var(--sp-chapter);
+      padding-bottom: var(--sp-section);
+    }
+  }
+
+  .spine-end .shell {
+    display: grid;
+    grid-template-columns: var(--rail) minmax(0, 1fr);
+  }
+
+  .dot {
+    width: 1rem;
+    height: 1rem;
+    background: var(--accent-flat);
+    justify-self: center;
+    /* the stroke is 1px wide starting at rail/2, so its centre is half a
+       pixel right of the column's centre */
+    transform: translateX(0.5px);
+  }
+</style>

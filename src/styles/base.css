@@ -17,11 +17,16 @@
     -moz-osx-font-smoothing: grayscale;
   }
   img,
-  picture,
   svg,
   video {
     display: block;
     max-width: 100%;
+  }
+  /* <picture> is a wrapper astro:assets adds around every optimised image.
+     display:contents takes it out of the layout entirely, so the frame rules
+     that size and position the <img> keep addressing it directly. */
+  picture {
+    display: contents;
   }
   input,
   button,

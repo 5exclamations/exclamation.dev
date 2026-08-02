@@ -1,6 +1,7 @@
 ---
 import '../styles/app.css';
 import Header from '../components/Header.astro';
+import SpineEnd from '../components/SpineEnd.astro';
 import Footer from '../components/Footer.astro';
 import { localePath, locales, localeSubset, type Locale, type Dict } from '../i18n';
 
@@ -94,6 +95,7 @@ const current = (Astro.url.pathname.replace(/\/+$/, '') || '/').replace(
       <main id="main" tabindex="-1">
         <slot />
       </main>
+      <SpineEnd />
       <Footer locale={locale} dict={dict} path={current} />
     </div>
 

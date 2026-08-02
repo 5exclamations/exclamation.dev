@@ -164,7 +164,6 @@ export default {
     items: [
       { value: '40+', label: 'запущенных проектов' },
       { value: '{years}', label: 'лет на рынке' },
-      { value: '{tech}', label: 'технологий в стеке' },
       { value: '3', label: 'языка в работе' },
     ],
   },

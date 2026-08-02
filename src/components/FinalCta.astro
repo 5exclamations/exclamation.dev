@@ -10,18 +10,16 @@ const fc = dict.finalcta;
 ---
 
 {/*
-  The payoff of the signature. The spine has drawn a 1px stroke down the whole
-  page; this section's opaque ground cuts it off, leaves a gap, and sets the
-  square beneath it. Stroke, gap, dot — the page is one exclamation mark.
+  The landing page's closing call. The terminating dot is not here — it lives
+  in SpineEnd, above the footer, so the exclamation mark closes the same way
+  on every route rather than only on this one.
 
   No eyebrow here on purpose: every other section is introduced by one, and
-  this block is punctuation rather than another chapter.
+  this block is the last word rather than another chapter.
 */}
 <section class="finalcta" aria-labelledby="finalcta-title">
   <div class="shell">
-    <div class="finalcta-row">
-      <span class="dot" aria-hidden="true"></span>
-      <div class="finalcta-body">
+    <div class="finalcta-body">
       <h2 id="finalcta-title" data-reveal>
         <span class="muted">{fc.titleMuted}</span> {fc.titleMain}
       </h2>
@@ -32,53 +30,21 @@ const fc = dict.finalcta;
         <a class="btn" href="#contact">
           {dict.hero.cta}
           <Icon name="arrow-right" size={17} />
-          </a>
-        </p>
-      </div>
+        </a>
+      </p>
     </div>
   </div>
 </section>
 
 <style>
-  /* opaque: this is what stops the spine. Everything below the top edge of
-     this section is beneath the dot, so the stroke must not reach it. */
-  /* the gap of the exclamation mark is this padding: the stroke stops at the
-     top edge, the dot is the first thing below it */
   .finalcta {
     position: relative;
     z-index: 1;
-    background: var(--bg);
-    padding-block: var(--sp-major);
+    padding-block: var(--sp-major) var(--sp-chapter);
   }
 
-  /* below 768 there is no rail and no spine, so the dot simply leads the
-     block; from 768 it takes the rail column and lands on the stroke's axis */
-  .finalcta-row {
-    display: grid;
-    gap: 1.5rem;
-  }
-  @media (min-width: 768px) {
-    .finalcta-row {
-      grid-template-columns: var(--rail) minmax(0, 1fr);
-      align-items: start;
-      gap: 0;
-    }
-    .dot {
-      justify-self: center;
-      /* the stroke is 1px wide starting at rail/2, so its centre is half a
-         pixel to the right of the column's centre */
-      transform: translateX(0.5px);
-    }
-  }
-
-  .dot {
-    width: 1rem;
-    height: 1rem;
-    background: var(--accent-flat);
-    /* em against the headline size, so the square keeps sitting on the cap
-       line of the first line at every viewport */
-    font-size: var(--fs-700);
-    margin-top: 0.3em;
+  .finalcta-body {
+    padding-left: var(--rail);
   }
 
   .finalcta h2 {
