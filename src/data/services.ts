@@ -62,6 +62,15 @@ export const services: ServiceRoute[] = [
     // category, not one of the nine, so this page gets no footer row. Decided
     // 2026-08-03 — the page is reached from the web copy and the services menu.
   },
+  {
+    key: 'integrations',
+    slugs: {
+      az: '/xidmetler/inteqrasiya-ve-avtomatlasdirma',
+      ru: '/uslugi/integracii-i-avtomatizaciya',
+      en: '/services/integrations-automation',
+    },
+    categoryIndex: 6, // İnteqrasiya və avtomatlaşdırma / Интеграции и автоматизация
+  },
 ];
 
 /** the service page for a landing-page category, if one has been written yet */

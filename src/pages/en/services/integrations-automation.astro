@@ -1,0 +1,23 @@
+---
+import Base from '../../../layouts/Base.astro';
+import ServicePage from '../../../components/ServicePage.astro';
+import { integrations } from '../../../i18n/services/integrations';
+import { serviceAlternates } from '../../../data/services';
+import { t } from '../../../i18n';
+
+const locale = 'en' as const;
+const dict = t(locale);
+const copy = integrations[locale];
+---
+
+<Base
+  locale={locale}
+  dict={dict}
+  meta={copy.meta}
+  ogKey="service-integrations"
+  schemaKind="service"
+  faq={copy.faq.items}
+  alternates={serviceAlternates('integrations')}
+>
+  <ServicePage locale={locale} dict={dict} copy={copy} />
+</Base>

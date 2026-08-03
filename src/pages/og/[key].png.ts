@@ -8,10 +8,11 @@ import { crmErp } from '../../i18n/services/crm-erp';
 import { web } from '../../i18n/services/web';
 import { mobile } from '../../i18n/services/mobile';
 import { ecommerce } from '../../i18n/services/ecommerce';
+import { integrations } from '../../i18n/services/integrations';
 import { services } from '../../data/services';
 
 /** service key -> its copy, so a new service page gets a card by adding one line */
-const serviceCopy: Record<string, typeof crmErp> = { 'crm-erp': crmErp, web, mobile, ecommerce };
+const serviceCopy: Record<string, typeof crmErp> = { 'crm-erp': crmErp, web, mobile, ecommerce, integrations };
 
 /**
  * Open Graph cards, rendered at build time.

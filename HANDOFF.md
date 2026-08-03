@@ -386,8 +386,7 @@ config so the preload URL and the rendered URL cannot drift apart.
 
 ## 9. Service pages
 
-Four pages exist. The remaining order, agreed with the client: integrations,
-then bots and AI — one at a time, each shown before the next is started. The structure is reusable, the copy is not.
+Five pages exist. One remains: bots and AI. The structure is reusable, the copy is not.
 
 | Service | az | ru | en |
 | --- | --- | --- | --- |
@@ -395,6 +394,7 @@ then bots and AI — one at a time, each shown before the next is started. The s
 | Web | `/xidmetler/veb-sayt-hazirlanmasi/` | `/ru/uslugi/razrabotka-saytov/` | `/en/services/web-development/` |
 | Mobile | `/xidmetler/mobil-tetbiq-hazirlanmasi/` | `/ru/uslugi/razrabotka-mobilnyh-prilozheniy/` | `/en/services/mobile-app-development/` |
 | E-commerce | `/xidmetler/onlayn-magaza/` | `/ru/uslugi/internet-magazin/` | `/en/services/ecommerce-development/` |
+| Integrations | `/xidmetler/inteqrasiya-ve-avtomatlasdirma/` | `/ru/uslugi/integracii-i-avtomatizaciya/` | `/en/services/integrations-automation/` |
 
 **How a new one is added.** Four things, in this order:
 
@@ -458,6 +458,12 @@ screenshot in the default 16/10 landscape frame shows a horizontal slice of
 nothing — caught on the mobile page, where the only linked case is MindTrick.
 A service with exactly one relevant case also gets a single-column grid, so
 the lone card does not read as a missing second one.
+
+**The two-tone h1 splits at the clause, not wherever `text-wrap: balance`
+lands.** `.svc-title .muted` is `display: block`. Service titles are long
+enough that without it the main clause starts mid-line — the Azerbaijani
+integrations title read "avtomatlaşdırma — eyni / məlumatı…", which is one
+sentence in two colours rather than two clauses. Short titles are unaffected.
 
 **A trailing em dash in `titleMuted` needs a non-breaking space before it**
 (`'… \u00a0—'`). Without it the dash wraps to the start of the next line in

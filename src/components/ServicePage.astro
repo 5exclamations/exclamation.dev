@@ -251,7 +251,12 @@ const cases = copy.cases.slugs
     font-weight: 300;
     max-width: 20ch;
   }
+  /* The two-tone h1 splits at the clause, not wherever `text-wrap: balance`
+     happens to land. Service titles are long enough that the main clause was
+     starting mid-line — "avtomatlaşdırma — eyni / məlumatı..." — which reads
+     as one sentence in two colours rather than two clauses. */
   .svc-title .muted {
+    display: block;
     color: var(--fg-muted);
   }
   .svc-lead {
