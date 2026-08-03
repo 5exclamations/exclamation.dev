@@ -71,6 +71,15 @@ export const services: ServiceRoute[] = [
     },
     categoryIndex: 6, // İnteqrasiya və avtomatlaşdırma / Интеграции и автоматизация
   },
+  {
+    key: 'bots-ai',
+    slugs: {
+      az: '/xidmetler/botlar-ve-ai-helleri',
+      ru: '/uslugi/boty-i-ai',
+      en: '/services/bots-ai',
+    },
+    categoryIndex: 4, // Botlar və AI həlləri / Боты и AI-решения
+  },
 ];
 
 /** the service page for a landing-page category, if one has been written yet */

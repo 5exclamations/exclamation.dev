@@ -386,7 +386,8 @@ config so the preload URL and the rendered URL cannot drift apart.
 
 ## 9. Service pages
 
-Five pages exist. One remains: bots and AI. The structure is reusable, the copy is not.
+All six service pages exist. The next task is a tone pass over the copy, not
+more pages — see §10. The structure is reusable, the copy is not.
 
 | Service | az | ru | en |
 | --- | --- | --- | --- |
@@ -395,6 +396,7 @@ Five pages exist. One remains: bots and AI. The structure is reusable, the copy 
 | Mobile | `/xidmetler/mobil-tetbiq-hazirlanmasi/` | `/ru/uslugi/razrabotka-mobilnyh-prilozheniy/` | `/en/services/mobile-app-development/` |
 | E-commerce | `/xidmetler/onlayn-magaza/` | `/ru/uslugi/internet-magazin/` | `/en/services/ecommerce-development/` |
 | Integrations | `/xidmetler/inteqrasiya-ve-avtomatlasdirma/` | `/ru/uslugi/integracii-i-avtomatizaciya/` | `/en/services/integrations-automation/` |
+| Bots / AI | `/xidmetler/botlar-ve-ai-helleri/` | `/ru/uslugi/boty-i-ai/` | `/en/services/bots-ai/` |
 
 **How a new one is added.** Four things, in this order:
 
@@ -468,3 +470,38 @@ sentence in two colours rather than two clauses. Short titles are unaffected.
 **A trailing em dash in `titleMuted` needs a non-breaking space before it**
 (`'… \u00a0—'`). Without it the dash wraps to the start of the next line in
 the h1. Caught on the web page at 1440; both pages now use it.
+
+---
+
+## 10. Next task: the tone pass
+
+The facts across the site are real; the prose reads as model-written. The
+client named the tells, 2026-08-03. This is the brief — do not start it until
+asked, and do not treat it as a licence to change any fact, number or claim.
+
+**What gives it away**
+
+- Paragraphs all the same length, three or four sentences each, never a short
+  one.
+- "Not just X, but Y" and "this is not about X — it is about Y". Antithesis
+  built on a dash.
+- Lists of three everywhere, including where two or five was the honest
+  number.
+- Throat-clearing before the point: "it is important to understand", "it is
+  worth noting", "as a rule".
+- A summarising sentence closing every section.
+- Marker words: comprehensive, effective, key, seamless, powerful tool.
+- Hedging nobody asked for: "in some cases", "may vary".
+- Every paragraph opening on its subject; none on "And", "But", "Whereas".
+
+**What is wanted instead**
+
+Break the rhythm — a short sentence after a long one, sometimes a fragment
+with no verb. Paragraphs of uneven length: five lines here, one line there.
+Direct statements without insurance on both sides. Uneven transitions; real
+writing is not always glued together logically.
+
+**Scope when it starts.** Every locale of all six service pages, plus the
+landing page and the case pages if the same tells show up there. The tone
+changes, the facts do not: durations, scope lists, the no-prices rule and the
+"when you do not need this" conditions all stay exactly as they are.

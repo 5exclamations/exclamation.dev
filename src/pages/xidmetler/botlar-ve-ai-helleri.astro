@@ -1,0 +1,23 @@
+---
+import Base from '../../layouts/Base.astro';
+import ServicePage from '../../components/ServicePage.astro';
+import { botsAi } from '../../i18n/services/bots-ai';
+import { serviceAlternates } from '../../data/services';
+import { t } from '../../i18n';
+
+const locale = 'az' as const;
+const dict = t(locale);
+const copy = botsAi[locale];
+---
+
+<Base
+  locale={locale}
+  dict={dict}
+  meta={copy.meta}
+  ogKey="service-bots-ai"
+  schemaKind="service"
+  faq={copy.faq.items}
+  alternates={serviceAlternates('bots-ai')}
+>
+  <ServicePage locale={locale} dict={dict} copy={copy} />
+</Base>
