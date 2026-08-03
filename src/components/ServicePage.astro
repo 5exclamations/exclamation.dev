@@ -2,6 +2,7 @@
 import { Picture } from 'astro:assets';
 import Icon from './Icon.astro';
 import BriefForm from './BriefForm.astro';
+import CaseChat from './CaseChat.astro';
 import { mediaFor } from '../data/cases';
 import { localePath, type Dict, type Locale } from '../i18n';
 import type { ServiceCopy } from '../i18n/services/types';
@@ -157,16 +158,22 @@ const cases = copy.cases.slugs
           <li data-reveal>
             <a class="svc-case" href={localePath(locale, `/is/${c.slug}`)}>
               <span class:list={['frame', `fit-${c.media.fit}`, `is-${c.media.shape}`]}>
-                <Picture
-                  src={c.media.shots[0].img}
-                  alt={c.alts[0]}
-                  widths={[320, 480, 720]}
-                  sizes="(min-width: 900px) 460px, 92vw"
-                  formats={['avif', 'webp']}
-                  fallbackFormat="webp"
-                  loading="lazy"
-                  decoding="async"
-                />
+                {/* one case has no screenshots and draws a mockup instead —
+                    the work index already handled that, this did not */}
+                {c.media.shots.length ? (
+                  <Picture
+                    src={c.media.shots[0].img}
+                    alt={c.alts[0]}
+                    widths={[320, 480, 720]}
+                    sizes="(min-width: 900px) 460px, 92vw"
+                    formats={['avif', 'webp']}
+                    fallbackFormat="webp"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                ) : (
+                  <CaseChat dict={dict} compact />
+                )}
               </span>
               <span class="svc-case-meta">
                 <span class="svc-case-name">{c.short}</span>

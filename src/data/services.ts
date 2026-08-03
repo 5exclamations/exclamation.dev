@@ -51,6 +51,17 @@ export const services: ServiceRoute[] = [
     },
     categoryIndex: 3, // Mobil tətbiqlər / Мобильные приложения
   },
+  {
+    key: 'ecommerce',
+    slugs: {
+      az: '/xidmetler/onlayn-magaza',
+      ru: '/uslugi/internet-magazin',
+      en: '/services/ecommerce-development',
+    },
+    // no categoryIndex on purpose: "online stores" is an item inside the Web
+    // category, not one of the nine, so this page gets no footer row. Decided
+    // 2026-08-03 — the page is reached from the web copy and the services menu.
+  },
 ];
 
 /** the service page for a landing-page category, if one has been written yet */

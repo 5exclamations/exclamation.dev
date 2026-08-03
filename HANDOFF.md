@@ -386,15 +386,15 @@ config so the preload URL and the rendered URL cannot drift apart.
 
 ## 9. Service pages
 
-Three pages exist. The remaining order, agreed with the client: online store,
-integrations, bots and AI — one at a time, each shown before the next is
-started. The structure is reusable, the copy is not.
+Four pages exist. The remaining order, agreed with the client: integrations,
+then bots and AI — one at a time, each shown before the next is started. The structure is reusable, the copy is not.
 
 | Service | az | ru | en |
 | --- | --- | --- | --- |
 | CRM / ERP | `/xidmetler/crm-erp-sistemleri/` | `/ru/uslugi/crm-erp/` | `/en/services/crm-erp/` |
 | Web | `/xidmetler/veb-sayt-hazirlanmasi/` | `/ru/uslugi/razrabotka-saytov/` | `/en/services/web-development/` |
 | Mobile | `/xidmetler/mobil-tetbiq-hazirlanmasi/` | `/ru/uslugi/razrabotka-mobilnyh-prilozheniy/` | `/en/services/mobile-app-development/` |
+| E-commerce | `/xidmetler/onlayn-magaza/` | `/ru/uslugi/internet-magazin/` | `/en/services/ecommerce-development/` |
 
 **How a new one is added.** Four things, in this order:
 
@@ -445,6 +445,12 @@ The e-commerce page gets no `categoryIndex` and no footer row — decided
 there; the page is reached from the web-development copy and the services
 menu. Six footer rows out of nine categories is the intended state, not a
 truncation to fix.
+
+**One case has no screenshots.** `ai-assistent` ships `shots: []` and draws
+the `CaseChat` mockup instead. The work index always handled that;
+`ServicePage` did not, and would have thrown on `shots[0].img` the moment a
+page linked it. Fixed when the e-commerce page became the first to do so —
+the bots-and-AI page will link it too.
 
 **The case frame follows the screenshot's shape.** `ServicePage` reads
 `media.shape` and `media.fit` the way the work index does. A portrait phone
