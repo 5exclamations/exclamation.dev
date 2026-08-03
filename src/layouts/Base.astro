@@ -21,9 +21,26 @@ interface Props {
    */
   ogKey?: string;
   /** which structured-data shape this route is */
-  schemaKind?: 'home' | 'case' | 'other';
+  schemaKind?: 'home' | 'case' | 'service' | 'other';
+  /** questions to publish as FAQPage; must match what the page renders */
+  faq?: { q: string; a: string }[];
+  /**
+   * Explicit per-locale paths, for routes whose slug differs by language
+   * (the service pages). Without this the alternates are derived by stripping
+   * the locale prefix, which only works when all three share one path.
+   */
+  alternates?: Record<Locale, string>;
 }
-const { locale, dict, meta, noindex = false, ogKey = 'page', schemaKind = 'other' } = Astro.props;
+const {
+  locale,
+  dict,
+  meta,
+  noindex = false,
+  ogKey = 'page',
+  schemaKind = 'other',
+  alternates,
+  faq,
+} = Astro.props;
 const head = meta ?? dict.meta;
 const subset = localeSubset[locale];
 const site = Astro.site?.toString().replace(/\/$/, '') ?? '';
@@ -33,6 +50,10 @@ const current = (Astro.url.pathname.replace(/\/+$/, '') || '/').replace(
   /^\/(ru|en)(?=\/|$)/,
   ''
 ) || '/';
+
+/** the canonical URL for each locale: explicit when given, derived otherwise */
+const hrefFor = (l: Locale) => alternates?.[l] ?? localePath(l, current);
+const selfPath = hrefFor(locale);
 
 /**
  * The landing page's LCP element is the hero screenshot. Without a preload the
@@ -64,11 +85,11 @@ const heroPreload =
       <meta name="robots" content="noindex, follow" />
     ) : (
       <>
-        <link rel="canonical" href={`${site}${localePath(locale, current)}`} />
+        <link rel="canonical" href={`${site}${selfPath}`} />
         {locales.map((l) => (
-          <link rel="alternate" hreflang={l} href={`${site}${localePath(l, current)}`} />
+          <link rel="alternate" hreflang={l} href={`${site}${hrefFor(l)}`} />
         ))}
-        <link rel="alternate" hreflang="x-default" href={`${site}${current}`} />
+        <link rel="alternate" hreflang="x-default" href={`${site}${hrefFor('az')}`} />
       </>
     )}
 
@@ -102,7 +123,7 @@ const heroPreload =
     <meta property="og:title" content={head.title} />
     <meta property="og:description" content={head.description} />
     <meta property="og:locale" content={locale} />
-    <meta property="og:url" content={`${site}${localePath(locale, current)}`} />
+    <meta property="og:url" content={`${site}${selfPath}`} />
     <meta property="og:image" content={`${site}/og/${ogKey}-${locale}.png`} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -110,7 +131,15 @@ const heroPreload =
     <meta name="twitter:card" content="summary_large_image" />
 
     {!noindex && (
-      <Schema locale={locale} dict={dict} path={current} kind={schemaKind} title={head.title} />
+      <Schema
+        locale={locale}
+        dict={dict}
+        path={selfPath}
+        kind={schemaKind}
+        title={head.title}
+        faq={faq}
+        absolute
+      />
     )}
 
     <script is:inline>
@@ -139,12 +168,12 @@ const heroPreload =
       <div class="spine-wrap" aria-hidden="true">
         <div class="shell spine-shell"><span class="spine"></span></div>
       </div>
-      <Header locale={locale} dict={dict} path={current} />
+      <Header locale={locale} dict={dict} path={current} alternates={alternates} />
       <main id="main" tabindex="-1">
         <slot />
       </main>
       <SpineEnd />
-      <Footer locale={locale} dict={dict} path={current} />
+      <Footer locale={locale} dict={dict} path={current} alternates={alternates} />
     </div>
 
     <script>

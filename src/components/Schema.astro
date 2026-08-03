@@ -14,16 +14,25 @@ import {
 interface Props {
   locale: Locale;
   dict: Dict;
-  /** locale-free path of the current page */
+  /** page path; locale-free unless `absolute` is set */
   path: string;
-  kind: 'home' | 'case' | 'other';
+  /** true when `path` is already the full per-locale path */
+  absolute?: boolean;
+  kind: 'home' | 'case' | 'service' | 'other';
+  /**
+   * Questions to publish as FAQPage. Passed in rather than read from the
+   * dictionary, because service pages carry their own FAQ — and whatever is
+   * passed must be the same object the page renders, or the markup describes
+   * questions the visitor cannot see.
+   */
+  faq?: { q: string; a: string }[];
   /** page title, for the breadcrumb leaf */
   title: string;
 }
-const { locale, dict, path, kind, title } = Astro.props;
+const { locale, dict, path, kind, title, absolute = false, faq } = Astro.props;
 
 const SITE = 'https://exclamationdev.com';
-const url = `${SITE}${localePath(locale, path)}`;
+const url = `${SITE}${absolute ? path : localePath(locale, path)}`;
 const phone = channels.find((c) => c.key === 'phone')!.value.replace(/\s/g, '');
 
 /**
@@ -78,13 +87,15 @@ const service = {
  * question and answer strings are identical to the visible text by
  * construction rather than by somebody remembering to update both.
  */
+const questions = faq ?? (kind === 'home' ? dict.faq.items : null);
+
 const faqPage =
-  kind === 'home'
+  questions
     ? {
         '@type': 'FAQPage',
         '@id': `${url}#faq`,
         inLanguage: locale,
-        mainEntity: dict.faq.items.map((item) => ({
+        mainEntity: questions.map((item) => ({
           '@type': 'Question',
           name: item.q,
           acceptedAnswer: { '@type': 'Answer', text: item.a },

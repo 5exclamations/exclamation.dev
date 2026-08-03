@@ -1,0 +1,336 @@
+---
+import Icon from './Icon.astro';
+import { EMAIL } from '../data/contacts';
+
+/**
+ * The brief form, shared by the contact section and every service page.
+ *
+ * Extracted rather than copied: the honeypot, the validation behaviour, the
+ * loading/success/error states and the mailto fallback all have to stay
+ * identical everywhere, and a second copy is a second thing to forget.
+ *
+ * `subject` rides along as a hidden field so a submission says which page it
+ * came from — a service enquiry and a general one land in the same inbox
+ * otherwise.
+ */
+interface Props {
+  copy: {
+  title: string;
+  name: string;
+  namePh: string;
+  contact: string;
+  contactPh: string;
+  message: string;
+  messagePh: string;
+  consent: string;
+  submit: string;
+  sending: string;
+  success: string;
+  error: string;
+  errorMailto: string;
+  required: string;
+  };
+  /** unique per page, so the field ids and their labels stay paired */
+  formId?: string;
+  /** what the enquiry is about, sent as a hidden field */
+  subject?: string;
+}
+const { copy: f, formId = 'brief', subject } = Astro.props;
+
+/**
+ * The endpoint is configuration, not source: it comes from FORMSPREE_ID at
+ * build time and is never committed (see .env.example). With no id set the
+ * form still renders and still validates — it just posts nowhere, so the
+ * mailto channel below it is the working path. Cloudflare Pages supplies the
+ * real value in the build environment.
+ */
+const FORMSPREE_ID = import.meta.env.FORMSPREE_ID ?? '';
+const action = FORMSPREE_ID ? `https://formspree.io/f/${FORMSPREE_ID}` : '';
+/** Wired up at the deploy step; with no key the slot stays empty. */
+const TURNSTILE_SITE_KEY = import.meta.env.TURNSTILE_SITE_KEY ?? '';
+
+if (!FORMSPREE_ID) {
+  console.warn(
+  '[BriefForm] FORMSPREE_ID is not set — the form will not submit. Copy .env.example to .env.'
+  );
+}
+---
+
+<form
+  class="brief"
+  id={formId}
+  action={action}
+  method="POST"
+  data-state="idle"
+  data-sending={f.sending}
+  data-success={f.success}
+  data-error={f.error}
+  >
+  <h3 class="mono brief-title">{f.title}</h3>
+
+  {subject && <input type="hidden" name="_subject" value={subject} />}
+
+  <p class="field">
+    <label for={`${formId}-name`}>
+      {f.name} <span class="req mono">{f.required}</span>
+    </label>
+    <input
+      id={`${formId}-name`}
+      name="name"
+      type="text"
+      autocomplete="name"
+      placeholder={f.namePh}
+      required
+    />
+  </p>
+
+  <p class="field">
+    <label for={`${formId}-contact`}>
+      {f.contact} <span class="req mono">{f.required}</span>
+    </label>
+    <input
+      id={`${formId}-contact`}
+      name="contact"
+      type="text"
+      inputmode="email"
+      autocomplete="email"
+      placeholder={f.contactPh}
+      required
+    />
+  </p>
+
+  <p class="field">
+    <label for={`${formId}-message`}>
+      {f.message} <span class="req mono">{f.required}</span>
+    </label>
+    <textarea
+      id={`${formId}-message`}
+      name="message"
+      rows="5"
+      placeholder={f.messagePh}
+      required></textarea>
+  </p>
+
+  {/* Formspree discards anything that arrives with _gotcha filled in.
+      Off-screen rather than display:none, so a bot's layout engine
+      still sees a real field. */}
+  <p class="gotcha" aria-hidden="true">
+    <label for={`${formId}-gotcha`}>Do not fill this in</label>
+    <input id={`${formId}-gotcha`} name="_gotcha" type="text" tabindex="-1" autocomplete="off" />
+  </p>
+
+  {/* Turnstile mounts here at the deploy step; empty until then. */}
+  <div
+    class="brief-turnstile"
+    {...(TURNSTILE_SITE_KEY ? { 'data-sitekey': TURNSTILE_SITE_KEY } : {})}
+  >
+  </div>
+
+  <p class="consent">
+    <input id={`${formId}-consent`} name="consent" type="checkbox" required />
+    <label for={`${formId}-consent`}>{f.consent}</label>
+  </p>
+
+  <div class="brief-actions">
+    <button class="btn" type="submit">
+      <span data-submit-label>{f.submit}</span>
+      <Icon name="arrow-right" size={17} />
+    </button>
+  </div>
+
+  <p class="brief-status" role="status" aria-live="polite" data-status></p>
+
+  {/* the path that works with no JS, no endpoint and no third party */}
+  <div class="brief-fallback">
+    <p>{f.errorMailto}</p>
+    <a class="brief-mailto" href={`mailto:${EMAIL}`}>{EMAIL}</a>
+  </div>
+  </form>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('form.brief');
+  if (form && form.getAttribute('action')) {
+  const status = form.querySelector<HTMLElement>('[data-status]');
+  const label = form.querySelector<HTMLElement>('[data-submit-label]');
+  const button = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+  const copy = {
+    sending: form.dataset.sending ?? '',
+    success: form.dataset.success ?? '',
+    error: form.dataset.error ?? '',
+  };
+
+  const set = (state: 'idle' | 'sending' | 'success' | 'error', message = '') => {
+    form.dataset.state = state;
+    if (status) status.textContent = message;
+    if (button) button.disabled = state === 'sending';
+    if (label && state === 'sending') label.textContent = copy.sending;
+  };
+
+  // no `novalidate` on the form: the browser blocks an invalid submit before
+  // this ever fires, so validation still works with JS off
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const idle = label?.textContent ?? '';
+    set('sending', copy.sending);
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' },
+      });
+      if (!res.ok) throw new Error(String(res.status));
+      form.reset();
+      set('success', copy.success);
+    } catch {
+      set('error', copy.error);
+    } finally {
+      if (label) label.textContent = idle;
+    }
+  });
+  }
+</script>
+
+<style>
+  .brief-title {
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: var(--sp-block);
+  }
+
+  .field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  }
+  /* the marker sits at the far end of the label row, so it reads as a column
+   note and not as part of the field name ("Ad zəruri") */
+  .field label {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: var(--fs-200);
+  color: var(--fg-muted);
+  }
+  .req {
+  text-transform: none;
+  letter-spacing: 0.04em;
+  color: var(--fg-muted);
+  }
+
+  .field input,
+  .field textarea {
+  /* never below 16px: anything smaller makes Safari zoom the page on focus */
+  font-size: max(1rem, var(--fs-300));
+  font-family: var(--font-text);
+  line-height: 1.5;
+  color: var(--fg);
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  border-radius: 0;
+  padding: 0.75rem 0.875rem;
+  min-height: 3rem;
+  transition: border-color 140ms var(--ease);
+  }
+  .field textarea {
+  resize: vertical;
+  min-height: 8rem;
+  }
+  .field input::placeholder,
+  .field textarea::placeholder {
+  color: var(--fg-muted);
+  }
+  .field input:hover,
+  .field textarea:hover {
+  border-color: var(--fg-muted);
+  }
+  .field input:focus-visible,
+  .field textarea:focus-visible {
+  outline-offset: 1px;
+  border-color: var(--accent);
+  }
+
+  /* off-screen, not display:none — a headless bot still reads it as fillable */
+  .gotcha {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  }
+
+  .brief-turnstile:not(:empty) {
+  margin-bottom: 1.5rem;
+  }
+
+  .consent {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: var(--sp-block);
+  }
+  .consent input {
+  width: 1.125rem;
+  height: 1.125rem;
+  accent-color: var(--accent-flat);
+  }
+  /* the box is 18px, so the label carries the 44px target: 22px of text
+   plus 11px of padding either side */
+  .consent label {
+  font-size: var(--fs-200);
+  color: var(--fg-muted);
+  padding-block: 0.6875rem;
+  cursor: pointer;
+  }
+
+  .brief-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  }
+  .brief button[type='submit']:disabled {
+  opacity: 0.72;
+  cursor: progress;
+  }
+
+  .brief-status:empty {
+  display: none;
+  }
+  /* a rule, not a shadow: the only inset box-shadow on the site is the
+   diff block's accent bar */
+  .brief-status {
+  margin-top: 1rem;
+  font-size: var(--fs-200);
+  padding-left: 0.875rem;
+  border-left: 2px solid var(--line-strong);
+  color: var(--fg-muted);
+  }
+  .brief[data-state='success'] .brief-status,
+  .brief[data-state='error'] .brief-status {
+  border-left-color: var(--accent-flat);
+  color: var(--fg);
+  }
+
+  .brief-fallback {
+  margin-top: 1.25rem;
+  font-size: var(--fs-200);
+  color: var(--fg-muted);
+  }
+  /* its own line, so the link clears 44px without stretching a sentence */
+  .brief-mailto {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  font-family: var(--font-mono);
+  color: var(--fg);
+  text-decoration-color: var(--line-strong);
+  text-underline-offset: 0.2em;
+  transition: color 140ms var(--ease);
+  }
+  .brief-mailto:hover {
+  color: var(--accent);
+  }
+</style>

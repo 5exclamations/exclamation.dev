@@ -7,8 +7,11 @@ interface Props {
   dict: Dict;
   /** locale-free path of the current page, so the language links stay put */
   path: string;
+  /** explicit per-locale paths, for routes whose slug differs by language */
+  alternates?: Record<Locale, string>;
 }
-const { locale, dict, path } = Astro.props;
+const { locale, dict, path, alternates } = Astro.props;
+const hrefFor = (l: Locale) => alternates?.[l] ?? localePath(l, path);
 const ft = dict.footer;
 ---
 
@@ -76,7 +79,7 @@ const ft = dict.footer;
             <li>
               <a
                 class="mono"
-                href={localePath(l, path)}
+                href={hrefFor(l)}
                 lang={l}
                 hreflang={l}
                 aria-current={l === locale ? 'true' : undefined}

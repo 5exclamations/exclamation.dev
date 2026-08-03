@@ -1,0 +1,650 @@
+---
+import { Picture } from 'astro:assets';
+import Icon from './Icon.astro';
+import BriefForm from './BriefForm.astro';
+import { mediaFor } from '../data/cases';
+import { localePath, type Dict, type Locale } from '../i18n';
+import type { ServiceCopy } from '../i18n/services/types';
+
+/**
+ * The skeleton every service page is built on.
+ *
+ * It owns structure only — no copy lives here. Each service supplies its own
+ * `ServiceCopy`, written for that service in that language rather than
+ * translated across, because the pages are meant to rank on different
+ * queries and a word-swapped template ranks on none of them.
+ *
+ * Section order follows the same rule as the landing page: no two adjacent
+ * blocks share a skeleton. Lead → prose → two-column scope → price drivers →
+ * stack index → numbered timeline → the honest "not for you" → cases → FAQ →
+ * form.
+ */
+interface Props {
+  locale: Locale;
+  dict: Dict;
+  copy: ServiceCopy;
+}
+const { locale, dict, copy } = Astro.props;
+
+const cases = copy.cases.slugs
+  .map((slug) => {
+    const item = dict.cases.find((c) => c.slug === slug);
+    return item ? { ...item, media: mediaFor(slug) } : null;
+  })
+  .filter((c): c is NonNullable<typeof c> => c !== null);
+---
+
+<article class="svc">
+  <header class="svc-head">
+    <div class="shell">
+      <div class="svc-head-in">
+        <p class="mono">{copy.eyebrow}</p>
+        <h1 class="svc-title">
+          <span class="muted">{copy.titleMuted}</span> {copy.titleMain}
+        </h1>
+
+        {/* The direct answer, first thing on the page and quotable whole:
+            what it is, how long it takes, what it costs to find out. */}
+        <p class="svc-lead">{copy.lead}</p>
+
+        <dl class="svc-facts">
+          {copy.facts.map((f) => (
+            <div class="svc-fact">
+              <dt class="mono">{f.label}</dt>
+              <dd class="num">{f.value}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </div>
+  </header>
+
+  <div class="shell">
+    <section class="svc-prose" aria-labelledby="svc-intro">
+      <h2 id="svc-intro" class="visually-hidden">{copy.introTitle}</h2>
+      {copy.intro.map((p) => (
+        <p data-reveal>{p}</p>
+      ))}
+    </section>
+
+    <section class="svc-scope" aria-labelledby="svc-scope-title">
+      <h2 id="svc-scope-title" class="svc-h2" data-reveal>{copy.scope.title}</h2>
+      <div class="svc-scope-grid">
+        <div class="svc-col" data-reveal>
+          <h3 class="mono">{copy.scope.includesTitle}</h3>
+          <ul class="svc-list">
+            {copy.scope.includes.map((i) => <li>{i}</li>)}
+          </ul>
+        </div>
+        <div class="svc-col" data-reveal>
+          <h3 class="mono">{copy.scope.excludesTitle}</h3>
+          <ul class="svc-list svc-list-out">
+            {copy.scope.excludes.map((i) => <li>{i}</li>)}
+          </ul>
+        </div>
+      </div>
+      <div class="svc-deliver" data-reveal>
+        <h3 class="mono">{copy.scope.deliverTitle}</h3>
+        <ul class="svc-deliver-list">
+          {copy.scope.deliver.map((i) => <li>{i}</li>)}
+        </ul>
+      </div>
+    </section>
+
+    <section class="svc-price" aria-labelledby="svc-price-title">
+      <h2 id="svc-price-title" class="svc-h2" data-reveal>{copy.pricing.title}</h2>
+      <p class="svc-h2-lead svc-price-lead" data-reveal>{copy.pricing.lead}</p>
+      <ol class="svc-drivers">
+        {copy.pricing.drivers.map((d, i) => (
+          <li data-reveal>
+            <span class="mono svc-driver-n" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+            <span class="svc-driver-text">{d}</span>
+          </li>
+        ))}
+      </ol>
+      <p class="svc-price-note" data-reveal>{copy.pricing.note}</p>
+    </section>
+
+    <section class="svc-stack" aria-labelledby="svc-stack-title">
+      <h2 id="svc-stack-title" class="svc-h2" data-reveal>{copy.stack.title}</h2>
+      <p class="svc-h2-lead svc-stack-note" data-reveal>{copy.stack.note}</p>
+      <div class="svc-stack-grid">
+        {copy.stack.groups.map((g) => (
+          <div class="svc-stack-group" data-reveal>
+            <h3 class="mono" lang="en">{g.name}</h3>
+            <ul>
+              {g.items.map((i) => <li>{i}</li>)}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="svc-steps" aria-labelledby="svc-steps-title">
+      <h2 id="svc-steps-title" class="svc-h2" data-reveal>{copy.timeline.title}</h2>
+      <ol class="svc-steps-list">
+        {copy.timeline.steps.map((s, i) => (
+          <li data-reveal>
+            <span class="mono svc-step-n" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+            <h3 class="svc-step-title">{s.title}</h3>
+            <span class="mono svc-step-time num">{s.time}</span>
+            <p class="svc-step-text">{s.text}</p>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    {/* The section that turns enquiries away. It is here because a brief that
+        should never have been sent costs both sides a week. */}
+    <section class="svc-not" aria-labelledby="svc-not-title">
+      <h2 id="svc-not-title" class="svc-h2" data-reveal>{copy.notFor.title}</h2>
+      <p class="svc-h2-lead svc-not-lead" data-reveal>{copy.notFor.lead}</p>
+      <div class="svc-not-grid">
+        {copy.notFor.items.map((n) => (
+          <div class="svc-not-item" data-reveal>
+            <h3 class="svc-not-cond">{n.cond}</h3>
+            <p>{n.text}</p>
+          </div>
+        ))}
+      </div>
+      <p class="svc-not-close" data-reveal>{copy.notFor.close}</p>
+    </section>
+
+    <section class="svc-cases" aria-labelledby="svc-cases-title">
+      <h2 id="svc-cases-title" class="svc-h2" data-reveal>{copy.cases.title}</h2>
+      <ul class="svc-cases-grid">
+        {cases.map((c) => (
+          <li data-reveal>
+            <a class="svc-case" href={localePath(locale, `/is/${c.slug}`)}>
+              <span class="frame">
+                <Picture
+                  src={c.media.shots[0].img}
+                  alt={c.alts[0]}
+                  widths={[320, 480, 720]}
+                  sizes="(min-width: 900px) 460px, 92vw"
+                  formats={['avif', 'webp']}
+                  fallbackFormat="webp"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </span>
+              <span class="svc-case-meta">
+                <span class="svc-case-name">{c.short}</span>
+                <span class="svc-case-metric num">{c.results[c.media.headline].value}</span>
+                <span class="mono svc-case-domain">{c.domain}</span>
+                <span class="svc-case-open">
+                  {dict.work.open}
+                  <Icon name="arrow-right" size={16} />
+                </span>
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="svc-faq" aria-labelledby="svc-faq-title">
+      <h2 id="svc-faq-title" class="svc-h2" data-reveal>{copy.faq.title}</h2>
+      <div class="svc-faq-list">
+        {copy.faq.items.map((item) => (
+          <details class="svc-faq-item" name="svc-faq" data-reveal>
+            <summary>
+              <span class="svc-faq-q">{item.q}</span>
+              <Icon name="plus" size={20} class="svc-faq-mark" />
+            </summary>
+            <div class="svc-faq-a"><p>{item.a}</p></div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <section class="svc-form" id="brief" aria-labelledby="svc-form-title">
+      <div class="svc-form-grid">
+        <div class="svc-form-aside">
+          <h2 id="svc-form-title" class="svc-h2" data-reveal>{copy.cta.title}</h2>
+          <p class="svc-h2-lead svc-form-note" data-reveal>{copy.cta.text}</p>
+        </div>
+        <div>
+          <BriefForm copy={dict.contact.form} formId="svc-brief" subject={copy.cta.subject} />
+        </div>
+      </div>
+    </section>
+  </div>
+</article>
+
+<style>
+  .svc {
+    position: relative;
+    z-index: 1;
+  }
+
+  .svc-h2 {
+    font-size: var(--fs-600);
+    font-weight: 300;
+    max-width: 22ch;
+    margin-bottom: var(--sp-block);
+  }
+  /* a heading followed by its own lead paragraph keeps them together, instead
+     of every such lead cancelling the gap with a negative margin */
+  .svc-h2:has(+ .svc-h2-lead) {
+    margin-bottom: 1rem;
+  }
+  .svc-h2-lead {
+    margin-bottom: var(--sp-block);
+  }
+
+  /* ---- head: the answer, then the numbers ---- */
+  .svc-head-in {
+    padding-left: var(--rail);
+    padding-block: var(--sp-section);
+  }
+  .svc-title {
+    margin: 1rem 0 clamp(1.5rem, 3vw, 2rem);
+    font-size: var(--fs-700);
+    font-weight: 300;
+    max-width: 20ch;
+  }
+  .svc-title .muted {
+    color: var(--fg-muted);
+  }
+  .svc-lead {
+    font-size: var(--fs-400);
+    line-height: 1.55;
+    max-width: 58ch;
+  }
+
+  .svc-facts {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--sp-block) clamp(1rem, 3vw, 2.5rem);
+    margin-top: var(--sp-section);
+    padding-top: var(--sp-block);
+    border-top: 1px solid var(--line);
+  }
+  @media (min-width: 560px) {
+    .svc-facts {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  .svc-fact dt {
+    color: var(--fg-muted);
+    margin-bottom: 0.5rem;
+  }
+  .svc-fact dd {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--fs-500);
+    font-weight: 300;
+    line-height: 1.1;
+  }
+
+  /* ---- prose: typography only ---- */
+  .svc-prose {
+    padding-left: var(--rail);
+    padding-block: var(--sp-chapter);
+    border-top: 1px solid var(--line);
+  }
+  .svc-prose p {
+    font-size: var(--fs-400);
+    line-height: 1.62;
+    max-width: 58ch;
+  }
+  .svc-prose p + p {
+    margin-top: 1.25em;
+  }
+
+  /* ---- scope: two columns of hairline rows ---- */
+  .svc-scope,
+  .svc-price,
+  .svc-stack,
+  .svc-steps,
+  .svc-not,
+  .svc-cases,
+  .svc-faq,
+  .svc-form {
+    padding-left: var(--rail);
+    padding-block: var(--sp-chapter);
+    border-top: 1px solid var(--line);
+  }
+
+  .svc-scope-grid {
+    display: grid;
+    gap: var(--sp-section) clamp(1.5rem, 4vw, 3.5rem);
+  }
+  @media (min-width: 768px) {
+    .svc-scope-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  .svc-col h3,
+  .svc-deliver h3 {
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .svc-list {
+    margin-top: 0.5rem;
+  }
+  .svc-list li {
+    padding-block: 0.75rem;
+    border-bottom: 1px solid var(--line);
+    font-size: var(--fs-200);
+    line-height: 1.5;
+  }
+  /* out-of-scope items read as removals: struck, muted, never red */
+  .svc-list-out li {
+    color: var(--fg-muted);
+    text-decoration: line-through;
+    text-decoration-color: var(--line-strong);
+  }
+
+  .svc-deliver {
+    margin-top: var(--sp-section);
+  }
+  .svc-deliver-list {
+    margin-top: 0.5rem;
+    display: grid;
+    gap: 0;
+  }
+  @media (min-width: 768px) {
+    .svc-deliver-list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: clamp(1.5rem, 4vw, 3.5rem);
+    }
+  }
+  .svc-deliver-list li {
+    padding-block: 0.75rem;
+    border-bottom: 1px solid var(--line);
+    font-size: var(--fs-200);
+  }
+
+  /* ---- price drivers: a numbered sequence, so numbering is honest ---- */
+  .svc-price-lead {
+    color: var(--fg-muted);
+    max-width: 52ch;
+  }
+  .svc-drivers {
+    max-width: 46rem;
+  }
+  .svc-drivers li {
+    display: grid;
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+    column-gap: clamp(0.75rem, 2vw, 1.5rem);
+    padding-block: clamp(0.875rem, 2vw, 1.25rem);
+    border-top: 1px solid var(--line);
+  }
+  .svc-drivers li:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+  .svc-driver-n {
+    color: var(--fg-muted);
+  }
+  .svc-driver-text {
+    font-size: var(--fs-300);
+    line-height: 1.5;
+  }
+  .svc-price-note {
+    margin-top: var(--sp-block);
+    max-width: 52ch;
+    color: var(--fg-muted);
+    font-size: var(--fs-200);
+  }
+
+  /* ---- stack: an index of names ---- */
+  .svc-stack-note {
+    color: var(--fg-muted);
+    max-width: 52ch;
+  }
+  .svc-stack-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--sp-block) clamp(1rem, 2.5vw, 2rem);
+  }
+  @media (min-width: 900px) {
+    .svc-stack-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+  .svc-stack-group h3 {
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .svc-stack-group ul {
+    margin-top: 0.875rem;
+    font-family: var(--font-mono);
+    font-size: var(--fs-200);
+    line-height: 1.4;
+  }
+  .svc-stack-group li + li {
+    margin-top: 0.5rem;
+  }
+
+  /* ---- timeline ---- */
+  .svc-steps-list li {
+    display: grid;
+    grid-template-columns: 2.5rem minmax(0, 1fr) auto;
+    column-gap: clamp(0.75rem, 2vw, 1.5rem);
+    row-gap: 0.5rem;
+    padding-block: clamp(1rem, 2.4vw, 1.5rem);
+    border-top: 1px solid var(--line);
+    align-items: baseline;
+  }
+  .svc-steps-list li:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+  .svc-step-n {
+    color: var(--fg-muted);
+    grid-area: 1 / 1;
+  }
+  .svc-step-title {
+    grid-area: 1 / 2;
+    font-size: var(--fs-400);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+  .svc-step-time {
+    grid-area: 1 / 3;
+    text-align: right;
+    color: var(--fg-muted);
+    white-space: nowrap;
+  }
+  .svc-step-text {
+    grid-area: 2 / 2 / 3 / -1;
+    color: var(--fg-muted);
+    font-size: var(--fs-200);
+    line-height: 1.55;
+    max-width: 62ch;
+  }
+
+  /* ---- the honest section: sparse, no rules, asymmetric ---- */
+  .svc-not-lead {
+    max-width: 52ch;
+    font-size: var(--fs-400);
+    margin-bottom: var(--sp-section);
+  }
+  .svc-not-grid {
+    display: grid;
+    gap: var(--sp-section) clamp(1.5rem, 4vw, 3rem);
+  }
+  @media (min-width: 900px) {
+    .svc-not-grid {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+    .svc-not-item:nth-child(1) {
+      grid-column: 1 / 8;
+    }
+    .svc-not-item:nth-child(2) {
+      grid-column: 4 / 12;
+    }
+    .svc-not-item:nth-child(3) {
+      grid-column: 2 / 10;
+    }
+    .svc-not-item:nth-child(4) {
+      grid-column: 5 / 13;
+    }
+  }
+  .svc-not-cond {
+    font-size: var(--fs-500);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.75rem;
+  }
+  .svc-not-item p {
+    color: var(--fg-muted);
+    max-width: 48ch;
+    line-height: 1.6;
+  }
+  .svc-not-close {
+    margin-top: var(--sp-section);
+    padding-top: var(--sp-block);
+    border-top: 1px solid var(--line);
+    max-width: 56ch;
+  }
+
+  /* ---- cases ---- */
+  .svc-cases-grid {
+    display: grid;
+    gap: var(--sp-section) clamp(1rem, 2.5vw, 2rem);
+  }
+  @media (min-width: 700px) {
+    .svc-cases-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  .svc-case {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+  .frame {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    background: var(--bg-raised);
+    border: 1px solid var(--line);
+    aspect-ratio: 16 / 10;
+  }
+  .frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
+  .svc-case-meta {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: baseline;
+    column-gap: 1rem;
+    padding-top: 0.875rem;
+  }
+  .svc-case-name {
+    font-family: var(--font-display);
+    font-size: var(--fs-400);
+  }
+  .svc-case-metric {
+    font-family: var(--font-display);
+    font-size: var(--fs-400);
+    text-align: right;
+  }
+  .svc-case-domain {
+    grid-column: 1;
+    text-transform: none;
+    color: var(--fg-muted);
+  }
+  .svc-case-open {
+    grid-column: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-size: var(--fs-200);
+    color: var(--fg-muted);
+    white-space: nowrap;
+    transition: color 140ms var(--ease);
+  }
+  @media (hover: hover) {
+    .svc-case:hover .frame {
+      border-color: var(--fg);
+    }
+    .svc-case:hover .svc-case-open {
+      color: var(--accent);
+    }
+  }
+  .svc-case:focus-visible {
+    outline-offset: 4px;
+  }
+
+  /* ---- faq ---- */
+  .svc-faq-list {
+    max-width: 54rem;
+  }
+  .svc-faq-item {
+    border-top: 1px solid var(--line);
+  }
+  .svc-faq-item:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+  .svc-faq-item summary {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding-block: clamp(1rem, 2.2vw, 1.375rem);
+    cursor: pointer;
+    list-style: none;
+  }
+  .svc-faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+  .svc-faq-item summary:focus-visible {
+    outline-offset: -2px;
+  }
+  .svc-faq-q {
+    font-family: var(--font-display);
+    font-size: var(--fs-400);
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+  .svc-faq-mark {
+    flex: none;
+    margin-top: 0.15em;
+    color: var(--fg-muted);
+    transition: transform 180ms var(--ease), color 140ms var(--ease);
+  }
+  .svc-faq-item[open] .svc-faq-mark {
+    transform: rotate(45deg);
+    color: var(--fg);
+  }
+  .svc-faq-a {
+    padding-bottom: clamp(1rem, 2.2vw, 1.5rem);
+    padding-right: 2.75rem;
+  }
+  .svc-faq-a p {
+    color: var(--fg-muted);
+    max-width: 62ch;
+  }
+  @media (hover: hover) {
+    .svc-faq-item summary:hover .svc-faq-mark {
+      color: var(--accent);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .svc-faq-mark {
+      transition: none;
+    }
+  }
+
+  /* ---- form ---- */
+  .svc-form-grid {
+    display: grid;
+    gap: var(--sp-section) clamp(1.5rem, 4vw, 3.5rem);
+  }
+  @media (min-width: 900px) {
+    .svc-form-grid {
+      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    }
+  }
+  .svc-form-note {
+    color: var(--fg-muted);
+    max-width: 40ch;
+  }
+</style>

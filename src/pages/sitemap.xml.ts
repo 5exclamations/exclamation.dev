@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import { locales, localePath, t } from '../i18n';
+import { allServicePaths } from '../data/services';
 
 /**
  * Built from the same route list the pages are built from, so a page cannot
@@ -20,7 +21,8 @@ export const GET: APIRoute = () => {
   // locale-free paths; each becomes one <url> per locale
   const paths = ['/', ...t('az').cases.map((c) => `/is/${c.slug}`)];
 
-  const urls = paths.flatMap((path) =>
+  /** shared-path routes: one locale-free path, three prefixed URLs */
+  const sharedUrls = paths.flatMap((path) =>
     locales.map((locale) => {
       const alternates = [
         ...locales.map(
@@ -40,6 +42,30 @@ export const GET: APIRoute = () => {
       ].join('\n');
     })
   );
+
+  /**
+   * Service pages have a different slug per language, so their alternates come
+   * from the route table rather than from prefixing one path.
+   */
+  const serviceUrls = allServicePaths().flatMap(({ paths: alt }) =>
+    locales.map((locale) => {
+      const alternates = [
+        ...locales.map(
+          (l) => `    <xhtml:link rel="alternate" hreflang="${l}" href="${SITE}${alt[l]}"/>`
+        ),
+        `    <xhtml:link rel="alternate" hreflang="x-default" href="${SITE}${alt.az}"/>`,
+      ].join('\n');
+      return [
+        '  <url>',
+        `    <loc>${SITE}${alt[locale]}</loc>`,
+        alternates,
+        '    <priority>0.9</priority>',
+        '  </url>',
+      ].join('\n');
+    })
+  );
+
+  const urls = [...sharedUrls, ...serviceUrls];
 
   const xml = [
     '<?xml version="1.0" encoding="UTF-8"?>',

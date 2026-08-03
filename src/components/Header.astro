@@ -7,8 +7,11 @@ interface Props {
   dict: Dict;
   /** locale-free path of the current page, so switching language stays put */
   path?: string;
+  /** explicit per-locale paths, for routes whose slug differs by language */
+  alternates?: Record<Locale, string>;
 }
-const { locale, dict, path = '/' } = Astro.props;
+const { locale, dict, path = '/', alternates } = Astro.props;
+const hrefFor = (l: Locale) => alternates?.[l] ?? localePath(l, path);
 const nav = dict.nav;
 
 const links = [
@@ -42,7 +45,7 @@ const links = [
         {locales.map((l) => (
           <li>
             <a
-              href={localePath(l, path)}
+              href={hrefFor(l)}
               hreflang={l}
               lang={l}
               aria-current={l === locale ? 'true' : undefined}
@@ -89,7 +92,7 @@ const links = [
         {locales.map((l) => (
           <li>
             <a
-              href={localePath(l, path)}
+              href={hrefFor(l)}
               hreflang={l}
               lang={l}
               aria-current={l === locale ? 'true' : undefined}

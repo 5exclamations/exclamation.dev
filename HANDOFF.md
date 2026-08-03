@@ -381,3 +381,50 @@ Two changes got LCP there, both measured rather than guessed:
 render-blocking round trip each, ~580 ms apiece on throttled 4G), and a
 `<link rel=preload as=image>` for the hero built from the shared `HERO_IMAGE`
 config so the preload URL and the rendered URL cannot drift apart.
+
+---
+
+## 9. Service pages
+
+One page exists: CRM and ERP, at `/xidmetler/crm-erp-sistemleri/`,
+`/ru/uslugi/crm-erp/` and `/en/services/crm-erp/`. Five more to come, one at a
+time — the structure is reusable, the copy is not.
+
+**How a new one is added.** Four things, in this order:
+
+1. A route entry in `src/data/services.ts` with the slug for each locale.
+2. A copy file at `src/i18n/services/<key>.ts` exporting
+   `Record<Locale, ServiceCopy>`. The type in `./types.ts` is deliberately
+   demanding: a half-written page will not compile.
+3. Three page files, ~20 lines each, passing `alternates`, `faq`, `ogKey` and
+   `schemaKind="service"` to `Base`.
+4. One line in the `serviceCopy` map in `src/pages/og/[key].png.ts`, which
+   gives the page its own share card.
+
+The sitemap picks it up automatically from the route table.
+
+**Slugs differ per locale on purpose** — the slug is part of what the page
+ranks for. That breaks the site's usual "one locale-free path plus a prefix"
+assumption, so `Base`, `Header` and `Footer` take an explicit `alternates`
+record. Without it the language switcher would send a Russian reader to a
+404 at `/ru/xidmetler/...`.
+
+**The copy is written three times, not translated once.** Azerbaijani leads
+with the problem and the local market, Russian leads with the boxed-versus-
+custom comparison because that is the query behind the search, English leads
+with ownership terms for readers shopping an outsourcing partner. Current
+lengths: az 943 words, ru 982, en 1255. Rewriting one language from another
+defeats the point of having three pages.
+
+**Two things every service page must carry:**
+
+- The lead paragraph is the direct answer — what it is, how long it takes,
+  what finding out costs — written so it can be quoted whole without editing.
+- A "when you do not need this" section with concrete conditions. It exists to
+  turn the wrong enquiries away before they cost a week, and it is the part
+  that reads as written by a person.
+
+**No prices anywhere.** Decided 2026-08-03: the page explains what moves a
+quote (roles, integrations, migration volume, reporting complexity, mobile)
+and states the free 3–5 day estimate, but publishes no figures. The legacy
+`translations.js` floor of 500 manat was not carried over.

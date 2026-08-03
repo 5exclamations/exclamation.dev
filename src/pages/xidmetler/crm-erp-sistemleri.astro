@@ -1,0 +1,23 @@
+---
+import Base from '../../layouts/Base.astro';
+import ServicePage from '../../components/ServicePage.astro';
+import { crmErp } from '../../i18n/services/crm-erp';
+import { serviceAlternates } from '../../data/services';
+import { t } from '../../i18n';
+
+const locale = 'az' as const;
+const dict = t(locale);
+const copy = crmErp[locale];
+---
+
+<Base
+  locale={locale}
+  dict={dict}
+  meta={copy.meta}
+  ogKey="service-crm-erp"
+  schemaKind="service"
+  faq={copy.faq.items}
+  alternates={serviceAlternates('crm-erp')}
+>
+  <ServicePage locale={locale} dict={dict} copy={copy} />
+</Base>

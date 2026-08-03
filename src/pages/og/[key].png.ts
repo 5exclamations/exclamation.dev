@@ -4,6 +4,11 @@ import sharp from 'sharp';
 import { instanceFont } from '../../lib/instance-font';
 import { locales, localeSubset, t, fill, type Locale } from '../../i18n';
 import { mediaFor } from '../../data/cases';
+import { crmErp } from '../../i18n/services/crm-erp';
+import { services } from '../../data/services';
+
+/** service key -> its copy, so a new service page gets a card by adding one line */
+const serviceCopy: Record<string, typeof crmErp> = { 'crm-erp': crmErp };
 
 /**
  * Open Graph cards, rendered at build time.
@@ -228,6 +233,24 @@ export const getStaticPaths = () => {
         },
       },
     });
+
+    for (const svc of services) {
+      const copy = serviceCopy[svc.key]?.[locale];
+      if (!copy) continue;
+      paths.push({
+        params: { key: `service-${svc.key}-${locale}` },
+        props: {
+          locale,
+          card: {
+            eyebrow: copy.eyebrow,
+            muted: copy.titleMuted,
+            title: copy.titleMain,
+            note: copy.facts.map((f) => `${f.label}: ${f.value}`).slice(0, 2).join('  ·  '),
+            foot: 'exclamationdev.com',
+          },
+        },
+      });
+    }
 
     for (const item of dict.cases) {
       const media = mediaFor(item.slug);
