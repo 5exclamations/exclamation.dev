@@ -5,10 +5,11 @@ import { instanceFont } from '../../lib/instance-font';
 import { locales, localeSubset, t, fill, type Locale } from '../../i18n';
 import { mediaFor } from '../../data/cases';
 import { crmErp } from '../../i18n/services/crm-erp';
+import { web } from '../../i18n/services/web';
 import { services } from '../../data/services';
 
 /** service key -> its copy, so a new service page gets a card by adding one line */
-const serviceCopy: Record<string, typeof crmErp> = { 'crm-erp': crmErp };
+const serviceCopy: Record<string, typeof crmErp> = { 'crm-erp': crmErp, web };
 
 /**
  * Open Graph cards, rendered at build time.

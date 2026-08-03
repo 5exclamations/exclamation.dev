@@ -20,7 +20,7 @@ export const crmErp: Record<Locale, ServiceCopy> = {
         'Sıfırdan CRM və ERP: proseslərin təhlili, inteqrasiyalar, köçürmə. Tipik müddət 4–8 həftə, qiymətləndirmə 3–5 gün və pulsuz, zəmanət 3 ay.',
     },
     eyebrow: 'Xidmət',
-    titleMuted: 'CRM və ERP sistemləri —',
+    titleMuted: 'CRM və ERP sistemləri —',
     titleMain: 'sizin proseslərinizə görə.',
     lead: 'CRM və ERP — şirkətin müştərilərini, sifarişlərini və pul axınını bir yerdə saxlayan daxili sistemlərdir. Sıfırdan hazırlanan sistem üçün tipik müddət 4–8 həftə, mürəkkəb platforma üçün 2–4 aydır. Brifdən sonra 3–5 gün ərzində arxitektura, mərhələlər və dəqiq smeta veririk — bu mərhələ ödənişsizdir.',
     facts: [
@@ -187,7 +187,7 @@ export const crmErp: Record<Locale, ServiceCopy> = {
         'CRM и ERP с нуля: анализ процессов, интеграции, перенос базы. Типичный срок 4–8 недель, оценка 3–5 дней бесплатно, гарантия 3 месяца, код у вас.',
     },
     eyebrow: 'Услуга',
-    titleMuted: 'CRM и ERP на заказ —',
+    titleMuted: 'CRM и ERP на заказ —',
     titleMain: 'под ваш процесс, а не под чужую коробку.',
     lead: 'CRM и ERP — внутренние системы, которые держат клиентов, заказы и деньги компании в одном месте. Типичный срок разработки с нуля — 4–8 недель, сложная платформа — 2–4 месяца. После брифа за 3–5 дней возвращаемся с архитектурой, этапами и точной сметой; этот этап не оплачивается.',
     facts: [
@@ -354,7 +354,7 @@ export const crmErp: Record<Locale, ServiceCopy> = {
         'CRM and ERP built from scratch: process analysis, integrations, data migration. Typically 4–8 weeks, a free 3–5 day estimate, 3-month warranty, you own the code.',
     },
     eyebrow: 'Service',
-    titleMuted: 'Custom CRM and ERP —',
+    titleMuted: 'Custom CRM and ERP —',
     titleMain: 'you own the system.',
     lead: 'A CRM or ERP is the internal system that keeps a company’s customers, orders and money in one place. Built from scratch it typically takes 4–8 weeks, or 2–4 months for a complex platform. After a short brief we come back within 3–5 days with an architecture, a stage plan and a firm quote, and that stage is not billed.',
     facts: [

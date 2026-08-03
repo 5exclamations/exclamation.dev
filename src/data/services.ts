@@ -14,6 +14,13 @@ export interface ServiceRoute {
   key: string;
   /** path within each locale, without the locale prefix */
   slugs: Record<Locale, string>;
+  /**
+   * Index into `dict.services.items` — the nine categories on the landing
+   * page. The footer uses it to point a category at its real page instead of
+   * the `#services` anchor, and categories with no page yet keep the anchor.
+   * Omitted where a page does not correspond to one of the nine.
+   */
+  categoryIndex?: number;
 }
 
 export const services: ServiceRoute[] = [
@@ -24,8 +31,22 @@ export const services: ServiceRoute[] = [
       ru: '/uslugi/crm-erp',
       en: '/services/crm-erp',
     },
+    categoryIndex: 2, // Korporativ sistemlər / Корпоративные системы
+  },
+  {
+    key: 'web',
+    slugs: {
+      az: '/xidmetler/veb-sayt-hazirlanmasi',
+      ru: '/uslugi/razrabotka-saytov',
+      en: '/services/web-development',
+    },
+    categoryIndex: 0, // Veb inkişaf / Веб-разработка
   },
 ];
+
+/** the service page for a landing-page category, if one has been written yet */
+export const serviceForCategory = (index: number): ServiceRoute | undefined =>
+  services.find((s) => s.categoryIndex === index);
 
 export const serviceByKey = (key: string): ServiceRoute =>
   services.find((s) => s.key === key)!;

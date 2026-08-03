@@ -323,6 +323,15 @@ where no screenshot exists or the real one is visually weak. Rules:
   led to the same form; only the first survives.
 - Claims carry a number, a duration, or a tool name. "Individual approach"
   is not a claim.
+- **No cost figures on commercial pages.** Settled 2026-08-03 and not open
+  again. No price list, no "from N manat", no ranges, no per-tier tables —
+  on service pages, the landing page, the FAQ or anywhere else. In their
+  place: a "what moves the quote" block naming the real drivers (roles,
+  integrations, volume of data to migrate, reporting complexity, mobile),
+  and the free estimate delivered 3–5 days after the brief. The duration is
+  what satisfies the number-or-duration rule above, so a lead paragraph can
+  still answer "what does it cost" without a figure — it answers with how
+  long finding out takes, and that it costs nothing.
 - `localStorage` keys are prefixed `exclamation-`.
 
 ---

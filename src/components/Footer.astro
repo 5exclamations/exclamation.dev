@@ -1,5 +1,6 @@
 ---
 import { channels } from '../data/contacts';
+import { serviceForCategory } from '../data/services';
 import { fill, localePath, locales, localeNames, type Dict, type Locale } from '../i18n';
 
 interface Props {
@@ -13,6 +14,26 @@ interface Props {
 const { locale, dict, path, alternates } = Astro.props;
 const hrefFor = (l: Locale) => alternates?.[l] ?? localePath(l, path);
 const ft = dict.footer;
+
+/**
+ * Six of the nine categories, the ones with a real page first.
+ *
+ * A category with a service page links to it; the rest keep the `#services`
+ * anchor, which is all there is to point at until their page is written. The
+ * ordering means new pages surface in the footer as they land rather than
+ * needing this list edited by hand.
+ */
+const serviceLinks = dict.services.items
+  .map((cat, index) => {
+    const svc = serviceForCategory(index);
+    return {
+      title: cat.title,
+      href: svc ? localePath(locale, svc.slugs[locale]) : `${localePath(locale, '/')}#services`,
+      hasPage: Boolean(svc),
+    };
+  })
+  .sort((a, b) => Number(b.hasPage) - Number(a.hasPage))
+  .slice(0, 6);
 ---
 
 <footer class="footer">
@@ -45,9 +66,9 @@ const ft = dict.footer;
       <nav class="footer-col" aria-labelledby="foot-services">
         <h2 class="mono" id="foot-services">{ft.servicesLabel}</h2>
         <ul>
-          {dict.services.items.slice(0, 6).map((cat) => (
+          {serviceLinks.map((s) => (
             <li>
-              <a href={`${localePath(locale, '/')}#services`}>{cat.title}</a>
+              <a href={s.href}>{s.title}</a>
             </li>
           ))}
         </ul>

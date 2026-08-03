@@ -386,9 +386,14 @@ config so the preload URL and the rendered URL cannot drift apart.
 
 ## 9. Service pages
 
-One page exists: CRM and ERP, at `/xidmetler/crm-erp-sistemleri/`,
-`/ru/uslugi/crm-erp/` and `/en/services/crm-erp/`. Five more to come, one at a
-time — the structure is reusable, the copy is not.
+Two pages exist. The remaining order, agreed with the client: mobile apps,
+online store, integrations, bots and AI — one at a time, each shown before the
+next is started. The structure is reusable, the copy is not.
+
+| Service | az | ru | en |
+| --- | --- | --- | --- |
+| CRM / ERP | `/xidmetler/crm-erp-sistemleri/` | `/ru/uslugi/crm-erp/` | `/en/services/crm-erp/` |
+| Web | `/xidmetler/veb-sayt-hazirlanmasi/` | `/ru/uslugi/razrabotka-saytov/` | `/en/services/web-development/` |
 
 **How a new one is added.** Four things, in this order:
 
@@ -424,7 +429,19 @@ defeats the point of having three pages.
   turn the wrong enquiries away before they cost a week, and it is the part
   that reads as written by a person.
 
-**No prices anywhere.** Decided 2026-08-03: the page explains what moves a
-quote (roles, integrations, migration volume, reporting complexity, mobile)
-and states the free 3–5 day estimate, but publishes no figures. The legacy
-`translations.js` floor of 500 manat was not carried over.
+**No prices anywhere.** Settled 2026-08-03 and closed — it is now a rule in
+SKILL.md §10, not a per-page decision. Commercial pages carry a "what moves
+the quote" block and the free 3–5 day estimate, and no figures at all. Do not
+reopen it.
+
+**The footer keeps itself current.** `serviceForCategory()` in
+`src/data/services.ts` maps a landing-page category to its service page;
+`Footer.astro` links categories that have a page and leaves the rest on
+`#services`, sorting linked ones first. Adding `categoryIndex` to a new route
+is all it takes for the footer to pick it up — there is no list to edit.
+The e-commerce page will have no `categoryIndex`, because "online stores" is
+an item inside the Web category rather than one of the nine.
+
+**A trailing em dash in `titleMuted` needs a non-breaking space before it**
+(`'… \u00a0—'`). Without it the dash wraps to the start of the next line in
+the h1. Caught on the web page at 1440; both pages now use it.
