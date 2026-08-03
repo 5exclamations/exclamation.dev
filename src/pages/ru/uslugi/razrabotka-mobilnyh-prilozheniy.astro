@@ -1,0 +1,23 @@
+---
+import Base from '../../../layouts/Base.astro';
+import ServicePage from '../../../components/ServicePage.astro';
+import { mobile } from '../../../i18n/services/mobile';
+import { serviceAlternates } from '../../../data/services';
+import { t } from '../../../i18n';
+
+const locale = 'ru' as const;
+const dict = t(locale);
+const copy = mobile[locale];
+---
+
+<Base
+  locale={locale}
+  dict={dict}
+  meta={copy.meta}
+  ogKey="service-mobile"
+  schemaKind="service"
+  faq={copy.faq.items}
+  alternates={serviceAlternates('mobile')}
+>
+  <ServicePage locale={locale} dict={dict} copy={copy} />
+</Base>

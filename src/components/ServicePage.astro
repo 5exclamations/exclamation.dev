@@ -156,7 +156,7 @@ const cases = copy.cases.slugs
         {cases.map((c) => (
           <li data-reveal>
             <a class="svc-case" href={localePath(locale, `/is/${c.slug}`)}>
-              <span class="frame">
+              <span class:list={['frame', `fit-${c.media.fit}`, `is-${c.media.shape}`]}>
                 <Picture
                   src={c.media.shots[0].img}
                   alt={c.alts[0]}
@@ -509,12 +509,21 @@ const cases = copy.cases.slugs
     .svc-cases-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+    /* some services have exactly one relevant case — a lone card stranded in
+       a half-width column reads as a missing second one */
+    .svc-cases-grid:has(li:only-child) {
+      grid-template-columns: minmax(0, 1fr);
+      max-width: 40rem;
+    }
   }
   .svc-case {
     display: block;
     text-decoration: none;
     color: inherit;
   }
+  /* the frame follows the screenshot, not the other way round: a portrait
+     phone screen inside a 16/10 landscape crop shows a horizontal slice of
+     nothing. Same rule the work index uses. */
   .frame {
     display: block;
     position: relative;
@@ -523,10 +532,17 @@ const cases = copy.cases.slugs
     border: 1px solid var(--line);
     aspect-ratio: 16 / 10;
   }
+  .frame.is-phone {
+    aspect-ratio: 4 / 3;
+  }
   .frame img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center top;
+  }
+  .frame.fit-contain img {
+    object-fit: contain;
     object-position: center top;
   }
   .svc-case-meta {

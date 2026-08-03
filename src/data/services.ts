@@ -42,6 +42,15 @@ export const services: ServiceRoute[] = [
     },
     categoryIndex: 0, // Veb inkişaf / Веб-разработка
   },
+  {
+    key: 'mobile',
+    slugs: {
+      az: '/xidmetler/mobil-tetbiq-hazirlanmasi',
+      ru: '/uslugi/razrabotka-mobilnyh-prilozheniy',
+      en: '/services/mobile-app-development',
+    },
+    categoryIndex: 3, // Mobil tətbiqlər / Мобильные приложения
+  },
 ];
 
 /** the service page for a landing-page category, if one has been written yet */

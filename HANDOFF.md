@@ -386,14 +386,15 @@ config so the preload URL and the rendered URL cannot drift apart.
 
 ## 9. Service pages
 
-Two pages exist. The remaining order, agreed with the client: mobile apps,
-online store, integrations, bots and AI — one at a time, each shown before the
-next is started. The structure is reusable, the copy is not.
+Three pages exist. The remaining order, agreed with the client: online store,
+integrations, bots and AI — one at a time, each shown before the next is
+started. The structure is reusable, the copy is not.
 
 | Service | az | ru | en |
 | --- | --- | --- | --- |
 | CRM / ERP | `/xidmetler/crm-erp-sistemleri/` | `/ru/uslugi/crm-erp/` | `/en/services/crm-erp/` |
 | Web | `/xidmetler/veb-sayt-hazirlanmasi/` | `/ru/uslugi/razrabotka-saytov/` | `/en/services/web-development/` |
+| Mobile | `/xidmetler/mobil-tetbiq-hazirlanmasi/` | `/ru/uslugi/razrabotka-mobilnyh-prilozheniy/` | `/en/services/mobile-app-development/` |
 
 **How a new one is added.** Four things, in this order:
 
@@ -439,8 +440,18 @@ reopen it.
 `Footer.astro` links categories that have a page and leaves the rest on
 `#services`, sorting linked ones first. Adding `categoryIndex` to a new route
 is all it takes for the footer to pick it up — there is no list to edit.
-The e-commerce page will have no `categoryIndex`, because "online stores" is
-an item inside the Web category rather than one of the nine.
+The e-commerce page gets no `categoryIndex` and no footer row — decided
+2026-08-03. "Online stores" is an item inside the Web category, and it stays
+there; the page is reached from the web-development copy and the services
+menu. Six footer rows out of nine categories is the intended state, not a
+truncation to fix.
+
+**The case frame follows the screenshot's shape.** `ServicePage` reads
+`media.shape` and `media.fit` the way the work index does. A portrait phone
+screenshot in the default 16/10 landscape frame shows a horizontal slice of
+nothing — caught on the mobile page, where the only linked case is MindTrick.
+A service with exactly one relevant case also gets a single-column grid, so
+the lone card does not read as a missing second one.
 
 **A trailing em dash in `titleMuted` needs a non-breaking space before it**
 (`'… \u00a0—'`). Without it the dash wraps to the start of the next line in
