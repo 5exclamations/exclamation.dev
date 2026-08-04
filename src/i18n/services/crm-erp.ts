@@ -30,9 +30,11 @@ export const crmErp: Record<Locale, ServiceCopy> = {
     ],
     introTitle: 'CRM və ERP haqqında',
     intro: [
-      'CRM müştəri ilə işi aparır, ERP isə şirkətin daxili resurslarını — anbarı, maliyyəni, əməkdaşları. Praktikada bu sərhəd tez-tez itir: kiçik və orta biznesdə eyni sistem həm satış hunisini, həm qalıqları, həm də hesabatı daşıyır. Biz bunu bir məhsul kimi qururuq: modul-modul, sizin real prosesinizə görə, hazır qutunun məntiqinə uyğunlaşmağa məcbur etmədən.',
+      'CRM müştəri ilə işi aparır, ERP isə şirkətin daxili resurslarını — anbarı, maliyyəni, əməkdaşları. Praktikada bu sərhəd tez-tez itir: kiçik və orta biznesdə eyni sistem həm satış hunisini, həm qalıqları, həm də hesabatı daşıyır. Biz də onu bir məhsul kimi qururuq — modul-modul, sizin real prosesinizə görə.',
       'Hazır həllər — amoCRM, Bitrix24 və bənzərləri — sürətli başlanğıc verir və şirkətlərin çoxu üçün tamamilə kifayətdir. Problem o an başlayır ki, prosesiniz qutunun modelinə sığmır: qeyri-standart sövdələşmə mərhələləri, öz qiymət hesablama qaydanız, xüsusi sənəd formaları, Azərbaycan bazarına aid tələblər. Onda ya prosesi sındırırsınız, ya da hər ay artan abunənin üstünə plaginlərə və inteqratora ödəyirsiniz.',
-      'Sıfırdan hazırlanan sistem bu seçimi aradan qaldırır. Kod ilk gündən sizin repozitoriyanızda qalır, məlumat sizin hesabınızdadır, istifadəçi sayına görə aylıq ödəniş yoxdur. Əvəzində başlanğıc daha uzun çəkir və sonrakı inkişaf üçün texniki komanda lazımdır. Bu, dürüst mübadilədir və biz onu gizlətmirik: aşağıda ayrıca bölmə var — «CRM sizə nə vaxt lazım deyil».',
+      'Sıfırdan hazırlanan sistem bu seçimi aradan qaldırır. Kod ilk gündən sizin repozitoriyanızda qalır, məlumat sizin hesabınızdadır, istifadəçi sayına görə aylıq ödəniş yoxdur.',
+      'Əvəzində — uzun başlanğıc və öz texniki komandanız.',
+      'Aşağıda ayrıca bölmə var: «CRM sizə nə vaxt lazım deyil». Əvvəlcə onu oxuyun.',
       'Bu istiqamətdə iki tam dövrümüz var. CRM Portal — daşınmaz əmlak agentlikləri üçün: obyekt bazası, Kanban huni, WhatsApp və zəng inteqrasiyası. FLEKS — psixoloji mərkəz üçün ERP: müştəri balansları, seans ödənişləri, avtomatik PDF çeklər. Hər ikisi işləyir, nəticələri buraxılışdan sonra müştəri tərəfindən ölçülüb.',
     ],
     scope: {
@@ -69,7 +71,7 @@ export const crmErp: Record<Locale, ServiceCopy> = {
     },
     pricing: {
       title: 'Qiymət nədən asılıdır',
-      lead: 'Hazır qiymət cədvəli vermirik: eyni «CRM» sözünün arxasında iki həftəlik də, altı aylıq da layihə dayana bilər. Smetanı ən çox dəyişən amillər bunlardır.',
+      lead: 'Hazır qiymət cədvəlimiz yoxdur: eyni «CRM» sözünün arxasında iki həftəlik də, altı aylıq da layihə dayanır. Smetanı dəyişən amillər bunlardır.',
       drivers: [
         'Rolların sayı: yalnız menecermi, yoxsa menecer, rəhbər, anbardar və müştəri kabineti',
         'İnteqrasiyalar: 1C, ödəniş sistemi, WhatsApp, telefoniya — hər biri ayrıca iş həcmidir',
@@ -81,7 +83,7 @@ export const crmErp: Record<Locale, ServiceCopy> = {
     },
     stack: {
       title: 'Stek',
-      note: 'Layihəyə görə seçilir. Aşağıdakılar CRM və ERP işlərində ən çox istifadə etdiklərimizdir.',
+      note: 'Layihəyə görə seçirik. Aşağıdakılar CRM və ERP işlərində ən çox işlətdiklərimizdir.',
       groups: [
         { name: 'Backend', items: ['Django', 'FastAPI', 'PostgreSQL', 'Celery'] },
         { name: 'Frontend', items: ['React', 'Next.js', 'TypeScript'] },
@@ -126,26 +128,26 @@ export const crmErp: Record<Locale, ServiceCopy> = {
     },
     notFor: {
       title: 'CRM sizə nə vaxt lazım deyil',
-      lead: 'Bəzi hallarda CRM pul və vaxt itkisidir. Bu sualları layihəni götürməzdən əvvəl özümüz veririk — boş brif hər iki tərəfin bir həftəsini yeyir.',
+      lead: 'Bəzən CRM xərclənmiş pul və heç nəyi dəyişməyən üç aydır. Layihəni götürməzdən əvvəl özümüzə verdiyimiz yoxlamalar. Boş brif hər iki tərəfin bir həftəsini yeyir.',
       items: [
         {
           cond: 'Ayda 20-dən az sövdələşmə',
-          text: 'Bu həcmdə səliqəli cədvəl və təqvim xatırlatması eyni işi görür. Sistem o vaxt qazandırır ki, əl ilə izləmək fiziki olaraq mümkün olmasın.',
+          text: 'Bu həcmdə səliqəli cədvəl və təqvim xatırlatması eyni işi görür, özü də elə bu gün. Sistem o vaxt qazandırır ki, əl ilə izləmək fiziki olaraq mümkün olmasın: kartlar bir nəfərin yaddaşına sığmayanda, unudulan zəng pula başa gələndə. Ayda iyirmi sövdələşmə o hal deyil.',
         },
         {
           cond: 'Komandada bir-iki nəfər',
-          text: 'CRM-in əsas dəyəri məlumatın adamlar arasında itməməsidir. Bir nəfər olanda itəcək yer yoxdur; hazır qutu daha ucuz və daha sürətli olacaq.',
+          text: 'Məlumatın itəcəyi yer yoxdur. Hazır qutu daha ucuz və sürətlidir.',
         },
         {
           cond: 'Prosesin özü hələ formalaşmayıb',
-          text: 'Hər ay yeni sxem sınayırsınızsa, sistem dünənki sxemi betonlaşdıracaq. Əvvəl prosesi sabitləyin, sonra avtomatlaşdırın — əks halda yenidən yazmağa pul verəcəksiniz.',
+          text: 'Hər ay yeni sxem — sistem dünənkini betonlaşdıracaq. Əvvəl prosesi sabitləyin, sonra avtomatlaşdırın: əks halda iki dəfə ödəyəcəksiniz.',
         },
         {
           cond: 'Hazır qutu tam oturur',
-          text: 'Prosesiniz amoCRM və ya Bitrix24-ün modelinə uyğun gəlirsə, sıfırdan yazmağın mənası yoxdur. Bunu brifdə görsək, özümüz deyəcəyik.',
+          text: 'Prosesiniz amoCRM və ya Bitrix24-ün modelinə uyğun gəlirsə, sıfırdan yazmağın mənası yoxdur — bunu brifdə görsək, özümüz deyəcəyik.',
         },
       ],
-      close: 'Əgər bu dörd bənddən biri sizin haqqınızdadırsa — yenə yazın. Pulsuz deyəcəyik ki, indi nə etmək daha faydalıdır; bəzən cavab «hələlik heç nə» olur, və bu da normal cavabdır.',
+      close: 'Bəndlərdən birində özünüzü tanıdınızsa — yenə yazın. Pulsuz deyəcəyik ki, indi nə etmək daha faydalıdır; bəzən cavab «hələlik heç nə» olur.',
     },
     cases: { title: 'Bu istiqamətdə keyslər', slugs: ['crm-portal', 'fleks'] },
     faq: {
@@ -153,15 +155,15 @@ export const crmErp: Record<Locale, ServiceCopy> = {
       items: [
         {
           q: 'Hazır CRM-i öz altımıza uyğunlaşdırmaq ucuz olmazmı?',
-          a: 'Çox vaxt bəli — və biz bunu dürüst deyirik. Qutu o zaman baha başa gəlir ki, prosesiniz onun modelinə sığmır: plaginlər, inteqrator, istifadəçi başına artan abunə. Brifdə hesablayıb hər iki variantı göstəririk.',
+          a: 'Çox vaxt bəli — və biz bunu dürüst deyirik. Hazır CRM — amoCRM, Bitrix24 və bənzərləri — bir həftəyə işə düşür və pulu əvvəlcədən bəllidir. Bahalaşması sonra başlayır: plaginlər, inteqrator, istifadəçi başına artan abunə. Sıfırdan hazırlanan sistem daha gec start götürür, 4–8 həftə, əvəzində kod və məlumat sizdə qalır, istifadəçi başına aylıq ödəniş yoxdur. Brifdə hər iki variantı hesablayıb fərqi göstəririk.',
         },
         {
           q: 'Köhnə bazadakı məlumat itəcəkmi?',
-          a: 'Xeyr. Köçürmə ayrıca mərhələdir: əvvəl sınaq köçürməsi, sonra yoxlama, sonra əsas köçürmə. Köhnə sistem paralel işləyir, siz razı olana qədər söndürülmür.',
+          a: 'Xeyr. Məlumatın köçürülməsi ayrıca mərhələdir: əvvəl sınaq köçürməsi, sonra yoxlama, sonra əsas köçürmə. Köhnə baza bu müddətdə paralel işləyir. Onu yalnız siz nəticəni yoxlayıb razılaşandan sonra söndürürük.',
         },
         {
           q: '1C və ya ödəniş sistemi ilə inteqrasiya olacaqmı?',
-          a: 'Bəli, API və ya webhook verən istənilən servislə. 1C, AmoCRM, Bitrix24, ödəniş sistemləri, WhatsApp, telefoniya. Hər inteqrasiya smetada ayrıca sətirdir — gizli əlavə yoxdur.',
+          a: 'Bəli, API və ya webhook verən istənilən servislə: 1C, amoCRM, Bitrix24, ödəniş sistemləri, WhatsApp, telefoniya. Hər inteqrasiya smetada ayrıca sətirdir — gizli əlavə yoxdur.',
         },
         {
           q: 'Buraxılışdan sonra sistemi kim dəstəkləyir?',
@@ -169,7 +171,7 @@ export const crmErp: Record<Locale, ServiceCopy> = {
         },
         {
           q: 'İşin gedişini necə görəcəyəm?',
-          a: 'Task tracker-ə girişiniz var, sprintlər 2 həftədir, hər sprintin sonunda işlək demo. Hesabat gözləmək lazım deyil — statusu istənilən gün özünüz baxırsınız.',
+          a: 'Sprintlər 2 həftədir, hər sprintin sonunda işlək demo, task tracker-ə girişiniz ilk gündən var.',
         },
       ],
     },
@@ -366,10 +368,11 @@ export const crmErp: Record<Locale, ServiceCopy> = {
     ],
     introTitle: 'What you get and what you own',
     intro: [
-      'The question worth settling first is ownership. With a subscription platform you rent the system: the data sits in someone else’s account, the per-seat price rises as you hire, and the parts of your process the vendor never modelled end up in a spreadsheet beside it. With a custom build the repository is in your account from day one, the database is on infrastructure you control, and there is no monthly fee tied to headcount.',
-      'That is the trade, stated plainly: a longer start and a technical partner for the roadmap, against no rent and no ceiling on what the system can be asked to do. For a team of three closing a handful of deals a month it is a bad trade. For a company whose process is the actual product — a specific pricing rule, a specific approval chain, a market requirement no off-the-shelf tool covers — it usually pays for itself inside the first year.',
-      'We work as one team across the whole cycle: process analysis, data model, interface, integrations, migration, release and support. No handoff between an agency that draws and a contractor that builds, which is where most of the cost and most of the finger-pointing lives on projects this size.',
-      'Two finished builds sit behind this page. CRM Portal for real-estate agencies — a listings database, a Kanban pipeline and WhatsApp integration, with sales conversion up 45% and the time spent updating the database down 70%. FLEKS, an ERP for a psychology centre — client balances, session charges and automatic PDF receipts, with payment and receipt handling down 80%. Both numbers were measured by the client after launch.',
+      'Start with ownership. On a subscription platform you rent the system: the data sits in someone else’s account, the per-seat price rises as you hire, and whatever the vendor never modelled ends up in a spreadsheet beside it. A custom build puts the repository in your account on day one, the database on infrastructure you control, and no monthly fee tied to headcount.',
+      'That is the trade: a longer start and a technical partner for the roadmap.',
+      'But for a team of three closing a handful of deals a month, it is a bad trade. For a company whose process is the actual product — a specific pricing rule, a specific approval chain, a market requirement no off-the-shelf tool covers — it usually pays for itself inside the first year.',
+      'One team across the whole cycle: process analysis, data model, interface, integrations, migration, release and support. No handoff between an agency that draws and a contractor that builds — which is where most of the cost, and most of the finger-pointing, lives on projects this size.',
+      'Two finished builds sit behind this page. CRM Portal for real-estate agencies — a listings database, a Kanban pipeline and WhatsApp integration, with sales conversion up 45% and the time spent updating the database down 70%. FLEKS, an ERP for a psychology centre — client balances, session charges and automatic PDF receipts, with payment and receipt handling down 80%. Each client measured those figures after launch, not us.',
     ],
     scope: {
       title: 'What the work covers',
@@ -405,7 +408,7 @@ export const crmErp: Record<Locale, ServiceCopy> = {
     },
     pricing: {
       title: 'What drives the price',
-      lead: 'We do not publish a price list, because the same word — CRM — covers a two-week project and a six-month one. These are the factors that actually move a quote.',
+      lead: 'We do not publish a price list. The same word — CRM — covers a two-week project and a six-month one. Here is what moves a quote.',
       drivers: [
         'Number of roles: sales only, or sales plus management, warehouse and a customer portal',
         'Integrations: 1C, payment providers, WhatsApp, telephony — each one is its own scope',
@@ -441,7 +444,7 @@ export const crmErp: Record<Locale, ServiceCopy> = {
         {
           title: 'Design and prototype',
           time: '1–2 weeks',
-          text: 'Layouts for the key screens. The process is signed off on a clickable prototype, before any code is written.',
+          text: 'Layouts for the main screens. The process is signed off on a clickable prototype, before a line of code is written.',
         },
         {
           title: 'Development, two-week sprints',
@@ -462,26 +465,26 @@ export const crmErp: Record<Locale, ServiceCopy> = {
     },
     notFor: {
       title: 'When you do not need this',
-      lead: 'Sometimes a custom CRM is three months and a budget that changed nothing. These are the questions we ask ourselves before taking a project on.',
+      lead: 'Sometimes a custom CRM is three months and a budget that changed nothing. The checks we run before taking a project on.',
       items: [
         {
           cond: 'Fewer than 20 deals a month',
-          text: 'At that volume a tidy spreadsheet and calendar reminders do the same job. A system starts paying for itself where tracking by hand stops being physically possible.',
+          text: 'At that volume a tidy spreadsheet and calendar reminders do the same job, and they do it today. A system starts paying for itself where tracking by hand stops being physically possible: when the cards no longer fit in one person’s head, when a forgotten call costs real money. Twenty deals is not that.',
         },
         {
           cond: 'A team of one or two',
-          text: 'The core value of a CRM is that information does not fall between people. With one person there is nowhere for it to fall: an off-the-shelf tool will be cheaper and faster.',
+          text: 'Nowhere for information to fall. An off-the-shelf tool will be cheaper and faster.',
         },
         {
           cond: 'The process is still changing',
-          text: 'If you are trying a new way of working every month, a system will set yesterday’s way in concrete. Stabilise the process first, automate second, or you will pay to rewrite it.',
+          text: 'A new way of working every month, and the system will set yesterday’s way in concrete. Stabilise the process first, automate second, or you will pay to rewrite it.',
         },
         {
           cond: 'A boxed product fits as-is',
-          text: 'If your process matches the amoCRM or Bitrix24 model, there is no reason to build. If we see that on the brief we will say so and suggest configuration instead of development.',
+          text: 'If your process matches the amoCRM or Bitrix24 model, there is no reason to build — we will say so on the brief and suggest configuration instead of development.',
         },
       ],
-      close: 'If one of those four describes you, write anyway. We will tell you for free what is worth doing instead — and sometimes the honest answer is "nothing yet", which is also a real answer.',
+      close: 'If one of those describes you, write anyway. We will tell you for free what is worth doing instead; sometimes the answer is “nothing yet”.',
     },
     cases: { title: 'Related work', slugs: ['crm-portal', 'fleks'] },
     faq: {
@@ -489,15 +492,15 @@ export const crmErp: Record<Locale, ServiceCopy> = {
       items: [
         {
           q: 'Would configuring an off-the-shelf CRM be cheaper?',
-          a: 'Often yes, and we say so directly. A boxed product gets expensive when your process does not fit it: plugins, an integrator, and a subscription that grows with every seat. On the brief we cost both routes and show you the difference.',
+          a: 'Often yes, and we say so directly. A boxed CRM — amoCRM, Bitrix24 and the like — starts in a week and costs a predictable amount. It gets expensive later: plugins, an integrator, a subscription that grows with every seat. A custom build starts slower, 4–8 weeks, and in return the code and the data stay yours with nothing charged per seat. On the brief we cost both routes and show you the difference.',
         },
         {
           q: 'Will data from the old system be lost?',
-          a: 'No. Migration is its own stage: a trial run first, then reconciliation, then the real migration. The old system runs in parallel and is only switched off once you are satisfied with the result.',
+          a: 'No. Migration is its own stage: a trial run first, then reconciliation, then the real migration. The old system runs in parallel the whole time. We switch it off only once you have checked the result and agreed to it.',
         },
         {
           q: 'Can you integrate with 1C and payment providers?',
-          a: 'Yes, with any service exposing an API or a webhook: 1C, AmoCRM, Bitrix24, payment systems, WhatsApp, telephony. Each integration is a separate line in the quote — there are no hidden additions.',
+          a: 'Yes, with any service exposing an API or a webhook: 1C, amoCRM, Bitrix24, payment systems, WhatsApp, telephony. Each integration is a separate line in the quote — there are no hidden additions.',
         },
         {
           q: 'Who supports the system after release?',
@@ -505,7 +508,7 @@ export const crmErp: Record<Locale, ServiceCopy> = {
         },
         {
           q: 'How do I see progress?',
-          a: 'You hold tracker access, sprints run two weeks, and each ends in a working demo. There is no waiting for a status report: the state of any task is visible to you on any day.',
+          a: 'Sprints run two weeks, each one ends in a working demo, and tracker access is yours from day one.',
         },
       ],
     },
