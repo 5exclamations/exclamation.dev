@@ -153,7 +153,7 @@ export const web: Record<Locale, ServiceCopy> = {
       items: [
         {
           q: 'Tilda və ya WordPress-də etmək ucuz olmazmı?',
-          a: 'Sadə tapşırıq üçün — bəli, və biz bunu dürüst deyirik. Konstruktor bir günə qalxır, başlanğıcda ucuz başa gəlir. Sonra abunə başlayır, hər səhifəyə yad skriptlər düşür, çoxdillilik isə axtarış sisteminə bir səhifə kimi görünür. Statik yığılan sayt CDN-dən verilir, sizin domendə aylıq ödənişsiz yaşayır və üç dili ayrı ünvanlarda saxlayır. Brifdə hər iki variantı hesablayırıq.',
+          a: 'Sadə tapşırıq üçün — bəli. Biz bunu dürüst deyirik. Konstruktor bir günə qalxır, başlanğıcda ucuz başa gəlir. Sonra abunə başlayır, hər səhifəyə yad skriptlər düşür, çoxdillilik isə axtarış sisteminə bir səhifə kimi görünür. Statik yığılan sayt CDN-dən verilir, sizin domendə aylıq ödənişsiz yaşayır və üç dili ayrı ünvanlarda saxlayır. Brifdə hər iki variantı hesablayırıq.',
         },
         {
           q: 'Saytı özüm redaktə edə biləcəyəmmi?',

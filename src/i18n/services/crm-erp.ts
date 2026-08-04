@@ -31,7 +31,7 @@ export const crmErp: Record<Locale, ServiceCopy> = {
     introTitle: 'CRM və ERP haqqında',
     intro: [
       'CRM müştəri ilə işi aparır, ERP isə şirkətin daxili resurslarını — anbarı, maliyyəni, əməkdaşları. Praktikada bu sərhəd tez-tez itir: kiçik və orta biznesdə eyni sistem həm satış hunisini, həm qalıqları, həm də hesabatı daşıyır. Biz də onu bir məhsul kimi qururuq — modul-modul, sizin real prosesinizə görə.',
-      'Hazır həllər — amoCRM, Bitrix24 və bənzərləri — sürətli başlanğıc verir və şirkətlərin çoxu üçün tamamilə kifayətdir. Problem o an başlayır ki, prosesiniz qutunun modelinə sığmır: qeyri-standart sövdələşmə mərhələləri, öz qiymət hesablama qaydanız, xüsusi sənəd formaları, Azərbaycan bazarına aid tələblər. Onda ya prosesi sındırırsınız, ya da hər ay artan abunənin üstünə plaginlərə və inteqratora ödəyirsiniz.',
+      'Hazır həllər — amoCRM, Bitrix24 və bənzərləri — sürətli başlanğıc verir və şirkətlərin çoxu üçün tamamilə kifayətdir. Problem prosesiniz qutunun modelinə sığmayanda başlayır: qeyri-standart sövdələşmə mərhələləri, öz qiymət hesablama qaydanız, xüsusi sənəd formaları, Azərbaycan bazarına aid tələblər. Onda ya prosesi sındırırsınız, ya da hər ay artan abunənin üstünə plaginlərə və inteqratora ödəyirsiniz.',
       'Sıfırdan hazırlanan sistem bu seçimi aradan qaldırır. Kod ilk gündən sizin repozitoriyanızda qalır, məlumat sizin hesabınızdadır, istifadəçi sayına görə aylıq ödəniş yoxdur.',
       'Əvəzində — uzun başlanğıc və öz texniki komandanız.',
       'Aşağıda ayrıca bölmə var: «CRM sizə nə vaxt lazım deyil». Əvvəlcə onu oxuyun.',
@@ -128,11 +128,11 @@ export const crmErp: Record<Locale, ServiceCopy> = {
     },
     notFor: {
       title: 'CRM sizə nə vaxt lazım deyil',
-      lead: 'Bəzən CRM xərclənmiş pul və heç nəyi dəyişməyən üç aydır. Layihəni götürməzdən əvvəl özümüzə verdiyimiz yoxlamalar. Boş brif hər iki tərəfin bir həftəsini yeyir.',
+      lead: 'Bəzən CRM xərclənmiş pul və heç nəyi dəyişməyən üç aydır. Layihəni götürməzdən əvvəl özümüzə verdiyimiz yoxlamalar bunlardır. Boş brif hər iki tərəfin bir həftəsini yeyir.',
       items: [
         {
           cond: 'Ayda 20-dən az sövdələşmə',
-          text: 'Bu həcmdə səliqəli cədvəl və təqvim xatırlatması eyni işi görür, özü də elə bu gün. Sistem o vaxt qazandırır ki, əl ilə izləmək fiziki olaraq mümkün olmasın: kartlar bir nəfərin yaddaşına sığmayanda, unudulan zəng pula başa gələndə. Ayda iyirmi sövdələşmə o hal deyil.',
+          text: 'Bu həcmdə səliqəli cədvəl və təqvim xatırlatması eyni işi görür, özü də elə bu gün. Sistem əl ilə izləmək fiziki olaraq mümkün olmayanda qazandırır: kartlar bir nəfərin yaddaşına sığmayanda, unudulan zəng pula başa gələndə. Ayda iyirmi sövdələşmə o hal deyil.',
         },
         {
           cond: 'Komandada bir-iki nəfər',
@@ -155,7 +155,7 @@ export const crmErp: Record<Locale, ServiceCopy> = {
       items: [
         {
           q: 'Hazır CRM-i öz altımıza uyğunlaşdırmaq ucuz olmazmı?',
-          a: 'Çox vaxt bəli — və biz bunu dürüst deyirik. Hazır CRM — amoCRM, Bitrix24 və bənzərləri — bir həftəyə işə düşür və pulu əvvəlcədən bəllidir. Bahalaşması sonra başlayır: plaginlər, inteqrator, istifadəçi başına artan abunə. Sıfırdan hazırlanan sistem daha gec start götürür, 4–8 həftə, əvəzində kod və məlumat sizdə qalır, istifadəçi başına aylıq ödəniş yoxdur. Brifdə hər iki variantı hesablayıb fərqi göstəririk.',
+          a: 'Çox vaxt bəli. Biz biz bunu dürüst deyirik. Hazır CRM — amoCRM, Bitrix24 və bənzərləri — bir həftəyə işə düşür və pulu əvvəlcədən bəllidir. Bahalaşması sonra başlayır: plaginlər, inteqrator, istifadəçi başına artan abunə. Sıfırdan hazırlanan sistem daha gec start götürür, 4–8 həftə, əvəzində kod və məlumat sizdə qalır, istifadəçi başına aylıq ödəniş yoxdur. Brifdə hər iki variantı hesablayıb fərqi göstəririk.',
         },
         {
           q: 'Köhnə bazadakı məlumat itəcəkmi?',

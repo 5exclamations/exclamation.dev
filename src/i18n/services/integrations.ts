@@ -22,7 +22,7 @@ export const integrations: Record<Locale, ServiceCopy> = {
     eyebrow: 'Xidmət',
     titleMuted: 'İnteqrasiya və avtomatlaşdırma —',
     titleMain: 'eyni məlumatı iki dəfə yazmamaq.',
-    lead: 'İnteqrasiya — iki sistemin bir-birinə məlumatı özünün ötürməsidir: sifariş saytdan 1C-yə, ödəniş bankdan CRM-ə, qalıq anbardan mağazaya. Bir inteqrasiya üçün tipik müddət 1–2 həftə, bir neçə sistemi birləşdirən avtomatlaşdırma paketi üçün 3–6 həftə. Brifdən sonra 3–5 gün ərzində sxem, mərhələlər və dəqiq smeta veririk — bu mərhələ ödənişsizdir.',
+    lead: 'İnteqrasiya — iki sistemin bir-birinə məlumatı avtomatik ötürməsidir: sifariş saytdan 1C-yə, ödəniş bankdan CRM-ə, qalıq anbardan mağazaya. Bir inteqrasiya üçün tipik müddət 1–2 həftə, bir neçə sistemi birləşdirən avtomatlaşdırma paketi üçün 3–6 həftə. Brifdən sonra 3–5 gün ərzində sxem, mərhələlər və dəqiq smeta veririk — bu mərhələ ödənişsizdir.',
     facts: [
       { label: 'Bir inteqrasiya', value: '1–2 həftə' },
       { label: 'Avtomatlaşdırma paketi', value: '3–6 həftə' },
@@ -135,7 +135,7 @@ export const integrations: Record<Locale, ServiceCopy> = {
         },
         {
           cond: 'Sistemlərdən birinin API-si yoxdur',
-          text: 'Bazaya birbaşa giriş və ya ixrac faylı yoxdursa, bağlanacaq yer yoxdur. Bəzən yeganə real yol — həmin sistemi dəyişmək, və bunu əvvəlcədən demək daha dürüstdür.',
+          text: 'Bazaya birbaşa giriş və ya ixrac faylı yoxdursa, bağlanacaq yer yoxdur. Bəzən yeganə real yol həmin sistemi dəyişməkdir; bunu əvvəlcədən demək daha dürüstdür.',
         },
         {
           cond: 'Proses hər ay dəyişir',

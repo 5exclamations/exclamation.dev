@@ -113,7 +113,7 @@ export default {
           'Ödəniş sistemləri ilə inteqrasiya',
           'Servislərlə API inteqrasiyası',
           'Biznes proseslərinin avtomatlaşdırılması',
-          '1C, SAP, AmoCRM ilə inteqrasiya',
+          '1C, SAP, amoCRM ilə inteqrasiya',
           'Sistemlər arasında məlumat sinxronu',
           'Webhook və event-driven ssenarilər',
         ],
@@ -227,7 +227,7 @@ export default {
         results: [
           { value: '-80%', label: 'ödəniş və çek rəsmiləşdirmə vaxtı' },
           { value: '0', label: 'balans hesablamasında əl səhvi' },
-          { value: '3 dəq əvəzinə 30', label: 'müştəri hesabatının hazırlanması' },
+          { value: '3 dəq', label: '30 dəqiqə əvəzinə müştəri hesabatı' },
         ],
         stack: ['Django', 'PostgreSQL', 'WeasyPrint', 'Nginx'],
         alts: ['FLEKS: seansın keçirilməsi və müştəri balansının artırılması formaları', 'FLEKS: müştərilər üzrə balans və ödəniş cədvəli', 'FLEKS: hesabat sətri və ödəniş tarixçəsi'],

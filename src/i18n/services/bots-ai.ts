@@ -23,7 +23,7 @@ export const botsAi: Record<Locale, ServiceCopy> = {
     },
     eyebrow: 'Xidmət',
     titleMuted: 'Botlar və AI həlləri —',
-    titleMain: 'operatorun əvəzinə deyil, onun yükünü azaldan.',
+    titleMain: 'təkrarlanan sualları özü bağlayır.',
     lead: 'Bot və AI assistent — müştəri sualının bir hissəsini adam olmadan bağlayan kanaldır: FAQ, status yoxlaması, sifariş qəbulu, sənəd axtarışı. Ssenarili bot üçün tipik müddət 2–3 həftə, biliyi olan LLM assistenti üçün 4–8 həftə. Brifdən sonra 3–5 gün ərzində ssenari xəritəsi, mərhələlər və dəqiq smeta veririk — bu mərhələ ödənişsizdir.',
     facts: [
       { label: 'Ssenarili bot', value: '2–3 həftə' },
@@ -32,12 +32,11 @@ export const botsAi: Record<Locale, ServiceCopy> = {
     ],
     introTitle: 'Bot nə edir və nə etmir',
     intro: [
-      'Gözlənti adətən belədir: bot bütün sualları cavablayacaq. Real mənzərə başqadır. Müraciətlərin böyük hissəsi bir neçə təkrarlanan sualdır — «harada gəlib?», «neçəyədir?», «bu ölçü varmı?» — və məhz onlar avtomatlaşdırılır. Qalanı adama qalır, amma artıq az sayda və hazır kontekstlə.',
+      'Gözlənti adətən belədir: bot bütün sualları cavablayacaq. Real mənzərə başqadır. Müraciətlərin böyük hissəsi bir neçə təkrarlanan sualdır — «hardan gəlib?», «neçəyədir?», «bu ölçü varmı?» — və məhz onlar avtomatlaşdırılır. Qalanı adama qalır, amma artıq az sayda və hazır kontekstlə.',
       'İki fərqli məhsul var. Ssenarili bot dəqiq addımlarla işləyir: düymələr, sabit cavablar, sifariş forması. Ucuz, proqnozlaşdırıla bilən, uydurmur.',
       'LLM assistenti sərbəst mətni başa düşür və sizin bazanızdan cavab yığır. Daha canlı, amma nəzarət tələb edir.',
-      'Nəzarət RAG üzərində qurulur: model cavabı özündən çıxarmır, əvvəlcə sizin sənədlərinizdən lazımlı hissəni tapır və yalnız onun əsasında cavab verir. Mənbə tapılmasa, assistent bunu deyir və dialoqu operatora ötürür.',
-      'Standart olaraq. Ayrıca opsiya kimi yox.',
-      'AI assistent keysimizdə bu belə işləyir: FAQ cavabları, stok yoxlaması, məhsul tövsiyəsi və səbətin çat içində yığılması. Operator yükü 60% azaldı, cavab müddəti isə beş dəqiqədən otuz saniyədən aşağıya düşdü. Tipik sənədlərdə səhv sayı sıfırdır — çünki model onları özü yazmır, şablondan doldurur.',
+      'Nəzarət RAG üzərində qurulur: model cavabı özündən çıxarmır, əvvəlcə sizin sənədlərinizdən lazımlı hissəni tapır və yalnız onun əsasında cavab verir. Mənbə tapılmasa, assistent bunu deyir və dialoqu operatora ötürür. Bu davranış hər layihədə standartdır, ayrıca opsiya deyil.',
+      'AI assistent keysimizdə bu belə işləyir: FAQ cavabları, stok yoxlaması, məhsul tövsiyəsi və səbətin çat içində yığılması. Operator yükü 60% azaldı, cavab müddəti isə beş dəqiqədən otuz saniyəyə düşdü. Tipik sənədlərdə səhv sayı sıfırdır — çünki model onları özü yazmır, şablondan doldurur.',
     ],
     scope: {
       title: 'İşə nə daxildir',
@@ -56,7 +55,7 @@ export const botsAi: Record<Locale, ServiceCopy> = {
       excludesTitle: 'Daxil deyil',
       excludes: [
         'LLM provayderinin sorğu haqqı',
-        'Öz modelin sıfırdan öyrədilməsi',
+        'Öz modelinizin sıfırdan öyrədilməsi',
         'Biliklər bazası üçün mətnlərin yazılması',
         'Operator komandasının işə götürülməsi',
         'Messencer biznes hesabının rəsmiləşdirilməsi',
@@ -75,7 +74,7 @@ export const botsAi: Record<Locale, ServiceCopy> = {
       title: 'Qiymət nədən asılıdır',
       lead: 'Hazır qiymət cədvəli vermirik: ssenarili bot və biliyi olan assistent tamam fərqli işlərdir. Smetanı bunlar dəyişir.',
       drivers: [
-        'Tип: düymələrlə ssenari, yoxsa sərbəst mətni başa düşən assistent',
+        'Tip: düymələrlə ssenari, yoxsa sərbəst mətni başa düşən assistent',
         'Kanal sayı: Telegram, WhatsApp, sayt vidceti — hər biri ayrıca qoşulur',
         'Biliklər bazasının həcmi və vəziyyəti: səliqəli sənədlər, yoxsa dağınıq fayllar',
         'İnteqrasiyalar: stok, sifariş, CRM — botun nəyə baxa bilməsi lazımdır',
@@ -161,7 +160,7 @@ export const botsAi: Record<Locale, ServiceCopy> = {
         },
         {
           q: 'Öz modelimizi öyrətmək lazımdırmı?',
-          a: 'Demək olar ki, heç vaxt. Hazır model plus sizin biliklər bazanız praktikada daha ucuz və daha dəqiq çıxır. Öz modelin öyrədilməsi ayrıca böyük layihədir və onu yalnız real ehtiyac olanda təklif edirik.',
+          a: 'Demək olar ki, heç vaxt. Hazır model üstəgəl sizin biliklər bazanız praktikada daha ucuz və daha dəqiq çıxır. Öz modelinizin öyrədilməsi ayrıca böyük layihədir və onu yalnız real ehtiyac olanda təklif edirik.',
         },
         {
           q: 'Bot bilmədiyi sualla nə edir?',

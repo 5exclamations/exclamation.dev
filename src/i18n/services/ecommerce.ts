@@ -154,7 +154,7 @@ export const ecommerce: Record<Locale, ServiceCopy> = {
       items: [
         {
           q: 'Shopify və ya hazır CMS-də etmək ucuz olmazmı?',
-          a: 'Standart kataloq və standart checkout üçün — bəli, və biz bunu dürüst deyirik. Shopify və ya hazır CMS bir-iki həftəyə qalxır. Fərq o zaman görünür ki, sizin variantlarınız, endirim qaydalarınız və ya anbar sinxronunuz qutunun modelinə sığmır: sonra plaginlər başlayır, plaginlər isə hər yeniləmədə toqquşur. Öz platforma bunu aradan qaldırır, amma daha gec start götürür — sadə mağaza üçün 4–6 həftə. Brifdə hər iki variantı hesablayırıq.',
+          a: 'Standart kataloq və standart checkout üçün — bəli. Biz bunu dürüst deyirik. Shopify və ya hazır CMS bir-iki həftəyə qalxır. Fərq sizin variantlarınız, endirim qaydalarınız və ya anbar sinxronunuz qutunun modelinə sığmayanda görünür: sonra plaginlər başlayır, plaginlər isə hər yeniləmədə toqquşur. Öz platforma bunu aradan qaldırır, amma daha gec start götürür — sadə mağaza üçün 4–6 həftə. Brifdə hər iki variantı hesablayırıq.',
         },
         {
           q: 'Ödənişi Azərbaycanda necə qoşursunuz?',
