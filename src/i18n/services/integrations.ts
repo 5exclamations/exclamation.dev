@@ -17,7 +17,7 @@ export const integrations: Record<Locale, ServiceCopy> = {
     meta: {
       title: 'İnteqrasiya və avtomatlaşdırma, Bakı — EXCLAMATION',
       description:
-        '1C, AmoCRM, WhatsApp, ödəniş və çatdırılma servisləri ilə inteqrasiya. Bir inteqrasiya 1–2 həftə, avtomatlaşdırma paketi 3–6 həftə. Qiymətləndirmə pulsuz.',
+        '1C, amoCRM, WhatsApp, ödəniş və çatdırılma servisləri ilə inteqrasiya. Bir inteqrasiya 1–2 həftə, avtomatlaşdırma paketi 3–6 həftə. Qiymətləndirmə pulsuz.',
     },
     eyebrow: 'Xidmət',
     titleMuted: 'İnteqrasiya və avtomatlaşdırma —',
@@ -185,7 +185,7 @@ export const integrations: Record<Locale, ServiceCopy> = {
     meta: {
       title: 'Интеграции и автоматизация процессов — EXCLAMATION',
       description:
-        'Интеграция 1С, AmoCRM, Bitrix24, WhatsApp, платежей и доставки. Одна связка 1–2 недели, пакет автоматизации 3–6 недель. Оценка за 3–5 дней бесплатно.',
+        'Интеграция 1С, amoCRM, Bitrix24, WhatsApp, платежей и доставки. Одна связка 1–2 недели, пакет автоматизации 3–6 недель. Оценка за 3–5 дней бесплатно.',
     },
     eyebrow: 'Услуга',
     titleMuted: 'Интеграции и автоматизация —',

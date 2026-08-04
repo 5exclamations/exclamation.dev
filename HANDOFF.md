@@ -16,8 +16,8 @@ Two documents sit beside it and are not optional:
 ## 1. Where the project is
 
 The site is a full rewrite on Astro, replacing a legacy static site that is
-still what GitHub Pages serves. **42 pages build.** Everything is built except
-the cutover; the immediate next task is a tone pass over the copy (§4).
+still what GitHub Pages serves. **42 pages build.** Everything is built and the
+copy has been through the tone pass (§4); what is left is the cutover (§7).
 
 ```bash
 cp .env.example .env        # fill in FORMSPREE_ID — see §8
@@ -149,17 +149,19 @@ measurement. Re-run before cutover.
 
 ---
 
-## 4. Next task: the tone pass
+## 4. The tone pass — done 2026-08-04
 
-The facts across the site are real; the prose reads as model-written. The
-client named the tells on 2026-08-03. Do not treat this as licence to change
-any fact, number or claim.
+All eighteen locale blocks of the six service pages have been through it
+(`d458a81`, `7155b89`, `c1ded58`, `7df243f`, `27af51e`, `0679d52`). This
+section stays because it is the copy contract for anything written next: a new
+service page, a case page, or a rewrite of the landing copy has to come out
+the same way.
 
 **The rule: tone changes, facts do not.** Durations, scope lists, the
-no-prices decision and the "when you do not need this" conditions stay exactly
-as they are.
+no-prices decision and the "when you do not need this" conditions stayed
+exactly as they were, and must keep doing so.
 
-### Two shapes the pass must not touch
+### Two shapes no pass may touch
 
 Both exist for answer engines, not for the reader's pleasure. Livelier wording
 inside them is fine; the structure is not.
@@ -167,17 +169,17 @@ inside them is fine; the structure is not.
 1. **The lead paragraph of every page and block stays answer-first** — two or
    three sentences that answer the question in the heading, carrying a number
    or a duration that can be lifted into someone else's answer with no edit and
-   no surrounding context. Answer first, unfold after. The tells above are
-   still to be removed from it, but not by delaying the answer, and not by
-   moving the figure further down. `lead` fields in `src/i18n/services/*.ts`
-   are what this names.
+   no surrounding context. Answer first, unfold after. The tells below are to
+   be removed from it, but not by delaying the answer, and not by moving the
+   figure further down. `lead` fields in `src/i18n/services/*.ts` are what this
+   names.
 2. **Every FAQ answer stays self-contained.** It reads correctly quoted on its
    own, away from the page: no "as described above", no "this stage", no
    pronoun whose referent is a paragraph higher up. Each answer repeats
    whatever it needs — the term, the timeframe, the condition.
 
 Also written into SKILL.md §10, which is the copy contract; this section is
-only the reminder for the pass.
+the working record of how the pass read it.
 
 ### The eight tells
 
@@ -201,25 +203,87 @@ with no verb. Paragraphs of uneven length: five lines here, one line there.
 Direct statements without insurance on both sides. Uneven transitions; real
 writing is not always glued together logically.
 
-### Scope and sequencing
+### What the pass actually took — the client's correction
 
-Every locale of all six service pages, plus the landing page and the case
-pages if the tells show up there. Current lengths, so a rewrite can be checked
-against them:
+The first take was a word-level edit: hedges out, marker words out, throat
+clearing out. **It was rejected as too cautious.** The direction that was
+accepted:
+
+> Правка структуры, а не слов. Ровный столбик из трёх строк выдаёт машину
+> сильнее, чем любое отдельное слово.
+
+Concretely, and this is the bar for new copy:
+
+- **Every prose block has one paragraph of a single line,** and it is a whole
+  sentence, not a fragment of its neighbour. It lands in a different place in
+  each of the eighteen blocks — a copied position is the same tell one level up.
+- **`notFor` items run from one line to five.** Compress by rewriting, never by
+  deleting the argument.
+- **FAQ answers spread from one sentence to five.** The self-contained rule
+  above does not require equal length: a simple question gets one sentence that
+  still names its term, its timeframe and its condition.
+- **Verbless sentences are wanted,** in all three languages.
+- **A paragraph may open on And / But / Зато / И / Zaten.**
+- The free-estimate note **reads differently on each of the six pages.** The
+  same sentence six times was itself the tell.
+
+### Three things the pass was told not to do
+
+Standing, unless the client reopens them:
+
+1. **Do not touch `meta.description`.** Typos in it may be fixed; the prose may
+   not be rewritten. (`AmoCRM` → `amoCRM` was fixed under that rule.)
+2. **Do not split single-string fields into arrays** by editing `ServiceCopy`.
+   `intro` is the only array, so it is the only place a one-line paragraph can
+   exist without a type change. `pricing.lead`, `notFor.close` and `cta.text`
+   stay single strings.
+3. **Do not cut a commercial line from a FAQ answer for rhythm** — "каждая
+   интеграция отдельная строка в смете", "привязки к нам нет", "quoted before
+   it starts" and their siblings stay.
+
+### What was left alone on purpose
+
+`а не` / `not` survives in seven places where it is a factual contrast inside a
+sentence — "база лежит в вашем аккаунте, а не в чужом кабинете", "падение видим
+мы, а не вы". The banned tell is the rhetorical antithesis built on a dash, not
+every contrast. The client confirmed this on 2026-08-04.
+
+Four `titleMain` clauses were rewritten because they *were* that antithesis:
+
+| Page | Was | Now |
+| --- | --- | --- |
+| crm-erp ru | под ваш процесс, а не под чужую коробку | когда коробка уже не тянет |
+| ecommerce ru | на своей платформе, а не на чужой комиссии | ваш каталог, ваша база клиентов |
+| ecommerce en | the store, not the storefront | built to take the order |
+| bots-ai ru | снимают часть нагрузки, а не всю | часть обращений закрывают без человека |
+
+`titleMain` feeds the OG cards through `serviceCopy` in
+`src/pages/og/[key].png.ts` — rebuild and look at the PNG after changing one.
+
+### Lengths, before and after
+
+A tone pass should not move the word count much, and it did not. Counted as
+words containing a letter inside the single-quoted strings of each locale
+block; the numbers in the previous version of this table came out ~5 words
+lower on the same files, so compare within a column, not across methods.
 
 | File | az | ru | en |
 | --- | --- | --- | --- |
-| `crm-erp.ts` | 943 | 982 | 1255 |
-| `web.ts` | 885 | 916 | 1158 |
-| `mobile.ts` | 924 | 944 | 1214 |
-| `ecommerce.ts` | 915 | 965 | 1204 |
-| `integrations.ts` | 924 | 970 | 1224 |
-| `bots-ai.ts` | 876 | 912 | 1179 |
+| `crm-erp.ts` | 947 → 955 | 985 → 977 | 1260 → 1235 |
+| `web.ts` | 891 → 897 | 922 → 928 | 1164 → 1176 |
+| `mobile.ts` | 923 → 919 | 943 → 935 | 1215 → 1197 |
+| `ecommerce.ts` | 919 → 911 | 969 → 937 | 1208 → 1184 |
+| `integrations.ts` | 928 → 907 | 974 → 955 | 1230 → 1210 |
+| `bots-ai.ts` | 878 → 874 | 915 → 918 | 1181 → 1173 |
 
-**Start with one page in one language and get it approved** before applying
-the treatment to the other seventeen locale blocks. The uniform-paragraph and
-closing-summary patterns are the two most pervasive and appear in all
-eighteen.
+### Still carrying the tells
+
+**The landing page and the case pages were not part of this pass.** The eight
+tells were only ever hunted on the six service pages. Whoever picks up
+`src/i18n/az.ts` / `ru.ts` / `en.ts` should expect to find them there.
+
+`AmoCRM` is still misspelled in six places on the landing page —
+`src/i18n/{az,ru,en}.ts` lines ~116 and ~367. The product is **amoCRM**.
 
 ---
 
@@ -372,19 +436,20 @@ rules that size the `<img>` keep addressing it directly.
 
 ## 7. Remaining before launch
 
-1. **The tone pass** (§4). This is next.
-2. **Profile the service pages** — Core Web Vitals and gzip size. Only the
-   landing page has been measured.
-3. **Cutover to Cloudflare Pages.** Set the build environment (§8), deploy,
+1. **Profile the service pages** — Core Web Vitals and gzip size. Only the
+   landing page has been measured. This is next.
+2. **Cutover to Cloudflare Pages.** Set the build environment (§8), deploy,
    then delete the legacy files and turn off GitHub Pages.
-4. **Delete the legacy site** — `index.html`, `style_dark.css`,
+3. **Delete the legacy site** — `index.html`, `style_dark.css`,
    `style_light.css`, `translations.js` and the root `pics/`. Still present
    because GitHub Pages serves them; deleting now takes the live site down.
    `translations.js` is also the source of the client's original copy, so
    check anything you still need out of it first. Note it misspells
    **MindTrack**; the product is **MindTrick** — verify product names against
    screenshots, not translations.
-5. **Run `validator.schema.org` by URL** once the site is public (§3).
+4. **Run `validator.schema.org` by URL** once the site is public (§3).
+5. **Take the tone pass to the landing page and the case pages** if the client
+   wants it — the six service pages are done, those are not (§4).
 
 ### Debt carried deliberately
 
