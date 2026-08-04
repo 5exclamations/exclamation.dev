@@ -323,6 +323,16 @@ where no screenshot exists or the real one is visually weak. Rules:
   led to the same form; only the first survives.
 - Claims carry a number, a duration, or a tool name. "Individual approach"
   is not a claim.
+- **The lead paragraph answers first.** Two or three sentences that answer
+  the question the heading raises, carrying a number or a duration that can
+  be lifted into someone else's answer with no edit and no context from the
+  page around it. Answer, then unfold. This is built for answer engines and
+  survives every rewrite of tone — livelier wording inside the shape is
+  welcome, a delayed answer or a figure pushed down the page is not.
+- **Every FAQ answer is self-contained.** It has to read correctly quoted on
+  its own: no "as described above", no "this stage", no pronoun pointing at
+  a paragraph higher up. Repeat the term, the timeframe or the condition
+  each answer needs.
 - **No cost figures on commercial pages.** Settled 2026-08-03 and not open
   again. No price list, no "from N manat", no ranges, no per-tier tables —
   on service pages, the landing page, the FAQ or anywhere else. In their

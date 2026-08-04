@@ -159,6 +159,26 @@ any fact, number or claim.
 no-prices decision and the "when you do not need this" conditions stay exactly
 as they are.
 
+### Two shapes the pass must not touch
+
+Both exist for answer engines, not for the reader's pleasure. Livelier wording
+inside them is fine; the structure is not.
+
+1. **The lead paragraph of every page and block stays answer-first** — two or
+   three sentences that answer the question in the heading, carrying a number
+   or a duration that can be lifted into someone else's answer with no edit and
+   no surrounding context. Answer first, unfold after. The tells above are
+   still to be removed from it, but not by delaying the answer, and not by
+   moving the figure further down. `lead` fields in `src/i18n/services/*.ts`
+   are what this names.
+2. **Every FAQ answer stays self-contained.** It reads correctly quoted on its
+   own, away from the page: no "as described above", no "this stage", no
+   pronoun whose referent is a paragraph higher up. Each answer repeats
+   whatever it needs — the term, the timeframe, the condition.
+
+Also written into SKILL.md §10, which is the copy contract; this section is
+only the reminder for the pass.
+
 ### The eight tells
 
 1. Paragraphs all the same length, three or four sentences each, never a short
