@@ -22,7 +22,7 @@ export default {
   hero: {
     eyebrow: 'Bakı · {year}-dan bəri',
     titleMuted: 'Bakıda sayt, CRM və mobil tətbiq.',
-    titleMain: 'Xərc yox — aktiv.',
+    titleMain: 'İlk işlək versiya 7–14 günə.',
     sub: 'Sayt, CRM, ERP, mobil tətbiq, bot və AI həlləri. Brifdən relizə qədər tam dövr — bir komanda ilə.',
     diff: [
       { sign: '−', text: 'Excel · WhatsApp · əl ilə hesabat' },
@@ -37,7 +37,7 @@ export default {
     eyebrow: 'Nə qururuq',
     titleMuted: 'Doqquz istiqamət,',
     titleMain: 'bir komanda.',
-    note: 'Landing səhifəsindən korporativ platformaya qədər. Bir podratçı — bütün spektr, bir müqavilə, bir məsuliyyət.',
+    note: 'Landing səhifəsindən korporativ platformaya qədər. Bir podratçı, bir müqavilə.',
     cta: 'Brifə keç',
     countLabel: 'xidmət',
     items: [
@@ -147,10 +147,10 @@ export default {
     titleMuted: 'Sistem qurmaq xərc kimi görünür,',
     titleMain: 'onun olmaması isə hər gün pul aparır.',
     paras: [
-      'Saytınız yoxdursa və ya zəifdirsə, müştəriləri hər gün rəqiblərə uduzursunuz. İlk təəssürat **3 saniyəyə** formalaşır və ondan sonra insan ya qalır, ya da geri düyməsini basır.',
+      'Saytınız yoxdursa və ya zəifdirsə, müştəriləri hər gün rəqiblərə uduzursunuz. İlk təəssürat **3 saniyəyə** formalaşır. Sonrası: insan ya qalır, ya da geri düyməsini basır.',
       'CRM olmadan lidlərin **35%-ə qədəri** messencerdə, e-poçtda və qeyd dəftərində itir. Sistem müştərini huni ilə özü aparır, tapşırığı xatırladır və satışın harada dayandığını göstərir.',
-      'Əl ilə görülən hesabat bir əməkdaşın **gündə 2–3 saatını** alır və səhv riskini artırır. Avtomatlaşdırılmış ssenari eyni işi gecə saat üçdə, şikayətsiz və səhvsiz görür.',
-      'Bunların hamısı ölçülür. Aşağıdakı rəqəmlər bizim öz layihələrimizdən — müştərinin buraxılışdan sonra ölçdüyü nəticələr.',
+      'Əl ilə görülən hesabat bir əməkdaşın **gündə 2–3 saatını** alır. Avtomatlaşdırılmış ssenari eyni işi gecə saat üçdə, şikayətsiz və səhvsiz görür.',
+      'Aşağıdakı rəqəmlər bizim öz layihələrimizdəndir — müştəri onları buraxılışdan sonra özü ölçüb.',
     ],
     barsTitle: 'Layihələrdən ölçülmüş nəticələr',
     bars: [
@@ -160,7 +160,7 @@ export default {
     ],
   },
   metrics: {
-    label: 'Studiya haqqında rəqəmlərlə',
+    label: 'Rəqəmlərlə studiya',
     items: [
       { value: '40+', label: 'buraxılmış layihə' },
       { value: '{years}', label: 'il bazarda' },
@@ -184,7 +184,7 @@ export default {
     screens: 'Ekranlar',
     next: 'Növbəti keys',
     ctaTitle: 'Sizdə də oxşar tapşırıq var?',
-    ctaText: 'Qısa brif göndərin — arxitekturanı, müddəti və dəyəri pulsuz qiymətləndirək.',
+    ctaText: 'Qısa brif göndərin. 3–5 gün ərzində arxitektura, müddət və smeta ilə qayıdırıq, pulsuz.',
     cta: 'Layihəni müzakirə et',
     mockTitle: 'Canlı dialoq',
     mockCaption: 'AI assistentin dialoqu — məhsul axtarışı və səbətin yığılması',
@@ -204,8 +204,8 @@ export default {
         domain: 'Daşınmaz əmlak',
         tag: 'CRM sistemi',
         title: 'CRM Portal — daşınmaz əmlak agentlikləri üçün CRM',
-        task: 'Rieltorlar müştəriləri Excel və WhatsApp-da aparırdı, obyekt bazası köhnəlmişdi, satış mərhələləri görünmürdü. Menecerlər eyni müştərini təkrar işləyirdi.',
-        solution: 'Azərbaycan bazarı üçün ixtisaslaşmış CRM platforması hazırladıq: mərkəzləşdirilmiş obyekt bazası, müştəri kartları, Kanban hunisi, WhatsApp və zəng inteqrasiyası, avtomatik data sinxronu və real vaxt analitikası.',
+        task: 'Rieltorlar müştəriləri Excel və WhatsApp-da aparırdı, obyekt bazası köhnəlmişdi, satış mərhələləri görünmürdü. İki menecer eyni müştəriyə zəng edə bilərdi. Gündə 2–3 saat inzibati işə gedirdi.',
+        solution: 'Obyekt bazasını, müştəri kartlarını və sövdələşmələri Kanban hunisi olan bir sistemdə birləşdirdik. WhatsApp, zənglər, data sinxronu və real vaxt analitikası da ora qoşuldu.',
         diff: ['Excel · WhatsApp · əl ilə baza', 'CRM Portal · Kanban huni'],
         results: [
           { value: '+45%', label: 'satış konversiyası' },
@@ -222,7 +222,7 @@ export default {
         tag: 'ERP sistemi',
         title: 'FLEKS — psixoloji mərkəz üçün ERP',
         task: 'Müştərilər cədvəldə aparılır, balanslar əl ilə hesablanır, çeklər Word-dən çıxarılırdı. Data itir, ödənişlərdə səhvlər yaranırdı.',
-        solution: 'Django üzərində daxili ERP paneli hazırladıq: müştəri və balans uçotu, seans ödənişlərinin silinməsi, dərs sayının hesablanması, PDF çeklərin avtomatik yaradılması və maliyyə hesabatları.',
+        solution: 'Django üzərində daxili panel: müştəri və balans uçotu, seans ödənişlərinin silinməsi, dərs sayının hesablanması, avtomatik PDF çeklər və maliyyə hesabatları.',
         diff: ['Word çeklər · əl ilə balans', 'Django ERP · avtomatik PDF'],
         results: [
           { value: '-80%', label: 'ödəniş və çek rəsmiləşdirmə vaxtı' },
@@ -239,7 +239,7 @@ export default {
         tag: 'SaaS platforması',
         title: 'Yükdaşıma və gömrük idarəetməsi üçün bulud platforması',
         task: 'Azərbaycan üzərindən yükdaşımalarda sənədləşmə günlərlə çəkirdi. Şirkətlər ayrı sistemlərdən istifadə etdiyinə görə məlumat sinxron deyildi və səhv riski yüksək idi.',
-        solution: 'Vahid bulud B2B platforması hazırladıq: bütün iştirakçılar üçün mərkəzi portal, şəffaf əməliyyatlar üçün blokçeyn, real vaxt izləmə və gömrük bazaları ilə inteqrasiya.',
+        solution: 'Daşıyıcı, broker və yük sahibi eyni bulud portalında işləyir. Əməliyyatlar və yükün izlənməsi blokçeynlə təsdiqlənir, gömrük bazaları qoşulub, bəyannamələr avtomatik formalaşır.',
         diff: ['ayrı sistemlər · günlərlə sənəd', 'vahid portal · blokçeyn izləmə'],
         results: [
           { value: '-80%', label: 'sənədləşmə vaxtı' },
@@ -254,8 +254,8 @@ export default {
         domain: 'Mobil məhsul',
         tag: 'Mobil tətbiq',
         title: 'MindTrick — analitika və proqnozlu Habit Tracker',
-        task: 'İstifadəçilər sadə tracker-lərdə vərdiş qeyd edirdi, amma motivasiyanı tez itirirdi: yalnız “etdi / etmədi”, sındırılma səbəbi və davranış pattern analizi yox idi.',
-        solution: 'Vərdiş trekinqi, streak-lər, qrafiklər və heatmap ilə tətbiq hazırladıq. Smart insight sistemi buraxma riskini proqnozlaşdırır və fərdiləşdirilmiş tövsiyə verir.',
+        task: 'Sadə tracker-lərdə vərdiş bir qeyddir: «etdim / etmədim». İnsanın niyə sındığını o qeyd izah etmir, iki həftədən sonra tətbiq silinir.',
+        solution: 'Vərdiş trekinqi, streak-lər, qrafiklər və aktivlik heatmap-i. İnsight sistemi buraxma riskini proqnozlaşdırır, fərdi tövsiyə və xatırlatma verir.',
         diff: ['yalnız «etdim / etmədim»', 'streak · heatmap · insight'],
         results: [
           { value: '+52%', label: '8 həftədə istifadəçi saxlanması' },
@@ -271,8 +271,8 @@ export default {
         domain: 'E-ticarət',
         tag: 'Onlayn mağaza',
         title: 'Smart Fashion — Data-Driven E-Commerce Platform',
-        task: 'Adi onlayn mağazalar yalnız baza funksionallıq verirdi: personalizasiya və dərin analitika yox idi. Alıcılar məhsul axtarışına çox vaxt sərf edir, biznes satış və anbar idarəçiliyində effektivliyi itirirdi.',
-        solution: 'Kataloq, filtr, səbət və hesab sistemi olan platforma qurduq. İstifadəçi davranışına əsaslı tövsiyələr, satış analitikası üçün admin paneli və real vaxt qalıq idarəetməsi əlavə etdik.',
+        task: 'Alıcı lazım olan şeyi kataloqda əl ilə axtarır və tapmadan çıxırdı. Anbardakı qalıq vitrindən ayrı yaşayırdı, sifarişlərin bir hissəsi artıq olmayan mala düşürdü.',
+        solution: 'Kataloq, filtr, səbət və hesablar — bu, bazadır. Üstünə istifadəçi davranışına əsaslanan tövsiyələr, analitikalı admin panel və real vaxt qalıq idarəetməsi gəldi.',
         diff: ['standart mağaza · analitika yox', 'tövsiyələr · real vaxt anbar'],
         results: [
           { value: '+65%', label: 'redizayndan sonra konversiya artımı' },
@@ -288,8 +288,8 @@ export default {
         domain: 'Müştəri servisi',
         tag: 'Avtomatlaşdırma',
         title: 'Müştəri servisini avtomatlaşdıran AI-assistent',
-        task: 'Böyük e-commerce call-center-i yüklənmişdi: operatorlar eyni sualları dəfələrlə cavablayır, müştərilər uzun gözləyir və alış etmədən çıxırdı.',
-        solution: 'LLM əsaslı AI-assistent yaratdıq: FAQ cavabı, satış hunisi ilə yönləndirmə, stok yoxlaması, məhsul tövsiyəsi və səbətin chat içində formalaşdırılması 24/7 rejimində işləyir.',
+        task: 'Böyük e-commerce şirkətinin call-center-i yüklənmişdi. Operatorlar gündə yüzlərlə eyni sualı cavablayır, müştəri 10–15 dəqiqə gözləyir, bir hissəsi alış etmədən çıxırdı.',
+        solution: 'Assistenti şirkətin yazışma tarixçəsi və sənədləri üzərində öyrətdik. O, FAQ-a cavab verir, müştərini huni ilə aparır, stoku yoxlayır, məhsul tövsiyə edir və səbəti çatın içində yığır — gecə-gündüz.',
         diff: ['gündə 100 eyni sual', 'LLM assistent · 24/7'],
         results: [
           { value: '-60%', label: 'operator yükü' },
@@ -310,32 +310,32 @@ export default {
       { title: 'Dizayn və prototip', time: '1–2 həftə', text: 'İstifadəçi ssenariləri, wireframe-lər, dizayn sistemi və bütün ekranların adaptiv maketləri.' },
       { title: 'Development', time: '2 həftəlik sprint', text: 'Hər sprintin sonunda işlək demo. Task tracker və repozitoriya sizin tərəfdə, kod hər gün görünür.' },
       { title: 'Test və reliz', time: '1 həftə', text: 'Funksional və yük testləri, cross-browser yoxlaması, CI/CD, monitorinq və rollback ilə yumşaq buraxılış.' },
-      { title: 'Dəstək', time: '3 ay zəmanət', text: 'Monitorinq, bug fix və roadmap üzrə inkişaf. Buraxılış son nöqtə deyil.' },
+      { title: 'Dəstək', time: '3 ay zəmanət', text: 'Monitorinq, bug fix və roadmap üzrə inkişaf.' },
     ],
   },
   tech: {
     eyebrow: 'Stek',
     titleMuted: 'Müasir stek —',
     titleMain: 'etibarlı təməl.',
-    note: 'Performans, miqyaslanma və məhsulun uzun ömrü üçün seçilmiş texnologiyalar. Bir layihədə hamısı işlənmir — tapşırığa uyğun olanı seçilir.',
+    note: 'Texnologiyanı tapşırığa və məhsulun nə qədər yaşayacağına görə seçirik. Bir layihədə siyahının hamısı işlənmir.',
     countLabel: 'texnologiya stekdə',
   },
   facts: {
     eyebrow: 'Faktlar',
-    titleMuted: 'Şüar yox —',
-    titleMain: 'rəqəm, müddət və alət adı.',
+    titleMuted: 'Müddət, ritm',
+    titleMain: 'və koda hüquq.',
     items: [
       {
         label: 'MVP',
         value: '7–14 gün',
         rest: ' — ilk işlək versiyaya qədər',
-        text: 'Scope müqavilədə yazılır: nəyin daxil olduğu və nəyin olmadığı. Razılaşdırılmış qiymət iş gedişində dəyişmir.',
+        text: 'İşin həcmi müqavilədə yazılır: nə daxildir, nə yox. Razılaşdırılmış qiymət nə dizaynda, nə relizdə dəyişmir.',
       },
       {
         label: 'Ritm',
         value: '2 həftə',
         rest: ' — sprint, sonunda demo',
-        text: 'Task tracker-ə giriş sizin tərəfdədir: tapşırığın statusunu hesabat gözləmədən özünüz görürsünüz.',
+        text: 'Task tracker-ə girişiniz var. Tapşırığın statusu istənilən gün görünür.',
       },
       {
         label: 'Buraxılışdan sonra',
@@ -352,7 +352,7 @@ export default {
     items: [
       {
         q: 'Hazırlanmanın qiyməti nə qədərdir?',
-        a: 'Qiymət tapşırığın həcmindən və mürəkkəbliyindən asılıdır — hazır qiymət cədvəli vermirik. Dəqiq smetanı brifdən sonra veririk: qiymətləndirmə mərhələsi 3–5 gün çəkir və ödənişsizdir.',
+        a: 'Hazır qiymət cədvəli vermirik: «sayt» sözünün arxasında bir həftəlik də, yarım illik də layihə dayanır. Dəqiq smetanı brifdən sonra alırsınız. Qiymətləndirmə mərhələsi 3–5 gün çəkir və ödənişsizdir. Smetada qiymətin nədən yığıldığı görünür, mərhələlərə bölünür. Razılaşdırıldıqdan sonra qiymət dəyişmir.',
       },
       {
         q: 'Mövcud sayt və ya sistemi təkmilləşdirmək olar?',
@@ -360,11 +360,11 @@ export default {
       },
       {
         q: 'Rəsmi müqavilə ilə işləyirsiniz?',
-        a: 'Yalnız rəsmi. Müqavilədə həcm, müddət, dəyər və ödəniş şərtləri sabitlənir. Fərdi sahibkarla da, şirkətlə də işləyirik. Tələb olunarsa NDA imzalayırıq.',
+        a: 'Yalnız rəsmi. Müqavilədə həcm, müddət, dəyər və ödəniş şərtləri sabitlənir; fərdi sahibkarla da, şirkətlə də işləyirik, tələb olunarsa NDA imzalayırıq.',
       },
       {
         q: 'CRM-i digər sistemlərlə inteqrasiya etmək olar?',
-        a: '1C, AmoCRM, Bitrix24, Telegram, WhatsApp, ödəniş sistemləri, anbar proqramları — API və ya webhook verən demək olar ki, istənilən servis.',
+        a: '1C, amoCRM, Bitrix24, Telegram, WhatsApp, ödəniş sistemləri, anbar proqramları — API və ya webhook verən demək olar ki, istənilən servis.',
       },
       {
         q: 'Layihə nə qədər vaxt aparır?',
@@ -372,7 +372,7 @@ export default {
       },
       {
         q: 'MVP hazırlayırsınız?',
-        a: 'Bəli, bu əsas istiqamətlərimizdən biridir. 7–14 günə əsas funksiyaları olan işlək məhsul yığırıq — ideyanı bütün büdcəni xərcləmədən bazarda yoxlamaq üçün.',
+        a: 'Bəli, çox vaxt elə bununla başlayırıq. 7–14 günə əsas funksiyaları olan işlək məhsul yığırıq — ideyanı bütün büdcəni xərcləmədən bazarda yoxlamaq üçün.',
       },
       {
         q: 'Buraxılışdan sonra dəstək verirsiniz?',
@@ -380,13 +380,13 @@ export default {
       },
       {
         q: 'Texnologiyanı mütləq bilməliyəm?',
-        a: 'Xeyr. Texniki hissəni tam biz götürürük. Sizdən biznes məqsədini qoymaq və açar qərarları təsdiqləmək gözlənilir — mürəkkəb şeyləri hər mərhələdə sadə dillə izah edirik.',
+        a: 'Xeyr. Texniki hissəni tam biz götürürük, sizdən biznes məqsədi və prinsipial qərarlar gözlənilir. Mürəkkəb şeyləri hər mərhələdə sadə dillə izah edirik.',
       },
     ],
   },
   contact: {
     eyebrow: 'Əlaqə',
-    titleMuted: 'Tapşırığınızı danışın —',
+    titleMuted: 'Tapşırığınızdan danışın —',
     titleMain: 'həlli və qiyməti təklif edək.',
     note: 'Qısa brif kifayətdir. Sualları dəqiqləşdiririk və qiymətləndirmə mərhələsinə keçirik.',
     channelsLabel: 'Birbaşa əlaqə',
