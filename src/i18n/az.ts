@@ -280,7 +280,7 @@ export default {
           { value: '+30%', label: 'ilk 6 ayda gəlir artımı' },
         ],
         stack: ['Next.js', 'Node.js', 'PostgreSQL', 'Redis'],
-        alts: ['Smart Fashion: məhsul kartı, ölçü seçimi və təsvir', 'Smart Fashion: kataloq və məhsul şəbəkəsi', 'Smart Fashion: səbət və sifariş addımı'],
+        alts: ['Smart Fashion: məhsul kartı, ölçü seçimi və təsvir', 'Smart Fashion: iki mövqe və sifariş yekunu ilə səbət', 'Smart Fashion: mövsümi lookbook və kataloq bölmələri ilə ana səhifə'],
       },
       {
         slug: 'ai-assistent',

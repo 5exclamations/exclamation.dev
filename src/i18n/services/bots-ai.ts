@@ -392,7 +392,7 @@ export const botsAi: Record<Locale, ServiceCopy> = {
       excludesTitle: 'Not included',
       excludes: [
         'LLM provider usage fees',
-        'Training a bespoke model from scratch',
+        'Training your own model from scratch',
         'Writing the knowledge base content',
         'Hiring the operator team',
         'Registering messenger business accounts',
@@ -497,7 +497,7 @@ export const botsAi: Record<Locale, ServiceCopy> = {
         },
         {
           q: 'Do we need to train our own model?',
-          a: 'Almost never. An off-the-shelf model plus your knowledge base is cheaper and more accurate in practice. Training a bespoke model is a large separate project and we propose it only where there is a real reason.',
+          a: 'Almost never. An off-the-shelf model plus your knowledge base is cheaper and more accurate in practice. Training your own model is a large separate project and we propose it only where there is a real reason.',
         },
         {
           q: 'What does it do with a question it cannot answer?',

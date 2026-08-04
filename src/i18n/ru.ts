@@ -280,7 +280,7 @@ export default {
           { value: '+30%', label: 'выручка за первые 6 месяцев' },
         ],
         stack: ['Next.js', 'Node.js', 'PostgreSQL', 'Redis'],
-        alts: ['Smart Fashion: карточка товара, выбор размера и описание', 'Smart Fashion: каталог и сетка товаров', 'Smart Fashion: корзина и шаг оформления заказа'],
+        alts: ['Smart Fashion: карточка товара, выбор размера и описание', 'Smart Fashion: корзина с двумя позициями и итогом заказа', 'Smart Fashion: главная с сезонным лукбуком и подборкой разделов каталога'],
       },
       {
         slug: 'ai-assistent',

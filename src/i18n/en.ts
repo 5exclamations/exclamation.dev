@@ -280,7 +280,7 @@ export default {
           { value: '+30%', label: 'revenue growth in first 6 months' },
         ],
         stack: ['Next.js', 'Node.js', 'PostgreSQL', 'Redis'],
-        alts: ['Smart Fashion: product page with size selection and description', 'Smart Fashion: catalogue and product grid', 'Smart Fashion: cart and the checkout step'],
+        alts: ['Smart Fashion: product page with size selection and description', 'Smart Fashion: cart with two items and the order summary', 'Smart Fashion: home page with the seasonal lookbook and featured catalogue sections'],
       },
       {
         slug: 'ai-assistent',
