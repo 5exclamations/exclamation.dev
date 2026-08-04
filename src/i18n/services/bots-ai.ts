@@ -370,10 +370,11 @@ export const botsAi: Record<Locale, ServiceCopy> = {
     ],
     introTitle: 'What happens when it is wrong',
     intro: [
-      'Every serious question about deploying an assistant is a question about its failure mode. A scripted bot fails visibly: it does not understand, it says so, it offers a button. An LLM fails invisibly — it produces a fluent, confident, wrong answer, and the customer acts on it. The engineering is mostly about converting the second failure into the first.',
-      'Grounding is how that is done. With retrieval-augmented generation the model does not answer from memory: it retrieves the relevant passage from your documents and answers only from that, citing the source. Where nothing relevant is found, the assistant says it does not know and hands the conversation to a person. We build that path first, not last.',
-      'The second half is escalation, and it is a business decision rather than a technical one. Which questions must always reach a human, what happens outside working hours, how much context travels with the handoff. We write those rules down during the brief and implement them as rules, so the behaviour is auditable rather than emergent.',
-      'On the running cost: an assistant is billed per conversation by the model provider, and that bill scales with volume rather than with headcount. It is usually a fraction of the equivalent staffing, but it is not zero, and it belongs in the business case. In our AI assistant project the measurable outcome was a 60% drop in operator load and replies inside 30 seconds instead of five minutes.',
+      'Every serious question about deploying an assistant is a question about its failure mode. A scripted bot fails visibly: it does not understand, it says so, it offers a button. An LLM fails invisibly — it produces a fluent, confident, wrong answer, and the customer acts on it.',
+      'The engineering is mostly about converting the second failure into the first.',
+      'Grounding is how. With retrieval-augmented generation the model does not answer from memory: it retrieves the relevant passage from your documents and answers only from that, citing the source. Where nothing relevant is found, the assistant says it does not know and hands the conversation to a person. We build that path first.',
+      'Escalation is the other half, and it is a business decision rather than a technical one. Which questions must always reach a human, what happens outside working hours, how much context travels with the handoff. We write those rules down during the brief and implement them as rules, so the behaviour is auditable rather than emergent.',
+      'Running cost belongs in the business case too. An assistant is billed per conversation by the model provider, and that bill scales with volume rather than with headcount. Usually a fraction of the equivalent staffing. Not zero. In our AI assistant project the measurable outcome was a 60% drop in operator load and replies inside 30 seconds instead of five minutes.',
     ],
     scope: {
       title: 'What the work covers',
@@ -417,7 +418,7 @@ export const botsAi: Record<Locale, ServiceCopy> = {
         'Integrations: stock, orders, CRM — what the bot needs to be able to look at',
         'Escalation: operator shifts, working hours, handoff rules',
       ],
-      note: 'After the brief you get the scenario map, the stages and a firm quote within 3–5 days. That stage is free and commits you to nothing.',
+      note: 'The scenario map, the stages and a firm quote reach you within 3–5 days of the brief. Free, and it commits you to nothing.',
     },
     stack: {
       title: 'Stack',
@@ -470,7 +471,7 @@ export const botsAi: Record<Locale, ServiceCopy> = {
       items: [
         {
           cond: 'Ten enquiries a day and every one different',
-          text: 'With no repetition there is nothing to automate. At that volume a person is both faster and cheaper.',
+          text: 'No repetition, nothing to automate. A person is faster and cheaper.',
         },
         {
           cond: 'The answers do not exist in writing anywhere',
@@ -501,7 +502,7 @@ export const botsAi: Record<Locale, ServiceCopy> = {
         },
         {
           q: 'What does it do with a question it cannot answer?',
-          a: 'It does not guess. The question and the conversation context go to an operator and the customer is told how long the wait is. Those cases are logged, and the next version of the knowledge base is built from them.',
+          a: 'It does not guess: the question and the conversation context go to an operator, the customer is told how long the wait is, and the case itself is logged — the next version of the knowledge base is built from those.',
         },
         {
           q: 'Which channels does it work on?',
@@ -509,7 +510,7 @@ export const botsAi: Record<Locale, ServiceCopy> = {
         },
         {
           q: 'Who maintains the knowledge base?',
-          a: 'You do, through the admin panel: add a document and the index updates itself. After large changes the answer quality is worth re-checking, and we show you how at handover.',
+          a: 'You do, through the admin panel: add a document and the index updates itself. No developer needed for it. After large changes the answer quality is worth re-checking. We show you how at handover and leave a written procedure for maintaining the knowledge base.',
         },
       ],
     },

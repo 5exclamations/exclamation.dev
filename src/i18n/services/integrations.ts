@@ -368,8 +368,9 @@ export const integrations: Record<Locale, ServiceCopy> = {
     intro: [
       'Wiring one endpoint to another takes about a day. Everything after that is spent on a single question: what happens when the other side does not answer. It will not answer, reliably — a server goes down, a rate limit is reached, a field changes shape without notice. The entire difference between an integration that runs for a year and one that gets repaired every month lives in how that case was handled.',
       'Light connections can run on webhooks: an event happens, a request goes out. That is cheap and appropriate where losing one event does not matter — a notification, an analytics marker, a message posted to a channel. The moment orders, payments or stock are involved, a webhook alone is not enough. A queue goes between the systems, every message is acknowledged by the receiver, and a failed delivery is retried on a widening interval rather than dropped.',
-      'The second requirement is idempotency. If a request is retried, the order must not be created twice. That is achieved with a unique operation key, and without it retries stop being insurance and become a source of duplicates. We build it in by default rather than quoting it as an option.',
-      'The third is observability, because integrations fail quietly. Nobody sees an error; orders simply stop arriving, and it is noticed a day later through a customer complaint. So monitoring and alerting are part of every connection we build: we see the break, not you. Our Merkuri project runs on exactly this — data moves between shippers, brokers and customs databases and is confirmed at each step rather than fired into the dark.',
+      'Then idempotency. If a request is retried, the order must not be created twice — that is what a unique operation key is for. Without it retries stop being insurance and become a source of duplicates. We build it in by default rather than quoting it as an option.',
+      'And observability.',
+      'Integrations fail quietly. Nobody sees an error; orders simply stop arriving, and it is noticed a day later through a customer complaint. So monitoring and alerting are part of every connection we build: we see the break, not you. Our Merkuri project runs on exactly this — data moves between shippers, brokers and customs databases and is confirmed at each step.',
     ],
     scope: {
       title: 'What the work covers',
@@ -413,7 +414,7 @@ export const integrations: Record<Locale, ServiceCopy> = {
         'Transformation complexity: fields that map directly, or values computed by rules',
         'Reliability requirements: where loss is unacceptable, queueing and retries are their own scope',
       ],
-      note: 'After the brief you get the diagram, the stages and a firm quote within 3–5 days. That stage is free and commits you to nothing.',
+      note: 'The data-flow diagram, the stages and a firm quote reach you within 3–5 days of the brief, at no cost.',
     },
     stack: {
       title: 'Stack',
@@ -474,11 +475,11 @@ export const integrations: Record<Locale, ServiceCopy> = {
         },
         {
           cond: 'The process changes every month',
-          text: 'An integration sets today’s rule in code. While the rule is still moving, every change is rework — stabilise the process first.',
+          text: 'An integration sets today’s rule in code. Stabilise the process first.',
         },
         {
           cond: 'The data volume is small',
-          text: 'Re-typing five orders a day takes a few minutes. At that volume automation will not pay back for years, and we will do that arithmetic for you.',
+          text: 'Re-typing five orders a day takes a few minutes. At that volume automation will not pay back for years. We will do that arithmetic on the brief and give you the number.',
         },
       ],
       close: 'If one of these describes you, write anyway. The audit is free, and the conclusion is often "do not automate that step, automate the one next to it".',
@@ -501,11 +502,11 @@ export const integrations: Record<Locale, ServiceCopy> = {
         },
         {
           q: 'Will we have to replace our current systems?',
-          a: 'Usually not — the integration is built on top of them. Replacement is only necessary where a system offers no entry point at all, and that surfaces during the audit rather than halfway through the build.',
+          a: 'Usually not: the integration is built on top of your current systems, and replacement is only necessary where a system offers no entry point at all — which surfaces during the audit, not halfway through the build.',
         },
         {
           q: 'A partner changed their API — who fixes it?',
-          a: 'Within the three-month warranty, we do, at no cost. After that it is a separate small job. We flag this honestly: external APIs change once or twice a year, which is why monitoring is part of the build — we see the break, not you via a customer complaint.',
+          a: 'Within the three-month warranty, we do, at no cost. After that it is a separate small job. External APIs change once or twice a year and we say so upfront. That is why monitoring is part of every connection. We see the break, not you via a customer complaint.',
         },
       ],
     },

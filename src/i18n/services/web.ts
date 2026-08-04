@@ -365,10 +365,12 @@ export const web: Record<Locale, ServiceCopy> = {
     ],
     introTitle: 'Performance and ownership',
     intro: [
-      'Two things separate a site that earns from a site that merely exists: how fast it paints, and who controls it afterwards. Everything else — the layout, the palette, the number of sections — is downstream of those.',
-      'Speed is not a vanity metric. First impressions form in about three seconds, and on mobile networks a page built on a template platform routinely spends that long fetching third-party scripts it never needed. We build static by default: pages are pre-rendered and served from a CDN, images are converted to avif and webp at build time with the right variant chosen per device, and fonts are self-hosted and subset rather than fetched from a third party. The site you are reading is built the same way — a landing page of this length loads in under a second on throttled 4G, and we measure that rather than claim it.',
-      'Ownership is the second half. The repository sits in your account from the first commit, the domain is registered to you, and there is no platform subscription that has to keep being paid for the site to stay online. If you move to another team in two years you hand over code and documentation, not a login to somebody else’s product.',
-      'Multilingual work is a specialism here rather than an add-on: Azerbaijani, Russian and English get separate routes, separate metadata and correct `hreflang` annotation, so search engines index three pages instead of guessing at one. Doing it by swapping strings on a single URL — the way most template platforms do — costs you two thirds of the traffic you paid to build for.',
+      'Two things separate a site that earns from one that merely exists: how fast it paints, and who controls it afterwards. Layout, palette, section count — all downstream of those.',
+      'First impressions form in about three seconds. On mobile networks a page built on a template platform routinely spends that long fetching third-party scripts it never needed.',
+      'So we build static by default: pages pre-rendered and served from a CDN, images converted to avif and webp at build time with the right variant chosen per device, fonts self-hosted and subset rather than fetched from a third party. The site you are reading is built the same way — a landing page of this length loads in under a second on throttled 4G, and we measure that rather than claim it.',
+      'Then ownership.',
+      'The repository sits in your account from the first commit, the domain is registered to you, and no platform subscription has to keep being paid for the site to stay online. Move to another team in two years and you hand over code and documentation, not a login to somebody else’s product.',
+      'Multilingual work is a specialism here rather than an add-on: Azerbaijani, Russian and English get separate routes, separate metadata and correct `hreflang` annotation, so search engines index three pages instead of guessing at one. Swapping strings on a single URL — the way most template platforms do it — costs you two thirds of the traffic you paid to build for.',
     ],
     scope: {
       title: 'What the work covers',
@@ -411,7 +413,7 @@ export const web: Record<Locale, ServiceCopy> = {
         'Catalogue: number of products, filters, search, stock synchronisation',
         'Integrations: payments, CRM, delivery services, maps',
       ],
-      note: 'After the brief you get the structure, the stages and a firm quote within 3–5 days. That stage is free and commits you to nothing.',
+      note: 'The structure, the stages and a firm quote reach you within 3–5 days of the brief. We do not charge for it.',
     },
     stack: {
       title: 'Stack',
@@ -439,7 +441,7 @@ export const web: Record<Locale, ServiceCopy> = {
         {
           title: 'Design',
           time: '1–2 weeks',
-          text: 'Layouts for the key pages, mobile and desktop. The rest are assembled from the same components.',
+          text: 'Layouts for the main pages, mobile and desktop. The rest are assembled from the same components.',
         },
         {
           title: 'Build and integration',
@@ -468,18 +470,18 @@ export const web: Record<Locale, ServiceCopy> = {
         },
         {
           cond: 'You need one page with one button',
-          text: 'For a single promotion or event, a page builder does the job in a day. Writing that from scratch is expensive and pointless.',
+          text: 'A page builder does that in a day. From scratch it is expensive and pointless.',
         },
         {
           cond: 'There is no copy or photography, and none coming',
-          text: 'Launching with empty blocks means launching a site that does not work. Waiting for the content and releasing once is cheaper than releasing twice.',
+          text: 'Launching with empty blocks means launching a site that does not work. Waiting for the content and releasing once is cheaper: the copy is what decides how many blocks the page needs, and rebuilding later costs more than waiting now.',
         },
         {
           cond: 'The current site works and merely looks dated',
           text: 'Sometimes fixing speed, copy and the mobile view beats a redesign. We will audit it and say so plainly — that route costs a fraction of a rebuild.',
         },
       ],
-      close: 'If one of these describes you, write anyway. The audit and the recommendation are free, and the conclusion is sometimes "do not rebuild the site". We are not shy about answering that way.',
+      close: 'If one of these describes you, write anyway. The audit and the recommendation are free; sometimes the conclusion is “do not rebuild the site”.',
     },
     cases: { title: 'Related work', slugs: ['smart-fashion', 'merkuri'] },
     faq: {
@@ -487,7 +489,7 @@ export const web: Record<Locale, ServiceCopy> = {
       items: [
         {
           q: 'Would a page builder be cheaper?',
-          a: 'For a simple job, yes, and we say so directly. The difference shows up in load speed, in multilingual routing done properly, and in the absence of a monthly platform fee. On the brief we cost both routes.',
+          a: 'For a simple job, yes, and we say so directly. A page builder is up in a day and costs very little at the start. What follows is the monthly fee, third-party scripts on every page, and multilingual routing a search engine reads as one page instead of three. A static build is served from a CDN, lives on your domain with no monthly fee, and keeps three languages on separate URLs. On the brief we cost both routes.',
         },
         {
           q: 'Will I be able to edit the site myself?',
@@ -503,7 +505,7 @@ export const web: Record<Locale, ServiceCopy> = {
         },
         {
           q: 'Can the site be extended after launch?',
-          a: 'For the three months of warranty, bugs and small corrections are on us. A new section or feature is its own small project, quoted before it starts.',
+          a: 'For the three months of warranty bugs and small corrections are on us, while a new section or feature is its own small project, quoted before it starts.',
         },
       ],
     },

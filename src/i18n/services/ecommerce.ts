@@ -357,8 +357,8 @@ export const ecommerce: Record<Locale, ServiceCopy> = {
     },
     eyebrow: 'Service',
     titleMuted: 'E-commerce development —',
-    titleMain: 'the store, not the storefront.',
-    lead: 'An online store is not a catalogue with pictures; it is the system that carries an order all the way through — browse, cart, payment, delivery and stock. A simple store typically takes 4–6 weeks, and a platform with filters, payments and warehouse synchronisation takes 8–12. After a short brief we come back within 3–5 days with a structure, stages and a firm quote, and that stage is not billed.',
+    titleMain: 'built to take the order.',
+    lead: 'An online store is the system that carries an order all the way through — browse, cart, payment, delivery and stock. A simple store typically takes 4–6 weeks, and a platform with filters, payments and warehouse synchronisation takes 8–12. After a short brief we come back within 3–5 days with a structure, stages and a firm quote, and that stage is not billed.',
     facts: [
       { label: 'Simple store', value: '4–6 weeks' },
       { label: 'Full platform', value: '8–12 weeks' },
@@ -366,10 +366,11 @@ export const ecommerce: Record<Locale, ServiceCopy> = {
     ],
     introTitle: 'What a slow storefront costs',
     intro: [
-      'E-commerce is the one place where page speed converts directly into money, and the arithmetic is unforgiving. Most storefront traffic arrives on a phone, often on a mobile connection, and every second a product page spends loading removes a share of the people who would have bought. A template store carries third-party scripts and plugin bundles it cannot shed; a purpose-built one carries what you chose to put in it. On our Smart Fashion project pages load in 0.8 seconds and conversion rose 65% after the rebuild — that figure is about how many people waited, not about how the page looked.',
-      'The second economic question is who holds the data. On a hosted platform your customer list, order history and behavioural data live in someone else’s account, exported on their terms. Built on your own stack, the database sits on infrastructure you control, which matters the day you want to run your own retention campaign, feed a recommendation model, or simply change vendor without asking permission to take your customers with you.',
-      'The third is the commission line. Marketplaces and hosted carts take a percentage of every order forever; a store you own converts that into a fixed build cost plus hosting. That trade only pays above a certain order volume, which is exactly the kind of thing we work out on the brief rather than assume — and if the numbers say stay on the marketplace, we say so.',
-      'What actually makes these projects hard is none of the above: it is payments, delivery and stock. Payment means acquiring, failed-transaction handling and refunds. Delivery means zones, tariffs and courier APIs. Stock is the one that bites — if the same item sells online and in a shop, without synchronisation you will sell something you do not have. We pin all three down before the estimate.',
+      'E-commerce is the one place where page speed converts directly into money, and the arithmetic is unforgiving. Most storefront traffic arrives on a phone, often on a mobile connection, and every second a product page spends loading removes a share of the people who would have bought. A template store carries third-party scripts and plugin bundles it cannot shed; a purpose-built one carries what you chose to put in it. On our Smart Fashion project pages load in 0.8 seconds and conversion rose 65% after the rebuild.',
+      'Then: who holds the data.',
+      'On a hosted platform your customer list, order history and behavioural data live in someone else’s account, exported on their terms. Built on your own stack, the database sits on infrastructure you control — which matters the day you want to run a retention campaign, feed a recommendation model, or change vendor without asking permission to take your customers with you.',
+      'And the commission line. Marketplaces and hosted carts take a percentage of every order forever; a store you own converts that into a fixed build cost plus hosting. That trade only pays above a certain order volume, which we work out on the brief rather than assume. If the numbers say stay on the marketplace, we say so.',
+      'The hard part of these projects is payments, delivery and stock. Payment means acquiring, failed-transaction handling and refunds. Delivery means zones, tariffs and courier APIs. Stock is the one that bites — if the same item sells online and in a shop, without synchronisation you will sell something you do not have. We pin all three down before the estimate.',
     ],
     scope: {
       title: 'What the work covers',
@@ -413,7 +414,7 @@ export const ecommerce: Record<Locale, ServiceCopy> = {
         'Delivery: zones, tariffs, number of courier services',
         'Stock: tracked by hand, or synchronised with 1C or a warehouse system',
       ],
-      note: 'After the brief you get the structure, the stages and a firm quote within 3–5 days. That stage is free and commits you to nothing.',
+      note: 'The structure, the stages and a firm quote arrive within 3–5 days of the brief. That stage costs nothing.',
     },
     stack: {
       title: 'Stack',
@@ -470,7 +471,7 @@ export const ecommerce: Record<Locale, ServiceCopy> = {
         },
         {
           cond: 'The product does not sell without a conversation',
-          text: 'Anything measured, made to order or priced by negotiation does not go in a cart. A catalogue plus an enquiry form outperforms a checkout there.',
+          text: 'That does not go in a cart. A catalogue and an enquiry form outperform a checkout.',
         },
         {
           cond: 'Stock is not tracked anywhere yet',
@@ -478,7 +479,7 @@ export const ecommerce: Record<Locale, ServiceCopy> = {
         },
         {
           cond: 'A marketplace sells it all and that suits you',
-          text: 'Your own store cuts the commission but makes you responsible for the traffic. If the marketplace works and there is no advertising budget, your own channel may be premature.',
+          text: 'Your own store cuts the commission but makes you responsible for the traffic. A marketplace supplies both at once. With no advertising budget, your own channel can wait.',
         },
       ],
       close: 'If one of these describes you, write anyway. We will tell you for free what is worth doing now — a catalogue, a store, or simply automating the process you already run.',
@@ -489,7 +490,7 @@ export const ecommerce: Record<Locale, ServiceCopy> = {
       items: [
         {
           q: 'Would Shopify or a ready-made CMS be cheaper?',
-          a: 'For a standard catalogue and a standard checkout, yes, and we say so directly. The difference appears where your product variants, discount rules or stock synchronisation do not fit the platform’s model. On the brief we cost both routes.',
+          a: 'For a standard catalogue and a standard checkout, yes, and we say so directly. Shopify or a ready-made CMS is up in a couple of weeks. The difference appears where your product variants, discount rules or stock synchronisation do not fit the platform’s model: from there it is plugins, and plugins collide on every update. Your own platform removes that but starts slower — 4–6 weeks for a simple store. On the brief we cost both routes.',
         },
         {
           q: 'How do payments work in Azerbaijan?',
@@ -497,7 +498,7 @@ export const ecommerce: Record<Locale, ServiceCopy> = {
         },
         {
           q: 'Who fills the catalogue?',
-          a: 'Usually you, through the admin panel. If there is an existing source — a spreadsheet, 1C, an old site — we handle the migration; it is a separate stage and it is visible in the quote.',
+          a: 'Usually you, through the admin panel; if there is an existing source — a spreadsheet, 1C, an old site — we handle the migration, and it is a separate stage visible in the quote.',
         },
         {
           q: 'Can it integrate with 1C or a warehouse system?',

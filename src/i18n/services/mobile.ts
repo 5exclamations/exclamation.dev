@@ -365,9 +365,10 @@ export const mobile: Record<Locale, ServiceCopy> = {
     ],
     introTitle: 'What two platforms actually cost',
     intro: [
-      'The number that matters on a mobile project is not the build price, it is the cost of every change afterwards multiplied by the number of codebases you are maintaining. Native means two: a Swift app and a Kotlin app, two sets of release notes, two review queues, and two implementations of every feature you add for the rest of the product’s life. Cross-platform means one.',
+      'The number that matters on a mobile project is the cost of every change afterwards, multiplied by the number of codebases you maintain. Native means two: a Swift app and a Kotlin app, two sets of release notes, two review queues, and two implementations of every feature you add for the rest of the product’s life.',
+      'Cross-platform means one.',
       'That is why Flutter is our default. One codebase compiles to both stores, the interface is drawn by the framework so it stays identical across platforms, and both the initial timeline and the ongoing support cost fall by roughly half. For a storefront, an account area, a tracker, a booking flow, a delivery or a loyalty programme, that is comfortably enough.',
-      'Native earns its second codebase when the app pushes against the platform itself: heavy graphics and animation at high frame rates, serious camera or video processing, deep system integration such as widgets, watch apps or background geolocation that has to be gentle on battery. If your product is one of those, cross-platform starts fighting you around the third month, and it is cheaper to hear that before the start than after it.',
+      'Native earns its second codebase when the app pushes against the platform itself: heavy graphics and animation at high frame rates, serious camera or video processing, deep system integration such as widgets, watch apps or background geolocation that has to be gentle on battery. If your product is one of those, cross-platform starts fighting you around the third month. Cheaper to hear that before the start.',
       'Release cadence is the other thing worth planning for. Apple reviews every submission, which usually takes a few days and occasionally comes back with a rejection to answer. We set up CI/CD during the build so a new version reaches the stores in hours rather than days of manual packaging, and we keep the store accounts registered to your company so nothing about the release depends on us being in the room.',
     ],
     scope: {
@@ -412,7 +413,7 @@ export const mobile: Record<Locale, ServiceCopy> = {
         'Device features: camera, GPS, offline, Bluetooth, biometrics',
         'Payments and store rules: in-app purchases bring their own requirements',
       ],
-      note: 'After the brief you get the platform recommendation, the stages and a firm quote within 3–5 days. That stage is free and commits you to nothing.',
+      note: 'The platform recommendation, the stages and a firm quote reach you within 3–5 days of the brief. Free.',
     },
     stack: {
       title: 'Stack',
@@ -473,14 +474,14 @@ export const mobile: Record<Locale, ServiceCopy> = {
         },
         {
           cond: 'The audience does not justify two platforms',
-          text: 'If nearly all your users are on one platform, shipping the second at the same time doubles the budget. Releasing one and reading the numbers is cheaper.',
+          text: 'The second platform doubles the budget. Ship one and read the numbers.',
         },
         {
           cond: 'There is no budget to promote it',
-          text: 'An app does not find its own users in the store. Installs need advertising, an existing customer base or an offline channel; without one the launch passes in silence.',
+          text: 'An app does not find its own users in the store. Installs need advertising, an existing customer base or an offline channel; without one the launch passes in silence. Plan that budget before the build, not after the release.',
         },
       ],
-      close: 'If one of these describes you, write anyway. We will tell you for free whether a mobile site, a PWA or an app fits the job — and sometimes the answer is that you do not need an app, which we are not shy about saying.',
+      close: 'If one of these describes you, write anyway. We will tell you for free whether a mobile site, a PWA or an app fits the job; sometimes the answer is that you do not need an app.',
     },
     cases: { title: 'Related work', slugs: ['mindtrick'] },
     faq: {
@@ -488,7 +489,7 @@ export const mobile: Record<Locale, ServiceCopy> = {
       items: [
         {
           q: 'Flutter or native — which should we pick?',
-          a: 'For most jobs, Flutter: one codebase reaches both stores and roughly halves both the timeline and the ongoing support cost. Native is for heavy graphics, serious camera work or deep system integration. We justify the choice in writing during the estimate.',
+          a: 'For most jobs, Flutter. One codebase reaches both stores and roughly halves both the timeline and the ongoing support cost. Native — Swift and Kotlin — is for apps that push against the platform: heavy graphics, serious camera work, deep system integration. That is two apps and two budgets. We justify the choice in writing during the estimate.',
         },
         {
           q: 'Will the app definitely get into the App Store?',
@@ -504,7 +505,7 @@ export const mobile: Record<Locale, ServiceCopy> = {
         },
         {
           q: 'How do updates work after release?',
-          a: 'Three months of warranty covers crashes and defects. New features are their own small projects. CI/CD is set up during the build, so a new version reaches the stores in hours.',
+          a: 'Three months of warranty covers crashes and defects, new features are their own small projects, and CI/CD is set up during the build so a new version reaches the stores in hours.',
         },
       ],
     },
