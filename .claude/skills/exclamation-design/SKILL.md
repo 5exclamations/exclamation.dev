@@ -333,6 +333,15 @@ where no screenshot exists or the real one is visually weak. Rules:
   its own: no "as described above", no "this stage", no pronoun pointing at
   a paragraph higher up. Repeat the term, the timeframe or the condition
   each answer needs.
+- **A one-line paragraph has to carry something** — a fact, a figure, a
+  concession, a name. Uneven paragraph length is wanted (HANDOFF §4), but a
+  short bridge sentence written only to break the rhythm is a new marker, not
+  a cure for the old one: "Всё это измеряется." before a paragraph about
+  measured figures was cut for exactly this. The test is deletion — if the
+  line can be removed and nothing is lost, it was decoration, and a reader
+  spots a staged short sentence faster than a long even paragraph. The same
+  applies to any device applied by rule: varying the opening of six case
+  descriptions is worthless if all six end up varied the same way.
 - **No cost figures on commercial pages.** Settled 2026-08-03 and not open
   again. No price list, no "from N manat", no ranges, no per-tier tables —
   on service pages, the landing page, the FAQ or anywhere else. In their
