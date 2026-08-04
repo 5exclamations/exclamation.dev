@@ -30,9 +30,10 @@ export const mobile: Record<Locale, ServiceCopy> = {
     introTitle: 'Tətbiq lazımdır, yoxsa mobil sayt',
     intro: [
       'Bu sualı biz özümüz veririk, çünki cavab çox vaxt «tətbiq lazım deyil» olur. Adam ildə bir-iki dəfə girirsə, mobil sayt eyni işi görür və yükləmə tələb etmir. Tətbiq o zaman qazandırır ki, istifadəçi həftədə bir neçə dəfə qayıdır: sifariş, balans, cədvəl, izləmə, sadiqlik proqramı. Təkrar istifadə yoxdursa, ikonka ekranda ölü qalır.',
-      'İkinci fərq bildirişlərdir. Yalnız tətbiq push göndərə bilir və bu, kanal kimi SMS-dən ucuz, e-poçtdan isə daha çox oxunandır. Amma bu güc iki tərəflidir: gündə üç bildiriş göndərən tətbiq silinir. Ssenariləri brifdə birlikdə yazırıq — nə vaxt, nəyə görə və nə qədər tez-tez.',
-      'Üçüncü — cihazın özü: kamera, GPS, offline rejim, Bluetooth, biometrik giriş. Bunlardan biri lazımdırsa, sayt variantı düşür. Bizim MindTrick tətbiqimiz məhz buna görə tətbiqdir: gündəlik qeyd, offline işləmə, xatırlatma və yerli məlumat bazası.',
-      'Platforma seçimini brifdə edirik. Əksər hallarda Flutter götürürük: bir kod bazası iki mağazaya çıxır, bu isə həm müddəti, həm sonrakı dəstəyi təxminən yarıya salır. Native — Swift və ya Kotlin — o vaxt lazım olur ki, tətbiq ağır qrafika, dərin sistem inteqrasiyası və ya platformaya xas xüsusi funksiya tələb etsin. Hansının sizin tapşırığınıza uyğun olduğunu qiymətləndirmə mərhələsində yazılı deyirik.',
+      'Sonra bildirişlər. Yalnız tətbiq push göndərə bilir və bu, kanal kimi SMS-dən ucuz, e-poçtdan isə daha çox oxunandır. Amma bu güc iki tərəflidir: gündə üç bildiriş göndərən tətbiq silinir. Ssenariləri brifdə birlikdə yazırıq — nə vaxt, nəyə görə və nə qədər tez-tez.',
+      'Bir də cihazın özü: kamera, GPS, offline rejim, Bluetooth, biometrik giriş. Bunlardan biri lazımdırsa, sayt variantı düşür. Bizim MindTrick tətbiqimiz məhz buna görə tətbiqdir: gündəlik qeyd, offline işləmə, xatırlatma və yerli məlumat bazası.',
+      'Platforma seçimini brifdə edirik.',
+      'Əksər hallarda Flutter götürürük: bir kod bazası iki mağazaya çıxır, bu isə həm müddəti, həm sonrakı dəstəyi təxminən yarıya salır. Native — Swift və ya Kotlin — o vaxt lazım olur ki, tətbiq ağır qrafika, dərin sistem inteqrasiyası və ya platformaya xas xüsusi funksiya tələb etsin. Hansının sizin tapşırığınıza uyğun olduğunu qiymətləndirmə mərhələsində yazılı deyirik.',
     ],
     scope: {
       title: 'İşə nə daxildir',
@@ -76,7 +77,7 @@ export const mobile: Record<Locale, ServiceCopy> = {
         'Cihaz funksiyaları: kamera, GPS, offline, Bluetooth, biometrika',
         'Ödəniş və mağaza qaydaları: daxili alışlar ayrıca tələblər gətirir',
       ],
-      note: 'Brifdən sonra 3–5 gün ərzində platforma seçimini, mərhələləri və dəqiq smetanı veririk. Bu mərhələ ödənişsizdir və sizi heç nəyə borclu etmir.',
+      note: 'Platforma seçimini, mərhələləri və dəqiq smetanı brifdən 3–5 gün sonra veririk. Ödənişsiz.',
     },
     stack: {
       title: 'Stek',
@@ -137,14 +138,14 @@ export const mobile: Record<Locale, ServiceCopy> = {
         },
         {
           cond: 'Auditoriya iki platformanı əsaslandırmır',
-          text: 'İstifadəçilərin demək olar hamısı bir platformadadırsa, ikincisini eyni vaxtda buraxmaq büdcəni ikiqat artırır. Əvvəl birini buraxıb rəqəmlərə baxmaq daha ucuzdur.',
+          text: 'İkinci platforma büdcəni ikiqat artırır. Birini buraxın və rəqəmlərə baxın.',
         },
         {
           cond: 'Tanıtım büdcəsi yoxdur',
-          text: 'Mağazada tətbiq özü tapılmır. Yükləmələr reklam, mövcud baza və ya offline kanal tələb edir; bunlar yoxdursa, buraxılış sükutla keçəcək.',
+          text: 'Mağazada tətbiq özü tapılmır. Yükləmələr reklam, mövcud baza və ya offline kanal tələb edir; bunlar yoxdursa, buraxılış sükutla keçəcək. Tanıtım büdcəsi buraxılışdan sonra deyil, işə başlamazdan əvvəl planlaşdırılır.',
         },
       ],
-      close: 'Bu bəndlərdən biri sizin haqqınızdadırsa, yenə yazın. Pulsuz deyəcəyik ki, mobil sayt, PWA və ya tətbiq — hansı sizin tapşırığınıza uyğundur. Bəzən cavab «tətbiq lazım deyil» olur, və biz bunu deməkdən çəkinmirik.',
+      close: 'Bəndlərdən birində özünüzü tanıdınızsa, yenə yazın. Pulsuz deyəcəyik ki, mobil sayt, PWA və ya tətbiq — hansı sizin tapşırığınıza uyğundur; bəzən cavab «tətbiq lazım deyil» olur.',
     },
     cases: { title: 'Bu istiqamətdə keys', slugs: ['mindtrick'] },
     faq: {
@@ -152,7 +153,7 @@ export const mobile: Record<Locale, ServiceCopy> = {
       items: [
         {
           q: 'Flutter yoxsa native — hansını seçək?',
-          a: 'Əksər tapşırıqlar üçün Flutter: bir kod bazası iki mağazaya çıxır, müddət və sonrakı dəstək təxminən yarıya düşür. Native ağır qrafika, dərin sistem inteqrasiyası və ya platformaya xas funksiya lazım olanda. Seçimi qiymətləndirmədə yazılı əsaslandırırıq.',
+          a: 'Əksər tapşırıqlar üçün Flutter. Bir kod bazası iki mağazaya çıxır, müddət və sonrakı dəstək təxminən yarıya düşür. Native — Swift və Kotlin — tətbiq platformaya dirənəndə lazım olur: ağır qrafika, dərin sistem inteqrasiyası, kamera ilə ciddi iş. Bu isə artıq iki tətbiq və iki büdcə deməkdir. Seçimi qiymətləndirmədə yazılı əsaslandırırıq.',
         },
         {
           q: 'Tətbiq App Store-a düşəcəkmi?',
@@ -168,7 +169,7 @@ export const mobile: Record<Locale, ServiceCopy> = {
         },
         {
           q: 'Buraxılışdan sonra yeniləmələr necə olur?',
-          a: 'Üç ay zəmanət: çökmələr və səhvlər bizim üzərimizdədir. Yeni funksiyalar ayrıca kiçik layihələrdir; CI/CD qurulub, ona görə yeni versiya bir neçə saata mağazaya gedir.',
+          a: 'Üç ay zəmanət çökmələr və səhvlər üçün, yeni funksiyalar ayrıca kiçik layihələrdir, CI/CD isə qurulub — yeni versiya bir neçə saata mağazaya gedir.',
         },
       ],
     },

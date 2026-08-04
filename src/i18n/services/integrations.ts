@@ -32,8 +32,9 @@ export const integrations: Record<Locale, ServiceCopy> = {
     intro: [
       'Tipik gün belə görünür: sifariş WhatsApp-a gəlir, menecer onu Excel-ə yazır, sonra 1C-yə keçirir, sonra kuryerə mesaj atır, sonra müştəriyə izləmə nömrəsini göndərir. Beş addımın dördü — eyni məlumatın bir yerdən başqa yerə köçürülməsidir. Bu, gündə bir neçə saat və hər addımda səhv ehtimalıdır.',
       'İnteqrasiya bu addımları silir. Sifariş bir dəfə yaranır və özü lazım olan yerlərə düşür; adam yalnız qərar tələb edən yerdə qalır. Nəticə iki rəqəmlə ölçülür: menecerin qazandığı vaxt və düşən səhv sayı. FLEKS keysimizdə ödəniş və çek rəsmiləşdirmə vaxtı 80% azaldı, balans hesablamasında əl səhvi isə sıfıra düşdü.',
-      'Ən çox istənilən bağlantılar Azərbaycanda təxminən eynidir: 1C ilə qalıq və sənəd mübadiləsi, AmoCRM və ya Bitrix24 ilə lidlərin ötürülməsi, WhatsApp və telefoniya ilə müştəri kanalları, bank ekvayrinqi ilə ödəniş statusları, kuryer xidmətləri ilə izləmə. Bunların hamısının API-si var və hamısı ilə işləmişik.',
-      'İşin əsl çətinliyi iki API-ni bir-birinə bağlamaq deyil — bu bir günlük işdir. Çətinlik odur ki, o biri tərəf gec-tez cavab verməyəcək: server düşəcək, limit bitəcək, format dəyişəcək. Etibarlı inteqrasiya bunu gözləyir və məlumatı itirmir: sorğu növbəyə düşür, təkrar cəhd edilir, iki dəfə göndərilən sifariş iki dəfə yaranmır. Aşağıda bu haqda ayrıca yazmışıq.',
+      'Ən çox istənilən bağlantılar Azərbaycanda təxminən eynidir: 1C ilə qalıq və sənəd mübadiləsi, amoCRM və ya Bitrix24 ilə lidlərin ötürülməsi, WhatsApp və telefoniya ilə müştəri kanalları, bank ekvayrinqi ilə ödəniş statusları, kuryer xidmətləri ilə izləmə. Bunların hamısının API-si var və hamısı ilə işləmişik.',
+      'İki API-ni bir-birinə bağlamaq bir günlük işdir.',
+      'Çətinlik odur ki, o biri tərəf gec-tez cavab verməyəcək: server düşəcək, limit bitəcək, format dəyişəcək. Etibarlı inteqrasiya bunu gözləyir və məlumatı itirmir: sorğu növbəyə düşür, təkrar cəhd edilir, iki dəfə göndərilən sifariş iki dəfə yaranmır. Aşağıda bu haqda ayrıca yazmışıq.',
     ],
     scope: {
       title: 'İşə nə daxildir',
@@ -77,7 +78,7 @@ export const integrations: Record<Locale, ServiceCopy> = {
         'Çevrilmələrin mürəkkəbliyi: sahələr üst-üstə düşürmü, yoxsa hər biri qaydayla hesablanır',
         'Etibarlılıq tələbləri: itki yolverilməzdirsə, növbə və təkrar cəhd ayrıca işdir',
       ],
-      note: 'Brifdən sonra 3–5 gün ərzində sxemi, mərhələləri və dəqiq smetanı veririk. Bu mərhələ ödənişsizdir və sizi heç nəyə borclu etmir.',
+      note: 'Axın sxemini, mərhələləri və dəqiq smetanı brifdən 3–5 gün sonra veririk, ödənişsiz.',
     },
     stack: {
       title: 'Stek',
@@ -138,11 +139,11 @@ export const integrations: Record<Locale, ServiceCopy> = {
         },
         {
           cond: 'Proses hər ay dəyişir',
-          text: 'İnteqrasiya bugünkü qaydanı kodda sabitləyir. Qayda hələ oturmayıbsa, hər dəyişiklik yenidən iş deməkdir; əvvəl prosesi sabitləmək lazımdır.',
+          text: 'İnteqrasiya bugünkü qaydanı kodda sabitləyir. Əvvəl prosesi sabitləyin.',
         },
         {
           cond: 'Məlumatın həcmi kiçikdir',
-          text: 'Gündə beş sifarişi əllə köçürmək bir neçə dəqiqədir. Bu həcmdə avtomatlaşdırma özünü illərlə qaytarmayacaq — və biz bunu sizin əvəzinizə hesablayacağıq.',
+          text: 'Gündə beş sifarişi əllə köçürmək bir neçə dəqiqədir. Bu həcmdə avtomatlaşdırma özünü illərlə qaytarmayacaq. Brifdə hesablayıb rəqəmi deyəcəyik.',
         },
       ],
       close: 'Bu bəndlərdən biri sizin haqqınızdadırsa, yenə yazın. Auditi pulsuz edirik və çox vaxt nəticə «bu addımı avtomatlaşdırmayın, o birini avtomatlaşdırın» olur.',
@@ -165,11 +166,11 @@ export const integrations: Record<Locale, ServiceCopy> = {
         },
         {
           q: 'Mövcud sistemləri dəyişmək lazım olacaqmı?',
-          a: 'Adətən yox — inteqrasiya onların üstünə qurulur. Dəyişmək yalnız o halda lazım olur ki, sistemin heç bir giriş nöqtəsi olmasın; bunu audit mərhələsində aydınlaşdırırıq.',
+          a: 'Adətən yox: inteqrasiya mövcud sistemlərin üstünə qurulur, dəyişmək isə yalnız sistemin heç bir giriş nöqtəsi olmayanda lazım gəlir — bunu audit mərhələsində aydınlaşdırırıq.',
         },
         {
           q: 'Tərəfdaş API-ni dəyişsə, kim düzəldir?',
-          a: 'Üç ay zəmanət ərzində biz, ödənişsiz. Sonra bu kiçik ayrıca işdir. Xəbərdar edirik: xarici API-lər ildə bir-iki dəfə dəyişir, buna görə monitorinq qururuq — sındığını siz yox, biz görürük.',
+          a: 'Üç ay zəmanət ərzində biz, ödənişsiz. Sonra bu kiçik ayrıca işdir. Xarici API-lər ildə bir-iki dəfə dəyişir və bunu əvvəlcədən deyirik. Buna görə hər bağlantıya monitorinq qoyulur. Sındığını siz yox, biz görürük.',
         },
       ],
     },

@@ -30,9 +30,11 @@ export const web: Record<Locale, ServiceCopy> = {
     introTitle: 'Sayt nə etməlidir',
     intro: [
       'Yaxşı saytın işi bir cümlə ilə ölçülür: adam səhifəyə düşəndən sonra nə edir. Zəng edir, forma doldurur, kataloqa keçir — yoxsa geri düyməsini basır. Buna görə də biz işə dizayndan yox, ssenaridən başlayırıq: kim gəlir, hansı sualla gəlir, cavabı neçə saniyəyə tapır.',
-      'Texniki tərəf bu ssenarinin altını tutur. Sayt statik yığılır və CDN-dən verilir, şəkillər avtomatik olaraq avif və webp formatlarına çevrilir, şrift öz serverimizdən gəlir. Nəticədə səhifə mobil internetdə bir saniyədən az açılır — bu, birbaşa konversiyaya təsir edən rəqəmdir, çünki ilk təəssürat üç saniyəyə formalaşır.',
+      'Texniki tərəf bu ssenarinin altını tutur. Sayt statik yığılır və CDN-dən verilir, şəkillər avtomatik olaraq avif və webp formatlarına çevrilir, şrift öz serverimizdən gəlir.',
+      'Səhifə mobil internetdə bir saniyədən az açılır. İlk təəssürat isə üç saniyəyə formalaşır.',
       'Çoxdillilik ayrıca mövzudur və Azərbaycanda demək olar ki, həmişə lazım olur. Üç dil — azərbaycan, rus, ingilis — ayrı-ayrı marşrutlarda yaşayır, hər birinin öz ünvanı, öz meta-təsviri və `hreflang` işarəsi olur. Bu, brauzer dilinə görə mətnin dəyişməsindən fərqlidir: axtarış sistemi üç səhifəni ayrıca indeksləyir və hər biri öz sorğusuna görə tapılır.',
-      'Kontent idarəetməsi tələb olunanda sayta admin panel qoşuruq — xəbərlər, vakansiyalar, məhsul kartları. Tələb olunmayanda qoşmuruq: statik saytın sındırılacaq admin paneli, yenilənəcək plaginləri və aylıq hostinq hesabı olmur. Hansının sizə lazım olduğunu brifdə birlikdə həll edirik.',
+      'Kontent idarəetməsi tələb olunanda sayta admin panel qoşuruq — xəbərlər, vakansiyalar, məhsul kartları. Tələb olunmayanda qoşmuruq: statik saytın sındırılacaq admin paneli, yenilənəcək plaginləri və aylıq hostinq hesabı olmur.',
+      'Hansının sizə lazım olduğunu brifdə birlikdə həll edirik.',
     ],
     scope: {
       title: 'İşə nə daxildir',
@@ -75,7 +77,7 @@ export const web: Record<Locale, ServiceCopy> = {
         'Kataloq: məhsul sayı, filtrlər, axtarış və qalıqların yenilənməsi',
         'İnteqrasiyalar: ödəniş, CRM, çatdırılma xidmətləri, xəritələr',
       ],
-      note: 'Brifdən sonra 3–5 gün ərzində strukturu, mərhələləri və dəqiq smetanı veririk. Bu mərhələ ödənişsizdir və sizi heç nəyə borclu etmir.',
+      note: 'Strukturu, mərhələləri və dəqiq smetanı brifdən 3–5 gün sonra veririk. Pulsuz.',
     },
     stack: {
       title: 'Stek',
@@ -132,18 +134,18 @@ export const web: Record<Locale, ServiceCopy> = {
         },
         {
           cond: 'Bir səhifə və bir düymə lazımdır',
-          text: 'Bir aksiya və ya bir tədbir üçün konstruktor bir günə yığılır və işini görür. Sıfırdan yazmaq bu tapşırıq üçün baha və mənasızdır.',
+          text: 'Konstruktor bir günə yığır. Sıfırdan yazmaq baha və mənasızdır.',
         },
         {
           cond: 'Mətn və şəkil yoxdur və yaxın vaxtda olmayacaq',
-          text: 'Boş bloklarla sayt buraxmaq işləməyən sayt buraxmaqdır. Kontent hazır olana qədər gözləmək və sonra bir dəfəyə buraxmaq daha ucuzdur.',
+          text: 'Boş bloklarla sayt buraxmaq işləməyən sayt buraxmaqdır. Kontent hazır olana qədər gözləmək və bir dəfəyə buraxmaq daha ucuzdur: neçə blok lazım olduğunu mətnlərin özü göstərir. Sonradan yenidən verstka etmək indi gözləməkdən bahadır.',
         },
         {
           cond: 'Mövcud sayt işləyir, sadəcə köhnə görünür',
           text: 'Bəzən redizayn əvəzinə sürət, mətn və mobil versiyanı düzəltmək kifayətdir. Auditini edib deyəcəyik — bu, tam yenidən yazmaqdan ucuz olur.',
         },
       ],
-      close: 'Bu bəndlərdən biri sizin haqqınızdadırsa, yenə yazın. Auditi və tövsiyəni pulsuz veririk; bəzən nəticə «saytı yenidən yazmaq lazım deyil» olur, və biz bunu deməkdən çəkinmirik.',
+      close: 'Bəndlərdən birində özünüzü tanıdınızsa, yenə yazın. Auditi və tövsiyəni pulsuz veririk; bəzən nəticə «saytı yenidən yazmaq lazım deyil» olur.',
     },
     cases: { title: 'Bu istiqamətdə keyslər', slugs: ['smart-fashion', 'merkuri'] },
     faq: {
@@ -151,7 +153,7 @@ export const web: Record<Locale, ServiceCopy> = {
       items: [
         {
           q: 'Tilda və ya WordPress-də etmək ucuz olmazmı?',
-          a: 'Sadə tapşırıq üçün — bəli, və biz bunu dürüst deyirik. Fərq yüklənmə sürətində, çoxdilliliyin düzgün qurulmasında və aylıq abunənin olmamasında görünür. Brifdə hansının sizə sərf etdiyini hesablayırıq.',
+          a: 'Sadə tapşırıq üçün — bəli, və biz bunu dürüst deyirik. Konstruktor bir günə qalxır, başlanğıcda ucuz başa gəlir. Sonra abunə başlayır, hər səhifəyə yad skriptlər düşür, çoxdillilik isə axtarış sisteminə bir səhifə kimi görünür. Statik yığılan sayt CDN-dən verilir, sizin domendə aylıq ödənişsiz yaşayır və üç dili ayrı ünvanlarda saxlayır. Brifdə hər iki variantı hesablayırıq.',
         },
         {
           q: 'Saytı özüm redaktə edə biləcəyəmmi?',
@@ -167,7 +169,7 @@ export const web: Record<Locale, ServiceCopy> = {
         },
         {
           q: 'Buraxılışdan sonra dəyişiklik etmək olar?',
-          a: 'Üç ay zəmanət ərzində səhvlər və kiçik düzəlişlər bizim üzərimizdədir. Yeni bölmə və ya funksiya ayrıca kiçik layihədir — qiymətini əvvəlcədən deyirik.',
+          a: 'Üç ay zəmanət ərzində səhvlər və kiçik düzəlişlər bizdədir, yeni bölmə və ya funksiya isə ayrıca kiçik layihədir — qiymətini əvvəlcədən deyirik.',
         },
       ],
     },

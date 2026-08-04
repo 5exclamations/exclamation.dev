@@ -22,7 +22,7 @@ export const ecommerce: Record<Locale, ServiceCopy> = {
     eyebrow: 'Xidmət',
     titleMuted: 'Onlayn mağaza —',
     titleMain: 'sifarişi özü qəbul edən.',
-    lead: 'Onlayn mağaza — məhsulu göstərən yox, sifarişi sonuna qədər özü qəbul edən sistemdir: kataloq, səbət, ödəniş, çatdırılma və qalıqların uçotu. Sadə mağaza üçün tipik müddət 4–6 həftə, filtrlər, ödəniş və anbar inteqrasiyası olan platforma üçün 8–12 həftə. Brifdən sonra 3–5 gün ərzində struktur, mərhələlər və dəqiq smeta veririk — bu mərhələ ödənişsizdir.',
+    lead: 'Onlayn mağaza — sifarişi sonuna qədər özü aparan sistemdir: kataloq, səbət, ödəniş, çatdırılma və qalıqların uçotu. Sadə mağaza üçün tipik müddət 4–6 həftə, filtrlər, ödəniş və anbar inteqrasiyası olan platforma üçün 8–12 həftə. Brifdən sonra 3–5 gün ərzində struktur, mərhələlər və dəqiq smeta veririk — bu mərhələ ödənişsizdir.',
     facts: [
       { label: 'Sadə mağaza', value: '4–6 həftə' },
       { label: 'Tam platforma', value: '8–12 həftə' },
@@ -31,9 +31,10 @@ export const ecommerce: Record<Locale, ServiceCopy> = {
     introTitle: 'Instagram-dan mağazaya',
     intro: [
       'Bakıda onlayn satışın böyük hissəsi hələ də messencerdə gedir: müştəri şəkli görür, yazır, qiyməti soruşur, ünvanı diktə edir, sonra kimsə bunu əllə qeyd edir. Bu, gündə on sifarişə qədər işləyir. Otuzdan sonra menecer səhv etməyə başlayır, əlli-dən sonra isə sifarişlərin bir hissəsi sadəcə itir — cavab gecikir və müştəri gedir.',
-      'Mağaza bu zənciri qısaldır. Alıcı özü seçir, özü ödəyir, özü çatdırılma üsulunu göstərir; sizin tərəfdə isə hazır sifariş, ödəniş statusu və azalmış qalıq görünür. Menecerin işi yazışmadan yığıma keçir. Bu, gecə saat ikidə gələn sifarişin də itməməsi deməkdir.',
-      'Layihələrin çətin hissəsi dizayn deyil, üç şeydir: ödəniş, çatdırılma və qalıq. Ödəniş yerli bank ekvayrinqi və ya ödəniş şlüzü ilə qoşulur, uğursuz ödənişin ssenarisi ayrıca yazılır. Çatdırılma — zonalar, tariflər, kuryer xidmətinin API-si. Qalıq isə ən çox problem yaradan yerdir: eyni məhsul həm mağazada, həm zalda satılırsa, sinxron olmadan siz olmayan malı satacaqsınız. Bunları brifdə əvvəlcədən aydınlaşdırırıq.',
-      'Bizim Smart Fashion keysimiz məhz bu haqdadır: kataloq, filtrlər, səbət, tövsiyə sistemi və real vaxt qalıq idarəetməsi. Redizayndan sonra konversiya 65% artdı, səhifə 0.8 saniyəyə açılır — sürət mağaza üçün dizayn məsələsi deyil, birbaşa gəlir məsələsidir.',
+      'Mağaza bu zənciri qısaldır. Alıcı özü seçir, özü ödəyir, özü çatdırılma üsulunu göstərir; sizin tərəfdə isə hazır sifariş, ödəniş statusu və azalmış qalıq görünür. Menecerin işi yazışmadan yığıma keçir.',
+      'Gecə saat ikidə gələn sifariş də itmir.',
+      'Çətin hissə dizayn deyil. Ödəniş yerli bank ekvayrinqi və ya ödəniş şlüzü ilə qoşulur, uğursuz ödənişin ssenarisi ayrıca yazılır. Çatdırılma — zonalar, tariflər, kuryer xidmətinin API-si. Qalıq isə ən çox problem yaradan yerdir: eyni məhsul həm mağazada, həm zalda satılırsa, sinxron olmadan siz olmayan malı satacaqsınız. Bunları brifdə əvvəlcədən aydınlaşdırırıq.',
+      'Bizim Smart Fashion keysimiz məhz bu haqdadır: kataloq, filtrlər, səbət, tövsiyə sistemi və real vaxt qalıq idarəetməsi. Redizayndan sonra konversiya 65% artdı, səhifə 0.8 saniyəyə açılır.',
     ],
     scope: {
       title: 'İşə nə daxildir',
@@ -77,7 +78,7 @@ export const ecommerce: Record<Locale, ServiceCopy> = {
         'Çatdırılma: zonalar, tariflər, kuryer xidmətlərinin sayı',
         'Anbar: qalıqlar əllə aparılır, yoxsa 1C və ya başqa sistemlə sinxronlaşır',
       ],
-      note: 'Brifdən sonra 3–5 gün ərzində strukturu, mərhələləri və dəqiq smetanı veririk. Bu mərhələ ödənişsizdir və sizi heç nəyə borclu etmir.',
+      note: 'Strukturu, mərhələləri və dəqiq smetanı brifdən 3–5 gün sonra göndəririk. Bu mərhələ heç nəyə başa gəlmir.',
     },
     stack: {
       title: 'Stek',
@@ -134,7 +135,7 @@ export const ecommerce: Record<Locale, ServiceCopy> = {
         },
         {
           cond: 'Məhsul məsləhətsiz satılmır',
-          text: 'Ölçü götürülən, layihə altında hazırlanan və ya danışıqla qiymətlənən mal səbətə düşmür. Belə halda kataloq və sorğu forması səbətdən yaxşı işləyir.',
+          text: 'Belə mal səbətə düşmür. Kataloq və sorğu forması checkout-dan yaxşı işləyir.',
         },
         {
           cond: 'Qalıqlar heç yerdə aparılmır',
@@ -142,7 +143,7 @@ export const ecommerce: Record<Locale, ServiceCopy> = {
         },
         {
           cond: 'Bütün satış marketpleysdən gedir və bu sizi qane edir',
-          text: 'Öz mağazanız komissiyanı azaldır, amma trafiki özünüz gətirməli olursunuz. Marketpleys işləyirsə və reklam büdcəsi yoxdursa, öz kanal hələ tez ola bilər.',
+          text: 'Öz mağazanız komissiyanı azaldır, amma trafiki özünüz gətirməli olursunuz. Marketpleys hər ikisini birdən verir. Reklam büdcəsi yoxdursa, öz kanal gözləyər.',
         },
       ],
       close: 'Bu bəndlərdən biri sizin haqqınızdadırsa, yenə yazın. Pulsuz deyəcəyik ki, indi nə daha faydalıdır: kataloq, mağaza, yoxsa sadəcə mövcud prosesin avtomatlaşdırılması.',
@@ -153,7 +154,7 @@ export const ecommerce: Record<Locale, ServiceCopy> = {
       items: [
         {
           q: 'Shopify və ya hazır CMS-də etmək ucuz olmazmı?',
-          a: 'Standart kataloq və standart checkout üçün — bəli, və biz bunu dürüst deyirik. Fərq o zaman görünür ki, sizin variantlarınız, endirim qaydalarınız və ya anbar sinxronunuz qutunun modelinə sığmır. Brifdə hər iki variantı hesablayırıq.',
+          a: 'Standart kataloq və standart checkout üçün — bəli, və biz bunu dürüst deyirik. Shopify və ya hazır CMS bir-iki həftəyə qalxır. Fərq o zaman görünür ki, sizin variantlarınız, endirim qaydalarınız və ya anbar sinxronunuz qutunun modelinə sığmır: sonra plaginlər başlayır, plaginlər isə hər yeniləmədə toqquşur. Öz platforma bunu aradan qaldırır, amma daha gec start götürür — sadə mağaza üçün 4–6 həftə. Brifdə hər iki variantı hesablayırıq.',
         },
         {
           q: 'Ödənişi Azərbaycanda necə qoşursunuz?',
@@ -161,7 +162,7 @@ export const ecommerce: Record<Locale, ServiceCopy> = {
         },
         {
           q: 'Kataloqu kim dolduracaq?',
-          a: 'Adətən siz, admin panel vasitəsilə. Əgər mövcud baza varsa — Excel, 1C, köhnə sayt — köçürməni biz edirik; bu ayrıca mərhələdir və smetada göstərilir.',
+          a: 'Adətən siz, admin panel vasitəsilə; mövcud baza varsa — Excel, 1C, köhnə sayt — köçürməni biz edirik və bu, smetada görünən ayrıca mərhələdir.',
         },
         {
           q: '1C və ya anbar proqramı ilə inteqrasiya olacaqmı?',
@@ -189,7 +190,7 @@ export const ecommerce: Record<Locale, ServiceCopy> = {
     eyebrow: 'Услуга',
     titleMuted: 'Интернет-магазин —',
     titleMain: 'ваш каталог, ваша база клиентов.',
-    lead: 'Интернет-магазин — это не витрина, а система, которая доводит заказ до конца: каталог, корзина, оплата, доставка и учёт остатков. Простой магазин занимает 4–6 недель, платформа с фильтрами, оплатой и синхронизацией склада — 8–12 недель. После брифа за 3–5 дней возвращаемся со структурой, этапами и точной сметой; этап не оплачивается.',
+    lead: 'Интернет-магазин — система, которая доводит заказ до конца: каталог, корзина, оплата, доставка и учёт остатков. Простой магазин занимает 4–6 недель, платформа с фильтрами, оплатой и синхронизацией склада — 8–12 недель. После брифа за 3–5 дней возвращаемся со структурой, этапами и точной сметой; этап не оплачивается.',
     facts: [
       { label: 'Простой магазин', value: '4–6 недель' },
       { label: 'Платформа', value: '8–12 недель' },

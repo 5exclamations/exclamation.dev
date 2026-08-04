@@ -33,8 +33,10 @@ export const botsAi: Record<Locale, ServiceCopy> = {
     introTitle: 'Bot nə edir və nə etmir',
     intro: [
       'Gözlənti adətən belədir: bot bütün sualları cavablayacaq. Real mənzərə başqadır. Müraciətlərin böyük hissəsi bir neçə təkrarlanan sualdır — «harada gəlib?», «neçəyədir?», «bu ölçü varmı?» — və məhz onlar avtomatlaşdırılır. Qalanı adama qalır, amma artıq az sayda və hazır kontekstlə.',
-      'İki fərqli məhsul var. Ssenarili bot dəqiq addımlarla işləyir: düymələr, sabit cavablar, sifariş forması. Ucuz, proqnozlaşdırıla bilən, uydurmur. LLM assistenti sərbəst mətni başa düşür və sizin bazanızdan cavab yığır — daha canlı, amma nəzarət tələb edir.',
-      'Uydurmanı RAG ilə saxlayırıq: model cavabı özündən çıxarmır, əvvəlcə sizin sənədlərinizdən lazımlı hissəni tapır və yalnız onun əsasında cavab verir. Mənbə tapılmasa, assistent bunu deyir və dialoqu operatora ötürür. Bu qayda hər layihədə standart olaraq qurulur.',
+      'İki fərqli məhsul var. Ssenarili bot dəqiq addımlarla işləyir: düymələr, sabit cavablar, sifariş forması. Ucuz, proqnozlaşdırıla bilən, uydurmur.',
+      'LLM assistenti sərbəst mətni başa düşür və sizin bazanızdan cavab yığır. Daha canlı, amma nəzarət tələb edir.',
+      'Nəzarət RAG üzərində qurulur: model cavabı özündən çıxarmır, əvvəlcə sizin sənədlərinizdən lazımlı hissəni tapır və yalnız onun əsasında cavab verir. Mənbə tapılmasa, assistent bunu deyir və dialoqu operatora ötürür.',
+      'Standart olaraq. Ayrıca opsiya kimi yox.',
       'AI assistent keysimizdə bu belə işləyir: FAQ cavabları, stok yoxlaması, məhsul tövsiyəsi və səbətin çat içində yığılması. Operator yükü 60% azaldı, cavab müddəti isə beş dəqiqədən otuz saniyədən aşağıya düşdü. Tipik sənədlərdə səhv sayı sıfırdır — çünki model onları özü yazmır, şablondan doldurur.',
     ],
     scope: {
@@ -79,7 +81,7 @@ export const botsAi: Record<Locale, ServiceCopy> = {
         'İnteqrasiyalar: stok, sifariş, CRM — botun nəyə baxa bilməsi lazımdır',
         'Eskalasiya: operator növbəsi, iş saatları, ötürmə qaydaları',
       ],
-      note: 'Brifdən sonra 3–5 gün ərzində ssenari xəritəsini, mərhələləri və dəqiq smetanı veririk. Bu mərhələ ödənişsizdir və sizi heç nəyə borclu etmir.',
+      note: 'Ssenari xəritəsini, mərhələləri və dəqiq smetanı brifdən 3–5 gün sonra veririk. Ödənişsiz və öhdəliksiz.',
     },
     stack: {
       title: 'Stek',
@@ -132,7 +134,7 @@ export const botsAi: Record<Locale, ServiceCopy> = {
       items: [
         {
           cond: 'Gündə on müraciət və hamısı fərqli',
-          text: 'Təkrar yoxdursa, avtomatlaşdırmaq üçün bir şey yoxdur. Bu həcmdə operator həm daha sürətli, həm daha ucuz olacaq.',
+          text: 'Təkrar yoxdursa, avtomatlaşdıracaq bir şey yoxdur. Operator daha sürətli və ucuzdur.',
         },
         {
           cond: 'Cavab üçün lazım olan məlumat heç yerdə yazılmayıb',
@@ -163,7 +165,7 @@ export const botsAi: Record<Locale, ServiceCopy> = {
         },
         {
           q: 'Bot bilmədiyi sualla nə edir?',
-          a: 'Uydurmur. Sualı və dialoq kontekstini operatora ötürür, müştəriyə isə gözləmə müddətini deyir. Belə hallar loqlanır — onlardan biliklər bazasının növbəti versiyası yığılır.',
+          a: 'Uydurmur: sualı və dialoq kontekstini operatora ötürür, müştəriyə gözləmə müddətini deyir, hadisənin özü isə loqa düşür — onlardan biliklər bazasının növbəti versiyası yığılır.',
         },
         {
           q: 'Hansı kanallarda işləyəcək?',
@@ -171,7 +173,7 @@ export const botsAi: Record<Locale, ServiceCopy> = {
         },
         {
           q: 'Biliklər bazasını kim yeniləyəcək?',
-          a: 'Siz, admin panel vasitəsilə: sənəd əlavə edirsiniz, indeks özü yenilənir. Böyük dəyişikliklər olanda cavabların keyfiyyətini yenidən yoxlamaq lazımdır — bunu necə etməli, təhvildə göstəririk.',
+          a: 'Siz, admin panel vasitəsilə: sənəd əlavə edirsiniz, indeks özü yenilənir. Bunun üçün ayrıca developer lazım deyil. Böyük dəyişikliklərdən sonra cavabların keyfiyyətini yenidən yoxlamaq lazımdır. Necə etməli — təhvildə göstəririk və yazılı reqlament veririk.',
         },
       ],
     },
