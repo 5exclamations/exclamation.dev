@@ -22,7 +22,7 @@ export default {
   hero: {
     eyebrow: 'Baku · since {year}',
     titleMuted: 'Websites, CRM and mobile apps in Baku.',
-    titleMain: 'Not a cost — an asset.',
+    titleMain: 'A working version in 7–14 days.',
     sub: 'Websites, CRM, ERP, mobile apps, bots and AI. Full cycle from brief to release — with one team.',
     diff: [
       { sign: '−', text: 'Excel · WhatsApp · manual reports' },
@@ -37,7 +37,7 @@ export default {
     eyebrow: 'What we build',
     titleMuted: 'Nine directions,',
     titleMain: 'one team.',
-    note: 'From a landing page to a corporate platform. One contractor for the whole range — one contract, one line of responsibility.',
+    note: 'From a landing page to a corporate platform. One contractor, one contract.',
     cta: 'Start the brief',
     countLabel: 'services',
     items: [
@@ -47,7 +47,7 @@ export default {
           'Corporate websites',
           'Landing pages and promos',
           'Online stores',
-          'Product and service catalogs',
+          'Product and service catalogues',
           'News and content portals',
           'Multilingual websites',
         ],
@@ -119,13 +119,13 @@ export default {
         ],
       },
       {
-        title: 'Specialized Solutions',
+        title: 'Specialised Solutions',
         items: [
           'Fintech and payment platforms',
           'EdTech and online learning',
           'HealthTech and medical systems',
           'Cloud services and DevOps',
-          'Code audit and optimization',
+          'Code audit and optimisation',
           'Cybersecurity and data protection',
         ],
       },
@@ -147,10 +147,10 @@ export default {
     titleMuted: 'A system looks like a cost,',
     titleMain: 'and not having one spends money daily.',
     paras: [
-      'If the site is missing or weak, you hand customers to competitors every day. First impressions form in **3 seconds** — after that a visitor either stays or hits back.',
+      'If the site is missing or weak, you hand customers to competitors every day. First impressions form in **3 seconds**. After that a visitor either stays or hits back.',
       'Without a CRM, up to **35% of leads** disappear into messengers, inboxes and notebooks. A system walks the customer down the funnel, chases the task and shows exactly where a deal stalled.',
-      'Manual reporting takes **2–3 hours a day** from someone and raises the odds of an error. An automated routine does the same work at three in the morning, without complaints or typos.',
-      'All of it is measurable. The figures below come from our own projects, counted by the client after launch.',
+      'Manual reporting takes **2–3 hours a day** from someone. An automated routine does the same work at three in the morning, without complaints or typos.',
+      'The figures below come from our own projects, counted by the client after launch.',
     ],
     barsTitle: 'Measured on real projects',
     bars: [
@@ -184,7 +184,7 @@ export default {
     screens: 'Screens',
     next: 'Next case',
     ctaTitle: 'Facing something similar?',
-    ctaText: 'Send a short brief — we will scope the architecture, timeline and cost for free.',
+    ctaText: 'Send a short brief. We come back within 3–5 days with an architecture, a timeline and an estimate, free.',
     cta: 'Start a project',
     mockTitle: 'Live transcript',
     mockCaption: 'AI assistant transcript — finding a product and filling the cart',
@@ -204,8 +204,8 @@ export default {
         domain: 'Real estate',
         tag: 'CRM System',
         title: 'CRM Portal — CRM for real estate agencies',
-        task: 'Agents managed clients in Excel and WhatsApp, the property base was outdated, and sales stages were invisible. Teams duplicated work and lost hours daily.',
-        solution: 'We built a specialized CRM platform for the Azerbaijan market with centralized listings, client cards, Kanban pipeline, WhatsApp/call integration, auto-sync, and real-time analytics.',
+        task: 'Agents managed clients in Excel and WhatsApp, the property base was outdated, and sales stages were invisible. Two agents could be calling the same client. Admin work ate 2–3 hours a day.',
+        solution: 'We pulled listings, client cards and deals into one system with a Kanban pipeline. WhatsApp and calls, data sync and real-time analytics came with it.',
         diff: ['Excel · WhatsApp · manual database', 'CRM Portal · Kanban funnel'],
         results: [
           { value: '+45%', label: 'sales conversion' },
@@ -220,9 +220,9 @@ export default {
         short: 'FLEKS',
         domain: 'Therapy centre',
         tag: 'ERP System',
-        title: 'FLEKS — ERP for a psychology center',
+        title: 'FLEKS — ERP for a psychology centre',
         task: 'Client records were stored in spreadsheets, balances were calculated manually, and receipts were generated in Word. Data loss and payment errors were common.',
-        solution: 'We built an internal Django ERP panel for client/balance accounting, session payment write-offs, lesson counting, automatic PDF receipts, and financial reporting.',
+        solution: 'On Django, an internal panel: client and balance accounting, session write-offs, lesson counts, automatic PDF receipts and financial reporting.',
         diff: ['receipts from Word · manual balances', 'Django ERP · automatic PDF'],
         results: [
           { value: '-80%', label: 'time for payment and receipt processing' },
@@ -239,7 +239,7 @@ export default {
         tag: 'SaaS Platform',
         title: 'Cloud platform for logistics and customs operations',
         task: 'Cross-border freight workflows required days of paperwork. Logistics companies, brokers, and cargo owners used disconnected systems with high error risk.',
-        solution: 'We delivered a unified cloud B2B platform with blockchain transparency, real-time cargo tracking, and customs database integration with automated declarations.',
+        solution: 'Carrier, broker and cargo owner work in the same cloud portal. Transactions and cargo tracking are confirmed on-chain, customs databases are wired in, and declarations generate themselves.',
         diff: ['separate systems · days of paperwork', 'one portal · blockchain tracking'],
         results: [
           { value: '-80%', label: 'documentation processing time' },
@@ -254,8 +254,8 @@ export default {
         domain: 'Mobile product',
         tag: 'Mobile App',
         title: 'MindTrick — Habit Tracker with analytics and predictions',
-        task: 'Users tracked habits in simple tools but quickly lost motivation: only binary done/not-done tracking, with no analysis of failures or behavior patterns.',
-        solution: 'We built a habit-tracking app with streaks, interactive charts, activity heatmaps, and smart insights that predict skip risk and provide personalized recommendations.',
+        task: 'In a simple tracker a habit is a checkbox: done or not done. The checkbox never explains why someone slipped, and two weeks later the app is deleted.',
+        solution: 'Habit tracking with streaks, charts and an activity heatmap. The insight engine predicts skip risk and offers personal recommendations and reminders.',
         diff: ['just “done / not done”', 'streaks · heatmap · insights'],
         results: [
           { value: '+52%', label: 'user retention in 8 weeks' },
@@ -271,8 +271,8 @@ export default {
         domain: 'E-commerce',
         tag: 'Online Store',
         title: 'Smart Fashion — Data-Driven E-Commerce Platform',
-        task: 'Typical online stores offer basic functionality only, with weak personalization and analytics. Users waste time searching, while business loses sales and inventory efficiency.',
-        solution: 'We built an e-commerce platform with catalog, filters, cart, and accounts. Added behavior-based recommendations, sales analytics admin panel, and real-time stock management.',
+        task: 'Shoppers hunted the catalogue by hand and left without finding the thing. Stock lived apart from the storefront, so part of the orders landed on items that were already gone.',
+        solution: 'Catalogue, filters, cart and accounts are the base. On top of that went behaviour-based recommendations, an admin panel with sales analytics and real-time stock.',
         diff: ['a plain shop · no analytics', 'recommendations · live stock'],
         results: [
           { value: '+65%', label: 'conversion growth after redesign' },
@@ -288,8 +288,8 @@ export default {
         domain: 'Customer service',
         tag: 'Automation',
         title: 'AI assistant for customer service automation',
-        task: 'A large e-commerce call center was overloaded. Customers waited 10-15 minutes for repetitive answers, and many dropped before purchase.',
-        solution: 'We built an LLM-based AI assistant trained on company knowledge and chat history. It answers FAQ, guides users through funnel, checks stock, recommends products, and builds cart in chat 24/7.',
+        task: 'A large e-commerce call centre was overloaded. Operators answered the same questions hundreds of times a day, customers waited 10–15 minutes, and part of them dropped before buying.',
+        solution: 'We trained the assistant on the company’s chat history and documents. It answers FAQ, walks the customer down the funnel, checks stock, recommends products and fills the cart in chat, around the clock.',
         diff: ['100 identical questions a day', 'LLM assistant · 24/7'],
         results: [
           { value: '-60%', label: 'operator workload' },
@@ -310,32 +310,32 @@ export default {
       { title: 'Design and prototype', time: '1–2 weeks', text: 'User flows, wireframes, a design system and responsive mockups of every screen.' },
       { title: 'Development', time: 'two-week sprints', text: 'A working demo at the end of every sprint. Tracker and repository on your side; the code is visible daily.' },
       { title: 'Testing and release', time: '1 week', text: 'Functional and load testing, cross-browser checks, CI/CD, monitoring and a soft launch with rollback.' },
-      { title: 'Support', time: '3-month warranty', text: 'Monitoring, bug fixes and roadmap work. The release is not the finish line.' },
+      { title: 'Support', time: '3-month warranty', text: 'Monitoring, bug fixes and roadmap work.' },
     ],
   },
   tech: {
     eyebrow: 'Stack',
     titleMuted: 'A modern stack —',
     titleMain: 'a solid foundation.',
-    note: 'Technologies picked for performance, scalability and a long product life. Not all of them run on any one project — only what the task actually calls for.',
+    note: 'We pick technology for the task and for how long the product has to live. No one project runs the whole list.',
     countLabel: 'technologies in the stack',
   },
   facts: {
     eyebrow: 'Facts',
-    titleMuted: 'Not slogans —',
-    titleMain: 'a number, a duration and a tool name.',
+    titleMuted: 'Timelines, rhythm',
+    titleMain: 'and who owns the code.',
     items: [
       {
         label: 'MVP',
         value: '7–14 days',
         rest: ' — to the first working version',
-        text: 'The scope is fixed in the contract: what is included and what is not. The agreed price does not move mid-project.',
+        text: 'The scope is fixed in the contract: what is included and what is not. The agreed price does not move afterwards — not at design, not at release.',
       },
       {
         label: 'Rhythm',
         value: '2 weeks',
         rest: ' — a sprint, ending in a demo',
-        text: 'Tracker access sits on your side: you see the status of a task yourself, without waiting for a report.',
+        text: 'Tracker access is yours. The status of any task is visible on any day.',
       },
       {
         label: 'After release',
@@ -352,7 +352,7 @@ export default {
     items: [
       {
         q: 'How much does development cost?',
-        a: 'It depends on the scope and the complexity of the task — we do not publish a price list. The exact estimate comes after the brief: the estimating stage takes 3–5 days and is not billed.',
+        a: 'We do not publish a price list: the word “site” covers a week-long landing page and a six-month platform. The exact estimate comes after the brief. The estimating stage takes 3–5 days and is not billed. The estimate breaks the price down by stage, so you can see what it is made of. Once agreed, it does not move.',
       },
       {
         q: 'Can you improve an existing site or system?',
@@ -360,11 +360,11 @@ export default {
       },
       {
         q: 'Do you work under a formal contract?',
-        a: 'Formally only. Scope, timeline, cost and payment terms are fixed in the contract. We work with sole traders and with companies alike. NDA on request.',
+        a: 'Formally only. Scope, timeline, cost and payment terms are fixed in the contract; we work with sole traders and with companies alike, and sign an NDA on request.',
       },
       {
         q: 'Can a CRM be integrated with other systems?',
-        a: '1C, AmoCRM, Bitrix24, Telegram, WhatsApp, payment systems, warehouse software — practically any service that exposes an API or a webhook.',
+        a: '1C, amoCRM, Bitrix24, Telegram, WhatsApp, payment systems, warehouse software — practically any service that exposes an API or a webhook.',
       },
       {
         q: 'How long does a project take?',
@@ -372,7 +372,7 @@ export default {
       },
       {
         q: 'Do you build MVPs?',
-        a: 'Yes, it is one of our core directions. In 7–14 days we assemble a working product with the key functions — enough to test the idea on the market without spending the whole budget.',
+        a: 'Yes, and often that is where we start. In 7–14 days we assemble a working product with the main functions — enough to test the idea on the market without spending the whole budget.',
       },
       {
         q: 'Do you support the project after launch?',
@@ -380,7 +380,7 @@ export default {
       },
       {
         q: 'Do I need to understand the technology?',
-        a: 'No. We take the technical side entirely. What we need from you is the business goal and decisions at the key forks; we explain the complex parts in plain language at every stage.',
+        a: 'No. We take the technical side entirely, and what we need from you is the business goal and the decisions at the forks. We explain the complex parts in plain language at every stage.',
       },
     ],
   },
