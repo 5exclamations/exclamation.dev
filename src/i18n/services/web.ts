@@ -174,7 +174,7 @@ export const web: Record<Locale, ServiceCopy> = {
       ],
     },
     cta: {
-      title: 'Saytınızı danışaq',
+      title: 'Saytınızdan danışaq',
       text: 'Qısa brif kifayətdir: nə satırsınız, kimə, indi hansı sayt var. 3–5 gün ərzində struktur və smeta ilə qayıdırıq.',
       subject: 'Brief — Veb sayt (az)',
     },

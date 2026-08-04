@@ -176,7 +176,7 @@ export const crmErp: Record<Locale, ServiceCopy> = {
       ],
     },
     cta: {
-      title: 'Tapşırığınızı danışın',
+      title: 'Tapşırığınızdan danışın',
       text: 'Qısa brif kifayətdir: nə ilə işləyirsiniz, neçə nəfərsiniz, indi nə itir. 3–5 gün ərzində arxitektura və smeta ilə qayıdırıq.',
       subject: 'Brief — CRM / ERP (az)',
     },

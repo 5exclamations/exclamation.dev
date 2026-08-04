@@ -174,7 +174,7 @@ export const mobile: Record<Locale, ServiceCopy> = {
       ],
     },
     cta: {
-      title: 'Tətbiqinizi danışaq',
+      title: 'Tətbiqinizdən danışaq',
       text: 'Qısa brif kifayətdir: kim istifadə edəcək, nə qədər tez-tez, hansı cihaz funksiyaları lazımdır. 3–5 gün ərzində platforma seçimi və smeta ilə qayıdırıq.',
       subject: 'Brief — Mobil tətbiq (az)',
     },

@@ -175,7 +175,7 @@ export const ecommerce: Record<Locale, ServiceCopy> = {
       ],
     },
     cta: {
-      title: 'Mağazanızı danışaq',
+      title: 'Mağazanızdan danışaq',
       text: 'Qısa brif kifayətdir: nə satırsınız, neçə artikul, ödəniş və çatdırılma necə işləyir. 3–5 gün ərzində struktur və smeta ilə qayıdırıq.',
       subject: 'Brief — Onlayn mağaza (az)',
     },
