@@ -38,28 +38,29 @@ interface Props {
 const { copy: f, formId = 'brief', subject } = Astro.props;
 
 /**
- * The endpoint is configuration, not source: it comes from FORMSPREE_ID at
- * build time and is never committed (see .env.example). With no id set the
- * form still renders and still validates — it just posts nowhere, so the
- * mailto channel below it is the working path. Cloudflare Pages supplies the
- * real value in the build environment.
+ * The form posts to our own Pages Function, never to Formspree directly.
+ *
+ * FORMSPREE_ID used to be baked in here, which put the endpoint in the HTML of
+ * every page. It is now read at request time by `functions/api/brief.ts` and
+ * never reaches the browser, together with the Turnstile secret. The only
+ * value that still belongs in the markup is the Turnstile *site* key, which is
+ * public by design.
  */
-const FORMSPREE_ID = import.meta.env.FORMSPREE_ID ?? '';
-const action = FORMSPREE_ID ? `https://formspree.io/f/${FORMSPREE_ID}` : '';
-/** Wired up at the deploy step; with no key the slot stays empty. */
+const ACTION = '/api/brief';
 const TURNSTILE_SITE_KEY = import.meta.env.TURNSTILE_SITE_KEY ?? '';
 
-if (!FORMSPREE_ID) {
-  console.warn(
-  '[BriefForm] FORMSPREE_ID is not set — the form will not submit. Copy .env.example to .env.'
-  );
-}
+/**
+ * Where a browser with no JavaScript is sent back to. The function appends
+ * `#…-sent` or `#…-error` and the CSS below reveals the matching note with
+ * `:target`, so a submission reports its outcome with no script at all.
+ */
+const returnTo = Astro.url.pathname;
 ---
 
 <form
   class="brief"
   id={formId}
-  action={action}
+  action={ACTION}
   method="POST"
   data-state="idle"
   data-sending={f.sending}
@@ -69,6 +70,15 @@ if (!FORMSPREE_ID) {
   <h3 class="mono brief-title">{f.title}</h3>
 
   {subject && <input type="hidden" name="_subject" value={subject} />}
+  <input type="hidden" name="_return" value={returnTo} />
+
+  {/* Revealed by :target after a no-JS submission; the fetch path never
+      navigates, so these stay hidden and the inline status is used instead.
+      The ids are fixed rather than derived from formId because the function
+      appends these exact anchors — and there is only ever one brief form on
+      a page, so they stay unique. */}
+  <p class="brief-note" id="brief-sent" role="status">{f.success}</p>
+  <p class="brief-note" id="brief-error" role="status">{f.error}</p>
 
   <p class="field">
     <label for={`${formId}-name`}>
@@ -119,12 +129,20 @@ if (!FORMSPREE_ID) {
     <input id={`${formId}-gotcha`} name="_gotcha" type="text" tabindex="-1" autocomplete="off" />
   </p>
 
-  {/* Turnstile mounts here at the deploy step; empty until then. */}
+  {/* Turnstile renders here. `cf-turnstile` is the class the API script looks
+      for; with no site key the div carries no class, the script is never
+      loaded, and the function skips verification — so local builds and
+      previews keep working. */}
   <div
-    class="brief-turnstile"
+    class:list={['brief-turnstile', TURNSTILE_SITE_KEY && 'cf-turnstile']}
+    data-theme="auto"
     {...(TURNSTILE_SITE_KEY ? { 'data-sitekey': TURNSTILE_SITE_KEY } : {})}
   >
   </div>
+
+  {TURNSTILE_SITE_KEY && (
+    <script is:inline async defer src="https://challenges.cloudflare.com/turnstile/v0/api.js"></script>
+  )}
 
   <p class="consent">
     <input id={`${formId}-consent`} name="consent" type="checkbox" required />
@@ -148,6 +166,12 @@ if (!FORMSPREE_ID) {
   </form>
 
 <script>
+  declare global {
+    interface Window {
+      turnstile?: { reset: (widget?: string) => void };
+    }
+  }
+
   const form = document.querySelector<HTMLFormElement>('form.brief');
   if (form && form.getAttribute('action')) {
   const status = form.querySelector<HTMLElement>('[data-status]');
@@ -185,6 +209,14 @@ if (!FORMSPREE_ID) {
       set('error', copy.error);
     } finally {
       if (label) label.textContent = idle;
+      /**
+       * A Turnstile token is single-use and expires after 300s. Without this
+       * reset a second submission in one visit — a correction, a retry after
+       * a network error — sends a spent token and the function rejects it
+       * with turnstile-failed, which looks like the form being broken.
+       * form.reset() clears the input but not the widget's own state.
+       */
+      window.turnstile?.reset();
     }
   });
   }
@@ -262,6 +294,34 @@ if (!FORMSPREE_ID) {
 
   .brief-turnstile:not(:empty) {
   margin-bottom: 1.5rem;
+  }
+  /* The widget is injected by Cloudflare's script after load and measures
+     ~71px, which would push everything below it down at that moment. The
+     class is only present when a site key is configured, so nothing is
+     reserved when there is no widget to come. */
+  .brief-turnstile.cf-turnstile {
+  min-height: 71px;
+  margin-bottom: 1.5rem;
+  }
+
+  /* The no-JS outcome notes. Hidden until the function redirects to their
+     anchor, so a submission still reports itself with scripting off. Same
+     rule as .brief-status: a left bar, never a shadow or a coloured panel. */
+  .brief-note {
+  display: none;
+  margin-bottom: 1.5rem;
+  font-size: var(--fs-200);
+  padding-left: 0.875rem;
+  border-left: 2px solid var(--accent-flat);
+  color: var(--fg);
+  }
+  /* No `html.js` override here on purpose: with JS the fetch path never
+     navigates, so :target cannot match and the inline status is what shows.
+     Suppressing these for html.js would blank the outcome for the one case
+     that still needs them — a native submit that happened before the script
+     attached. */
+  .brief-note:target {
+  display: block;
   }
 
   .consent {

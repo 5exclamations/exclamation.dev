@@ -14,11 +14,26 @@ const { locale, dict, path = '/', alternates } = Astro.props;
 const hrefFor = (l: Locale) => alternates?.[l] ?? localePath(l, path);
 const nav = dict.nav;
 
+/**
+ * The four nav targets are sections of the landing page, so off the landing
+ * page they have to be qualified with it.
+ *
+ * They were bare fragments — `#services`, `#work` — which works on `/` and is
+ * dead everywhere else: on the twenty-four service, case and FAQ pages all
+ * four links did nothing at all. `scripts/links.mjs` is what found it.
+ *
+ * On the landing page itself the bare fragment is kept, so following a link
+ * scrolls rather than reloading the page it is already on.
+ */
+const onHome = path === '/';
+const home = localePath(locale, '/');
+const sectionHref = (id: string) => (onHome ? `#${id}` : `${home}#${id}`);
+
 const links = [
-  { href: '#services', label: nav.services },
-  { href: '#process', label: nav.process },
-  { href: '#work', label: nav.work },
-  { href: '#contact', label: nav.contact },
+  { href: sectionHref('services'), label: nav.services },
+  { href: sectionHref('process'), label: nav.process },
+  { href: sectionHref('work'), label: nav.work },
+  { href: sectionHref('contact'), label: nav.contact },
 ];
 ---
 

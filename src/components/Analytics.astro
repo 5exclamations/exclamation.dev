@@ -1,0 +1,29 @@
+---
+/**
+ * Umami, self-hosted. Cookieless, so no consent banner is needed and none is
+ * shown — which is the reason it was chosen over GA4.
+ *
+ * Both values come from the build environment and neither is secret; the
+ * script URL points at the client's own Umami instance and the website id
+ * identifies the site inside it. With either unset nothing is emitted at all,
+ * so local builds, previews and CI stay clean and no request goes anywhere.
+ *
+ *   UMAMI_SCRIPT_URL   https://analytics.example.com/script.js
+ *   UMAMI_WEBSITE_ID   the uuid Umami shows for the site
+ *
+ * The origin of UMAMI_SCRIPT_URL is also what the generated CSP allows in
+ * `script-src` and `connect-src` — see the `_headers` hook in
+ * astro.config.mjs. Change the host and the CSP follows on the next build;
+ * that is deliberate, because a hand-written CSP silently blocking analytics
+ * is very hard to notice.
+ */
+const scriptUrl = import.meta.env.UMAMI_SCRIPT_URL ?? '';
+const websiteId = import.meta.env.UMAMI_WEBSITE_ID ?? '';
+const enabled = Boolean(scriptUrl && websiteId);
+---
+
+{
+  enabled && (
+    <script is:inline defer src={scriptUrl} data-website-id={websiteId} data-do-not-track="true" />
+  )
+}

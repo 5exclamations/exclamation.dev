@@ -46,11 +46,24 @@ src/
 public/
   robots.txt     явные Allow для AI-краулеров + ссылка на sitemap
   llms.txt       краткая карта сайта для языковых моделей
+  _redirects     www → голый домен, легаси-пути; якоря туда не кладутся
   fonts/         самохостинг woff2, сабсеты latin / latin-ext / cyrillic
+functions/
+  api/brief.ts   единственный серверный код: honeypot → Turnstile → Formspree
 scripts/
   shots.mjs      6 ширин × 2 темы + проверки переполнения, контраста, тап-зон
   motion-check.mjs  доказывает, что prefers-reduced-motion срабатывает
+  links.mjs      битые внутренние ссылки и якоря по собранному dist
+  vitals.mjs     LCP/CLS/INP, медиана из 3, свой сервер с brotli
 ```
+
+`_headers` не лежит в `public/` — он генерируется в `astro.config.mjs`, потому
+что CSP обязан называть origin аналитики из `UMAMI_SCRIPT_URL`. Править
+`dist/_headers` руками бесполезно.
+
+**Фрагменты (`#anchor`) не доходят до сервера.** Редиректы со старых якорных
+адресов живут в `src/components/LegacyHash.astro`, а не в `_redirects`.
+Пошаговый переезд — `CLOUDFLARE-SETUP.md`.
 
 Все секции лендинга собраны: `hero`, `services`, `why`, `work`, `metrics`,
 `process`, `tech`, `facts`, `faq`, `contact`, `finalcta`, футер, 404 и шесть
@@ -108,7 +121,18 @@ scripts/
 | Скриншоты и проверки | `node scripts/shots.mjs <label> [selector] [path]` |
 | Проверка reduced-motion | `node scripts/motion-check.mjs` |
 | Проверка JSON-LD | `node scripts/schema-check.mjs <schemaorg.jsonld>` |
+| Битые ссылки | `node scripts/links.mjs` |
+| Core Web Vitals | `node scripts/vitals.mjs [url] [Slow4G\|Fast4G]` |
 | Рантайм Cloudflare локально | `npx wrangler pages dev dist` |
+
+`wrangler pages dev` регулярно падает с `all goroutines are asleep` на
+страницах с большим числом картинок — поэтому `vitals.mjs` поднимает
+собственный статический сервер с brotli, а не полагается на wrangler.
+Для проверки `functions/` wrangler всё ещё нужен.
+
+**Осторожно при тестах формы:** `wrangler pages dev` подхватывает `.env`, и
+`FORMSPREE_ID` оттуда — настоящий. POST на `/api/brief` уйдёт в реальный
+Formspree. Для проверок подставляй фиктивный id.
 
 Node.js: требуется 18+. Локально стоит v24.18.0, npm 11.16.0.
 

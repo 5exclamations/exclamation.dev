@@ -129,7 +129,31 @@ hosted validator by URL after cutover.
 time, never one. Run the six widths in both themes and fix what you find
 before showing anything.
 
-### Last measured performance
+### Performance, measured 2026-08-05 — §11 has the detail
+
+`node scripts/vitals.mjs` is the tool: Slow 4G, 390×844 DPR 3, 4× CPU, brotli,
+**median of three runs**, its own static server. Targets LCP < 1800ms,
+CLS < 0.05, INP < 200ms.
+
+| page | LCP before → after | CLS before → after |
+| --- | --- | --- |
+| home az | 1976 → **2000** | 0 → 0 |
+| home ru | 1500 → **1560** | 0.025 → 0.043 |
+| faq az / ru / en | 736 / 744 / 740 → **740 / 736 / 724** | 0 / 0.024 / 0 → **0 / 0 / 0** |
+| svc crm-erp ru | 760 → **736** | 0 → 0.023 |
+| svc web ru | 752 → **732** | 0 → 0 |
+| svc mobile ru | 756 → **732** | 0 → 0 |
+| svc ecommerce ru | 824 → **732** | 0 → 0.009 |
+| svc integrations ru | 748 → **736** | 0 → 0.044 |
+| svc bots-ai ru | 784 → **736** | 0 → 0.044 |
+| svc crm-erp az | 760 → **732** | **0.052 → 0** |
+| case crm-portal ru | 1000 → **896** | 0.001 → 0.001 |
+
+**Every service page and every FAQ page is inside all three targets, with more
+than twice the margin on LCP.** The one page still over is the Azerbaijani
+landing page at ~2000ms, which was 1976ms before and is not fixed — §11.
+
+### Earlier measurement, for context
 
 Landing page, Cloudflare Pages runtime, 390×844 DPR 3, 4× CPU throttling:
 
@@ -142,7 +166,11 @@ Landing page, Cloudflare Pages runtime, 390×844 DPR 3, 4× CPU throttling:
 HTML after gzip: 20.8 kB (az home), 22.3 kB (ru home), 16.5 kB (a service
 page), 10.0 kB (a case page) — against a 50 kB budget.
 
-**The service pages have not been profiled.** Re-run before cutover.
+Those figures were taken with a different method (a single run through the
+Chrome DevTools profiler, on `wrangler pages dev`) and are **not comparable**
+with the table above: the DevTools trace roughly doubles LCP through its own
+instrumentation — the same page measured 1429ms under the profiler and 772ms
+without it. Use `vitals.mjs` for anything you intend to compare.
 
 ---
 
@@ -442,16 +470,34 @@ at 40rem, or the lone card reads as a missing second one.
 
 ## 7. Remaining before launch
 
-1. **Profile the service pages and the FAQ page** — Core Web Vitals and gzip
-   size. Only the landing page has been measured.
-2. **Cutover to Cloudflare Pages.** Set the build environment (§8), deploy,
-   then delete the legacy files and turn off GitHub Pages.
-3. **Delete the legacy site** — `index.html`, `style_dark.css`,
-   `style_light.css`, `translations.js` and the root `pics/`. Still present
-   because GitHub Pages serves them. `translations.js` is also the source of
-   the client's original copy, so check anything you still need out of it
-   first. It misspells **MindTrack**; the product is **MindTrick**.
-4. **Run `validator.schema.org` by URL** once the site is public (§3).
+1. **Do the cutover.** Every piece is built and checked; what is left is
+   clicking through the Cloudflare panel. **`CLOUDFLARE-SETUP.md` is the
+   step-by-step** — project creation, the two deployment models, which
+   variables are build-time and which are runtime secrets, Turnstile, Umami,
+   DNS, and the order to do it in.
+2. **Delete the legacy site** — `index.html`, `style_dark.css`,
+   `style_light.css`, `translations.js` and the root `pics/`. Deliberately
+   still present. `translations.js` is also the source of the client's
+   original copy, so check anything you still need out of it first. It
+   misspells **MindTrack**; the product is **MindTrick**.
+3. **Run `validator.schema.org` by URL** once the site is public (§3).
+
+### Cutover work already done, 2026-08-05
+
+- **Performance**: profiled and fixed, §11.
+- **Turnstile**: real, not a stub. `functions/api/brief.ts` verifies the token
+  server-side and forwards to Formspree; the honeypot is kept in front of it.
+  `FORMSPREE_ID` moved from a build variable to a runtime secret, so the
+  endpoint is no longer in the HTML of 45 pages.
+- **Analytics**: self-hosted Umami, cookieless, no banner, off until
+  `UMAMI_SCRIPT_URL` and `UMAMI_WEBSITE_ID` are both set. No GA4.
+- **`_headers`**: generated at build (`astro.config.mjs`), because the CSP has
+  to name the Umami origin and a hand-written one would go stale silently.
+- **`_redirects`**: www → apex, the legacy file paths, and a note on why the
+  anchors are not and cannot be in it.
+- **CI**: `.github/workflows/ci.yml` — build, `scripts/links.mjs`, Lighthouse
+  CI against `lighthouserc.json`, then deploy. Supports both deployment
+  models; see CLOUDFLARE-SETUP.md §7.
 
 ### The full FAQ page — done 2026-08-05
 
@@ -498,9 +544,17 @@ Two questions that already live on a service page were **left off on purpose**
   control of a URL, so a guessed one is worse than a missing one.
 - **The address is city-level.** `ADDRESS` has locality and country only, and
   `GEO` is the centre of Baku.
-- **Turnstile is a stub.** The slot renders empty until `TURNSTILE_SITE_KEY`
-  is set; wiring the widget and its server-side verification is a deploy-step
-  task.
+- **Turnstile fails open.** With `TURNSTILE_SECRET_KEY` unset the function
+  skips verification and still forwards the message, which is what keeps
+  previews and local builds usable. It means a missing secret degrades to
+  honeypot-only spam protection without any visible symptom. Set it in
+  production and check it is set after any change to the environment.
+- **The CSP carries `'unsafe-inline'` for scripts.** The theme switch has to
+  run before first paint to avoid a flash, so it is inline by design
+  (SKILL.md §1). Hashes were considered and rejected: Astro emits the inline
+  script per route, so the hash set would have to be collected per page, and
+  nonces need a server. There is no user-generated content anywhere on the
+  site, which is what makes this acceptable rather than lazy.
 - **Four of the nine service categories have no page** — web apps and
   platforms, analytics and accounting, specialised solutions, modernisation
   and support. Not planned; they keep the `#services` anchor.
@@ -590,3 +644,86 @@ as known rather than secret and rotate it if that matters.
 
 `git` has no global identity here. Commit with
 `-c user.name="Texa" -c user.email="texranhamidzada@gmail.com"`.
+
+---
+
+## 11. Performance: what was found, what worked, what did not
+
+Measured with `node scripts/vitals.mjs`. Both columns in §3 come from single
+coherent runs of that script on the same machine, medians of three, with
+brotli — an early attempt compared a single run against a median and reported
+a page moving 732ms → 1692ms from a change that touched a different page.
+
+### The one real bug: the site's CLS was a font-swap reflow
+
+`font-display: swap` paints running text in the fallback first. The fallback
+was `system-ui`, which measures **5.4% narrower than Commissioner and 10.1%
+narrower than Geologica** over a representative az/ru/en sample. Narrower text
+wraps into fewer lines, so when the real face arrived at 1.9–2.4s the lead
+paragraph gained two lines and pushed the page down.
+
+Line-height is unitless and explicit everywhere, so the line *box* was never
+the problem — the line *count* was.
+
+Fixed with metric-matched fallback faces in `fonts.css`: `size-adjust`,
+`ascent-override`, `descent-override` on `local('Arial')` aliases sitting ahead
+of `system-ui`. Zero bytes, no extra request. **The az CRM/ERP page went from
+0.052 — over budget — to 0.**
+
+Three things worth knowing before touching those numbers:
+
+- **Measure per script, not on one string.** Geologica is 103.86% of Arial on
+  az and 106.08% on en. The first attempt used one mixed sample and put
+  Commissioner at 100.15% when the right midpoint is 98.76%.
+- **A monospace face needs a monospace baseline.** Against Arial, JetBrains
+  Mono swings 12.4pp across the three scripts (115.42% ru, 127.82% az) because
+  a proportional face renders Cyrillic and Latin at different widths. Against
+  Menlo it is 99.66% on all three, with no spread. The mono fallback list is
+  Menlo/Consolas/DejaVu Sans Mono/Roboto Mono for that reason, and Commissioner
+  stays behind it for the manat glyph.
+- **The residual is honest.** Several ru pages moved from 0 to 0.009–0.044.
+  A 1.4% mismatch can still flip one line of an h1, and whether it does is
+  content-dependent — with the old 8.5% mismatch those particular pages
+  happened not to flip while the az one did. The systematic error is far
+  smaller now and nothing is over budget, but it is not zero. If more margin
+  is ever wanted, the clean next step is per-locale fallback faces selected
+  with `:root:lang()`, using the per-script figures above.
+
+### The Azerbaijani landing page is still over target
+
+~2000ms against 1800. Diagnosed, not fixed.
+
+It is not the image. **Fonts are 156kB of the page's 219kB**; the hero AVIF is
+41.7kB and starts at 650ms but does not finish until 1944ms because six font
+files share the pipe in front of it. az pages fetch six because they need both
+`latin-ext` and `latin` of all three families, and JetBrains Mono alone is
+43kB there for text set at `--fs-100`/`--fs-200`.
+
+Two fixes were tried and both reverted, with their numbers:
+
+- **Preload the `latin` subset as well.** It is fetched anyway, just discovered
+  late. Made it worse: 1976ms → 2120ms. More bytes at high priority in front
+  of the LCP image.
+- **Drop the font preloads on the home page only**, on the theory that its LCP
+  element is an image rather than text. Looked like a large win in a single
+  run (2032 → 1664) and did not survive medians: az 1976 → 1940 while **ru
+  1500 → 1880**. Trading 380ms in one language for 36ms in another is not a
+  fix.
+
+The lever that is left is font bytes. Subsetting JetBrains Mono to the
+characters actually used — the mono stack sets eyebrows, labels, numbers and
+the diff rows, not running text — is the obvious one, and `harfbuzzjs` is
+already a dependency for the OG cards (`src/lib/instance-font.ts` subsets with
+it). That is a real piece of work on the type pipeline and was not started.
+
+### Things the harness will not tell you
+
+- **`wrangler pages dev` is not reliable for measurement.** It crashed
+  repeatedly part-way through a run, always on the image-heavy case page, with
+  `fatal error: all goroutines are asleep`. `vitals.mjs` serves `dist` itself
+  for that reason. Wrangler is still what you need for `functions/`.
+- **A static server without compression is not a stand-in for a CDN.** An
+  uncompressed run reported the az FAQ page at 231kB instead of 167kB and put
+  half a second on every LCP. `vitals.mjs` brotlis the text types.
+- **`.env` is picked up by `wrangler pages dev`.** A POST to `/api/brief` in a
+  local test goes to the real Formspree endpoint. Use a dummy id.

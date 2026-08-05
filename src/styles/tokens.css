@@ -23,11 +23,17 @@
     --on-accent: var(--ink);
 
     /* ---- type ---- */
-    --font-display: 'Geologica', system-ui, sans-serif;
-    --font-text: 'Commissioner', system-ui, sans-serif;
+    /* the Fallback faces are metric-matched aliases of Arial, not new
+       typefaces -- see fonts.css. They sit ahead of system-ui so the
+       pre-swap layout matches the post-swap one. */
+    --font-display: 'Geologica', 'Geologica Fallback', system-ui, sans-serif;
+    --font-text: 'Commissioner', 'Commissioner Fallback', system-ui, sans-serif;
     /* Commissioner sits in the mono stack on purpose: JetBrains Mono has no
        manat sign (U+20BC), so that one glyph resolves to a face that does. */
-    --font-mono: 'JetBrains Mono', 'Commissioner', ui-monospace, monospace;
+    /* Commissioner stays in the stack for the manat glyph (SKILL.md §2); the
+       Fallback face ahead of it only matches metrics while the mono loads. */
+    --font-mono: 'JetBrains Mono', 'JetBrains Mono Fallback', 'Commissioner', ui-monospace,
+      monospace;
 
     --fs-100: clamp(0.6875rem, 0.66rem + 0.14vw, 0.8125rem);
     --fs-200: clamp(0.8125rem, 0.79rem + 0.12vw, 0.9375rem);

@@ -3,6 +3,8 @@ import '../styles/app.css';
 import { getImage } from 'astro:assets';
 import { heroShot, HERO_IMAGE } from '../data/cases';
 import Header from '../components/Header.astro';
+import Analytics from '../components/Analytics.astro';
+import LegacyHash from '../components/LegacyHash.astro';
 import Schema from '../components/Schema.astro';
 import SpineEnd from '../components/SpineEnd.astro';
 import Footer from '../components/Footer.astro';
@@ -43,6 +45,30 @@ const {
 } = Astro.props;
 const head = meta ?? dict.meta;
 const subset = localeSubset[locale];
+
+/**
+ * Two preloads on every route: the locale's own subset of the two display
+ * faces. Two variations on this were measured and both reverted.
+ *
+ * Adding the `latin` subset as well — it is fetched on every az and ru page,
+ * just discovered late — pushed the home page from 1976ms to 2120ms, because
+ * 113kB of fonts at high priority competes with the hero image for the pipe.
+ * It did nothing for CLS either.
+ *
+ * Dropping the preloads on the home page only, on the theory that its LCP
+ * element is the hero image rather than text, looked like a large win in a
+ * single run and did not survive medians: az moved 1976ms -> 1940ms while ru
+ * moved 1500ms -> 1880ms. Trading 380ms on one language for 36ms on another
+ * is not a fix.
+ *
+ * The CLS these were chasing is solved in fonts.css instead, by metric-matched
+ * fallbacks, which cost no bytes and no request ordering at all.
+ */
+const fontPreloads = [
+  `/fonts/Geologica-${subset}.woff2`,
+  `/fonts/Commissioner-${subset}.woff2`,
+];
+
 const site = Astro.site?.toString().replace(/\/$/, '') ?? '';
 
 /** the locale-free path, so canonical and hreflang work on every route */
@@ -104,20 +130,9 @@ const heroPreload =
       />
     )}
 
-    <link
-      rel="preload"
-      as="font"
-      type="font/woff2"
-      href={`/fonts/Geologica-${subset}.woff2`}
-      crossorigin
-    />
-    <link
-      rel="preload"
-      as="font"
-      type="font/woff2"
-      href={`/fonts/Commissioner-${subset}.woff2`}
-      crossorigin
-    />
+    {fontPreloads.map((href) => (
+      <link rel="preload" as="font" type="font/woff2" href={href} crossorigin />
+    ))}
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content={head.title} />
@@ -159,6 +174,14 @@ const heroPreload =
         }
       })();
     </script>
+
+    {/* Only on the landing pages: `/` is the only URL the legacy site had,
+        so it is the only place a legacy fragment can arrive. */}
+    {schemaKind === 'home' && <LegacyHash locale={locale} />}
+
+    {/* last in head and `defer`: analytics must never be in front of the
+        fonts or the hero image in the request queue */}
+    <Analytics />
   </head>
 
   <body>

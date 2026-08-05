@@ -5,6 +5,72 @@
    NOT in JetBrains Mono -- hence the mono stack falls back to
    Commissioner for that single glyph. */
 
+/* ---- metric-matched fallbacks: the site's entire CLS ----
+
+   `font-display: swap` paints running text in the fallback first. The
+   fallback was `system-ui`, which measures 5.4% narrower than Commissioner
+   and 10.1% narrower than Geologica over a representative az/ru/en sample.
+   Narrower text wraps into fewer lines, so when the real face arrived at
+   1.9-2.4s the lead paragraph gained two lines and shoved the page down:
+   0.052 on the az CRM/ERP page, over the 0.05 budget, and 0.024 on the
+   Russian FAQ.
+
+   Line-height is unitless and explicit throughout, so the line BOX height was
+   never the problem -- the LINE COUNT was. size-adjust is what fixes it.
+
+   Values measured in the browser against the real faces, not estimated:
+   advance width at 400/100px over an az, a ru and an en sentence separately,
+   with size-adjust set to the midpoint of the three. Arial is the reference
+   for the two proportional faces because it is on macOS and Windows and sits
+   within 1.3% of both; where it is absent (Android) the stack falls through
+   to the platform sans, still closer than system-ui was.
+
+   Per-script spread is what makes the midpoint necessary: Geologica measures
+   103.86% of Arial on az and 106.08% on en. Re-measure the same way if a face
+   is ever swapped -- a single sample string gives the wrong answer, which is
+   how the first attempt put Commissioner at 100.15% instead of 98.76%. */
+
+@font-face {
+  font-family: 'Commissioner Fallback';
+  src: local('Arial'), local('Helvetica'), local('Roboto');
+  size-adjust: 98.76%;
+  ascent-override: 103.28%;
+  descent-override: 21.26%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'Geologica Fallback';
+  src: local('Arial'), local('Helvetica'), local('Roboto');
+  size-adjust: 104.97%;
+  ascent-override: 93.36%;
+  descent-override: 25.72%;
+  line-gap-override: 0%;
+}
+
+/* The mono stack's only fallback was Commissioner, which is there for the
+   manat glyph alone (U+20BC, absent from JetBrains Mono) and measures 7.9%
+   narrower than it. Mono sets the eyebrows, the facts labels and the diff
+   rows, so that 7.9% re-wrapped a label and moved the block below it -- the
+   shifts that survived the two faces above. This sits BETWEEN JetBrains Mono
+   and Commissioner, so per-glyph fallback for ₼ still lands on Commissioner:
+   no monospace here carries manat either, and the cascade continues past it.
+
+   The baseline is a real monospace, not Arial. Measured against Arial the
+   ratio swings 12.4pp across the three scripts (115.42% ru, 127.82% az)
+   because a proportional face renders Cyrillic and Latin at different widths
+   while a monospace does not. Against Menlo it is 99.66% on all three, with
+   no spread at all -- so this one value is right in every language. */
+@font-face {
+  font-family: 'JetBrains Mono Fallback';
+  src: local('Menlo'), local('Consolas'), local('DejaVu Sans Mono'), local('Roboto Mono'),
+    local('Courier New');
+  size-adjust: 99.66%;
+  ascent-override: 102.35%;
+  descent-override: 30.1%;
+  line-gap-override: 0%;
+}
+
 @font-face {
   font-family: 'Geologica';
   font-style: normal;

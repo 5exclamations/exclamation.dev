@@ -1,0 +1,72 @@
+---
+import { localePath, type Locale } from '../i18n';
+
+/**
+ * The legacy site's indexed addresses were all fragments on one page:
+ * exclamationdev.com/#crm, /#cases, /#advantages. A fragment never reaches
+ * the server, so `_redirects` cannot act on one (the file says so too). This
+ * is the only place that can.
+ *
+ * Runs on the three landing pages only, because `/` is the only URL the old
+ * site ever had. Six of the fragments were case anchors and now have pages of
+ * their own; the rest were sections that have been renamed or merged.
+ *
+ * Anything not listed is left alone — `#services`, `#process`, `#tech`,
+ * `#faq` and `#contact` still exist on the new landing page and still work.
+ *
+ * `replace` rather than `assign`: arriving from a stale search result and
+ * then having Back bounce you to the same stale result is a trap.
+ */
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+
+/** legacy fragment -> the case page that replaced it */
+const PAGES: Record<string, string> = {
+  crm: localePath(locale, '/is/crm-portal'),
+  erp: localePath(locale, '/is/fleks'),
+  bookingpro: localePath(locale, '/is/merkuri'),
+  medapp: localePath(locale, '/is/mindtrick'),
+  ecommerce: localePath(locale, '/is/smart-fashion'),
+  autoflow: localePath(locale, '/is/ai-assistent'),
+};
+
+/** legacy fragment -> the section that absorbed it, on this same page */
+const SECTIONS: Record<string, string> = {
+  cases: 'work',
+  advantages: 'why',
+  trust: 'why',
+  who: 'why',
+  finalcta: 'contact',
+  hero: '',
+};
+
+const map = JSON.stringify({ pages: PAGES, sections: SECTIONS });
+---
+
+{/* Inline in <head>. The page redirect must fire before anything renders —
+    it needs no DOM — while the section jump has to wait for the element to
+    exist, so only that half is deferred. */}
+<script is:inline set:html={`(() => {
+  var m = ${map};
+  var h = location.hash.slice(1);
+  if (!h) return;
+
+  if (m.pages[h]) { location.replace(m.pages[h]); return; }
+
+  if (h in m.sections) {
+    var to = m.sections[h];
+    history.replaceState(null, '', location.pathname + (to ? '#' + to : ''));
+    if (!to) return;
+    var jump = function () {
+      var el = document.getElementById(to);
+      if (el) el.scrollIntoView();
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', jump, { once: true });
+    } else {
+      jump();
+    }
+  }
+})();`} />

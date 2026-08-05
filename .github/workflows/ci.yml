@@ -1,0 +1,142 @@
+name: CI
+
+# Build, prove the output is sound, then publish.
+#
+# The three checks are ordered by how cheap they are to run and how specific
+# their failures are: the build catches type and copy errors (ServiceCopy and
+# the FAQ question count both fail the build by design), the link check catches
+# routes that point at nothing, and Lighthouse catches performance and
+# accessibility regressions.
+#
+# Deploy runs only on main, only after all three pass, and only if the
+# credentials for one of the two deployment models are present. See
+# CLOUDFLARE-SETUP.md §7 for which model this repository is using.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  # a newer push to the same branch makes an in-flight run pointless
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build and check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      # The site builds without any of these set — the form falls back to
+      # mailto and analytics emits nothing — so a fork or a PR from outside
+      # still gets a real build and real checks.
+      - name: Build
+        run: npm run build
+        env:
+          TURNSTILE_SITE_KEY: ${{ secrets.TURNSTILE_SITE_KEY }}
+          UMAMI_SCRIPT_URL: ${{ secrets.UMAMI_SCRIPT_URL }}
+          UMAMI_WEBSITE_ID: ${{ secrets.UMAMI_WEBSITE_ID }}
+
+      - name: Check internal links and fragments
+        run: node scripts/links.mjs
+
+      # Guards against the two headers that are easy to lose in a refactor:
+      # the generated _headers file, and the redirects copied from public/.
+      - name: Check the deploy files were emitted
+        run: |
+          for f in dist/_headers dist/_redirects; do
+            if [ ! -s "$f" ]; then
+              echo "::error::$f is missing or empty"
+              exit 1
+            fi
+          done
+          grep -q 'Content-Security-Policy' dist/_headers \
+            || { echo "::error::_headers carries no CSP"; exit 1; }
+          echo "_headers and _redirects present"
+
+      - name: Upload dist
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist
+          retention-days: 3
+
+  lighthouse:
+    name: Lighthouse
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # Thresholds live in lighthouserc.json. They are deliberately NOT the
+      # same numbers as the LCP<1800 target tracked by scripts/vitals.mjs:
+      # Lighthouse throttles by simulation and vitals.mjs throttles the real
+      # connection, so the two produce different absolute figures for the same
+      # page. lighthouserc.json asserts the standard "good" Core Web Vitals
+      # thresholds; vitals.mjs is what the stricter in-house target is measured
+      # with, on demand rather than in CI.
+      - name: Run Lighthouse CI
+        run: npx --yes @lhci/cli@0.14.x autorun
+
+  deploy:
+    name: Deploy to Cloudflare Pages
+    needs: [build, lighthouse]
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    environment: production
+    # `secrets` is not available in step-level `if`, so they are mapped to env
+    # and the conditions test those instead
+    env:
+      API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      HOOK: ${{ secrets.CLOUDFLARE_DEPLOY_HOOK }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist
+
+      # Model A — Direct Upload. This workflow is what publishes, so the
+      # checks above are a real gate: nothing reaches production without them.
+      - name: Publish (direct upload)
+        if: env.API_TOKEN != '' && env.ACCOUNT_ID != ''
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=exclamation --branch=main
+
+      # Model B — Git integration. Cloudflare builds and deploys on push by
+      # itself; this only asks it to rebuild once the checks have passed.
+      # Note that in this model Pages has already started its own deploy, so
+      # the checks are advisory rather than blocking.
+      - name: Trigger the Pages rebuild (git integration)
+        if: (env.API_TOKEN == '' || env.ACCOUNT_ID == '') && env.HOOK != ''
+        run: curl -fsS -X POST "$HOOK"
+
+      - name: Nothing configured
+        if: (env.API_TOKEN == '' || env.ACCOUNT_ID == '') && env.HOOK == ''
+        run: |
+          echo "::notice::No Cloudflare credentials set — built and checked, but not deployed."
+          echo "::notice::See CLOUDFLARE-SETUP.md §7 to pick a deployment model."

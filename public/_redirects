@@ -1,0 +1,34 @@
+# Cloudflare Pages redirects. First match wins; 200 = rewrite, 301/302 = redirect.
+#
+# WHAT IS NOT HERE, AND CANNOT BE
+# ------------------------------------------------------------------
+# The legacy site was a single index.html and every address it was indexed
+# under is a fragment: exclamationdev.com/#crm, /#services, /#faq. A fragment
+# is never sent to the server — the browser strips it before the request and
+# resolves it locally — so Cloudflare cannot see, match or redirect one. No
+# rule here can move /#crm to the CRM Portal case page.
+#
+# Those are handled in the browser instead, by LegacyHash.astro on the three
+# landing pages, which rewrites a known legacy fragment to its new home on
+# first paint. That file is the companion to this one; change both together.
+#
+# The redirects below are for the addresses that ARE sent to the server.
+
+# www to the bare domain. Cloudflare can also do this with a redirect rule in
+# the dashboard; keeping it in the repo means it moves with the code and is
+# reviewable. Both are fine, one is enough — see CLOUDFLARE-SETUP.md §6.
+https://www.exclamationdev.com/* https://exclamationdev.com/:splat 301!
+
+# The legacy site's own files. They are still in the repository and still
+# served by GitHub Pages until the cutover; once Cloudflare is authoritative
+# these paths should land somewhere real rather than 404.
+/index.html / 301
+/style_dark.css / 301
+/style_light.css / 301
+/translations.js / 301
+/pics/* / 301
+
+# Trailing-slash-less variants of the localised roots. Cloudflare 308s these
+# on its own, but being explicit costs nothing and documents the intent.
+/ru /ru/ 301
+/en /en/ 301
