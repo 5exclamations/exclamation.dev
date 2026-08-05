@@ -213,7 +213,7 @@ export default {
           { value: '2 həftə', label: 'istifadəçi adaptasiya müddəti' },
         ],
         stack: ['Django', 'PostgreSQL', 'WhatsApp API', 'Docker'],
-        alts: ['CRM Portal: müştəri kartı, interaksiya tarixçəsi və uyğun gələn obyektlərin siyahısı', 'CRM Portal: obyekt bazası, qiymət və otaq sayı üzrə filtrlər, statuslu siyahı', 'CRM Portal: satış hunisinin Kanban lövhəsi, mərhələlər üzrə sövdələşmələr'],
+        alts: ['CRM Portal: müştəri kartı, interaksiya tarixçəsi və uyğun gələn obyektlərin siyahısı', 'CRM Portal: obyekt bazası, qiymət və otaq sayı üzrə filtrlər, statuslu siyahı', 'CRM Portal: satış hunisinin Kanban lövhəsi — dörd sütun, sayğaclar 3, 1, 2 və 1; birincidə 145 000 AZN-lik üçotaqlı mənzil üzrə sövdələşmə kartı'],
       },
       {
         slug: 'fleks',
@@ -230,7 +230,7 @@ export default {
           { value: '3 dəq', label: '30 dəqiqə əvəzinə müştəri hesabatı' },
         ],
         stack: ['Django', 'PostgreSQL', 'WeasyPrint', 'Nginx'],
-        alts: ['FLEKS: seansın keçirilməsi və müştəri balansının artırılması formaları', 'FLEKS: müştərilər üzrə balans və ödəniş cədvəli', 'FLEKS: hesabat sətri və ödəniş tarixçəsi'],
+        alts: ['FLEKS: seansın keçirilməsi və müştəri balansının artırılması formaları', 'FLEKS: maliyyə hesabatı — dövr üzrə filtrlər, gəlir, artım və geri qaytarma yekunları, PDF ixracı', 'FLEKS: müştəri siyahısı — kateqoriya, telefon və cari balans'],
       },
       {
         slug: 'merkuri',
@@ -246,7 +246,7 @@ export default {
           { value: '100%', label: 'blokçeyn üzərindən əməliyyat şəffaflığı' },
         ],
         stack: ['FastAPI', 'PostgreSQL', 'Blockchain', 'React'],
-        alts: ['Merkuri: aktiv yükdaşımalar, marşrut, gömrük statusu və blokçeyn təsdiqli xronologiya', 'Merkuri: tərəfdaşlar və brokerlər kataloqu, performans və müqavilə statusu', 'Merkuri: gömrük bəyannaməsi sihirbazı, avtomatik doldurulmuş tranzit məlumatları'],
+        alts: ['Merkuri: aktiv yükdaşımalar, marşrut, gömrük statusu və blokçeyn təsdiqli xronologiya', 'Merkuri: tərəfdaşlar və brokerlər kataloqu, performans və müqavilə statusu', 'Merkuri: gömrük bəyannaməsi sihirbazının birinci addımı — tranzit məlumatları avtomatik dolub, sığorta dəyəri sahəsi səhv format kimi işarələnib, sağda son bəyannamələr statuslarla'],
       },
       {
         slug: 'mindtrick',
@@ -263,7 +263,7 @@ export default {
           { value: '3.1x', label: 'orta streak uzunluğu' },
         ],
         stack: ['Flutter', 'SQLite', 'Firebase', 'Charts'],
-        alts: ['MindTrick: streak trendləri və ardıcıllıq heatmap-i', 'MindTrick: yeni vərdiş ekranı — ad, kateqoriya, tezlik və xatırlatma', 'MindTrick: təqvim ayı, gün üzrə icra və həmin günün vərdiş siyahısı'],
+        alts: ['MindTrick: streak trendləri, ardıcıllıq heatmap-i və «bu ay çərşənbəni iki dəfə buraxmısınız» xəbərdarlığı', 'MindTrick: yeni vərdiş ekranı — ad, kateqoriya, tezlik və xatırlatma', 'MindTrick: təqvim ayı, gün üzrə icra və həmin günün vərdiş siyahısı'],
       },
       {
         slug: 'smart-fashion',

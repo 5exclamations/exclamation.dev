@@ -213,7 +213,7 @@ export default {
           { value: '2 weeks', label: 'user onboarding period' },
         ],
         stack: ['Django', 'PostgreSQL', 'WhatsApp API', 'Docker'],
-        alts: ['CRM Portal: client card, interaction history and a list of matching properties', 'CRM Portal: property database with price and room filters and a status-tagged list', 'CRM Portal: Kanban board of the sales funnel with deals by stage'],
+        alts: ['CRM Portal: client card, interaction history and a list of matching properties', 'CRM Portal: property database with price and room filters and a status-tagged list', 'CRM Portal: Kanban sales funnel, four columns with counters of 3, 1, 2 and 1; the first holds one deal card for a three-room flat at 145,000 AZN'],
       },
       {
         slug: 'fleks',
@@ -230,7 +230,7 @@ export default {
           { value: '3 min vs 30', label: 'for client report generation' },
         ],
         stack: ['Django', 'PostgreSQL', 'WeasyPrint', 'Nginx'],
-        alts: ['FLEKS: forms for logging a session and topping up a client balance', 'FLEKS: table of client balances and payments', 'FLEKS: report row and payment history'],
+        alts: ['FLEKS: forms for logging a session and topping up a client balance', 'FLEKS: financial report with period filters, revenue, top-up and refund totals, and a PDF export', 'FLEKS: client list with category, phone and current balance'],
       },
       {
         slug: 'merkuri',
@@ -246,7 +246,7 @@ export default {
           { value: '100%', label: 'transaction transparency via blockchain' },
         ],
         stack: ['FastAPI', 'PostgreSQL', 'Blockchain', 'React'],
-        alts: ['Merkuri: active shipments, route, customs status and a blockchain-confirmed timeline', 'Merkuri: catalogue of partners and brokers with performance and contract status', 'Merkuri: customs declaration wizard with transit data pulled in automatically'],
+        alts: ['Merkuri: active shipments, route, customs status and a blockchain-confirmed timeline', 'Merkuri: catalogue of partners and brokers with performance and contract status', 'Merkuri: first step of the customs declaration wizard — transit data filled in automatically, the insurance value flagged as an invalid format, and recent declarations with their statuses on the right'],
       },
       {
         slug: 'mindtrick',
@@ -263,7 +263,7 @@ export default {
           { value: '3.1x', label: 'average streak length' },
         ],
         stack: ['Flutter', 'SQLite', 'Firebase', 'Charts'],
-        alts: ['MindTrick: streak trends and a consistency heatmap', 'MindTrick: new habit screen — name, category, frequency and reminder', 'MindTrick: month calendar with per-day completion and that day’s habit list'],
+        alts: ['MindTrick: streak trends, a consistency heatmap and a red note that Wednesday was missed twice this month', 'MindTrick: new habit screen — name, category, frequency and reminder', 'MindTrick: month calendar with per-day completion and that day’s habit list'],
       },
       {
         slug: 'smart-fashion',
