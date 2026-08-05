@@ -1,6 +1,7 @@
 ---
 import { channels } from '../data/contacts';
 import { serviceForCategory } from '../data/services';
+import { faqPage } from '../i18n/faq';
 import { fill, localePath, locales, localeNames, type Dict, type Locale } from '../i18n';
 
 interface Props {
@@ -94,6 +95,14 @@ const serviceLinks = dict.services.items
     <div class="footer-base">
       {/* the year comes from the same build-time date as the studio's age */}
       <p class="mono footer-rights num">{fill(ft.rights)}</p>
+
+      {/* the FAQ page sits in the base strip rather than in the service
+          column: the six service rows are the intended state and are not to
+          be restructured, and the FAQ is not a service */}
+      <a class="mono footer-faq" href={localePath(locale, '/faq')}>
+        {faqPage[locale].eyebrow}
+      </a>
+
       <nav class="footer-langs" aria-label={ft.langLabel}>
         <ul>
           {locales.map((l) => (
@@ -203,6 +212,20 @@ const serviceLinks = dict.services.items
   .footer-rights {
     text-transform: none;
     letter-spacing: 0.06em;
+  }
+
+  .footer-faq {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    text-transform: none;
+    letter-spacing: 0.06em;
+    color: var(--fg-muted);
+    text-decoration: none;
+    transition: color 140ms var(--ease);
+  }
+  .footer-faq:hover {
+    color: var(--accent);
   }
 
   .footer-langs ul {

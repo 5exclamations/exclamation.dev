@@ -17,9 +17,9 @@ Two documents sit beside it and are not optional:
 ## 1. Where the project is
 
 A full rewrite on Astro, replacing a legacy static site that is still what
-GitHub Pages serves. **42 pages build.** Everything is built and every word on
-the site has been through the tone pass (§4). What is left is the full FAQ
-page, then the cutover (§7).
+GitHub Pages serves. **45 pages build.** Everything is built and every word on
+the site has been through the tone pass (§4). The full FAQ page landed
+2026-08-05. What is left is the cutover (§7).
 
 ```bash
 cp .env.example .env        # fill in FORMSPREE_ID — see §8
@@ -33,6 +33,7 @@ npm run build && npm run preview   # http://localhost:4321
 | --- | --- | --- | --- |
 | Home | `/` | `/ru/` | `/en/` |
 | Cases (6) | `/is/<slug>/` | `/ru/is/<slug>/` | `/en/is/<slug>/` |
+| FAQ | `/faq/` | `/ru/faq/` | `/en/faq/` |
 | 404 | `/404` | `/ru/404` | `/en/404` |
 
 Case slugs: `crm-portal`, `fleks`, `merkuri`, `mindtrick`, `smart-fashion`,
@@ -403,6 +404,29 @@ artifact, not a layout bug. Do not "fix" it.
 **1024 is where two-column sections break** — and 768 for anything with a
 seven-column block. Check both explicitly, every time.
 
+**`shots.mjs` captures `<details>` closed, so accordion answers are never
+audited.** The landing FAQ, the six service FAQs and the FAQ page all pass the
+harness without a single answer having been measured for overflow or contrast.
+Open them first — set `d.open = true` on every `details`, add `is-in` to every
+`[data-reveal]`, then run the same checks. The FAQ page was verified that way
+across 36 viewport/theme/locale combinations; answers measure 5.05:1 light and
+6.29:1 dark, which is `--fg-muted` exactly.
+
+**`shots.mjs` takes label, selector and path positionally, and an empty path
+argument silently captures the home page.** `node scripts/shots.mjs a "" ""`
+reports "clean across all viewports" for a page you never looked at. zsh does
+not word-split unquoted expansions, so `for x in "label /path"; set -- $x`
+passes the whole string as the label — which then lands in `.shots/label%20/`.
+If the output directory name looks odd, the run was wrong. Check the file
+mtimes before trusting any screenshot.
+
+**Capital schwa looks lowercase and is not.** `Ə` (U+018F) in JetBrains Mono is
+a rotated *e* drawn at cap height, so in a downscaled screenshot `İŞ VƏ
+MÜQAVİLƏ` reads as `İŞ Və MÜQAVİLə` and looks like a broken
+`text-transform`. It measures at cap height (ascent 9.14 against `E` at 9.02
+and `ə` at 6.92), and the transformed string renders identically to hand-typed
+caps. Measure before "fixing" it.
+
 **A third grey fails contrast.** `--fg-faint` measured 2.73:1 and was deleted.
 There are exactly two text levels.
 
@@ -418,43 +442,54 @@ at 40rem, or the lone card reads as a missing second one.
 
 ## 7. Remaining before launch
 
-1. **The full FAQ page.** This is next. Detail below.
-2. **Profile the service pages** — Core Web Vitals and gzip size. Only the
-   landing page has been measured.
-3. **Cutover to Cloudflare Pages.** Set the build environment (§8), deploy,
+1. **Profile the service pages and the FAQ page** — Core Web Vitals and gzip
+   size. Only the landing page has been measured.
+2. **Cutover to Cloudflare Pages.** Set the build environment (§8), deploy,
    then delete the legacy files and turn off GitHub Pages.
-4. **Delete the legacy site** — `index.html`, `style_dark.css`,
+3. **Delete the legacy site** — `index.html`, `style_dark.css`,
    `style_light.css`, `translations.js` and the root `pics/`. Still present
    because GitHub Pages serves them. `translations.js` is also the source of
    the client's original copy, so check anything you still need out of it
    first. It misspells **MindTrack**; the product is **MindTrick**.
-5. **Run `validator.schema.org` by URL** once the site is public (§3).
+4. **Run `validator.schema.org` by URL** once the site is public (§3).
 
-### The full FAQ page — the next task
+### The full FAQ page — done 2026-08-05
 
-Routes `/faq/`, `/ru/faq/`, `/en/faq/`. Client's brief:
+Routes `/faq/`, `/ru/faq/`, `/en/faq/`, one slug in all three languages, so it
+needs no `alternates` record. Copy in `src/i18n/faq.ts`, skeleton in
+`FaqFull.astro`, three ~20-line route files.
 
-- 25–30 questions, three languages, **each language written from scratch**,
-  not translated
-- tone per §4 from the first draft, so no separate pass is needed afterwards
-- every answer self-contained; spread one sentence to five
-- blocks: work and contract, timelines and process, cost without figures,
-  technology and code ownership, support after launch, when we are not a fit
-- **the eight questions already on the landing page are not repeated** — open
-  them wider or replace them
-- `FAQPage` JSON-LD, questions matching the visible text word for word
-- its own title, description and OG card
-- a link to `/faq/` in the footer
+**Thirty questions in each language, in six blocks** — and the three sets are
+not the same thirty. Nine questions exist in only one language, because each
+audience asks different things:
 
-**The Russian block is written and approved** — 28 questions across the six
-blocks, in `src/i18n/faq.ts`. That file is not wired to a route and nothing
-imports it yet, so it cannot break the build. What is left: the az and en
-blocks, the page component, three route files, the schema, three OG cards, the
-footer link and the sitemap entry.
+| | Only in that language | Why |
+| --- | --- | --- |
+| az | working outside Baku; payment in manat by invoice; whether `ə ğ ı İ` survive search, sorting and PDFs; whether non-technical staff will cope | what a Baku SMB actually asks |
+| ru | who fills the system with content; a system in Russian *and* Azerbaijani | the bilingual office, not the bilingual encoding |
+| en | time zones and working language; IP assigned in writing; data jurisdiction; taking maintenance in-house | what an offshore buyer asks |
 
-The Russian answers deliberately do **not** restate the per-service durations;
-the "how long" question points at the service pages instead. Keep that — it
-stops the FAQ from becoming a fourth place a duration has to be corrected.
+The az `ə ğ ı İ` question and the ru two-languages question look adjacent and
+are not: one is about encoding, sorting and PDF output, the other about two
+sets of texts and a switcher. Do not merge them.
+
+The answers deliberately do **not** restate the per-service durations; the
+"how long" question points at the service pages instead. Keep that — it stops
+the FAQ from becoming a fourth place a duration has to be corrected.
+
+Every question rests on a fact already shipped elsewhere: the `excludes` lists,
+the migration stage on the CRM/ERP page, the eight process promises (§5). The
+FAQ introduces no promise the rest of the site does not already make.
+
+**The heading spells the count as a word** ("Тридцать вопросов", "Otuz sual,",
+"Thirty questions,"), which cannot be computed in three languages. `FaqPage`
+therefore carries a numeric `questionCount`, and `FaqFull.astro` throws at
+build time when it disagrees with the array. Add a question, and the build
+tells you the heading is now lying.
+
+Two questions that already live on a service page were **left off on purpose**
+— "what if the service has no API?" (integrations) and "will data be lost?"
+(CRM/ERP). Repeating them here would make a third place to correct.
 
 ### Debt carried deliberately
 

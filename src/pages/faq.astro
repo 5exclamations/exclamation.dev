@@ -1,0 +1,25 @@
+---
+import Base from '../layouts/Base.astro';
+import FaqFull from '../components/FaqFull.astro';
+import { faqPage } from '../i18n/faq';
+import { t } from '../i18n';
+
+const locale = 'az' as const;
+const dict = t(locale);
+const copy = faqPage[locale];
+
+/* the FAQPage markup has to carry exactly what the accordion renders, so both
+   come from the same array rather than from two lists kept in step by hand */
+const questions = copy.blocks.flatMap((b) => b.items);
+---
+
+<Base
+  locale={locale}
+  dict={dict}
+  meta={copy.meta}
+  ogKey="faq"
+  schemaKind="other"
+  faq={questions}
+>
+  <FaqFull locale={locale} dict={dict} copy={copy} />
+</Base>

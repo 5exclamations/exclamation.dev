@@ -1,0 +1,308 @@
+---
+import Icon from './Icon.astro';
+import { faqCount, type FaqPage } from '../i18n/faq';
+import { localePath, type Dict, type Locale } from '../i18n';
+
+/**
+ * The full FAQ page — thirty questions in six blocks, per locale.
+ *
+ * Structure only; the copy lives in `src/i18n/faq.ts`, written three times
+ * rather than translated once. The landing page's own eight-question accordion
+ * (`Faq.astro`) stays where it is: this page opens those wider or replaces
+ * them, and the two never share a question.
+ *
+ * Skeleton, chosen against the landing page's flat single-column accordion:
+ * head → an index of the six blocks → the blocks themselves, each with its
+ * title held in a left column beside its rows. Two columns from 900px, so it
+ * does not read as one 30-row list.
+ */
+interface Props {
+  locale: Locale;
+  dict: Dict;
+  copy: FaqPage;
+}
+const { locale, dict, copy } = Astro.props;
+
+/**
+ * `titleMuted` spells the number of questions as a word, which cannot be
+ * computed in three languages. This is the next best thing: adding a question
+ * without correcting the heading fails the build instead of shipping a
+ * heading that lies.
+ */
+const actual = faqCount(copy);
+if (actual !== copy.questionCount) {
+  throw new Error(
+    `FAQ (${locale}): the page carries ${actual} questions but declares ${copy.questionCount}. ` +
+      `Update questionCount and the number spelled out in titleMuted ("${copy.titleMuted}").`
+  );
+}
+
+const blockId = (i: number) => `faq-block-${i + 1}`;
+---
+
+<article class="faqp">
+  <header class="faqp-head">
+    <div class="shell">
+      <div class="faqp-head-in">
+        <p class="mono">{copy.eyebrow}</p>
+        <h1 class="faqp-title">
+          <span class="muted">{copy.titleMuted}</span> {copy.titleMain}
+        </h1>
+        <p class="faqp-lead">{copy.lead}</p>
+
+        {/* an index, not decoration: thirty rows is further than a reader
+            wants to scroll to find out whether their question is here */}
+        <nav class="faqp-index" aria-label={copy.eyebrow}>
+          <ol>
+            {copy.blocks.map((block, i) => (
+              <li>
+                <a class="mono" href={`#${blockId(i)}`}>
+                  <span class="faqp-index-n num" aria-hidden="true">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <span>{block.title}</span>
+                  <span class="faqp-index-c num" aria-hidden="true">{block.items.length}</span>
+                </a>
+              </li>
+            ))}
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <div class="shell">
+    {copy.blocks.map((block, i) => (
+      <section class="faqp-block" aria-labelledby={blockId(i)}>
+        <div class="faqp-block-grid">
+          <h2 class="faqp-block-title" id={blockId(i)} data-reveal>
+            <span class="mono faqp-block-n" aria-hidden="true">
+              {String(i + 1).padStart(2, '0')}
+            </span>
+            {block.title}
+          </h2>
+
+          {/* native <details>: disclosure semantics, keyboard handling and
+              find-in-page expansion come from the platform, and every answer
+              is readable with JS off. No `name` attribute here — on a
+              reference page the reader compares answers, and an exclusive
+              accordion closes the one they were holding open. */}
+          <div class="faqp-list">
+            {block.items.map((item) => (
+              <details class="faqp-item" data-reveal>
+                <summary>
+                  <span class="faqp-q">{item.q}</span>
+                  <Icon name="plus" size={20} class="faqp-mark" />
+                </summary>
+                <div class="faqp-a"><p>{item.a}</p></div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+    ))}
+
+    <section class="faqp-cta" aria-labelledby="faqp-cta-title">
+      <h2 class="faqp-cta-title" id="faqp-cta-title" data-reveal>
+        <span class="muted">{dict.contact.titleMuted}</span> {dict.contact.titleMain}
+      </h2>
+      <p class="faqp-cta-note" data-reveal>{dict.contact.note}</p>
+      <a class="btn faqp-cta-btn" href={`${localePath(locale, '/')}#contact`} data-reveal>
+        {dict.nav.contact}
+        <Icon name="arrow-right" size={18} />
+      </a>
+    </section>
+  </div>
+</article>
+
+<style>
+  .faqp {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ---- head ---- */
+  .faqp-head-in {
+    padding-left: var(--rail);
+    padding-block: var(--sp-section);
+  }
+  .faqp-title {
+    margin: 1rem 0 clamp(1.5rem, 3vw, 2rem);
+    font-size: var(--fs-700);
+    font-weight: 300;
+    max-width: 20ch;
+  }
+  /* the two-tone h1 breaks at the clause rather than wherever balancing lands,
+     the same reason the service titles do */
+  .faqp-title .muted {
+    display: block;
+    color: var(--fg-muted);
+  }
+  .faqp-lead {
+    font-size: var(--fs-400);
+    line-height: 1.55;
+    max-width: 58ch;
+  }
+
+  /* ---- index ---- */
+  .faqp-index {
+    margin-top: var(--sp-section);
+    padding-top: var(--sp-block);
+    border-top: 1px solid var(--line);
+  }
+  .faqp-index ol {
+    display: grid;
+    gap: 0;
+  }
+  @media (min-width: 700px) {
+    .faqp-index ol {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: clamp(1.5rem, 4vw, 3.5rem);
+    }
+  }
+  .faqp-index a {
+    display: grid;
+    grid-template-columns: 2.25rem minmax(0, 1fr) auto;
+    align-items: baseline;
+    column-gap: 0.75rem;
+    /* 44px minimum tap height, from the padding plus the line box */
+    padding-block: 0.8125rem;
+    border-bottom: 1px solid var(--line);
+    color: var(--fg);
+    text-decoration: none;
+    transition: color 140ms var(--ease);
+  }
+  .faqp-index-n,
+  .faqp-index-c {
+    color: var(--fg-muted);
+  }
+  .faqp-index-c {
+    text-align: right;
+  }
+  @media (hover: hover) {
+    .faqp-index a:hover {
+      color: var(--accent);
+    }
+  }
+
+  /* ---- blocks ---- */
+  .faqp-block {
+    padding-left: var(--rail);
+    padding-block: var(--sp-chapter);
+    border-top: 1px solid var(--line);
+  }
+  .faqp-block-grid {
+    display: grid;
+    gap: var(--sp-block) clamp(1.5rem, 4vw, 3.5rem);
+  }
+  /* 900, not 768: at 768 a four-word block title and a 62ch answer column
+     both end up too narrow and every question wraps to three lines */
+  @media (min-width: 900px) {
+    .faqp-block-grid {
+      grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+      align-items: start;
+    }
+    /* clears the sticky header, whose own min-height is 4.25rem */
+    .faqp-block-title {
+      position: sticky;
+      top: calc(4.25rem + 1.5rem);
+    }
+  }
+  .faqp-block-title {
+    font-size: var(--fs-500);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    max-width: 16ch;
+  }
+  .faqp-block-n {
+    display: block;
+    margin-bottom: 0.625rem;
+    color: var(--fg-muted);
+  }
+
+  .faqp-item {
+    border-top: 1px solid var(--line);
+  }
+  .faqp-item:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+  .faqp-item summary {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding-block: clamp(1rem, 2.2vw, 1.375rem);
+    cursor: pointer;
+    list-style: none;
+    transition: color 140ms var(--ease);
+  }
+  .faqp-item summary::-webkit-details-marker {
+    display: none;
+  }
+  .faqp-item summary:focus-visible {
+    outline-offset: -2px;
+  }
+  .faqp-q {
+    font-family: var(--font-display);
+    font-size: var(--fs-400);
+    font-weight: 400;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+  .faqp-mark {
+    flex: none;
+    margin-top: 0.15em;
+    color: var(--fg-muted);
+    transition: transform 180ms var(--ease), color 140ms var(--ease);
+  }
+  .faqp-item[open] .faqp-mark {
+    transform: rotate(45deg);
+    color: var(--fg);
+  }
+  .faqp-a {
+    padding-bottom: clamp(1rem, 2.2vw, 1.5rem);
+    padding-right: 2.75rem;
+  }
+  .faqp-a p {
+    color: var(--fg-muted);
+    max-width: 62ch;
+  }
+  @media (hover: hover) {
+    .faqp-item summary:hover .faqp-mark {
+      color: var(--accent);
+    }
+  }
+
+  /* ---- closing CTA: the page's one primary action ---- */
+  .faqp-cta {
+    padding-left: var(--rail);
+    padding-block: var(--sp-chapter);
+    border-top: 1px solid var(--line);
+  }
+  .faqp-cta-title {
+    font-size: var(--fs-600);
+    font-weight: 300;
+    max-width: 20ch;
+  }
+  .faqp-cta-title .muted {
+    color: var(--fg-muted);
+  }
+  .faqp-cta-note {
+    margin-top: 1rem;
+    margin-bottom: var(--sp-block);
+    color: var(--fg-muted);
+    max-width: 46ch;
+  }
+  .faqp-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .faqp-mark {
+      transition: none;
+    }
+  }
+</style>

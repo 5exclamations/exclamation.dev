@@ -11,6 +11,7 @@ import { ecommerce } from '../../i18n/services/ecommerce';
 import { integrations } from '../../i18n/services/integrations';
 import { botsAi } from '../../i18n/services/bots-ai';
 import { services } from '../../data/services';
+import { faqPage } from '../../i18n/faq';
 
 /** service key -> its copy, so a new service page gets a card by adding one line */
 const serviceCopy: Record<string, typeof crmErp> = { 'crm-erp': crmErp, web, mobile, ecommerce, integrations, 'bots-ai': botsAi };
@@ -238,6 +239,22 @@ export const getStaticPaths = () => {
         },
       },
     });
+
+    {
+      const faq = faqPage[locale];
+      paths.push({
+        params: { key: `faq-${locale}` },
+        props: {
+          locale,
+          card: {
+            eyebrow: faq.eyebrow,
+            muted: faq.titleMuted,
+            title: faq.titleMain,
+            foot: 'exclamationdev.com',
+          },
+        },
+      });
+    }
 
     for (const svc of services) {
       const copy = serviceCopy[svc.key]?.[locale];

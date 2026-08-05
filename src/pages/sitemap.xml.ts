@@ -19,7 +19,9 @@ const SITE = 'https://exclamationdev.com';
 
 export const GET: APIRoute = () => {
   // locale-free paths; each becomes one <url> per locale
-  const paths = ['/', ...t('az').cases.map((c) => `/is/${c.slug}`)];
+  // the FAQ page shares one slug across all three locales, so it belongs here
+  // with the home page rather than with the per-locale service slugs below
+  const paths = ['/', '/faq', ...t('az').cases.map((c) => `/is/${c.slug}`)];
 
   /** shared-path routes: one locale-free path, three prefixed URLs */
   const sharedUrls = paths.flatMap((path) =>
