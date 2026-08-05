@@ -17,15 +17,15 @@ export const integrations: Record<Locale, ServiceCopy> = {
     meta: {
       title: 'İnteqrasiya və avtomatlaşdırma, Bakı — EXCLAMATION',
       description:
-        '1C, amoCRM, WhatsApp, ödəniş və çatdırılma servisləri ilə inteqrasiya. Bir inteqrasiya 1–2 həftə, avtomatlaşdırma paketi 3–6 həftə. Qiymətləndirmə pulsuz.',
+        '1C, amoCRM, WhatsApp, ödəniş və çatdırılma servisləri ilə inteqrasiya. Bir inteqrasiya 3–5 gün, avtomatlaşdırma paketi 1–3 həftə. Qiymətləndirmə pulsuz.',
     },
     eyebrow: 'Xidmət',
     titleMuted: 'İnteqrasiya və avtomatlaşdırma —',
     titleMain: 'eyni məlumatı iki dəfə yazmamaq.',
-    lead: 'İnteqrasiya — iki sistemin bir-birinə məlumatı avtomatik ötürməsidir: sifariş saytdan 1C-yə, ödəniş bankdan CRM-ə, qalıq anbardan mağazaya. Bir inteqrasiya üçün tipik müddət 1–2 həftə, bir neçə sistemi birləşdirən avtomatlaşdırma paketi üçün 3–6 həftə. Brifdən sonra 3–5 gün ərzində sxem, mərhələlər və dəqiq smeta veririk — bu mərhələ ödənişsizdir.',
+    lead: 'İnteqrasiya — iki sistemin bir-birinə məlumatı avtomatik ötürməsidir: sifariş saytdan 1C-yə, ödəniş bankdan CRM-ə, qalıq anbardan mağazaya. Bir inteqrasiya üçün tipik müddət 3–5 gün, bir neçə sistemi birləşdirən avtomatlaşdırma paketi üçün 1–3 həftə. Brifdən sonra 3–5 gün ərzində sxem, mərhələlər və dəqiq smeta veririk — bu mərhələ ödənişsizdir.',
     facts: [
-      { label: 'Bir inteqrasiya', value: '1–2 həftə' },
-      { label: 'Avtomatlaşdırma paketi', value: '3–6 həftə' },
+      { label: 'Bir inteqrasiya', value: '3–5 gün' },
+      { label: 'Avtomatlaşdırma paketi', value: '1–3 həftə' },
       { label: 'Qiymətləndirmə', value: '3–5 gün' },
     ],
     introTitle: 'Saatlar harada itir',
@@ -100,22 +100,22 @@ export const integrations: Record<Locale, ServiceCopy> = {
         },
         {
           title: 'API-lərin yoxlanması',
-          time: '2–4 gün',
+          time: '1–2 gün',
           text: 'Sənədlər, limitlər, sınaq açarları. Burada məlum olur ki, hansısa tərəfdə API yoxdur — belədirsə, əvvəlcədən deyirik.',
         },
         {
           title: 'İnteqrasiyanın qurulması',
-          time: '1–3 həftə',
+          time: '2–5 gün',
           text: 'Bağlantı, çevrilmələr, növbə və təkrar cəhd. Sınaq mühitində işləyən versiya.',
         },
         {
           title: 'Ssenari testləri',
-          time: '3–5 gün',
+          time: '1–2 gün',
           text: 'Normal axın, o biri tərəfin cavab vermədiyi hal, təkrar göndərmə, səhv format. Hər biri ayrıca yoxlanır.',
         },
         {
           title: 'Reliz və monitorinq',
-          time: '2–4 gün',
+          time: '1–2 gün',
           text: 'Canlıya keçid, bildirişlərin qurulması. İlk günlər axını birlikdə izləyirik.',
         },
         {
@@ -185,15 +185,15 @@ export const integrations: Record<Locale, ServiceCopy> = {
     meta: {
       title: 'Интеграции и автоматизация процессов — EXCLAMATION',
       description:
-        'Интеграция 1С, amoCRM, Bitrix24, WhatsApp, платежей и доставки. Одна связка 1–2 недели, пакет автоматизации 3–6 недель. Оценка за 3–5 дней бесплатно.',
+        'Интеграция 1С, amoCRM, Bitrix24, WhatsApp, платежей и доставки. Одна связка 3–5 дней, пакет автоматизации 1–3 недели. Оценка за 3–5 дней бесплатно.',
     },
     eyebrow: 'Услуга',
     titleMuted: 'Интеграции и автоматизация —',
     titleMain: 'чтобы не вводить одно и то же дважды.',
-    lead: 'Интеграция — это когда две системы передают данные друг другу сами: заказ с сайта в 1С, платёж из банка в CRM, остаток со склада в магазин. Одна связка занимает 1–2 недели, пакет автоматизации из нескольких систем — 3–6 недель. После брифа за 3–5 дней возвращаемся со схемой потоков, этапами и точной сметой; этап не оплачивается.',
+    lead: 'Интеграция — это когда две системы передают данные друг другу сами: заказ с сайта в 1С, платёж из банка в CRM, остаток со склада в магазин. Одна связка занимает 3–5 дней, пакет автоматизации из нескольких систем — 1–3 недели. После брифа за 3–5 дней возвращаемся со схемой потоков, этапами и точной сметой; этап не оплачивается.',
     facts: [
-      { label: 'Одна связка', value: '1–2 недели' },
-      { label: 'Пакет автоматизации', value: '3–6 недель' },
+      { label: 'Одна связка', value: '3–5 дней' },
+      { label: 'Пакет автоматизации', value: '1–3 недели' },
       { label: 'Оценка', value: '3–5 дней' },
     ],
     introTitle: 'Вебхук, очередь и то, что между ними',
@@ -268,22 +268,22 @@ export const integrations: Record<Locale, ServiceCopy> = {
         },
         {
           title: 'Разбор API',
-          time: '2–4 дня',
+          time: '1–2 дня',
           text: 'Документация, лимиты, тестовые ключи. Здесь выясняется, что у одной из сторон API нет — если так, говорим сразу.',
         },
         {
           title: 'Разработка связки',
-          time: '1–3 недели',
+          time: '2–5 дней',
           text: 'Подключение, преобразования, очередь и повторы. Работающая версия на тестовом контуре.',
         },
         {
           title: 'Тестирование сценариев',
-          time: '3–5 дней',
+          time: '1–2 дня',
           text: 'Нормальный поток, недоступность второй стороны, повторная отправка, битый формат. Каждый проверяется отдельно.',
         },
         {
           title: 'Релиз и мониторинг',
-          time: '2–4 дня',
+          time: '1–2 дня',
           text: 'Переключение на боевой контур, настройка уведомлений. Первые дни следим за потоком вместе.',
         },
         {
@@ -353,15 +353,15 @@ export const integrations: Record<Locale, ServiceCopy> = {
     meta: {
       title: 'System integration and process automation — EXCLAMATION',
       description:
-        'Connecting 1C, CRMs, payments, delivery and messaging with queues, retries and monitoring. One integration 1–2 weeks. Free 3–5 day estimate.',
+        'Connecting 1C, CRMs, payments, delivery and messaging with queues, retries and monitoring. One integration 3–5 days. Free 3–5 day estimate.',
     },
     eyebrow: 'Service',
     titleMuted: 'Integration and automation —',
     titleMain: 'built for the day it fails.',
-    lead: 'An integration is two systems passing data to each other without a person in between: an order from the site into 1C, a payment from the bank into the CRM, stock from the warehouse into the store. A single integration typically takes 1–2 weeks; an automation package spanning several systems takes 3–6. After a short brief we return within 3–5 days with a data-flow diagram, stages and a firm quote, and that stage is not billed.',
+    lead: 'An integration is two systems passing data to each other without a person in between: an order from the site into 1C, a payment from the bank into the CRM, stock from the warehouse into the store. A single integration typically takes 3–5 days; an automation package spanning several systems takes 1–3 weeks. After a short brief we return within 3–5 days with a data-flow diagram, stages and a firm quote, and that stage is not billed.',
     facts: [
-      { label: 'One integration', value: '1–2 weeks' },
-      { label: 'Automation package', value: '3–6 weeks' },
+      { label: 'One integration', value: '3–5 days' },
+      { label: 'Automation package', value: '1–3 weeks' },
       { label: 'Estimate', value: '3–5 days' },
     ],
     introTitle: 'Connecting two APIs is the easy day',
@@ -436,22 +436,22 @@ export const integrations: Record<Locale, ServiceCopy> = {
         },
         {
           title: 'API review',
-          time: '2–4 days',
+          time: '1–2 days',
           text: 'Documentation, rate limits, test credentials. This is where a missing API surfaces — and we say so immediately.',
         },
         {
           title: 'Building the connection',
-          time: '1–3 weeks',
+          time: '2–5 days',
           text: 'Transport, transformations, queueing and retries. A working version on staging.',
         },
         {
           title: 'Scenario testing',
-          time: '3–5 days',
+          time: '1–2 days',
           text: 'The happy path, the other side being down, a duplicate send, a malformed payload. Each is tested separately.',
         },
         {
           title: 'Release and monitoring',
-          time: '2–4 days',
+          time: '1–2 days',
           text: 'Cutover to production and alert configuration. We watch the flow with you for the first few days.',
         },
         {

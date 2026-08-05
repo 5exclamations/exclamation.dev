@@ -19,15 +19,15 @@ export const botsAi: Record<Locale, ServiceCopy> = {
     meta: {
       title: 'Çat-bot və AI assistent hazırlanması — EXCLAMATION',
       description:
-        'Telegram və WhatsApp botları, LLM assistentləri, RAG. Ssenarili bot 2–3 həftə, LLM assistent 4–8 həftə. Qiymətləndirmə 3–5 gün, ödənişsiz.',
+        'Telegram və WhatsApp botları, LLM assistentləri, RAG. Ssenarili bot 1–2 həftə, LLM assistent 2–4 həftə. Qiymətləndirmə 3–5 gün, ödənişsiz.',
     },
     eyebrow: 'Xidmət',
     titleMuted: 'Botlar və AI həlləri —',
     titleMain: 'təkrarlanan sualları özü bağlayır.',
-    lead: 'Bot və AI assistent — müştəri sualının bir hissəsini adam olmadan bağlayan kanaldır: FAQ, status yoxlaması, sifariş qəbulu, sənəd axtarışı. Ssenarili bot üçün tipik müddət 2–3 həftə, biliyi olan LLM assistenti üçün 4–8 həftə. Brifdən sonra 3–5 gün ərzində ssenari xəritəsi, mərhələlər və dəqiq smeta veririk — bu mərhələ ödənişsizdir.',
+    lead: 'Bot və AI assistent — müştəri sualının bir hissəsini adam olmadan bağlayan kanaldır: FAQ, status yoxlaması, sifariş qəbulu, sənəd axtarışı. Ssenarili bot üçün tipik müddət 1–2 həftə, biliyi olan LLM assistenti üçün 2–4 həftə. Brifdən sonra 3–5 gün ərzində ssenari xəritəsi, mərhələlər və dəqiq smeta veririk — bu mərhələ ödənişsizdir.',
     facts: [
-      { label: 'Ssenarili bot', value: '2–3 həftə' },
-      { label: 'LLM assistent', value: '4–8 həftə' },
+      { label: 'Ssenarili bot', value: '1–2 həftə' },
+      { label: 'LLM assistent', value: '2–4 həftə' },
       { label: 'Qiymətləndirmə', value: '3–5 gün' },
     ],
     introTitle: 'Bot nə edir və nə etmir',
@@ -102,22 +102,22 @@ export const botsAi: Record<Locale, ServiceCopy> = {
         },
         {
           title: 'Biliklər bazası',
-          time: '3–7 gün',
+          time: '2–4 gün',
           text: 'Sənədlərin toplanması, təmizlənməsi və indeksləşdirilməsi. Burada məlum olur ki, cavabların bir hissəsi heç yerdə yazılmayıb.',
         },
         {
           title: 'Prototip dialoq',
-          time: '1 həftə',
+          time: '2–4 gün',
           text: 'İlk işlək versiya bir kanalda. Real suallarla yoxlayır və cavabları birlikdə oxuyuruq.',
         },
         {
           title: 'İnteqrasiyalar və eskalasiya',
-          time: '1–3 həftə',
+          time: '3–8 gün',
           text: 'Stok, sifariş, CRM. Operatora ötürmə, iş saatları, növbə. Botun nəyi bilmədiyini deməsi də burada qurulur.',
         },
         {
           title: 'Test və reliz',
-          time: '3–5 gün',
+          time: '1–2 gün',
           text: 'Yüz real dialoqda yoxlama, səhv cavabların düzəldilməsi, kanalların canlıya çıxarılması.',
         },
         {
@@ -187,15 +187,15 @@ export const botsAi: Record<Locale, ServiceCopy> = {
     meta: {
       title: 'Разработка чат-ботов и AI-ассистентов — EXCLAMATION',
       description:
-        'Telegram и WhatsApp боты, LLM-ассистенты на RAG. Сценарный бот 2–3 недели, LLM-ассистент 4–8 недель. Оценка за 3–5 дней бесплатно.',
+        'Telegram и WhatsApp боты, LLM-ассистенты на RAG. Сценарный бот 1–2 недели, LLM-ассистент 2–4 недели. Оценка за 3–5 дней бесплатно.',
     },
     eyebrow: 'Услуга',
     titleMuted: 'Боты и AI-решения —',
     titleMain: 'часть обращений закрывают без человека.',
-    lead: 'Бот и AI-ассистент закрывают часть обращений без человека: FAQ, проверка статуса, приём заказа, поиск по документам. Сценарный бот занимает 2–3 недели, ассистент на LLM со знанием ваших документов — 4–8 недель. После брифа за 3–5 дней возвращаемся с картой сценариев, этапами и точной сметой; этап не оплачивается.',
+    lead: 'Бот и AI-ассистент закрывают часть обращений без человека: FAQ, проверка статуса, приём заказа, поиск по документам. Сценарный бот занимает 1–2 недели, ассистент на LLM со знанием ваших документов — 2–4 недели. После брифа за 3–5 дней возвращаемся с картой сценариев, этапами и точной сметой; этап не оплачивается.',
     facts: [
-      { label: 'Сценарный бот', value: '2–3 недели' },
-      { label: 'LLM-ассистент', value: '4–8 недель' },
+      { label: 'Сценарный бот', value: '1–2 недели' },
+      { label: 'LLM-ассистент', value: '2–4 недели' },
       { label: 'Оценка', value: '3–5 дней' },
     ],
     introTitle: 'Сценарий или LLM',
@@ -271,22 +271,22 @@ export const botsAi: Record<Locale, ServiceCopy> = {
         },
         {
           title: 'База знаний',
-          time: '3–7 дней',
+          time: '2–4 дня',
           text: 'Сбор, чистка и индексация документов. Здесь выясняется, что часть ответов нигде не записана.',
         },
         {
           title: 'Прототип диалога',
-          time: '1 неделя',
+          time: '2–4 дня',
           text: 'Первая рабочая версия в одном канале. Проверяем на реальных вопросах и читаем ответы вместе.',
         },
         {
           title: 'Интеграции и эскалация',
-          time: '1–3 недели',
+          time: '3–8 дней',
           text: 'Остатки, заказы, CRM. Передача оператору, часы работы, очередь. Здесь же настраивается «я не знаю».',
         },
         {
           title: 'Тесты и релиз',
-          time: '3–5 дней',
+          time: '1–2 дня',
           text: 'Прогон на сотне реальных диалогов, правка слабых ответов, вывод каналов в боевой режим.',
         },
         {
@@ -356,15 +356,15 @@ export const botsAi: Record<Locale, ServiceCopy> = {
     meta: {
       title: 'Chatbot and AI assistant development — EXCLAMATION',
       description:
-        'Telegram and WhatsApp bots, LLM assistants on RAG, escalation to humans. Scripted bot 2–3 weeks, LLM assistant 4–8. Free 3–5 day estimate.',
+        'Telegram and WhatsApp bots, LLM assistants on RAG, escalation to humans. Scripted bot 1–2 weeks, LLM assistant 2–4. Free 3–5 day estimate.',
     },
     eyebrow: 'Service',
     titleMuted: 'Bots and AI —',
     titleMain: 'designed around being wrong.',
-    lead: 'A bot or AI assistant closes part of your inbound without a person: FAQs, order status, intake, document lookup. A scripted bot typically takes 2–3 weeks; an LLM assistant grounded in your own documents takes 4–8. After a short brief we return within 3–5 days with a scenario map, stages and a firm quote, and that stage is not billed.',
+    lead: 'A bot or AI assistant closes part of your inbound without a person: FAQs, order status, intake, document lookup. A scripted bot typically takes 1–2 weeks; an LLM assistant grounded in your own documents takes 2–4 weeks. After a short brief we return within 3–5 days with a scenario map, stages and a firm quote, and that stage is not billed.',
     facts: [
-      { label: 'Scripted bot', value: '2–3 weeks' },
-      { label: 'LLM assistant', value: '4–8 weeks' },
+      { label: 'Scripted bot', value: '1–2 weeks' },
+      { label: 'LLM assistant', value: '2–4 weeks' },
       { label: 'Estimate', value: '3–5 days' },
     ],
     introTitle: 'What happens when it is wrong',
@@ -439,22 +439,22 @@ export const botsAi: Record<Locale, ServiceCopy> = {
         },
         {
           title: 'Knowledge base',
-          time: '3–7 days',
+          time: '2–4 days',
           text: 'Collecting, cleaning and indexing documents. This is where it emerges that some answers were never written down.',
         },
         {
           title: 'Prototype conversation',
-          time: '1 week',
+          time: '2–4 days',
           text: 'A first working version on one channel. We test it against real questions and read the answers with you.',
         },
         {
           title: 'Integrations and escalation',
-          time: '1–3 weeks',
+          time: '3–8 days',
           text: 'Stock, orders, CRM. Handoff, working hours, queueing — and the "I do not know" path.',
         },
         {
           title: 'Testing and release',
-          time: '3–5 days',
+          time: '1–2 days',
           text: 'A run against a hundred real conversations, correction of weak answers, channels taken live.',
         },
         {

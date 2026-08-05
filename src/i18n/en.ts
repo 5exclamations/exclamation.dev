@@ -368,7 +368,7 @@ export default {
       },
       {
         q: 'How long does a project take?',
-        a: 'It depends on scope: a site or landing page — 3–5 days, an online store — 2–4 weeks, CRM/ERP — 4–8 weeks, a complex platform — 2–4 months. Firm dates follow a short brief.',
+        a: 'It depends on scope: a landing page — 3–5 days, a corporate site — 1–2 weeks, an online store — 2–4 weeks, CRM/ERP — 2–4 weeks, a complex platform — 1–2 months. Firm dates follow a short brief.',
       },
       {
         q: 'Do you build MVPs?',

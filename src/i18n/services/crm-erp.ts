@@ -17,14 +17,14 @@ export const crmErp: Record<Locale, ServiceCopy> = {
     meta: {
       title: 'CRM və ERP sistemlərinin hazırlanması — EXCLAMATION',
       description:
-        'Sıfırdan CRM və ERP: proseslərin təhlili, inteqrasiyalar, köçürmə. Tipik müddət 4–8 həftə, qiymətləndirmə 3–5 gün və pulsuz, zəmanət 3 ay.',
+        'Sıfırdan CRM və ERP: proseslərin təhlili, inteqrasiyalar, köçürmə. Tipik müddət 2–4 həftə, qiymətləndirmə 3–5 gün və pulsuz, zəmanət 3 ay.',
     },
     eyebrow: 'Xidmət',
     titleMuted: 'CRM və ERP sistemləri —',
     titleMain: 'sizin proseslərinizə görə.',
-    lead: 'CRM və ERP — şirkətin müştərilərini, sifarişlərini və pul axınını bir yerdə saxlayan daxili sistemlərdir. Sıfırdan hazırlanan sistem üçün tipik müddət 4–8 həftə, mürəkkəb platforma üçün 2–4 aydır. Brifdən sonra 3–5 gün ərzində arxitektura, mərhələlər və dəqiq smeta veririk — bu mərhələ ödənişsizdir.',
+    lead: 'CRM və ERP — şirkətin müştərilərini, sifarişlərini və pul axınını bir yerdə saxlayan daxili sistemlərdir. Sıfırdan hazırlanan sistem üçün tipik müddət 2–4 həftə, mürəkkəb platforma üçün 1–2 aydır. Brifdən sonra 3–5 gün ərzində arxitektura, mərhələlər və dəqiq smeta veririk — bu mərhələ ödənişsizdir.',
     facts: [
-      { label: 'Tipik müddət', value: '4–8 həftə' },
+      { label: 'Tipik müddət', value: '2–4 həftə' },
       { label: 'Qiymətləndirmə', value: '3–5 gün' },
       { label: 'Zəmanət', value: '3 ay' },
     ],
@@ -101,22 +101,22 @@ export const crmErp: Record<Locale, ServiceCopy> = {
         },
         {
           title: 'Arxitektura və texniki tapşırıq',
-          time: '1 həftə',
+          time: '2–4 gün',
           text: 'Məlumat modeli, rollar, inteqrasiyaların siyahısı və mərhələlərə bölünmüş smeta. Bundan sonra qiymət dəyişmir.',
         },
         {
           title: 'Dizayn və prototip',
-          time: '1–2 həftə',
+          time: '3–6 gün',
           text: 'Əsas ekranların maketləri. Klik edilə bilən prototipdə prosesi razılaşdırırıq — kod yazılmazdan əvvəl.',
         },
         {
           title: 'Development, 2 həftəlik sprintlər',
-          time: '3–6 həftə',
+          time: '1–2 həftə',
           text: 'Hər sprintin sonunda işlək demo. Task tracker və repozitoriya sizin tərəfdə, iş gündəlik görünür.',
         },
         {
           title: 'Köçürmə, test və reliz',
-          time: '1–2 həftə',
+          time: '3–6 gün',
           text: 'Köhnə bazadan məlumat köçürülür, yük testləri keçirilir, komanda öyrədilir. Buraxılış rollback imkanı ilə.',
         },
         {
@@ -155,7 +155,7 @@ export const crmErp: Record<Locale, ServiceCopy> = {
       items: [
         {
           q: 'Hazır CRM-i öz altımıza uyğunlaşdırmaq ucuz olmazmı?',
-          a: 'Çox vaxt bəli. Biz biz bunu dürüst deyirik. Hazır CRM — amoCRM, Bitrix24 və bənzərləri — bir həftəyə işə düşür və pulu əvvəlcədən bəllidir. Bahalaşması sonra başlayır: plaginlər, inteqrator, istifadəçi başına artan abunə. Sıfırdan hazırlanan sistem daha gec start götürür, 4–8 həftə, əvəzində kod və məlumat sizdə qalır, istifadəçi başına aylıq ödəniş yoxdur. Brifdə hər iki variantı hesablayıb fərqi göstəririk.',
+          a: 'Çox vaxt bəli. Biz bunu dürüst deyirik. Hazır CRM — amoCRM, Bitrix24 və bənzərləri — bir həftəyə işə düşür və pulu əvvəlcədən bəllidir. Bahalaşması sonra başlayır: plaginlər, inteqrator, istifadəçi başına artan abunə. Sıfırdan hazırlanan sistem daha gec start götürür, 2–4 həftə, əvəzində kod və məlumat sizdə qalır, istifadəçi başına aylıq ödəniş yoxdur. Brifdə hər iki variantı hesablayıb fərqi göstəririk.',
         },
         {
           q: 'Köhnə bazadakı məlumat itəcəkmi?',
@@ -186,14 +186,14 @@ export const crmErp: Record<Locale, ServiceCopy> = {
     meta: {
       title: 'Разработка CRM и ERP на заказ в Баку — EXCLAMATION',
       description:
-        'CRM и ERP с нуля: анализ процессов, интеграции, перенос базы. Типичный срок 4–8 недель, оценка 3–5 дней бесплатно, гарантия 3 месяца, код у вас.',
+        'CRM и ERP с нуля: анализ процессов, интеграции, перенос базы. Типичный срок 2–4 недели, оценка 3–5 дней бесплатно, гарантия 3 месяца, код у вас.',
     },
     eyebrow: 'Услуга',
     titleMuted: 'CRM и ERP на заказ —',
     titleMain: 'когда коробка уже не тянет.',
-    lead: 'CRM и ERP — внутренние системы компании: клиенты, заказы и деньги в одном месте. Разработка с нуля занимает 4–8 недель, сложная платформа — 2–4 месяца. Через 3–5 дней после брифа возвращаемся с архитектурой, этапами и точной сметой; этот этап бесплатный.',
+    lead: 'CRM и ERP — внутренние системы компании: клиенты, заказы и деньги в одном месте. Разработка с нуля занимает 2–4 недели, сложная платформа — 1–2 месяца. Через 3–5 дней после брифа возвращаемся с архитектурой, этапами и точной сметой; этот этап бесплатный.',
     facts: [
-      { label: 'Типичный срок', value: '4–8 недель' },
+      { label: 'Типичный срок', value: '2–4 недели' },
       { label: 'Оценка', value: '3–5 дней' },
       { label: 'Гарантия', value: '3 месяца' },
     ],
@@ -270,22 +270,22 @@ export const crmErp: Record<Locale, ServiceCopy> = {
         },
         {
           title: 'Архитектура и техзадание',
-          time: '1 неделя',
+          time: '2–4 дня',
           text: 'Модель данных, роли, список интеграций и смета, разбитая по этапам. После этого цена не меняется.',
         },
         {
           title: 'Дизайн и прототип',
-          time: '1–2 недели',
+          time: '3–6 дней',
           text: 'Макеты основных экранов. Процесс согласуем на кликабельном прототипе — раньше, чем написана первая строка кода.',
         },
         {
           title: 'Разработка, спринты по 2 недели',
-          time: '3–6 недель',
+          time: '1–2 недели',
           text: 'В конце каждого спринта рабочее демо. Трекер и репозиторий на вашей стороне, работа видна каждый день.',
         },
         {
           title: 'Перенос, тесты и релиз',
-          time: '1–2 недели',
+          time: '3–6 дней',
           text: 'Переносим данные, проводим нагрузочные тесты, обучаем команду. Запуск с возможностью отката.',
         },
         {
@@ -324,7 +324,7 @@ export const crmErp: Record<Locale, ServiceCopy> = {
       items: [
         {
           q: 'Не дешевле ли настроить готовую CRM?',
-          a: 'Часто да, и мы говорим это прямо. Готовая CRM — amoCRM, Bitrix24 и подобные — запускается за неделю и стоит предсказуемых денег. Дорожает она потом: плагины, интегратор, подписка, растущая с каждым новым пользователем. Разработка на заказ стартует медленнее, 4–8 недель, зато код и данные остаются вашими, а помесячной платы за пользователей нет. На брифе считаем оба варианта и показываем разницу.',
+          a: 'Часто да, и мы говорим это прямо. Готовая CRM — amoCRM, Bitrix24 и подобные — запускается за неделю и стоит предсказуемых денег. Дорожает она потом: плагины, интегратор, подписка, растущая с каждым новым пользователем. Разработка на заказ стартует медленнее, 2–4 недели, зато код и данные остаются вашими, а помесячной платы за пользователей нет. На брифе считаем оба варианта и показываем разницу.',
         },
         {
           q: 'Данные из старой базы не потеряются?',
@@ -355,14 +355,14 @@ export const crmErp: Record<Locale, ServiceCopy> = {
     meta: {
       title: 'Custom CRM and ERP development — EXCLAMATION',
       description:
-        'CRM and ERP built from scratch: process analysis, integrations, data migration. Typically 4–8 weeks, a free 3–5 day estimate, 3-month warranty, you own the code.',
+        'CRM and ERP built from scratch: process analysis, integrations, data migration. Typically 2–4 weeks, a free 3–5 day estimate, 3-month warranty, you own the code.',
     },
     eyebrow: 'Service',
     titleMuted: 'Custom CRM and ERP —',
     titleMain: 'you own the system.',
-    lead: 'A CRM or ERP is the internal system that keeps a company’s customers, orders and money in one place. Built from scratch it typically takes 4–8 weeks, or 2–4 months for a complex platform. After a short brief we come back within 3–5 days with an architecture, a stage plan and a firm quote, and that stage is not billed.',
+    lead: 'A CRM or ERP is the internal system that keeps a company’s customers, orders and money in one place. Built from scratch it typically takes 2–4 weeks, or 1–2 months for a complex platform. After a short brief we come back within 3–5 days with an architecture, a stage plan and a firm quote, and that stage is not billed.',
     facts: [
-      { label: 'Typical build', value: '4–8 weeks' },
+      { label: 'Typical build', value: '2–4 weeks' },
       { label: 'Estimate', value: '3–5 days' },
       { label: 'Warranty', value: '3 months' },
     ],
@@ -438,22 +438,22 @@ export const crmErp: Record<Locale, ServiceCopy> = {
         },
         {
           title: 'Architecture and specification',
-          time: '1 week',
+          time: '2–4 days',
           text: 'Data model, roles, the integration list and a quote broken down by stage. The price does not move after this.',
         },
         {
           title: 'Design and prototype',
-          time: '1–2 weeks',
+          time: '3–6 days',
           text: 'Layouts for the main screens. The process is signed off on a clickable prototype, before a line of code is written.',
         },
         {
           title: 'Development, two-week sprints',
-          time: '3–6 weeks',
+          time: '1–2 weeks',
           text: 'A working demo at the end of every sprint. Tracker and repository on your side; the work is visible daily.',
         },
         {
           title: 'Migration, testing and release',
-          time: '1–2 weeks',
+          time: '3–6 days',
           text: 'Data is migrated, load tests are run, the team is trained. Launch with a rollback path if anything goes wrong.',
         },
         {
@@ -492,7 +492,7 @@ export const crmErp: Record<Locale, ServiceCopy> = {
       items: [
         {
           q: 'Would configuring an off-the-shelf CRM be cheaper?',
-          a: 'Often yes, and we say so directly. A boxed CRM — amoCRM, Bitrix24 and the like — starts in a week and costs a predictable amount. It gets expensive later: plugins, an integrator, a subscription that grows with every seat. A custom build starts slower, 4–8 weeks, and in return the code and the data stay yours with nothing charged per seat. On the brief we cost both routes and show you the difference.',
+          a: 'Often yes, and we say so directly. A boxed CRM — amoCRM, Bitrix24 and the like — starts in a week and costs a predictable amount. It gets expensive later: plugins, an integrator, a subscription that grows with every seat. A custom build starts slower, 2–4 weeks, and in return the code and the data stay yours with nothing charged per seat. On the brief we cost both routes and show you the difference.',
         },
         {
           q: 'Will data from the old system be lost?',

@@ -16,15 +16,15 @@ export const mobile: Record<Locale, ServiceCopy> = {
     meta: {
       title: 'Mobil tətbiq hazırlanması, Bakı — EXCLAMATION',
       description:
-        'iOS və Android üçün tətbiq: Flutter, React Native, Swift, Kotlin. MVP 6–10 həftə, mağazalarda yerləşdirmə 1–2 həftə, qiymətləndirmə 3–5 gün, ödənişsiz.',
+        'iOS və Android üçün tətbiq: Flutter, React Native, Swift, Kotlin. MVP 3–5 həftə, mağazalarda yerləşdirmə 1 həftə, qiymətləndirmə 3–5 gün, ödənişsiz.',
     },
     eyebrow: 'Xidmət',
     titleMuted: 'Mobil tətbiq hazırlanması —',
     titleMain: 'iki platforma, bir komanda.',
-    lead: 'Mobil tətbiq — telefonun ekranında qalan və bildiriş göndərə bilən məhsuldur; saytdan fərqi təkrar istifadədədir. İşlək MVP üçün tipik müddət 6–10 həftə, tam məhsul üçün 3–5 ay, App Store və Google Play-ə yerləşdirmə üçün əlavə 1–2 həftə. Brifdən sonra 3–5 gün ərzində platforma seçimi, mərhələlər və dəqiq smeta veririk — bu mərhələ ödənişsizdir.',
+    lead: 'Mobil tətbiq — telefonun ekranında qalan və bildiriş göndərə bilən məhsuldur; saytdan fərqi təkrar istifadədədir. İşlək MVP üçün tipik müddət 3–5 həftə, tam məhsul üçün 2–3 ay, App Store və Google Play-ə yerləşdirmə üçün əlavə 1 həftə. Brifdən sonra 3–5 gün ərzində platforma seçimi, mərhələlər və dəqiq smeta veririk — bu mərhələ ödənişsizdir.',
     facts: [
-      { label: 'İşlək MVP', value: '6–10 həftə' },
-      { label: 'Mağazalara yerləşdirmə', value: '1–2 həftə' },
+      { label: 'İşlək MVP', value: '3–5 həftə' },
+      { label: 'Mağazalara yerləşdirmə', value: '1 həftə' },
       { label: 'Qiymətləndirmə', value: '3–5 gün' },
     ],
     introTitle: 'Tətbiq lazımdır, yoxsa mobil sayt',
@@ -99,22 +99,22 @@ export const mobile: Record<Locale, ServiceCopy> = {
         },
         {
           title: 'Ekran xəritəsi və prototip',
-          time: '1 həftə',
+          time: '2–4 gün',
           text: 'Bütün ekranların sxemi və keçidlər. Klik edilə bilən prototipdə axını razılaşdırırıq.',
         },
         {
           title: 'Dizayn',
-          time: '1–2 həftə',
+          time: '3–6 gün',
           text: 'iOS və Android üçün maketlər. Platformaların öz qaydaları var — eyni şəkli iki yerə yapışdırmırıq.',
         },
         {
           title: 'Development, 2 həftəlik sprintlər',
-          time: '4–8 həftə',
+          time: '2–4 həftə',
           text: 'Hər sprintin sonunda telefonunuza quraşdırıla bilən build. İş gündəlik görünür.',
         },
         {
           title: 'Test və mağazalara yerləşdirmə',
-          time: '1–2 həftə',
+          time: '1 həftə',
           text: 'Real cihazlarda test, mağaza kartları, baxış prosesi. Apple-ın baxışı bir neçə gün çəkir.',
         },
         {
@@ -184,15 +184,15 @@ export const mobile: Record<Locale, ServiceCopy> = {
     meta: {
       title: 'Разработка мобильных приложений в Баку — EXCLAMATION',
       description:
-        'iOS и Android: Flutter, React Native, Swift, Kotlin. Рабочий MVP за 6–10 недель, публикация 1–2 недели, оценка за 3–5 дней бесплатно, аккаунты ваши.',
+        'iOS и Android: Flutter, React Native, Swift, Kotlin. Рабочий MVP за 3–5 недель, публикация 1 неделя, оценка за 3–5 дней бесплатно, аккаунты ваши.',
     },
     eyebrow: 'Услуга',
     titleMuted: 'Мобильные приложения —',
     titleMain: 'кроссплатформа или натив, решаем на брифе.',
-    lead: 'Мобильное приложение — продукт, который остаётся на экране телефона и умеет присылать пуш; этим оно отличается от сайта. Рабочий MVP занимает 6–10 недель, полноценный продукт 3–5 месяцев, публикация в App Store и Google Play — ещё 1–2 недели. После брифа за 3–5 дней возвращаемся с выбором платформы, этапами и точной сметой; этап не оплачивается.',
+    lead: 'Мобильное приложение — продукт, который остаётся на экране телефона и умеет присылать пуш; этим оно отличается от сайта. Рабочий MVP занимает 3–5 недель, полноценный продукт 2–3 месяца, публикация в App Store и Google Play — ещё неделя. После брифа за 3–5 дней возвращаемся с выбором платформы, этапами и точной сметой; этап не оплачивается.',
     facts: [
-      { label: 'Рабочий MVP', value: '6–10 недель' },
-      { label: 'Публикация', value: '1–2 недели' },
+      { label: 'Рабочий MVP', value: '3–5 недель' },
+      { label: 'Публикация', value: '1 неделя' },
       { label: 'Оценка', value: '3–5 дней' },
     ],
     introTitle: 'Кроссплатформа или натив',
@@ -267,22 +267,22 @@ export const mobile: Record<Locale, ServiceCopy> = {
         },
         {
           title: 'Карта экранов и прототип',
-          time: '1 неделя',
+          time: '2–4 дня',
           text: 'Схема всех экранов и переходов. Поток согласуем на кликабельном прототипе.',
         },
         {
           title: 'Дизайн',
-          time: '1–2 недели',
+          time: '3–6 дней',
           text: 'Макеты под iOS и Android. У платформ разные правила — одну картинку в два места не вставляем.',
         },
         {
           title: 'Разработка, спринты по 2 недели',
-          time: '4–8 недель',
+          time: '2–4 недели',
           text: 'В конце каждого спринта сборка, которую можно поставить себе на телефон. Работа видна каждый день.',
         },
         {
           title: 'Тесты и публикация',
-          time: '1–2 недели',
+          time: '1 неделя',
           text: 'Тесты на реальных устройствах, карточки магазинов, ревью. Проверка Apple занимает несколько дней.',
         },
         {
@@ -352,15 +352,15 @@ export const mobile: Record<Locale, ServiceCopy> = {
     meta: {
       title: 'Mobile app development — iOS and Android — EXCLAMATION',
       description:
-        'Flutter, React Native, Swift and Kotlin. A working MVP in 6–10 weeks, store submission 1–2 weeks, a free 3–5 day estimate. Store accounts stay yours.',
+        'Flutter, React Native, Swift and Kotlin. A working MVP in 3–5 weeks, store submission 1 week, a free 3–5 day estimate. Store accounts stay yours.',
     },
     eyebrow: 'Service',
     titleMuted: 'Mobile app development —',
     titleMain: 'two platforms, one team.',
-    lead: 'A mobile app is a product that stays on the home screen and can send a push notification; that is what separates it from a website. A working MVP typically takes 6–10 weeks, a full product 3–5 months, and store submission adds another 1–2 weeks. After a short brief we come back within 3–5 days with a platform recommendation, stages and a firm quote, and that stage is not billed.',
+    lead: 'A mobile app is a product that stays on the home screen and can send a push notification; that is what separates it from a website. A working MVP typically takes 3–5 weeks, a full product 2–3 months, and store submission adds another week. After a short brief we come back within 3–5 days with a platform recommendation, stages and a firm quote, and that stage is not billed.',
     facts: [
-      { label: 'Working MVP', value: '6–10 weeks' },
-      { label: 'Store submission', value: '1–2 weeks' },
+      { label: 'Working MVP', value: '3–5 weeks' },
+      { label: 'Store submission', value: '1 week' },
       { label: 'Estimate', value: '3–5 days' },
     ],
     introTitle: 'What two platforms actually cost',
@@ -435,22 +435,22 @@ export const mobile: Record<Locale, ServiceCopy> = {
         },
         {
           title: 'Screen map and prototype',
-          time: '1 week',
+          time: '2–4 days',
           text: 'A diagram of every screen and transition. The flow is signed off on a clickable prototype.',
         },
         {
           title: 'Design',
-          time: '1–2 weeks',
+          time: '3–6 days',
           text: 'Layouts for iOS and Android. The platforms have different conventions; we do not paste one picture into both.',
         },
         {
           title: 'Development, two-week sprints',
-          time: '4–8 weeks',
+          time: '2–4 weeks',
           text: 'Each sprint ends in a build you can install on your own phone. The work is visible daily.',
         },
         {
           title: 'Testing and submission',
-          time: '1–2 weeks',
+          time: '1 week',
           text: 'Testing on real devices, store listings, review. Apple’s review usually takes a few days.',
         },
         {

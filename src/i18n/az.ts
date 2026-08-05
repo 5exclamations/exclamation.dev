@@ -368,7 +368,7 @@ export default {
       },
       {
         q: 'Layihə nə qədər vaxt aparır?',
-        a: 'Həcmdən asılıdır: sayt və ya landing — 3–5 gün, onlayn mağaza — 2–4 həftə, CRM/ERP — 4–8 həftə, kompleks platforma — 2–4 ay. Dəqiq müddəti qısa brifdən sonra deyirik.',
+        a: 'Həcmdən asılıdır: landing — 3–5 gün, korporativ sayt — 1–2 həftə, onlayn mağaza — 2–4 həftə, CRM/ERP — 2–4 həftə, kompleks platforma — 1–2 ay. Dəqiq müddəti qısa brifdən sonra deyirik.',
       },
       {
         q: 'MVP hazırlayırsınız?',

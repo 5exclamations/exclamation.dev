@@ -16,15 +16,15 @@ export const web: Record<Locale, ServiceCopy> = {
     meta: {
       title: 'Veb sayt hazırlanması, Bakı — EXCLAMATION',
       description:
-        'Korporativ sayt, landing, kataloq və çoxdilli sayt. Landing 1–2 həftə, korporativ sayt 3–6 həftə. Qiymətləndirmə 3–5 gün, ödənişsiz. Kod sizindir.',
+        'Korporativ sayt, landing, kataloq və çoxdilli sayt. Landing 3–5 gün, korporativ sayt 1–2 həftə. Qiymətləndirmə 3–5 gün, ödənişsiz. Kod sizindir.',
     },
     eyebrow: 'Xidmət',
     titleMuted: 'Veb sayt hazırlanması —',
     titleMain: 'sürətli, çoxdilli, sizin.',
-    lead: 'Sayt — şirkətin ilk və ən ucuz satıcısıdır: gecə-gündüz işləyir və hər ziyarətçiyə eyni şeyi düzgün danışır. Landing üçün tipik müddət 1–2 həftə, korporativ sayt üçün 3–6 həftə, kataloq və çoxdilli portal üçün 6–10 həftə. Brifdən sonra 3–5 gün ərzində struktur, mərhələlər və dəqiq smeta veririk — bu mərhələ ödənişsizdir.',
+    lead: 'Sayt — şirkətin ilk və ən ucuz satıcısıdır: gecə-gündüz işləyir və hər ziyarətçiyə eyni şeyi düzgün danışır. Landing üçün tipik müddət 3–5 gün, korporativ sayt üçün 1–2 həftə, kataloq və çoxdilli portal üçün 3–5 həftə. Brifdən sonra 3–5 gün ərzində struktur, mərhələlər və dəqiq smeta veririk — bu mərhələ ödənişsizdir.',
     facts: [
-      { label: 'Landing', value: '1–2 həftə' },
-      { label: 'Korporativ sayt', value: '3–6 həftə' },
+      { label: 'Landing', value: '3–5 gün' },
+      { label: 'Korporativ sayt', value: '1–2 həftə' },
       { label: 'Qiymətləndirmə', value: '3–5 gün' },
     ],
     introTitle: 'Sayt nə etməlidir',
@@ -99,22 +99,22 @@ export const web: Record<Locale, ServiceCopy> = {
         },
         {
           title: 'Prototip və mətn strukturu',
-          time: '3–5 gün',
+          time: '1–2 gün',
           text: 'Hər səhifənin blok sxemi. Mətn hələ yazılmayıb, amma hər blokun nə deyəcəyi razılaşdırılıb.',
         },
         {
           title: 'Dizayn',
-          time: '1–2 həftə',
+          time: '2–4 gün',
           text: 'Əsas səhifələrin maketləri, mobil və masaüstü. Qalan səhifələr hazır komponentlərdən yığılır.',
         },
         {
           title: 'Verstka və inteqrasiya',
-          time: '1–3 həftə',
+          time: '3–6 gün',
           text: 'Adaptiv verstka, üç dil, formalar, admin panel. Hər həftənin sonunda işlək link.',
         },
         {
           title: 'Texniki SEO və test',
-          time: '3–5 gün',
+          time: '1–2 gün',
           text: 'Meta, sitemap, JSON-LD, sürət ölçülməsi, cross-browser yoxlaması, analitika.',
         },
         {
@@ -184,15 +184,15 @@ export const web: Record<Locale, ServiceCopy> = {
     meta: {
       title: 'Разработка сайтов в Баку на заказ — EXCLAMATION',
       description:
-        'Корпоративные сайты, лендинги, каталоги, три языка. Лендинг 1–2 недели, корпоративный сайт 3–6 недель. Оценка за 3–5 дней бесплатно, код у вас.',
+        'Корпоративные сайты, лендинги, каталоги, три языка. Лендинг 3–5 дней, корпоративный сайт 1–2 недели. Оценка за 3–5 дней бесплатно, код у вас.',
     },
     eyebrow: 'Услуга',
     titleMuted: 'Разработка сайтов —',
     titleMain: 'без конструктора и без абонплаты.',
-    lead: 'Сайт — самый дешёвый продавец в компании: работает круглосуточно и каждому посетителю рассказывает одно и то же правильно. Типичный срок: лендинг 1–2 недели, корпоративный сайт 3–6 недель, каталог или многоязычный портал 6–10 недель. После брифа за 3–5 дней возвращаемся со структурой, этапами и точной сметой; этап не оплачивается.',
+    lead: 'Сайт — самый дешёвый продавец в компании: работает круглосуточно и каждому посетителю рассказывает одно и то же правильно. Типичный срок: лендинг 3–5 дней, корпоративный сайт 1–2 недели, каталог или многоязычный портал 3–5 недель. После брифа за 3–5 дней возвращаемся со структурой, этапами и точной сметой; этап не оплачивается.',
     facts: [
-      { label: 'Лендинг', value: '1–2 недели' },
-      { label: 'Корпоративный сайт', value: '3–6 недель' },
+      { label: 'Лендинг', value: '3–5 дней' },
+      { label: 'Корпоративный сайт', value: '1–2 недели' },
       { label: 'Оценка', value: '3–5 дней' },
     ],
     introTitle: 'Конструктор или разработка',
@@ -267,22 +267,22 @@ export const web: Record<Locale, ServiceCopy> = {
         },
         {
           title: 'Прототип и структура текста',
-          time: '3–5 дней',
+          time: '1–2 дня',
           text: 'Блочная схема каждой страницы. Текста ещё нет, но что говорит каждый блок — согласовано.',
         },
         {
           title: 'Дизайн',
-          time: '1–2 недели',
+          time: '2–4 дня',
           text: 'Макеты главных страниц, мобильные и десктопные. Остальные собираются из готовых компонентов.',
         },
         {
           title: 'Вёрстка и интеграция',
-          time: '1–3 недели',
+          time: '3–6 дней',
           text: 'Адаптивная вёрстка, три языка, формы, админка. В конце каждой недели — рабочая ссылка.',
         },
         {
           title: 'Технический SEO и тесты',
-          time: '3–5 дней',
+          time: '1–2 дня',
           text: 'Мета, sitemap, JSON-LD, замер скорости, кроссбраузерность, аналитика.',
         },
         {
@@ -352,15 +352,15 @@ export const web: Record<Locale, ServiceCopy> = {
     meta: {
       title: 'Web development company in Baku — EXCLAMATION',
       description:
-        'Corporate sites, landing pages, catalogues, three languages. Landing 1–2 weeks, corporate site 3–6 weeks. Free 3–5 day estimate, you own the code.',
+        'Corporate sites, landing pages, catalogues, three languages. Landing 3–5 days, corporate site 1–2 weeks. Free 3–5 day estimate, you own the code.',
     },
     eyebrow: 'Service',
     titleMuted: 'Web development —',
     titleMain: 'fast pages you actually own.',
-    lead: 'A website is the cheapest salesperson a company has: it works around the clock and tells every visitor the same thing correctly. Typical timelines are 1–2 weeks for a landing page, 3–6 weeks for a corporate site, and 6–10 weeks for a catalogue or a multilingual portal. After a short brief we return within 3–5 days with a structure, stages and a firm quote, and that stage is not billed.',
+    lead: 'A website is the cheapest salesperson a company has: it works around the clock and tells every visitor the same thing correctly. Typical timelines are 3–5 days for a landing page, 1–2 weeks for a corporate site, and 3–5 weeks for a catalogue or a multilingual portal. After a short brief we return within 3–5 days with a structure, stages and a firm quote, and that stage is not billed.',
     facts: [
-      { label: 'Landing page', value: '1–2 weeks' },
-      { label: 'Corporate site', value: '3–6 weeks' },
+      { label: 'Landing page', value: '3–5 days' },
+      { label: 'Corporate site', value: '1–2 weeks' },
       { label: 'Estimate', value: '3–5 days' },
     ],
     introTitle: 'Performance and ownership',
@@ -435,22 +435,22 @@ export const web: Record<Locale, ServiceCopy> = {
         },
         {
           title: 'Prototype and content structure',
-          time: '3–5 days',
+          time: '1–2 days',
           text: 'A block diagram of every page. No copy yet, but what each block has to say is agreed.',
         },
         {
           title: 'Design',
-          time: '1–2 weeks',
+          time: '2–4 days',
           text: 'Layouts for the main pages, mobile and desktop. The rest are assembled from the same components.',
         },
         {
           title: 'Build and integration',
-          time: '1–3 weeks',
+          time: '3–6 days',
           text: 'Responsive build, three languages, forms, admin panel. A working link at the end of each week.',
         },
         {
           title: 'Technical SEO and testing',
-          time: '3–5 days',
+          time: '1–2 days',
           text: 'Metadata, sitemap, JSON-LD, speed measurement, cross-browser checks, analytics.',
         },
         {

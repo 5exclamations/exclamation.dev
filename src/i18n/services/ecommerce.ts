@@ -17,15 +17,15 @@ export const ecommerce: Record<Locale, ServiceCopy> = {
     meta: {
       title: 'Onlayn mağaza hazırlanması, Bakı — EXCLAMATION',
       description:
-        'Kataloq, səbət, ödəniş və çatdırılma inteqrasiyası, anbar sinxronu. Sadə mağaza 4–6 həftə, tam platforma 8–12 həftə. Qiymətləndirmə 3–5 gün, ödənişsiz.',
+        'Kataloq, səbət, ödəniş və çatdırılma inteqrasiyası, anbar sinxronu. Sadə mağaza 2–4 həftə, tam platforma 4–6 həftə. Qiymətləndirmə 3–5 gün, ödənişsiz.',
     },
     eyebrow: 'Xidmət',
     titleMuted: 'Onlayn mağaza —',
     titleMain: 'sifarişi özü qəbul edən.',
-    lead: 'Onlayn mağaza — sifarişi sonuna qədər özü aparan sistemdir: kataloq, səbət, ödəniş, çatdırılma və qalıqların uçotu. Sadə mağaza üçün tipik müddət 4–6 həftə, filtrlər, ödəniş və anbar inteqrasiyası olan platforma üçün 8–12 həftə. Brifdən sonra 3–5 gün ərzində struktur, mərhələlər və dəqiq smeta veririk — bu mərhələ ödənişsizdir.',
+    lead: 'Onlayn mağaza — sifarişi sonuna qədər özü aparan sistemdir: kataloq, səbət, ödəniş, çatdırılma və qalıqların uçotu. Sadə mağaza üçün tipik müddət 2–4 həftə, filtrlər, ödəniş və anbar inteqrasiyası olan platforma üçün 4–6 həftə. Brifdən sonra 3–5 gün ərzində struktur, mərhələlər və dəqiq smeta veririk — bu mərhələ ödənişsizdir.',
     facts: [
-      { label: 'Sadə mağaza', value: '4–6 həftə' },
-      { label: 'Tam platforma', value: '8–12 həftə' },
+      { label: 'Sadə mağaza', value: '2–4 həftə' },
+      { label: 'Tam platforma', value: '4–6 həftə' },
       { label: 'Qiymətləndirmə', value: '3–5 gün' },
     ],
     introTitle: 'Instagram-dan mağazaya',
@@ -100,22 +100,22 @@ export const ecommerce: Record<Locale, ServiceCopy> = {
         },
         {
           title: 'Prototip və sifariş axını',
-          time: '1 həftə',
+          time: '2–4 gün',
           text: 'Kataloqdan checkout-a qədər bütün yol. Burada uğursuz ödəniş və olmayan mal ssenariləri də yazılır.',
         },
         {
           title: 'Dizayn',
-          time: '1–2 həftə',
+          time: '3–6 gün',
           text: 'Kataloq, məhsul kartı, səbət, checkout. Mobil birinci: mağazalarda trafikin çoxu telefondan gəlir.',
         },
         {
           title: 'Development və inteqrasiyalar',
-          time: '3–6 həftə',
+          time: '1–2 həftə',
           text: 'Kataloq, admin panel, ödəniş, çatdırılma, qalıq sinxronu. Hər sprintin sonunda işlək link.',
         },
         {
           title: 'Test sifarişləri və reliz',
-          time: '1–2 həftə',
+          time: '3–6 gün',
           text: 'Real ödənişlərlə test sifarişləri, geri qaytarma yoxlaması, yük testi, sürət ölçülməsi.',
         },
         {
@@ -154,7 +154,7 @@ export const ecommerce: Record<Locale, ServiceCopy> = {
       items: [
         {
           q: 'Shopify və ya hazır CMS-də etmək ucuz olmazmı?',
-          a: 'Standart kataloq və standart checkout üçün — bəli. Biz bunu dürüst deyirik. Shopify və ya hazır CMS bir-iki həftəyə qalxır. Fərq sizin variantlarınız, endirim qaydalarınız və ya anbar sinxronunuz qutunun modelinə sığmayanda görünür: sonra plaginlər başlayır, plaginlər isə hər yeniləmədə toqquşur. Öz platforma bunu aradan qaldırır, amma daha gec start götürür — sadə mağaza üçün 4–6 həftə. Brifdə hər iki variantı hesablayırıq.',
+          a: 'Standart kataloq və standart checkout üçün — bəli. Biz bunu dürüst deyirik. Shopify və ya hazır CMS bir-iki həftəyə qalxır. Fərq sizin variantlarınız, endirim qaydalarınız və ya anbar sinxronunuz qutunun modelinə sığmayanda görünür: sonra plaginlər başlayır, plaginlər isə hər yeniləmədə toqquşur. Öz platforma bunu aradan qaldırır, amma daha gec start götürür — sadə mağaza üçün 2–4 həftə. Brifdə hər iki variantı hesablayırıq.',
         },
         {
           q: 'Ödənişi Azərbaycanda necə qoşursunuz?',
@@ -185,15 +185,15 @@ export const ecommerce: Record<Locale, ServiceCopy> = {
     meta: {
       title: 'Разработка интернет-магазина в Баку — EXCLAMATION',
       description:
-        'Каталог, корзина, оплата, доставка, синхронизация остатков. Простой магазин 4–6 недель, платформа 8–12 недель. Оценка за 3–5 дней бесплатно.',
+        'Каталог, корзина, оплата, доставка, синхронизация остатков. Простой магазин 2–4 недели, платформа 4–6 недель. Оценка за 3–5 дней бесплатно.',
     },
     eyebrow: 'Услуга',
     titleMuted: 'Интернет-магазин —',
     titleMain: 'ваш каталог, ваша база клиентов.',
-    lead: 'Интернет-магазин — система, которая доводит заказ до конца: каталог, корзина, оплата, доставка и учёт остатков. Простой магазин занимает 4–6 недель, платформа с фильтрами, оплатой и синхронизацией склада — 8–12 недель. После брифа за 3–5 дней возвращаемся со структурой, этапами и точной сметой; этап не оплачивается.',
+    lead: 'Интернет-магазин — система, которая доводит заказ до конца: каталог, корзина, оплата, доставка и учёт остатков. Простой магазин занимает 2–4 недели, платформа с фильтрами, оплатой и синхронизацией склада — 4–6 недель. После брифа за 3–5 дней возвращаемся со структурой, этапами и точной сметой; этап не оплачивается.',
     facts: [
-      { label: 'Простой магазин', value: '4–6 недель' },
-      { label: 'Платформа', value: '8–12 недель' },
+      { label: 'Простой магазин', value: '2–4 недели' },
+      { label: 'Платформа', value: '4–6 недель' },
       { label: 'Оценка', value: '3–5 дней' },
     ],
     introTitle: 'Коробка или своя платформа',
@@ -268,22 +268,22 @@ export const ecommerce: Record<Locale, ServiceCopy> = {
         },
         {
           title: 'Прототип и поток заказа',
-          time: '1 неделя',
+          time: '2–4 дня',
           text: 'Весь путь от каталога до checkout. Здесь же прописываются сценарии неудачной оплаты и отсутствия товара.',
         },
         {
           title: 'Дизайн',
-          time: '1–2 недели',
+          time: '3–6 дней',
           text: 'Каталог, карточка, корзина, checkout. Сначала мобильный: в магазинах большая часть трафика с телефона.',
         },
         {
           title: 'Разработка и интеграции',
-          time: '3–6 недель',
+          time: '1–2 недели',
           text: 'Каталог, админка, оплата, доставка, синхронизация остатков. В конце каждого спринта рабочая ссылка.',
         },
         {
           title: 'Тестовые заказы и релиз',
-          time: '1–2 недели',
+          time: '3–6 дней',
           text: 'Тестовые заказы с реальной оплатой, проверка возврата, нагрузочный тест, замер скорости.',
         },
         {
@@ -322,7 +322,7 @@ export const ecommerce: Record<Locale, ServiceCopy> = {
       items: [
         {
           q: 'Не дешевле ли на Shopify или готовой CMS?',
-          a: 'Для стандартного каталога и стандартного checkout — да, и мы говорим это прямо. Shopify или готовая CMS поднимаются за пару недель. Разница появляется там, где ваши варианты товара, правила скидок или синхронизация со складом не влезают в модель коробки: дальше идут плагины, а они конфликтуют на каждом обновлении. Своя платформа это снимает, но стартует дольше — 4–6 недель на простой магазин. На брифе считаем оба варианта.',
+          a: 'Для стандартного каталога и стандартного checkout — да, и мы говорим это прямо. Shopify или готовая CMS поднимаются за пару недель. Разница появляется там, где ваши варианты товара, правила скидок или синхронизация со складом не влезают в модель коробки: дальше идут плагины, а они конфликтуют на каждом обновлении. Своя платформа это снимает, но стартует дольше — 2–4 недели на простой магазин. На брифе считаем оба варианта.',
         },
         {
           q: 'Как подключается оплата в Азербайджане?',
@@ -353,15 +353,15 @@ export const ecommerce: Record<Locale, ServiceCopy> = {
     meta: {
       title: 'E-commerce development — online stores — EXCLAMATION',
       description:
-        'Catalogue, cart, payments, delivery, stock sync. A simple store in 4–6 weeks, a full platform in 8–12. Free 3–5 day estimate, you own the data.',
+        'Catalogue, cart, payments, delivery, stock sync. A simple store in 2–4 weeks, a full platform in 4–6. Free 3–5 day estimate, you own the data.',
     },
     eyebrow: 'Service',
     titleMuted: 'E-commerce development —',
     titleMain: 'built to take the order.',
-    lead: 'An online store is the system that carries an order all the way through — browse, cart, payment, delivery and stock. A simple store typically takes 4–6 weeks, and a platform with filters, payments and warehouse synchronisation takes 8–12. After a short brief we come back within 3–5 days with a structure, stages and a firm quote, and that stage is not billed.',
+    lead: 'An online store is the system that carries an order all the way through — browse, cart, payment, delivery and stock. A simple store typically takes 2–4 weeks, and a platform with filters, payments and warehouse synchronisation takes 4–6. After a short brief we come back within 3–5 days with a structure, stages and a firm quote, and that stage is not billed.',
     facts: [
-      { label: 'Simple store', value: '4–6 weeks' },
-      { label: 'Full platform', value: '8–12 weeks' },
+      { label: 'Simple store', value: '2–4 weeks' },
+      { label: 'Full platform', value: '4–6 weeks' },
       { label: 'Estimate', value: '3–5 days' },
     ],
     introTitle: 'What a slow storefront costs',
@@ -436,22 +436,22 @@ export const ecommerce: Record<Locale, ServiceCopy> = {
         },
         {
           title: 'Prototype and order flow',
-          time: '1 week',
+          time: '2–4 days',
           text: 'The whole path from catalogue to checkout, including the failed-payment and out-of-stock paths.',
         },
         {
           title: 'Design',
-          time: '1–2 weeks',
+          time: '3–6 days',
           text: 'Catalogue, product page, cart, checkout. Mobile first: most store traffic arrives on a phone.',
         },
         {
           title: 'Build and integrations',
-          time: '3–6 weeks',
+          time: '1–2 weeks',
           text: 'Catalogue, admin, payments, delivery, stock sync. A working link at the end of every sprint.',
         },
         {
           title: 'Test orders and release',
-          time: '1–2 weeks',
+          time: '3–6 days',
           text: 'Test orders with real payments, refund checks, load testing and a speed measurement.',
         },
         {
@@ -490,7 +490,7 @@ export const ecommerce: Record<Locale, ServiceCopy> = {
       items: [
         {
           q: 'Would Shopify or a ready-made CMS be cheaper?',
-          a: 'For a standard catalogue and a standard checkout, yes, and we say so directly. Shopify or a ready-made CMS is up in a couple of weeks. The difference appears where your product variants, discount rules or stock synchronisation do not fit the platform’s model: from there it is plugins, and plugins collide on every update. Your own platform removes that but starts slower — 4–6 weeks for a simple store. On the brief we cost both routes.',
+          a: 'For a standard catalogue and a standard checkout, yes, and we say so directly. Shopify or a ready-made CMS is up in a couple of weeks. The difference appears where your product variants, discount rules or stock synchronisation do not fit the platform’s model: from there it is plugins, and plugins collide on every update. Your own platform removes that but starts slower — 2–4 weeks for a simple store. On the brief we cost both routes.',
         },
         {
           q: 'How do payments work in Azerbaijan?',
