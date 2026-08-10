@@ -59,34 +59,44 @@ const facts = dict.facts.items;
     border-bottom: 1px solid var(--line);
   }
 
-  /* three figures, not four: the technologies count left the band because it
+  /* Both tiers share one grid so the band reads as a single block: the same
+     three tracks, the same column gap, the same left edge on the rail, and
+     left-aligned throughout.
+
+     The figures used to centre from 900px up. That was right while they were
+     the only thing in the band; with the facts underneath it put two
+     alignments inside one bordered block and the tiers stopped belonging to
+     each other. The breakpoint at which the tracks form is shared too —
+     768px, set by the facts, because three columns of running text need the
+     room and three columns that appear at different widths are not one grid.
+
+     three figures, not four: the technologies count left the band because it
      landed next to "40+ projects" and two adjacent forties read as an error.
      The number still appears, counted from the data, in the stack section. */
-  .metrics-row {
+  .metrics-row,
+  .facts-row {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    gap: var(--sp-block) clamp(1rem, 3vw, 2.5rem);
+    column-gap: clamp(1.5rem, 4vw, 3.5rem);
+    /* margin, not padding: the facts row carries the hairline that divides
+       the two tiers, and with padding that rule would start a rail-width to
+       the left of the columns it belongs to. Same reason as .footer-base. */
+    margin-left: var(--rail);
   }
-  @media (min-width: 560px) {
-    .metrics-row {
+  @media (min-width: 768px) {
+    .metrics-row,
+    .facts-row {
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }
   }
-  @media (min-width: 900px) {
-    .metrics-row {
-      text-align: center;
-    }
-  }
 
+  .metrics-row {
+    row-gap: var(--sp-block);
+  }
   .metrics-row li {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-  }
-  @media (min-width: 900px) {
-    .metrics-row li {
-      align-items: center;
-    }
   }
 
   .metric-value {
@@ -102,22 +112,15 @@ const facts = dict.facts.items;
     max-width: 18ch;
   }
 
-  /* ---- the facts, folded in under a hairline ---- */
+  /* ---- the facts, folded in under a hairline ----
+     Grid, gap, left edge and breakpoint all come from the shared rule above;
+     only the separation from the tier over it belongs here. The hairline is
+     what keeps these two tiers rather than six items of equal weight. */
   .facts-row {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: var(--sp-block) clamp(1.5rem, 4vw, 3.5rem);
+    row-gap: var(--sp-block);
     margin-top: var(--sp-section);
     padding-top: var(--sp-block);
     border-top: 1px solid var(--line);
-    /* left-aligned even where the figures above are centred: these carry a
-       sentence each, and centred prose is a different section's habit */
-    text-align: left;
-  }
-  @media (min-width: 768px) {
-    .facts-row {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
   }
   .facts-row dd {
     margin: 0;
