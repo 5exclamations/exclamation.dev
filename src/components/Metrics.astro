@@ -1,14 +1,27 @@
 ---
 import { fill, type Dict } from '../i18n';
 
+/**
+ * The band of figures, now carrying the three facts that used to be their own
+ * section further down the page.
+ *
+ * Two tiers, not one list: the three headline figures stay exactly as they
+ * were — projects, years, languages, the three the client settled on — and the
+ * facts sit under a hairline as a second, quieter row. Merging them into one
+ * row would have made six figures of equal weight and broken that decision.
+ *
+ * `Facts.astro` was deleted with this change; `dict.facts.items` is still the
+ * source of the second row.
+ */
 interface Props {
   dict: Dict;
 }
 const { dict } = Astro.props;
 const m = dict.metrics;
+const facts = dict.facts.items;
 ---
 
-<section class="metrics" aria-label={m.label}>
+<section class="metrics" id="facts" aria-label={m.label}>
   <div class="shell">
     <ul class="metrics-row">
       {m.items.map((item) => (
@@ -18,6 +31,21 @@ const m = dict.metrics;
         </li>
       ))}
     </ul>
+
+    <dl class="facts-row">
+      {facts.map((item) => (
+        <div class="fact" data-reveal>
+          <dt class="mono fact-label">{item.label}</dt>
+          <dd>
+            <p class="fact-claim">
+              <span class="fact-value num">{item.value}</span>
+              <span class="fact-rest">{item.rest}</span>
+            </p>
+            <p class="fact-text">{item.text}</p>
+          </dd>
+        </div>
+      ))}
+    </dl>
   </div>
 </section>
 
@@ -72,5 +100,47 @@ const m = dict.metrics;
     font-size: var(--fs-200);
     color: var(--fg-muted);
     max-width: 18ch;
+  }
+
+  /* ---- the facts, folded in under a hairline ---- */
+  .facts-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--sp-block) clamp(1.5rem, 4vw, 3.5rem);
+    margin-top: var(--sp-section);
+    padding-top: var(--sp-block);
+    border-top: 1px solid var(--line);
+    /* left-aligned even where the figures above are centred: these carry a
+       sentence each, and centred prose is a different section's habit */
+    text-align: left;
+  }
+  @media (min-width: 768px) {
+    .facts-row {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  .facts-row dd {
+    margin: 0;
+  }
+  .fact-label {
+    color: var(--fg-muted);
+    margin-bottom: 0.625rem;
+  }
+  .fact-claim {
+    font-family: var(--font-display);
+    font-size: var(--fs-500);
+    font-weight: 300;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.625rem;
+  }
+  .fact-rest {
+    color: var(--fg-muted);
+  }
+  .fact-text {
+    font-size: var(--fs-200);
+    line-height: 1.55;
+    color: var(--fg-muted);
+    max-width: 40ch;
   }
 </style>

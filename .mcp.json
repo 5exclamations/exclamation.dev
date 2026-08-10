@@ -9,6 +9,12 @@
       "type": "stdio",
       "command": "npx",
       "args": ["-y", "chrome-devtools-mcp@latest"]
+    },
+    "codex-implementer": {
+      "type": "stdio",
+      "command": "/Users/5exclamations/.nvm/versions/node/v24.18.0/bin/codex",
+      "args": ["mcp-server"],
+      "env": {}
     }
   }
 }

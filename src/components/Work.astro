@@ -39,13 +39,11 @@ const [lead, ...rest] = cases;
         />
       </span>
       <span class="case-meta">
-        <span class="case-name">{lead.short}</span>
+        <span class="case-name"
+          >{lead.short}<span class="case-arrow"><Icon name="arrow-right" size={16} /></span></span
+        >
         <span class="case-domain mono">{lead.domain}</span>
         <span class="case-metric num">{lead.results[lead.media.headline].value}</span>
-        <span class="case-open">
-          {w.open}
-          <Icon name="arrow-right" size={16} />
-        </span>
       </span>
     </a>
 
@@ -70,13 +68,11 @@ const [lead, ...rest] = cases;
               )}
             </span>
             <span class="case-meta">
-              <span class="case-name">{c.short}</span>
+              <span class="case-name"
+                >{c.short}<span class="case-arrow"><Icon name="arrow-right" size={16} /></span></span
+              >
               <span class="case-domain mono">{c.domain}</span>
               <span class="case-metric num">{c.results[c.media.headline].value}</span>
-              <span class="case-open">
-                {w.open}
-                <Icon name="arrow-right" size={16} />
-              </span>
             </span>
           </a>
         </li>
@@ -162,6 +158,9 @@ const [lead, ...rest] = cases;
     }
   }
 
+  /* Every cell placed explicitly. The old grid auto-placed them into
+     name / (empty), domain / metric, (empty) / open — which is why the link
+     read as a caption hanging off the number rather than an action. */
   .case-meta {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
@@ -169,13 +168,32 @@ const [lead, ...rest] = cases;
     column-gap: 1rem;
     padding-top: 0.875rem;
   }
+  /* ---------------------------------------------------------------
+     AFFORDANCE. Shadows and hover-lift were banned as template tells
+     (SKILL.md §7) and took the only signal of interactivity with them.
+     What replaces them is typographic: the case name IS the link —
+     hairline underline plus an inline arrow — and all of it is visible
+     before any hover, which is the point, because 390px has none.
+
+     Two alternates were built and shown (an explicit "open case" line,
+     and a marker notched into the frame's corner) and both dropped.
+     --------------------------------------------------------------- */
   .case-name {
+    grid-column: 1;
+    grid-row: 1;
     font-family: var(--font-display);
     font-size: var(--fs-400);
     font-weight: 400;
     letter-spacing: -0.02em;
+    text-decoration: underline;
+    text-decoration-color: var(--line-strong);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.22em;
+    transition: color 140ms var(--ease), text-decoration-color 140ms var(--ease);
   }
   .case-metric {
+    grid-column: 2;
+    grid-row: 1;
     font-family: var(--font-display);
     font-size: var(--fs-400);
     font-weight: 400;
@@ -183,18 +201,16 @@ const [lead, ...rest] = cases;
   }
   .case-domain {
     grid-column: 1;
+    grid-row: 2;
     text-transform: none;
     letter-spacing: 0.02em;
     color: var(--fg-muted);
   }
-  .case-open {
-    grid-column: 2;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.375rem;
-    font-size: var(--fs-200);
+  .case-arrow {
+    display: inline-block;
+    margin-left: 0.4em;
+    vertical-align: -0.12em;
     color: var(--fg-muted);
-    white-space: nowrap;
     transition: color 140ms var(--ease);
   }
 
@@ -203,8 +219,14 @@ const [lead, ...rest] = cases;
     .case-card:hover .frame {
       border-color: var(--fg);
     }
-    .case-lead:hover .case-open,
-    .case-card:hover .case-open {
+    /* one accent per hovered case, so the five-per-viewport budget holds */
+    .case-lead:hover .case-name,
+    .case-card:hover .case-name {
+      color: var(--accent);
+      text-decoration-color: var(--accent);
+    }
+    .case-lead:hover .case-arrow,
+    .case-card:hover .case-arrow {
       color: var(--accent);
     }
   }

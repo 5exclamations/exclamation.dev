@@ -235,7 +235,11 @@ One orchestrated scene, on the first screen, once:
 | lead paragraph | 320ms | 420ms |
 | diff rows | 360 / 400ms | 420ms |
 | CTA | 440ms | 420ms |
-| screenshot | 460ms | 420ms |
+
+The scene ends on the CTA. It used to close on a screenshot at 460ms; that
+screenshot was removed from the first screen on 2026-08-09, because the same
+image leads the `work` section a screen later and at the top it filled the
+viewport without explaining anything.
 
 Everything else on the page is a scroll reveal: **8–12px of travel,
 180–240ms**, easing `cubic-bezier(0.22, 0.61, 0.36, 1)` (`--ease`).

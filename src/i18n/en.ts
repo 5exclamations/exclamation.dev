@@ -29,9 +29,6 @@ export default {
       { sign: '+', text: 'one system · two-week sprints' },
     ],
     cta: 'Start a project',
-    shotCaption: 'CRM Portal — CRM for real-estate agencies',
-    shotAlt:
-      'CRM Portal interface: client card, interaction history and a list of matching property listings',
   },
   services: {
     eyebrow: 'What we build',
@@ -144,20 +141,11 @@ export default {
   },
   why: {
     eyebrow: 'Why it pays',
-    titleMuted: 'A system looks like a cost,',
-    titleMain: 'and not having one spends money daily.',
-    paras: [
-      'If the site is missing or weak, you hand customers to competitors every day. First impressions form in **3 seconds**. After that a visitor either stays or hits back.',
-      'Without a CRM, up to **35% of leads** disappear into messengers, inboxes and notebooks. A system walks the customer down the funnel, chases the task and shows exactly where a deal stalled.',
-      'Manual reporting takes **2–3 hours a day** from someone. An automated routine does the same work at three in the morning, without complaints or typos.',
-      'The figures below come from our own projects, counted by the client after launch.',
+    lines: [
+      'Without a CRM, up to 35% of leads disappear into messengers, inboxes and notebooks, and reporting by hand takes two to three hours out of someone\u2019s day.',
+      'A system takes that work over, and shows you exactly where a deal stalled.',
     ],
-    barsTitle: 'Measured on real projects',
-    bars: [
-      { label: 'Sales conversion', value: '+45%', pct: 45, source: 'CRM Portal' },
-      { label: 'Time spent updating the database', value: '−70%', pct: 70, source: 'CRM Portal' },
-      { label: 'Issuing payments and receipts', value: '−80%', pct: 80, source: 'FLEKS' },
-    ],
+    link: 'More on the service pages',
   },
   metrics: {
     label: 'The studio in numbers',
@@ -172,7 +160,6 @@ export default {
     titleMuted: 'Six projects,',
     titleMain: 'all of them running.',
     countLabel: 'projects',
-    open: 'Open the case',
     all: 'All work',
   },
   caseUi: {
@@ -315,15 +302,16 @@ export default {
   },
   tech: {
     eyebrow: 'Stack',
-    titleMuted: 'A modern stack —',
-    titleMain: 'a solid foundation.',
-    note: 'We pick technology for the task and for how long the product has to live. No one project runs the whole list.',
+    line: 'Chosen for the task and for how long the product has to live. No one project runs the whole list.',
     countLabel: 'technologies in the stack',
+    expand: 'Show the whole stack',
   },
   facts: {
-    eyebrow: 'Facts',
-    titleMuted: 'Timelines, rhythm',
-    titleMain: 'and who owns the code.',
+    /**
+     * No heading fields any more: the three facts were folded into the
+     * metrics band on 2026-08-09 and no longer form a section of their own,
+     * so there is nothing for an eyebrow or a two-tone h2 to sit above.
+     */
     items: [
       {
         label: 'MVP',
@@ -345,6 +333,16 @@ export default {
       },
     ],
   },
+  /**
+   * Four on the landing page, not eight. Trimmed 2026-08-09; the four that
+   * came out (improving an existing system, the formal contract, CRM
+   * integrations, and whether you need to understand the technology) are all
+   * opened wider on /faq/, which the link below points at.
+   *
+   * These four are also what the FAQPage JSON-LD for the home page carries —
+   * Schema.astro reads this same array, so the markup cannot describe
+   * questions the page does not show.
+   */
   faq: {
     eyebrow: 'Questions & answers',
     titleMuted: 'Answers to',
@@ -353,18 +351,6 @@ export default {
       {
         q: 'How much does development cost?',
         a: 'We do not publish a price list: the word “site” covers a week-long landing page and a six-month platform. The exact estimate comes after the brief. The estimating stage takes 3–5 days and is not billed. The estimate breaks the price down by stage, so you can see what it is made of. Once agreed, it does not move.',
-      },
-      {
-        q: 'Can you improve an existing site or system?',
-        a: 'Yes. We regularly take over other teams’ projects for support and growth: we audit the code, assess the state of the system and propose a plan of work. Any stack.',
-      },
-      {
-        q: 'Do you work under a formal contract?',
-        a: 'Formally only. Scope, timeline, cost and payment terms are fixed in the contract; we work with sole traders and with companies alike, and sign an NDA on request.',
-      },
-      {
-        q: 'Can a CRM be integrated with other systems?',
-        a: '1C, amoCRM, Bitrix24, Telegram, WhatsApp, payment systems, warehouse software — practically any service that exposes an API or a webhook.',
       },
       {
         q: 'How long does a project take?',
@@ -378,11 +364,8 @@ export default {
         q: 'Do you support the project after launch?',
         a: 'Three months of warranty, then support plans: monitoring, bug fixes, scheduled updates and roadmap work.',
       },
-      {
-        q: 'Do I need to understand the technology?',
-        a: 'No. We take the technical side entirely, and what we need from you is the business goal and the decisions at the forks. We explain the complex parts in plain language at every stage.',
-      },
     ],
+    more: '{count} more questions on their own page',
   },
   contact: {
     eyebrow: 'Contact',

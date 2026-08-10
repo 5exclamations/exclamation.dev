@@ -22,8 +22,9 @@ import type { Locale } from './index';
  *    condition, and reads correctly quoted away from the page
  *  - answers spread from one sentence to five
  *  - no cost figures anywhere, on this page or any other
- *  - the eight questions already on the landing page are not repeated here;
- *    they are either opened wider or replaced
+ *  - the four questions still on the landing page are not repeated here;
+ *    they, and the four that were removed from it on 2026-08-09, are either
+ *    opened wider or replaced
  *  - the per-service durations are deliberately absent: "how long" points at
  *    the service pages, so a timeline never has to be corrected in a fourth
  *    place
@@ -65,7 +66,7 @@ export const faqPage: Record<Locale, FaqPage> = {
     eyebrow: 'Sual-cavab',
     titleMuted: 'Otuz sual,',
     titleMain: 'hər birinə tam cavab.',
-    lead: 'Burada brifdə ən çox verilən suallar var: iş necə başlayır, smeta nədən yığılır, kod kimə məxsusdur və buraxılışdan sonra nə olur. Qiymətləndirmə 3–5 gün çəkir və ödənişsizdir, sprint iki həftə davam edir, zəmanət isə üç aydır. Səkkiz qısa cavab ana səhifədədir — burada onlar daha geniş açılıb.',
+    lead: 'Burada brifdə ən çox verilən suallar var: iş necə başlayır, smeta nədən yığılır, kod kimə məxsusdur və buraxılışdan sonra nə olur. Qiymətləndirmə 3–5 gün çəkir və ödənişsizdir, sprint iki həftə davam edir, zəmanət isə üç aydır. Dörd qısa cavab ana səhifədədir — burada onlar daha geniş açılıb.',
     questionCount: 30,
     blocks: [
       {
@@ -230,7 +231,7 @@ export const faqPage: Record<Locale, FaqPage> = {
     eyebrow: 'Вопросы и ответы',
     titleMuted: 'Тридцать вопросов',
     titleMain: 'и прямые ответы на них.',
-    lead: 'Здесь то, что спрашивают на брифе чаще всего: как начинается работа, из чего складывается смета, кому принадлежит код и что происходит после релиза. Восемь коротких ответов есть на главной — здесь они раскрыты шире.',
+    lead: 'Здесь то, что спрашивают на брифе чаще всего: как начинается работа, из чего складывается смета, кому принадлежит код и что происходит после релиза. Четыре коротких ответа есть на главной — здесь они раскрыты шире.',
     questionCount: 30,
     blocks: [
       {
@@ -395,7 +396,7 @@ export const faqPage: Record<Locale, FaqPage> = {
     eyebrow: 'Questions & answers',
     titleMuted: 'Thirty questions,',
     titleMain: 'answered in full.',
-    lead: 'These are the questions that come up on the brief: how the work starts, what moves the quote, who owns the code and what happens after release. The estimate takes 3–5 days and is not billed, sprints run two weeks, and the warranty is three months. Eight short answers sit on the home page; here they are opened wider.',
+    lead: 'These are the questions that come up on the brief: how the work starts, what moves the quote, who owns the code and what happens after release. The estimate takes 3–5 days and is not billed, sprints run two weeks, and the warranty is three months. Four short answers sit on the home page; here they are opened wider.',
     questionCount: 30,
     blocks: [
       {

@@ -139,6 +139,16 @@ Node.js: требуется 18+. Локально стоит v24.18.0, npm 11.16
 У git нет глобального identity: коммить с
 `-c user.name="Texa" -c user.email="texranhamidzada@gmail.com"`.
 
+## Claude Code ↔ Codex workflow
+
+`AGENTS.md` contains the shared workflow contract. Read it together with this file.
+
+Claude Code is the architect and reviewer. Codex is the implementation and test worker exposed through the project MCP server `codex-implementer`, which runs the official `codex mcp-server` command.
+
+Before delegation, Claude Code must inspect the current Git status and preserve the existing uncommitted work. The handoff must name the goal, constraints, acceptance criteria, files in scope, and checks to run. Codex must not commit or touch unrelated files.
+
+After Codex returns, Claude Code reviews the real working tree with `git diff`, reads the affected files, checks the reported tests, and sends concrete corrections back through the same MCP workflow when needed. Mem0 supplies durable project context; Git, source files, `HANDOFF.md`, and tests remain authoritative.
+
 ## Правила работы
 
 - **Не отчитываться об успехе по факту зелёной сборки.** Смотреть на

@@ -110,21 +110,9 @@ export const caseMedia: CaseMedia[] = [
 
 export const mediaFor = (slug: string) => caseMedia.find((m) => m.slug === slug)!;
 
-/** the first screen's image, shown at the top of the landing page */
-export const heroShot = crm1;
-
 /**
- * The hero image's responsive config, in one place because two files need it
- * to agree exactly: `Hero.astro` renders it, and `Base.astro` emits a
- * `<link rel=preload>` for it. If the two ever disagree the browser fetches
- * the image twice, so neither may hardcode these.
- *
- * `sizes` is 780px below 640: the narrow view is a fixed-width detail crop
- * slid under the frame, not the whole screenshot scaled to the viewport.
+ * `heroShot` and `HERO_IMAGE` were removed on 2026-08-09 along with the first
+ * screen's screenshot. The same image (crm1) still leads the `work` section
+ * and the CRM Portal case page, so nothing about the asset itself changed —
+ * only that the landing page no longer opens with it.
  */
-export const HERO_IMAGE = {
-  widths: [640, 960, 1280, 1600],
-  sizes: '(min-width: 1240px) 1160px, (min-width: 640px) 92vw, 780px',
-  formats: ['avif', 'webp'] as const,
-  fallbackFormat: 'webp' as const,
-};

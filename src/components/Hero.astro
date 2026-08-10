@@ -1,9 +1,17 @@
 ---
-import { Picture } from 'astro:assets';
 import Icon from './Icon.astro';
 import Diff from './Diff.astro';
-import { heroShot, HERO_IMAGE } from '../data/cases';
 import { fill, type Dict } from '../i18n';
+
+/**
+ * The first screen carries typography and the diff block, and no image.
+ *
+ * It used to end with a full-width CRM Portal screenshot. It was dropped
+ * 2026-08-09: the same screenshot leads the `work` section a screen later,
+ * and at the top it filled the viewport while explaining nothing — a reader
+ * who has not been told what CRM Portal is cannot get anything from a
+ * screenshot of it. The diff block is what states the change on offer.
+ */
 
 interface Props {
   dict: Dict;
@@ -36,27 +44,6 @@ const hero = dict.hero;
       </div>
     </div>
   </div>
-
-  <div class="shell">
-    <figure class="hero-shot anim" style="--d: 460ms">
-      <div class="hero-shot-frame">
-        {/* the one image above the fold: eager, high priority, and the only
-            place on the site that does not lazy-load */}
-        <Picture
-          src={heroShot}
-          alt={hero.shotAlt}
-          widths={HERO_IMAGE.widths}
-          sizes={HERO_IMAGE.sizes}
-          formats={HERO_IMAGE.formats}
-          fallbackFormat={HERO_IMAGE.fallbackFormat}
-          loading="eager"
-          fetchpriority="high"
-          decoding="async"
-        />
-      </div>
-      <figcaption class="mono">{hero.shotCaption}</figcaption>
-    </figure>
-  </div>
 </section>
 
 <style>
@@ -68,7 +55,9 @@ const hero = dict.hero;
   .hero-inner {
     padding-left: var(--rail);
     padding-top: clamp(2.5rem, 7vh, 5.5rem);
-    padding-bottom: clamp(2.5rem, 6vh, 4.5rem);
+    /* the screen used to end on the figure, which carried the gap down to
+       the services section; with it gone the CTA is last and this does */
+    padding-bottom: var(--sp-chapter);
   }
 
   .hero-eyebrow {
@@ -123,51 +112,6 @@ const hero = dict.hero;
     line-height: 1.5;
     color: var(--fg-muted);
     max-width: 42ch;
-  }
-
-  .hero-shot {
-    margin-left: var(--rail);
-    margin-top: clamp(1.75rem, 5vh, 4rem);
-    margin-bottom: var(--sp-section);
-  }
-  .hero-shot-frame {
-    position: relative;
-    background: var(--bg-raised);
-    border: 1px solid var(--line);
-    overflow: hidden;
-    /* narrow screens get a detail crop of the real screen instead of a
-       full desktop UI shrunk down to an illegible thumbnail */
-    aspect-ratio: 4 / 3;
-  }
-  .hero-shot img {
-    position: absolute;
-    width: 780px;
-    max-width: none;
-    height: auto;
-    left: -155px;
-    top: -95px;
-  }
-  .hero-shot figcaption {
-    padding-top: 0.75rem;
-    text-transform: none;
-    letter-spacing: 0.02em;
-  }
-  @media (min-width: 640px) {
-    .hero-shot-frame {
-      aspect-ratio: 16 / 10;
-    }
-    .hero-shot img {
-      position: static;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-    }
-  }
-  @media (min-width: 1024px) {
-    .hero-shot-frame {
-      aspect-ratio: 16 / 9;
-    }
   }
 
 </style>

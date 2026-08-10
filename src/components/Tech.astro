@@ -1,7 +1,22 @@
 ---
-import { techCats, techCount } from '../data/tech';
+import { techCats, techCount, techMain } from '../data/tech';
 import type { Dict } from '../i18n';
 
+/**
+ * One line, with the full list one click behind it.
+ *
+ * This was six columns of names — forty of them — filling an inverted screen.
+ * Cut to a line on 2026-08-09. The full list is kept rather than deleted,
+ * because this is the only place on the site that carries it: the service
+ * pages each list their own four groups, so between them they do not add up
+ * to the stack, and nothing else enumerates it.
+ *
+ * A native <details> is what keeps both: the section reads as one line, and
+ * the forty are still there, in the markup, for the reader who wants them and
+ * for anything crawling the page. No JavaScript.
+ *
+ * `id="tech"` stays — the nav links to it and LegacyHash leaves it alone.
+ */
 interface Props {
   dict: Dict;
 }
@@ -17,122 +32,120 @@ const s = dict.tech;
   </div>
 
   <div class="shell tech-in">
-    <header class="tech-head">
-      <p class="mono">{s.eyebrow}</p>
-      <h2 id="tech-title" data-reveal>
-        <span class="muted">{s.titleMuted}</span> {s.titleMain}
-      </h2>
-      <p class="tech-note" data-reveal>{s.note}</p>
-    </header>
+    <h2 class="mono tech-eyebrow" id="tech-title" data-reveal>{s.eyebrow}</h2>
 
-    <div class="tech-cats">
-      {techCats.map((cat) => (
-        <div class="tech-cat" data-reveal>
-          {/* lang="en": CSS uppercase follows the document language, and the
-              az page turns "Mobile" into "MOBİLE" — Azerbaijani casing rules
-              applied to English product names. */}
-          <h3 class="tech-cat-name mono" lang="en">{cat.name}</h3>
-          <ul class="tech-items">
-            {cat.items.map((item) => (
-              <li>{item}</li>
-            ))}
-          </ul>
-        </div>
-      ))}
-    </div>
-
-    <p class="tech-total mono num" data-reveal>
-      <span class="tech-total-n">{techCount}</span> {s.countLabel}
+    <p class="tech-line" data-reveal>
+      {/* lang="en": CSS uppercase and hyphenation follow the document
+          language, and these are English product names on all three */}
+      <span class="tech-main" lang="en">{techMain.join(' · ')}</span>
+      <span class="tech-note">{s.line}</span>
     </p>
+
+    <details class="tech-all" data-reveal>
+      <summary>
+        <span class="mono tech-summary-label">{s.expand}</span>
+        <span class="mono tech-summary-n num">{techCount} {s.countLabel}</span>
+      </summary>
+      <div class="tech-cats">
+        {techCats.map((cat) => (
+          <div class="tech-cat">
+            <h3 class="tech-cat-name mono" lang="en">{cat.name}</h3>
+            <ul class="tech-items" lang="en">
+              {cat.items.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </details>
   </div>
 </section>
 
 <style>
-  /* the one inverted section: full-bleed ground, dense index of names.
+  /* still the one inverted section, but a band now rather than a screen.
      .invert (tokens.css) re-derives the role tokens against that ground. */
   .tech {
     position: relative;
     z-index: 1;
-    padding-block: var(--sp-chapter);
+    padding-block: var(--sp-section);
     background: var(--bg);
     color: var(--fg);
   }
-
   .tech-in {
-    position: relative;
-    z-index: 1;
+    padding-left: var(--rail);
   }
 
-  .tech-head {
-    padding-left: var(--rail);
-    margin-bottom: var(--sp-section);
+  .tech-eyebrow {
+    margin-bottom: var(--sp-block);
+    font-weight: 400;
   }
-  .tech-head h2 {
-    margin-top: 1rem;
-    font-size: var(--fs-600);
-    font-weight: 300;
-    max-width: 18ch;
+
+  .tech-line {
+    max-width: 68ch;
+    font-size: var(--fs-300);
+    line-height: 1.6;
   }
-  .tech-head h2 .muted {
-    color: var(--fg-muted);
+  /* the product names carry the line; the caveat after them recedes */
+  .tech-main {
+    font-family: var(--font-mono);
+    letter-spacing: 0.01em;
   }
   .tech-note {
-    margin-top: 1.25rem;
+    display: block;
+    margin-top: 0.6em;
     color: var(--fg-muted);
-    max-width: 48ch;
-  }
-  /* the note moves alongside the heading rather than leaving the right half
-     of a dense section empty */
-  @media (min-width: 900px) {
-    .tech-head {
-      display: grid;
-      grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-      column-gap: clamp(2rem, 5vw, 4rem);
-      align-items: end;
-    }
-    .tech-head .mono {
-      grid-column: 1 / -1;
-    }
-    .tech-note {
-      margin-top: 0;
-      padding-bottom: 0.35rem;
-    }
   }
 
-  /* an index, not a row of cards: six stacks of names under hairline heads.
-     Deliberately not the process/services skeleton, which runs horizontally. */
-  .tech-cats {
-    padding-left: var(--rail);
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    column-gap: clamp(1rem, 2.5vw, 2rem);
-    row-gap: var(--sp-block);
+  .tech-all {
+    margin-top: var(--sp-block);
+    border-top: 1px solid var(--line);
   }
-  /* two abreast as soon as a column can hold "AI / INTEGRATIONS" on one line:
-     below that the label wraps and the hairlines stop lining up across the row */
-  @media (min-width: 360px) {
-    .tech-cats {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+  .tech-all summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    /* 44px from the padding plus the line box */
+    padding-block: 0.8125rem;
+    cursor: pointer;
+    list-style: none;
+    color: var(--fg-muted);
+    transition: color 140ms var(--ease);
+  }
+  .tech-all summary::-webkit-details-marker {
+    display: none;
+  }
+  .tech-all summary:focus-visible {
+    outline-offset: -2px;
+  }
+  @media (hover: hover) {
+    .tech-all summary:hover {
+      color: var(--fg);
     }
+  }
+  .tech-summary-label {
+    text-decoration: underline;
+    text-decoration-color: var(--line-strong);
+    text-underline-offset: 0.22em;
+  }
+
+  .tech-cats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--sp-block) clamp(1rem, 2.5vw, 2rem);
+    padding-block: var(--sp-block);
   }
   @media (min-width: 900px) {
-    .tech-cats {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-  }
-  /* six abreast only once each column can hold "React Native" on one line */
-  @media (min-width: 1240px) {
     .tech-cats {
       grid-template-columns: repeat(6, minmax(0, 1fr));
-      row-gap: 0;
     }
   }
-
   .tech-cat-name {
     padding-bottom: 0.75rem;
     border-bottom: 1px solid var(--line);
+    color: var(--fg-muted);
   }
-
   .tech-items {
     margin-top: 0.875rem;
     font-family: var(--font-mono);
@@ -141,15 +154,5 @@ const s = dict.tech;
   }
   .tech-items li + li {
     margin-top: 0.5rem;
-  }
-
-  .tech-total {
-    margin-top: var(--sp-block);
-    padding-left: var(--rail);
-    text-transform: none;
-    letter-spacing: 0.04em;
-  }
-  .tech-total-n {
-    color: var(--fg);
   }
 </style>

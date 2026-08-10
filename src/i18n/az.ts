@@ -29,9 +29,6 @@ export default {
       { sign: '+', text: 'bir sistem · 2 həftəlik sprint' },
     ],
     cta: 'Layihəni müzakirə et',
-    shotCaption: 'CRM Portal — daşınmaz əmlak agentlikləri üçün CRM',
-    shotAlt:
-      'CRM Portal interfeysi: müştəri kartı, interaksiya tarixçəsi və uyğun gələn obyektlərin siyahısı',
   },
   services: {
     eyebrow: 'Nə qururuq',
@@ -144,20 +141,11 @@ export default {
   },
   why: {
     eyebrow: 'Niyə bu lazımdır',
-    titleMuted: 'Sistem qurmaq xərc kimi görünür,',
-    titleMain: 'onun olmaması isə hər gün pul aparır.',
-    paras: [
-      'Saytınız yoxdursa və ya zəifdirsə, müştəriləri hər gün rəqiblərə uduzursunuz. İlk təəssürat **3 saniyəyə** formalaşır. Sonrası: insan ya qalır, ya da geri düyməsini basır.',
-      'CRM olmadan lidlərin **35%-ə qədəri** messencerdə, e-poçtda və qeyd dəftərində itir. Sistem müştərini huni ilə özü aparır, tapşırığı xatırladır və satışın harada dayandığını göstərir.',
-      'Əl ilə görülən hesabat bir əməkdaşın **gündə 2–3 saatını** alır. Avtomatlaşdırılmış ssenari eyni işi gecə saat üçdə, şikayətsiz və səhvsiz görür.',
-      'Aşağıdakı rəqəmlər bizim öz layihələrimizdəndir — müştəri onları buraxılışdan sonra özü ölçüb.',
+    lines: [
+      'CRM olmadan lidlərin 35%-ə qədəri messencerdə, e-poçtda və qeyd dəftərində itir, əl ilə görülən hesabat isə bir əməkdaşın gündə 2–3 saatını aparır.',
+      'Sistem bu işi öz üzərinə götürür və satışın harada dayandığını göstərir.',
     ],
-    barsTitle: 'Layihələrdən ölçülmüş nəticələr',
-    bars: [
-      { label: 'Satış konversiyası', value: '+45%', pct: 45, source: 'CRM Portal' },
-      { label: 'Bazanın yenilənməsinə vaxt', value: '−70%', pct: 70, source: 'CRM Portal' },
-      { label: 'Ödəniş və çek hazırlığı', value: '−80%', pct: 80, source: 'FLEKS' },
-    ],
+    link: 'Ətraflı — xidmət səhifələrində',
   },
   metrics: {
     label: 'Rəqəmlərlə studiya',
@@ -172,7 +160,6 @@ export default {
     titleMuted: 'Altı layihə,',
     titleMain: 'hamısı işləyir.',
     countLabel: 'layihə',
-    open: 'Keysə bax',
     all: 'Bütün işlər',
   },
   caseUi: {
@@ -315,15 +302,16 @@ export default {
   },
   tech: {
     eyebrow: 'Stek',
-    titleMuted: 'Müasir stek —',
-    titleMain: 'etibarlı təməl.',
-    note: 'Texnologiyanı tapşırığa və məhsulun nə qədər yaşayacağına görə seçirik. Bir layihədə siyahının hamısı işlənmir.',
+    line: 'Tapşırığa və məhsulun nə qədər yaşayacağına görə seçirik. Bir layihədə siyahının hamısı işlənmir.',
     countLabel: 'texnologiya stekdə',
+    expand: 'Bütün steki göstər',
   },
   facts: {
-    eyebrow: 'Faktlar',
-    titleMuted: 'Müddət, ritm',
-    titleMain: 'və koda hüquq.',
+    /**
+     * No heading fields any more: the three facts were folded into the
+     * metrics band on 2026-08-09 and no longer form a section of their own,
+     * so there is nothing for an eyebrow or a two-tone h2 to sit above.
+     */
     items: [
       {
         label: 'MVP',
@@ -345,6 +333,16 @@ export default {
       },
     ],
   },
+  /**
+   * Four on the landing page, not eight. Trimmed 2026-08-09; the four that
+   * came out (improving an existing system, the formal contract, CRM
+   * integrations, and whether you need to understand the technology) are all
+   * opened wider on /faq/, which the link below points at.
+   *
+   * These four are also what the FAQPage JSON-LD for the home page carries —
+   * Schema.astro reads this same array, so the markup cannot describe
+   * questions the page does not show.
+   */
   faq: {
     eyebrow: 'Sual-cavab',
     titleMuted: 'Ən çox verilən',
@@ -353,18 +351,6 @@ export default {
       {
         q: 'Hazırlanmanın qiyməti nə qədərdir?',
         a: 'Hazır qiymət cədvəli vermirik: «sayt» sözünün arxasında bir həftəlik də, yarım illik də layihə dayanır. Dəqiq smetanı brifdən sonra alırsınız. Qiymətləndirmə mərhələsi 3–5 gün çəkir və ödənişsizdir. Smetada qiymətin nədən yığıldığı görünür, mərhələlərə bölünür. Razılaşdırıldıqdan sonra qiymət dəyişmir.',
-      },
-      {
-        q: 'Mövcud sayt və ya sistemi təkmilləşdirmək olar?',
-        a: 'Bəli. Hazır layihələri dəstək və inkişaf üçün götürürük: kod auditi edirik, sistemin vəziyyətini qiymətləndiririk və təkmilləşdirmə planı təqdim edirik. İstənilən steklə işləyirik.',
-      },
-      {
-        q: 'Rəsmi müqavilə ilə işləyirsiniz?',
-        a: 'Yalnız rəsmi. Müqavilədə həcm, müddət, dəyər və ödəniş şərtləri sabitlənir; fərdi sahibkarla da, şirkətlə də işləyirik, tələb olunarsa NDA imzalayırıq.',
-      },
-      {
-        q: 'CRM-i digər sistemlərlə inteqrasiya etmək olar?',
-        a: '1C, amoCRM, Bitrix24, Telegram, WhatsApp, ödəniş sistemləri, anbar proqramları — API və ya webhook verən demək olar ki, istənilən servis.',
       },
       {
         q: 'Layihə nə qədər vaxt aparır?',
@@ -378,11 +364,8 @@ export default {
         q: 'Buraxılışdan sonra dəstək verirsiniz?',
         a: '3 ay zəmanət, sonra isə dəstək paketləri: monitorinq, bug fix, planlı yeniləmələr və roadmap üzrə inkişaf.',
       },
-      {
-        q: 'Texnologiyanı mütləq bilməliyəm?',
-        a: 'Xeyr. Texniki hissəni tam biz götürürük, sizdən biznes məqsədi və prinsipial qərarlar gözlənilir. Mürəkkəb şeyləri hər mərhələdə sadə dillə izah edirik.',
-      },
     ],
+    more: 'Ayrıca səhifədə daha {count} sual',
   },
   contact: {
     eyebrow: 'Əlaqə',

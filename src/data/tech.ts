@@ -42,3 +42,32 @@ export const techCats: TechCat[] = [
 
 /** Counted, never typed: the metrics band claims a number this has to match. */
 export const techCount = techCats.reduce((n, cat) => n + cat.items.length, 0);
+
+/**
+ * The handful named in the one line the landing page now gives the stack —
+ * one per category, plus the two the enquiries actually mention.
+ *
+ * A list, not a sentence, because a sentence would drift: rename something in
+ * `techCats` and this would go on advertising the old name. The assertion
+ * below makes that a build failure instead.
+ */
+export const techMain = [
+  'React',
+  'Next.js',
+  'TypeScript',
+  'Python',
+  'FastAPI',
+  'Flutter',
+  'PostgreSQL',
+  'Docker',
+  'AWS',
+];
+
+const known = new Set(techCats.flatMap((cat) => cat.items));
+const unknown = techMain.filter((name) => !known.has(name));
+if (unknown.length) {
+  throw new Error(
+    `techMain names technologies that are not in techCats: ${unknown.join(', ')}. ` +
+      'The landing page would advertise a stack the site does not list.'
+  );
+}

@@ -176,13 +176,11 @@ const cases = copy.cases.slugs
                 )}
               </span>
               <span class="svc-case-meta">
-                <span class="svc-case-name">{c.short}</span>
+                <span class="svc-case-name"
+                  >{c.short}<span class="svc-case-arrow"><Icon name="arrow-right" size={16} /></span></span
+                >
                 <span class="svc-case-metric num">{c.results[c.media.headline].value}</span>
                 <span class="mono svc-case-domain">{c.domain}</span>
-                <span class="svc-case-open">
-                  {dict.work.open}
-                  <Icon name="arrow-right" size={16} />
-                </span>
               </span>
             </a>
           </li>
@@ -564,9 +562,22 @@ const cases = copy.cases.slugs
     column-gap: 1rem;
     padding-top: 0.875rem;
   }
+  /* same affordance as the landing case grid: the name is the link */
   .svc-case-name {
     font-family: var(--font-display);
     font-size: var(--fs-400);
+    text-decoration: underline;
+    text-decoration-color: var(--line-strong);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.22em;
+    transition: color 140ms var(--ease), text-decoration-color 140ms var(--ease);
+  }
+  .svc-case-arrow {
+    display: inline-block;
+    margin-left: 0.4em;
+    vertical-align: -0.12em;
+    color: var(--fg-muted);
+    transition: color 140ms var(--ease);
   }
   .svc-case-metric {
     font-family: var(--font-display);
@@ -578,22 +589,14 @@ const cases = copy.cases.slugs
     text-transform: none;
     color: var(--fg-muted);
   }
-  .svc-case-open {
-    grid-column: 2;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.375rem;
-    font-size: var(--fs-200);
-    color: var(--fg-muted);
-    white-space: nowrap;
-    transition: color 140ms var(--ease);
-  }
   @media (hover: hover) {
     .svc-case:hover .frame {
       border-color: var(--fg);
     }
-    .svc-case:hover .svc-case-open {
+    .svc-case:hover .svc-case-name,
+    .svc-case:hover .svc-case-arrow {
       color: var(--accent);
+      text-decoration-color: var(--accent);
     }
   }
   .svc-case:focus-visible {
