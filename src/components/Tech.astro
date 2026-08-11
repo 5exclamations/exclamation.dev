@@ -34,16 +34,22 @@ const s = dict.tech;
   <div class="shell tech-in">
     <h2 class="mono tech-eyebrow" id="tech-title" data-reveal>{s.eyebrow}</h2>
 
-    <p class="tech-line" data-reveal>
-      {/* lang="en": CSS uppercase and hyphenation follow the document
-          language, and these are English product names on all three */}
-      {/* Non-breaking space BEFORE each separator, so a wrap puts "Docker ·"
-          at the end of a line rather than "· AWS" at the start of the next.
-          Same rule the trailing em dash in titleMuted follows (HANDOFF §6);
-          at 390 this list wraps three ways and hit it every time. */}
-      <span class="tech-main" lang="en">{techMain.join('\u00A0\u00B7 ')}</span>
-      <span class="tech-note">{s.line}</span>
-    </p>
+    {/* Two blocks, not one paragraph with spans inside it. They are different
+        kinds of text and want different measures: the names are a list that
+        should sit on one line, the sentence under them is running prose.
+        Sharing a <p> capped at 68ch made the names wrap to "Docker · AWS"
+        at 735px with 470px of the container still free, under a full-width
+        rule.
+
+        lang="en": CSS casing and hyphenation follow the document language,
+        and these are English product names in all three locales.
+
+        Non-breaking space BEFORE each separator, so a wrap puts "Docker ·"
+        at the end of a line rather than "· AWS" at the start of the next
+        — the rule HANDOFF §6 records for the trailing em dash. It
+        still applies at 390, where this list wraps three ways. */}
+    <p class="tech-main" lang="en" data-reveal>{techMain.join('\u00A0\u00B7 ')}</p>
+    <p class="tech-note" data-reveal>{s.line}</p>
 
     <details class="tech-all" data-reveal>
       <summary>
@@ -99,19 +105,30 @@ const s = dict.tech;
     font-weight: 400;
   }
 
-  .tech-line {
-    max-width: 68ch;
-    font-size: var(--fs-300);
-    line-height: 1.6;
-  }
-  /* the product names carry the line; the caveat after them recedes */
+  /* The names take the full content width, the same as the rule and the
+     toggle below them, so those three share a right edge. They need 860px to
+     sit on one line and the container gives 1208px at 1440 — the only thing
+     that was wrapping them was a measure meant for prose.
+
+     No max-width here on purpose: this is a list of nine product names, not
+     running text, and the 62ch cap exists to stop the eye losing its place on
+     a return sweep. There is no return sweep on one line. */
   .tech-main {
     font-family: var(--font-mono);
+    font-size: var(--fs-300);
+    line-height: 1.6;
     letter-spacing: 0.01em;
   }
+
+  /* The one element in the section that does NOT run to the right edge, and
+     deliberately: this is running prose and SKILL.md §2 caps it at 62ch.
+     Widening it to match the rule would put a 100-character line in the band.
+     A paragraph ending short is rag, not misalignment. */
   .tech-note {
-    display: block;
+    max-width: 62ch;
     margin-top: 0.6em;
+    font-size: var(--fs-300);
+    line-height: 1.6;
     color: var(--fg-muted);
   }
 
