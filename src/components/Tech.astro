@@ -37,14 +37,24 @@ const s = dict.tech;
     <p class="tech-line" data-reveal>
       {/* lang="en": CSS uppercase and hyphenation follow the document
           language, and these are English product names on all three */}
-      <span class="tech-main" lang="en">{techMain.join(' · ')}</span>
+      {/* Non-breaking space BEFORE each separator, so a wrap puts "Docker ·"
+          at the end of a line rather than "· AWS" at the start of the next.
+          Same rule the trailing em dash in titleMuted follows (HANDOFF §6);
+          at 390 this list wraps three ways and hit it every time. */}
+      <span class="tech-main" lang="en">{techMain.join('\u00A0\u00B7 ')}</span>
       <span class="tech-note">{s.line}</span>
     </p>
 
     <details class="tech-all" data-reveal>
       <summary>
         <span class="mono tech-summary-label">{s.expand}</span>
-        <span class="mono tech-summary-n num">{techCount} {s.countLabel}</span>
+        {/* The count sits against the label, not at the far end of the row.
+            Pushed apart with space-between it left 898px of nothing between
+            the two at 1440 and read as an orphan. The bare number is enough
+            beside "show the whole stack"; the words it counts are kept for
+            assistive tech rather than printed twice. */}
+        <span class="mono tech-summary-n num" aria-hidden="true">·&nbsp;{techCount}</span>
+        <span class="visually-hidden">{techCount} {s.countLabel}</span>
       </summary>
       <div class="tech-cats">
         {techCats.map((cat) => (
@@ -68,7 +78,12 @@ const s = dict.tech;
   .tech {
     position: relative;
     z-index: 1;
-    padding-block: var(--sp-section);
+    /* --sp-block, not --sp-section. The section kept the padding it had when
+       it was six columns of forty names filling a screen; against one line of
+       content that was 96px above and below 274px of content at 1440, and the
+       band read as a mostly-empty strip. Chosen off the scale to suit the
+       height the content actually has now (SKILL.md §3). */
+    padding-block: var(--sp-block);
     background: var(--bg);
     color: var(--fg);
   }
@@ -76,8 +91,11 @@ const s = dict.tech;
     padding-left: var(--rail);
   }
 
+  /* 1rem is the eyebrow-to-content gap everywhere else on the site
+     (.work-head h2, .faqp-head h2); --sp-block was another leftover from the
+     tall version. */
   .tech-eyebrow {
-    margin-bottom: var(--sp-block);
+    margin-bottom: 1rem;
     font-weight: 400;
   }
 
@@ -101,11 +119,13 @@ const s = dict.tech;
     margin-top: var(--sp-block);
     border-top: 1px solid var(--line);
   }
+  /* The row stays full width so the whole of it is a target; only its
+     contents are pulled left. space-between was what stranded the count. */
   .tech-all summary {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1.5rem;
+    align-items: baseline;
+    justify-content: flex-start;
+    gap: 0.5rem;
     /* 44px from the padding plus the line box */
     padding-block: 0.8125rem;
     cursor: pointer;

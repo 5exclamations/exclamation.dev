@@ -17,9 +17,10 @@ export const YEAR = new Date().getFullYear();
 export const YEARS = YEAR - FOUNDED;
 
 /**
- * {tech} is counted from `data/tech.ts`, never typed. If the stack list is
- * trimmed the metrics band follows it down — the number describes the data,
- * the data is not padded to fit the number.
+ * {tech} is counted from `data/tech.ts`, never typed — the number describes
+ * the data, the data is not padded to fit the number. No copy string uses the
+ * placeholder at present: the stack section renders `techCount` directly. The
+ * substitution stays because it is the mechanism that keeps it that way.
  */
 export const fill = (s: string): string =>
   s

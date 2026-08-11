@@ -40,7 +40,12 @@ export const techCats: TechCat[] = [
   },
 ];
 
-/** Counted, never typed: the metrics band claims a number this has to match. */
+/**
+ * Counted, never typed. The stack section prints this beside its disclosure,
+ * and it is the only place on the site that claims a number for the stack —
+ * the metrics band carried it once and gave it up when two adjacent forties
+ * read as an error.
+ */
 export const techCount = techCats.reduce((n, cat) => n + cat.items.length, 0);
 
 /**

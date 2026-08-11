@@ -5,8 +5,11 @@ order. Where a screen has more than one plausible button, the one to press is
 named exactly.
 
 The site is currently served by GitHub Pages from this repository, at
-`exclamationdev.com` (see `CNAME`). At the end of this document Cloudflare
-serves it and GitHub Pages is off.
+`exclamationdev.com`. At the end of this document Cloudflare serves it and
+GitHub Pages is off. The domain is set on the Pages project itself, under
+**Workers & Pages → exclamation → Custom domains** (§6c) — not by a file in
+the repository. The `CNAME` file that used to hold it was a GitHub Pages
+artefact and was deleted on 2026-08-10.
 
 **Do not delete the legacy files** (`index.html`, `style_dark.css`,
 `style_light.css`, `translations.js`, `pics/`) as part of this. They come out
@@ -231,9 +234,10 @@ delete:
 **Leave every `MX` and `TXT` record alone.**
 
 Then, in the GitHub repository: **Settings → Pages → Source → None**. That
-turns off the old site at its origin. The `CNAME` file in the repository is a
-GitHub Pages artefact and can be deleted with the rest of the legacy files
-later; it does nothing on Cloudflare.
+turns off the old site at its origin. The `CNAME` file that used to carry the
+domain has already gone (deleted 2026-08-10); Cloudflare takes the domain from
+the project's **Custom domains** tab in §6c and never reads that file, so
+nothing needs to be put back.
 
 ---
 
