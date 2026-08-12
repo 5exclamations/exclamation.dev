@@ -31,50 +31,52 @@ const s = dict.tech;
     <div class="shell spine-shell"><span class="spine"></span></div>
   </div>
 
-  <div class="shell tech-in">
-    <h2 class="mono tech-eyebrow" id="tech-title" data-reveal>{s.eyebrow}</h2>
+  <div class="shell">
+    <div class="tech-in">
+      <h2 class="mono tech-eyebrow" id="tech-title" data-reveal>{s.eyebrow}</h2>
 
-    {/* Two blocks, not one paragraph with spans inside it. They are different
-        kinds of text and want different measures: the names are a list that
-        should sit on one line, the sentence under them is running prose.
-        Sharing a <p> capped at 68ch made the names wrap to "Docker · AWS"
-        at 735px with 470px of the container still free, under a full-width
-        rule.
+      {/* Two blocks, not one paragraph with spans inside it. They are different
+          kinds of text and want different measures: the names are a list that
+          should sit on one line, the sentence under them is running prose.
+          Sharing a <p> capped at 68ch made the names wrap to "Docker · AWS"
+          at 735px with 470px of the container still free, under a full-width
+          rule.
 
-        lang="en": CSS casing and hyphenation follow the document language,
-        and these are English product names in all three locales.
+          lang="en": CSS casing and hyphenation follow the document language,
+          and these are English product names in all three locales.
 
-        Non-breaking space BEFORE each separator, so a wrap puts "Docker ·"
-        at the end of a line rather than "· AWS" at the start of the next
-        — the rule HANDOFF §6 records for the trailing em dash. It
-        still applies at 390, where this list wraps three ways. */}
-    <p class="tech-main" lang="en" data-reveal>{techMain.join('\u00A0\u00B7 ')}</p>
-    <p class="tech-note" data-reveal>{s.line}</p>
+          Non-breaking space BEFORE each separator, so a wrap puts "Docker ·"
+          at the end of a line rather than "· AWS" at the start of the next
+          — the rule HANDOFF §6 records for the trailing em dash. It
+          still applies at 390, where this list wraps three ways. */}
+      <p class="tech-main" lang="en" data-reveal>{techMain.join('\u00A0\u00B7 ')}</p>
+      <p class="tech-note" data-reveal>{s.line}</p>
 
-    <details class="tech-all" data-reveal>
-      <summary>
-        <span class="mono tech-summary-label">{s.expand}</span>
-        {/* The count sits against the label, not at the far end of the row.
-            Pushed apart with space-between it left 898px of nothing between
-            the two at 1440 and read as an orphan. The bare number is enough
-            beside "show the whole stack"; the words it counts are kept for
-            assistive tech rather than printed twice. */}
-        <span class="mono tech-summary-n num" aria-hidden="true">·&nbsp;{techCount}</span>
-        <span class="visually-hidden">{techCount} {s.countLabel}</span>
-      </summary>
-      <div class="tech-cats">
-        {techCats.map((cat) => (
-          <div class="tech-cat">
-            <h3 class="tech-cat-name mono" lang="en">{cat.name}</h3>
-            <ul class="tech-items" lang="en">
-              {cat.items.map((item) => (
-                <li>{item}</li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
-    </details>
+      <details class="tech-all" data-reveal>
+        <summary>
+          <span class="mono tech-summary-label">{s.expand}</span>
+          {/* The count sits against the label, not at the far end of the row.
+              Pushed apart with space-between it left 898px of nothing between
+              the two at 1440 and read as an orphan. The bare number is enough
+              beside "show the whole stack"; the words it counts are kept for
+              assistive tech rather than printed twice. */}
+          <span class="mono tech-summary-n num" aria-hidden="true">·&nbsp;{techCount}</span>
+          <span class="visually-hidden">{techCount} {s.countLabel}</span>
+        </summary>
+        <div class="tech-cats">
+          {techCats.map((cat) => (
+            <div class="tech-cat">
+              <h3 class="tech-cat-name mono" lang="en">{cat.name}</h3>
+              <ul class="tech-items" lang="en">
+                {cat.items.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </details>
+    </div>
   </div>
 </section>
 
@@ -93,7 +95,20 @@ const s = dict.tech;
     background: var(--bg);
     color: var(--fg);
   }
+  /* A child of .shell, not the .shell itself.
+     While `padding-left: var(--rail)` sat on the element that also carried
+     `.shell`, it REPLACED the shell's `padding-inline: var(--gutter)` rather
+     than adding to it: content landed at 88px from the shell edge instead of
+     56 + 88 = 144, which is inside the channel the spine runs down at 100.
+     The spine then crossed every line in the section at every width.
+
+     position/z-index restored with it: .spine-wrap is z-index 0 and
+     positioned, so without a stacking context on the content the rule paints
+     over the letters rather than behind them. That is what made it visible
+     rather than merely misplaced. */
   .tech-in {
+    position: relative;
+    z-index: 1;
     padding-left: var(--rail);
   }
 
