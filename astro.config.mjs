@@ -70,9 +70,22 @@ const securityHeaders = () => {
 # X-Frame-Options, while \`/fonts/*\` and \`/og/*\` (declared once each) applied
 # correctly. Keep every \`/*\` rule in this one section.
 #
-# Cache-Control here is the HTML rule: HTML must revalidate, because the
-# studio's age and the year are baked in at build time and the weekly rebuild
-# is what keeps them true. The path sections below override it.
+# NO Cache-Control IN THIS SECTION EITHER, and that is not an oversight.
+#
+# Cloudflare Pages does not replace a header from a broader section when a
+# narrower one also sets it — it appends. Putting the HTML rule here produced
+#
+#   /fonts/…  Cache-Control: public, max-age=0, must-revalidate,
+#                            public, max-age=31536000, immutable
+#
+# on the very first test: two max-ages in one header, which is undefined
+# behaviour and in practice loses the year-long font cache. HTML needs
+# "public, max-age=0, must-revalidate" because the studio's age and the year
+# are baked in at build time and the weekly rebuild is what keeps them true —
+# and that is already exactly what Cloudflare Pages sends for HTML with no
+# rule at all, verified against the live site while this file was being
+# ignored wholesale. So the platform default stands and the sections below
+# are the only Cache-Control rules here.
 /*
   Content-Security-Policy: ${csp}
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
@@ -81,7 +94,6 @@ const securityHeaders = () => {
   Permissions-Policy: accelerometer=(), autoplay=(), camera=(), display-capture=(), encrypted-media=(), fullscreen=(self), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), midi=(), payment=(), usb=(), xr-spatial-tracking=()
   Cross-Origin-Opener-Policy: same-origin
   X-Frame-Options: DENY
-  Cache-Control: public, max-age=0, must-revalidate
 
 # Fingerprinted by Astro — safe to cache for a year.
 /_astro/*
