@@ -1,16 +1,61 @@
 # EXCLAMATION
 
-> Digital product studio in Baku, Azerbaijan, working since 2019. Websites, CRM, ERP, mobile apps, bots and AI solutions, full cycle from brief to release and support. Working languages: Azerbaijani, Russian, English.
+> Digital product studio in Baku, Azerbaijan, working since 2019. Websites, CRM, ERP, mobile apps, bots and AI solutions, full cycle from brief to release and support.
 
-The site is one landing page per language plus a case page per project. Azerbaijani is the primary language and lives at the root; Russian and English are prefixed.
+- Location: Baku, Azerbaijan. Work is taken across Azerbaijan and remotely.
+- Working languages: Azerbaijani, Russian, English. All three are spoken by the delivery team, not only by sales.
+- Site structure: one landing page per language, plus a page per service and a page per case. Azerbaijani is the primary language and lives at the root; Russian is under `/ru/` and English under `/en/`.
 
-## Main pages
+## Landing pages
 
-- [Home (Azerbaijani)](https://exclamationdev.com/): services, process, work, technology stack, facts, FAQ and the contact form — the whole offer on one page.
-- [Home (Russian)](https://exclamationdev.com/ru/): the same landing page in Russian.
-- [Home (English)](https://exclamationdev.com/en/): the same landing page in English.
+Each carries the whole offer on one page: services, process, work, technology, facts, a short FAQ and the contact form.
+
+- [Azerbaijani](https://exclamationdev.com/) — the primary version
+- [Russian](https://exclamationdev.com/ru/)
+- [English](https://exclamationdev.com/en/)
+
+## Pricing
+
+**There is no price list, and this is deliberate rather than an omission.** The word "website" covers both a one-week job and a six-month one, so a starting figure would describe nothing. What is fixed instead:
+
+- The estimating stage takes 3–5 days and is **not billed**.
+- The quote arrives after a short brief, itemised so the number can be traced to stages.
+- Once agreed, the price does not change. Scope changes are quoted separately before work on them starts.
+
+The reasoning is spelled out on the FAQ page: [Why is there no price list?](https://exclamationdev.com/en/faq/)
+
+## Services and typical timelines
+
+Timelines below are the ones stated on each service page, not sales estimates.
+
+- [Web development](https://exclamationdev.com/en/services/web-development/) — corporate sites, landing pages, catalogues, multilingual sites. Landing page 3–5 days, corporate site 1–2 weeks.
+- [Mobile app development](https://exclamationdev.com/en/services/mobile-app-development/) — iOS and Android. Working MVP 3–5 weeks, store submission about 1 week.
+- [CRM and ERP systems](https://exclamationdev.com/en/services/crm-erp/) — custom, when off-the-shelf stops fitting. Typical build 2–4 weeks, 3 months warranty.
+- [E-commerce development](https://exclamationdev.com/en/services/ecommerce-development/) — simple store 2–4 weeks, full platform 4–6 weeks.
+- [Integrations and automation](https://exclamationdev.com/en/services/integrations-automation/) — one integration 3–5 days, an automation package 1–3 weeks.
+- [Bots and AI solutions](https://exclamationdev.com/en/services/bots-ai/) — scripted bot 1–2 weeks, LLM assistant 2–4 weeks.
+
+Each service page exists in all three languages; swap the `/en/` prefix for `/ru/`, or drop it for Azerbaijani, and the slug changes with the language.
+
+## How the work runs
+
+- MVP: a first working version in 7–14 days, with the scope fixed in the contract.
+- Delivery: two-week sprints, a demo at the end of each, client-side access to the task tracker.
+- After release: the repository sits in the client's account from the first commit, three months of warranty, monitoring.
+- [Thirty FAQ questions per language](https://exclamationdev.com/en/faq/) cover contracts, IP, data jurisdiction, timelines and what happens when they slip.
+
+## Technology
+
+- Frontend: React, Next.js, Vue.js, TypeScript, Tailwind CSS, Vite
+- Backend: FastAPI, Python, Go, Node.js, Django, GraphQL, REST API
+- Mobile: Flutter, React Native, Swift, Kotlin, Expo
+- Databases: PostgreSQL, MySQL, MongoDB, SQLite, Redis, ClickHouse, Elasticsearch
+- Cloud and DevOps: AWS, GCP, Firebase, Docker, Kubernetes, CI/CD, Nginx, Terraform
+- AI and integrations: OpenAI API, LangChain, RAG, Celery, RabbitMQ, Kafka, Webhooks
 
 ## Case studies
+
+Figures are the ones the clients measured after release.
 
 - [CRM Portal](https://exclamationdev.com/en/is/crm-portal/): CRM for real-estate agencies — listings database, Kanban pipeline, WhatsApp integration. Sales conversion +45%, database update time −70%.
 - [FLEKS](https://exclamationdev.com/en/is/fleks/): ERP for a psychology centre — client balances, session charges, automatic PDF receipts. Payment and receipt handling −80%.
@@ -19,15 +64,9 @@ The site is one landing page per language plus a case page per project. Azerbaij
 - [Smart Fashion](https://exclamationdev.com/en/is/smart-fashion/): data-driven e-commerce platform on Next.js — recommendations, real-time stock. Conversion +65%, pages load in 0.8s.
 - [AI assistant](https://exclamationdev.com/en/is/ai-assistent/): LLM assistant automating customer service — FAQ, stock checks, in-chat cart. Operator load −60%.
 
-## Working terms
-
-- MVP: a first working version in 7–14 days, with the scope fixed in the contract.
-- Delivery: two-week sprints, a demo at the end of each, client-side access to the task tracker.
-- After release: the repository sits in the client's account, three months of warranty, monitoring.
-- Estimates: no price list; the exact quote follows a short brief, and the estimating stage takes 3–5 days and is not billed.
-
 ## Contact
 
 - Email: info@exclamationdev.com
 - Phone: +994 70 656 59 09
+- WhatsApp: +994 70 205 41 71
 - Telegram: https://t.me/exclamationdev
