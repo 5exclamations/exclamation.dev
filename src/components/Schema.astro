@@ -1,6 +1,7 @@
 ---
 import { localePath, type Dict, type Locale } from '../i18n';
 import { channels, EMAIL } from '../data/contacts';
+import { serviceCopy } from '../i18n/services';
 import {
   ORG_NAME,
   ORG_ALTERNATE_NAMES,
@@ -28,8 +29,14 @@ interface Props {
   faq?: { q: string; a: string }[];
   /** page title, for the breadcrumb leaf */
   title: string;
+  /**
+   * The OG key, which for a service page is `service-<key>` and is the only
+   * thing on a service route that says *which* service this is. Used to look
+   * the copy up for the `Service` node; ignored for every other kind.
+   */
+  ogKey?: string;
 }
-const { locale, dict, path, kind, title, absolute = false, faq } = Astro.props;
+const { locale, dict, path, kind, title, absolute = false, faq, ogKey } = Astro.props;
 
 const SITE = 'https://exclamationdev.com';
 const url = `${SITE}${absolute ? path : localePath(locale, path)}`;
@@ -55,6 +62,26 @@ const organization = {
   address: { '@type': 'PostalAddress', ...ADDRESS },
 };
 
+/**
+ * The site itself as an entity, distinct from the studio that publishes it.
+ * Without it the three localised landing pages are three unrelated documents
+ * as far as a graph is concerned; with it they are one site in three
+ * languages, published by a named organisation.
+ *
+ * No `potentialAction`/`SearchAction`. There is no search endpoint on this
+ * site, and a SearchAction pointing at a URL template that 404s is a claim
+ * that a feature exists when it does not.
+ */
+const website = {
+  '@type': 'WebSite',
+  '@id': `${SITE}/#website`,
+  url: SITE,
+  name: ORG_NAME,
+  alternateName: ORG_ALTERNATE_NAMES,
+  inLanguage: ['az', 'ru', 'en'],
+  publisher: { '@id': ORG_ID },
+};
+
 const service = {
   '@type': 'ProfessionalService',
   '@id': SERVICE_ID,
@@ -65,7 +92,13 @@ const service = {
   telephone: phone,
   address: { '@type': 'PostalAddress', ...ADDRESS },
   geo: { '@type': 'GeoCoordinates', ...GEO },
-  areaServed: { '@type': 'Country', name: 'Azerbaijan', identifier: 'AZ' },
+  // Both, and in this order: the city is what the commercial queries carry
+  // ("sayt hazırlanması Bakı", "разработка сайтов Баку") and the country is
+  // the truthful outer bound of where the studio actually takes work.
+  areaServed: [
+    { '@type': 'City', name: 'Baku', alternateName: ['Bakı', 'Баку'] },
+    { '@type': 'Country', name: 'Azerbaijan', identifier: 'AZ' },
+  ],
   /**
    * The languages hang off a ContactPoint, not off the service itself:
    * `availableLanguage` is declared on ContactPoint, and schema.org's
@@ -81,6 +114,56 @@ const service = {
   },
   knowsAbout: dict.services.items.map((s) => s.title),
 };
+
+/**
+ * The individual service a service page is about — "web development", not
+ * "the studio". `ProfessionalService` above is the business; this is one thing
+ * the business sells, and only a service page has one.
+ *
+ * `description` is the page's own lead sentence, which is written to be
+ * quotable whole (see `ServiceCopy.lead`), so the structured data and the
+ * first thing a reader sees are the same sentence rather than two paraphrases
+ * that can drift apart.
+ *
+ * NO `offers`, deliberately. An `Offer` is only worth emitting with a `price`
+ * or a `priceSpecification`, and this studio publishes no price list anywhere
+ * on the site — the FAQ says so in all three languages. A `priceCurrency` with
+ * no number, or a number nobody has agreed to, would be structured data making
+ * a claim the site does not make. Supply real starting prices and this is the
+ * place they go.
+ */
+const serviceKey = kind === 'service' && ogKey?.startsWith('service-')
+  ? ogKey.slice('service-'.length)
+  : null;
+const thisServiceCopy = serviceKey ? serviceCopy[serviceKey]?.[locale] : null;
+const serviceName = thisServiceCopy
+  ? thisServiceCopy.titleMuted.replace(/\s*[—–-]\s*$/, '').trim()
+  : '';
+
+const serviceOffered = thisServiceCopy
+  ? {
+      '@type': 'Service',
+      '@id': `${url}#offering`,
+      // `titleMuted` is the service noun and `titleMain` the tagline that
+      // finishes the H1 — "Veb sayt hazırlanması —" then "sürətli, çoxdilli,
+      // sizin." Only the first half names the thing being sold, and it is the
+      // half that matches what people search for, so the tagline is dropped
+      // and the dash it hands over to the second half goes with it.
+      name: serviceName,
+      serviceType: serviceName,
+      description: thisServiceCopy.lead,
+      url,
+      // No `inLanguage` here: schema.org declares it on CreativeWork and its
+      // subtypes, and Service is not one of them. `scripts/schema-check.mjs`
+      // rejects it. The page's language is already stated by <html lang> and
+      // by the WebSite node.
+      provider: { '@id': SERVICE_ID },
+      areaServed: [
+        { '@type': 'City', name: 'Baku', alternateName: ['Bakı', 'Баку'] },
+        { '@type': 'Country', name: 'Azerbaijan', identifier: 'AZ' },
+      ],
+    }
+  : null;
 
 /**
  * Built from `dict.faq`, the same object the accordion renders, so the
@@ -120,7 +203,7 @@ const breadcrumb =
         ],
       };
 
-const graph = [organization, service, faqPage, breadcrumb].filter(Boolean);
+const graph = [organization, website, service, serviceOffered, faqPage, breadcrumb].filter(Boolean);
 const json = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph });
 ---
 
