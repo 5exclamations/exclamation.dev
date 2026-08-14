@@ -583,9 +583,33 @@ hreflang и переключатель языка. **Ноль входящих �
 | `4ebffe5` | x-default в sitemap ведёт на канонический URL |
 | `0b0d1b9` | `WebSite` и `Service` в графе, `areaServed` с Баку |
 | `baccb84` | Страницы онлайн-магазина перестали быть сиротами |
+| `8ec2c49` | `Cache-Control` убран из секции `/*` — Pages его дописывал, а не заменял |
+| `860f53d` | Этот файл |
+
+`8ec2c49` — исправление регрессии, которую внёс `6944da4`: перенеся
+`Cache-Control` в общую секцию, я получил у `/fonts/*` два `max-age` в одном
+заголовке. Cloudflare Pages для более узкой секции **дописывает** заголовок, а
+не заменяет. Правило для HTML убрано совсем: Pages и так отдаёт ровно
+`public, max-age=0, must-revalidate` для HTML без всяких правил — именно это
+прод и возвращал всё время, пока `_headers` игнорировался целиком.
+
+**Финальная проверка на `wrangler pages dev`, все правки вместе:**
+
+```
+HTML          Cache-Control: public, max-age=0, must-revalidate
+              + CSP, HSTS, Permissions-Policy, COOP, X-Frame-Options (5 из 5)
+/_astro/*     Cache-Control: public, max-age=31536000, immutable
+/fonts/*      Cache-Control: public, max-age=31536000, immutable
+/og/*         Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+Host: www…            → 301, Location сохраняет путь
+Host: …pages.dev      → 200 + X-Robots-Tag: noindex, nofollow
+Host: exclamationdev… → 200, без X-Robots-Tag
+/nope-xyz/            → 404
+```
 
 Пересборка после всех правок: 45 страниц, ошибок нет. `scripts/links.mjs` —
-ноль битых ссылок. `scripts/schema-check.mjs` — чисто.
+47 страниц, 1888 ссылок, ноль битых. `scripts/schema-check.mjs` — 957 узлов,
+чисто. Футер снят на шести ширинах в обеих темах на трёх языках — чисто.
 
 ---
 
