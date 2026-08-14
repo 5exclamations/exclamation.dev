@@ -1,6 +1,7 @@
 ---
 import { channels } from '../data/contacts';
-import { serviceForCategory } from '../data/services';
+import { serviceForCategory, services } from '../data/services';
+import { serviceCopy } from '../i18n/services';
 import { faqPage } from '../i18n/faq';
 import { fill, localePath, locales, localeNames, type Dict, type Locale } from '../i18n';
 
@@ -17,22 +18,49 @@ const hrefFor = (l: Locale) => alternates?.[l] ?? localePath(l, path);
 const ft = dict.footer;
 
 /**
- * Six of the nine categories, the ones with a real page first.
+ * Six rows, real pages first.
  *
  * A category with a service page links to it; the rest keep the `#services`
  * anchor, which is all there is to point at until their page is written. The
  * ordering means new pages surface in the footer as they land rather than
  * needing this list edited by hand.
+ *
+ * The second list is the reason this is not just the nine categories. A
+ * service page does not have to correspond to one of the nine — the online
+ * store is an item inside the Web category, not a category of its own — and a
+ * page with no category was reaching this list through nothing at all. As
+ * shipped on 2026-08-14, `/xidmetler/onlayn-magaza/` and its two translations
+ * were linked from no page on the site: the only documents mentioning those
+ * URLs were the three e-commerce pages themselves, through their own hreflang
+ * and language switcher. The sitemap listed them and nothing else pointed at
+ * them, which is how a page that should rank for "интернет-магазин Баку" ends
+ * up with no internal weight at all.
+ *
+ * The row count does not change. There were five pages and one anchor-only
+ * category in the six slots; there are now six pages, and the anchor-only
+ * category falls off the end of the same `slice`.
  */
-const serviceLinks = dict.services.items
-  .map((cat, index) => {
-    const svc = serviceForCategory(index);
-    return {
-      title: cat.title,
-      href: svc ? localePath(locale, svc.slugs[locale]) : `${localePath(locale, '/')}#services`,
-      hasPage: Boolean(svc),
-    };
-  })
+const categoryLinks = dict.services.items.map((cat, index) => {
+  const svc = serviceForCategory(index);
+  return {
+    title: cat.title,
+    href: svc ? localePath(locale, svc.slugs[locale]) : `${localePath(locale, '/')}#services`,
+    hasPage: Boolean(svc),
+  };
+});
+
+/** service pages that answer to no category, named by their own copy */
+const uncategorisedLinks = services
+  .filter((svc) => svc.categoryIndex === undefined)
+  .map((svc) => ({
+    // `titleMuted` is the service noun that opens the page's H1, minus the
+    // dash it hands to the tagline — "Onlayn mağaza", "Интернет-магазин".
+    title: serviceCopy[svc.key][locale].titleMuted.replace(/\s*[—–-]\s*$/, '').trim(),
+    href: localePath(locale, svc.slugs[locale]),
+    hasPage: true,
+  }));
+
+const serviceLinks = [...categoryLinks, ...uncategorisedLinks]
   .sort((a, b) => Number(b.hasPage) - Number(a.hasPage))
   .slice(0, 6);
 ---

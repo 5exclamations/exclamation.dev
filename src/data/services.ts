@@ -59,8 +59,15 @@ export const services: ServiceRoute[] = [
       en: '/services/ecommerce-development',
     },
     // no categoryIndex on purpose: "online stores" is an item inside the Web
-    // category, not one of the nine, so this page gets no footer row. Decided
-    // 2026-08-03 — the page is reached from the web copy and the services menu.
+    // category, not one of the nine. Decided 2026-08-03, on the reasoning that
+    // the page was reached from the web copy and the services menu.
+    //
+    // It was not. Checked against the build on 2026-08-14: nothing on the site
+    // linked these three URLs except the e-commerce pages' own hreflang and
+    // language switcher, so all three were orphans that only the sitemap knew
+    // about. `Footer.astro` now gives every page a row whether or not it maps
+    // to one of the nine; keeping `categoryIndex` undefined still says the
+    // right thing about the taxonomy, which is all it was ever for.
   },
   {
     key: 'integrations',
