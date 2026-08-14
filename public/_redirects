@@ -14,10 +14,20 @@
 #
 # The redirects below are for the addresses that ARE sent to the server.
 
-# www to the bare domain. Cloudflare can also do this with a redirect rule in
-# the dashboard; keeping it in the repo means it moves with the code and is
-# reviewable. Both are fine, one is enough — see CLOUDFLARE-SETUP.md §6.
-https://www.exclamationdev.com/* https://exclamationdev.com/:splat 301!
+# WWW IS NOT HANDLED HERE — IT CANNOT BE.
+#
+# This file used to carry
+#
+#   https://www.exclamationdev.com/* https://exclamationdev.com/:splat 301!
+#
+# and that rule never fired. Cloudflare Pages matches `_redirects` sources on
+# the path alone; a source with a hostname in it matches no request at all. The
+# symptom was silent — `curl -I https://www.exclamationdev.com/` answered 200
+# with a full copy of the site rather than a redirect, checked 2026-08-14.
+#
+# The 301 lives in `functions/_middleware.ts` instead, which can see the Host
+# header. Same reasoning as the fragments above: if the server cannot match on
+# it, the rule does not belong in this file.
 
 # The legacy site's own files. They are still in the repository and still
 # served by GitHub Pages until the cutover; once Cloudflare is authoritative
