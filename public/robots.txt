@@ -1,5 +1,39 @@
 # EXCLAMATION — exclamationdev.com
 
+# THIS FILE IS NOT THE WHOLE FILE THE INTERNET SEES.
+# ------------------------------------------------------------------
+# Cloudflare's "managed robots.txt" is switched on for this zone, and it
+# prepends its own block ahead of everything below. As served on 2026-08-14
+# the injected block reads, in part:
+#
+#     User-agent: *
+#     Content-Signal: search=yes,ai-train=no,use=reference
+#     Allow: /
+#
+#     User-agent: GPTBot
+#     Disallow: /
+#     … the same for ClaudeBot, CCBot, Bytespider, Google-Extended,
+#       Applebot-Extended, Amazonbot, meta-externalagent, Amazonbot
+#
+# Two consequences, both measured rather than assumed:
+#
+#   1. Every AI crawler named there is disallowed before this file is read.
+#      For the ones we name below, a compliant parser merges the two groups
+#      and RFC 9309 §2.2.2 breaks the Allow/Disallow tie toward the least
+#      restrictive rule, so Allow should win — "should" being the operative
+#      word, because parsers that take the first matching group instead will
+#      read Disallow and stop. For CCBot and Bytespider there was no group
+#      here at all, so they were simply blocked. That is fixed below.
+#   2. `Content-Signal: ai-train=no` is an express reservation of rights
+#      under Article 4 of EU Directive 2019/790. It is a licence term, not a
+#      crawl directive, and nothing in this file overrides it.
+#
+# The only real fix is to switch the feature off in the Cloudflare dashboard —
+# Zone → AI Crawl Control / Managed robots.txt. Until that happens the groups
+# below are a best effort against an injected block, not a guarantee. Lighthouse
+# also scores the combined file invalid ("Unknown directive: Content-Signal",
+# line 30), which is Cloudflare's line, not ours.
+
 # Answer engines and AI crawlers are explicitly welcome. Each is named rather
 # than covered by the wildcard: several of these ignore `User-agent: *` for
 # training or retrieval decisions, so an explicit Allow is the only signal
@@ -22,10 +56,23 @@ Allow: /
 User-agent: Claude-SearchBot
 Allow: /
 
+User-agent: anthropic-ai
+Allow: /
+
 User-agent: PerplexityBot
 Allow: /
 
 User-agent: Perplexity-User
+Allow: /
+
+# CCBot and Bytespider are the two the injected block disallowed with nothing
+# here to answer it. Common Crawl is the corpus a large share of model
+# pretraining and of third-party SEO tooling reads from, so being absent from
+# it is being absent from far more than one crawler's index.
+User-agent: CCBot
+Allow: /
+
+User-agent: Bytespider
 Allow: /
 
 User-agent: Google-Extended
