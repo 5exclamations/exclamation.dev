@@ -31,7 +31,13 @@ export const GET: APIRoute = () => {
           (l) =>
             `    <xhtml:link rel="alternate" hreflang="${l}" href="${SITE}${localePath(l, path)}"/>`
         ),
-        `    <xhtml:link rel="alternate" hreflang="x-default" href="${SITE}${path}"/>`,
+        // x-default points at the Azerbaijani version, and it has to be the
+        // same URL the az hreflang gives — `localePath`, not the raw path.
+        // Using `path` here emitted `/faq` and `/is/fleks` while `<loc>` and
+        // the HTML `<link>` both said `/faq/` and `/is/fleks/`; Cloudflare 308s
+        // the slashless form, and an hreflang pointing at a redirect is one
+        // Google drops rather than follows. 21 of the 42 URLs were affected.
+        `    <xhtml:link rel="alternate" hreflang="x-default" href="${SITE}${localePath('az', path)}"/>`,
       ].join('\n');
 
       return [
