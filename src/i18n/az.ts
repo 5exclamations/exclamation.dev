@@ -4,7 +4,7 @@ export default {
   meta: {
     title: 'Sayt, CRM və mobil tətbiq, Bakı — EXCLAMATION',
     description:
-      'Sayt, CRM, ERP, mobil tətbiq və AI həlləri. MVP 7–14 gün, 2 həftəlik sprint, 3 ay zəmanət. Bakıda tam dövrlü komanda: brifdən relizə və dəstəyə qədər.',
+      'Sayt hazırlanması, CRM, ERP, mobil tətbiq və AI həlləri. MVP 7–14 gün, 2 həftəlik sprint, 3 ay zəmanət. Bakıda tam dövrlü komanda: brifdən relizə qədər.',
   },
   nav: {
     services: 'Xidmətlər',

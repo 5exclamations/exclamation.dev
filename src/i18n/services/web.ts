@@ -21,7 +21,7 @@ export const web: Record<Locale, ServiceCopy> = {
     eyebrow: 'Xidmət',
     titleMuted: 'Veb sayt hazırlanması —',
     titleMain: 'sürətli, çoxdilli, sizin.',
-    lead: 'Sayt — şirkətin ilk və ən ucuz satıcısıdır: gecə-gündüz işləyir və hər ziyarətçiyə eyni şeyi düzgün danışır. Landing üçün tipik müddət 3–5 gün, korporativ sayt üçün 1–2 həftə, kataloq və çoxdilli portal üçün 3–5 həftə. Brifdən sonra 3–5 gün ərzində struktur, mərhələlər və dəqiq smeta veririk — bu mərhələ ödənişsizdir.',
+    lead: 'Sayt — şirkətin ilk və ən ucuz satıcısıdır: gecə-gündüz işləyir və hər ziyarətçiyə eyni şeyi düzgün danışır. Sayt hazırlanması üçün tipik müddət: landing 3–5 gün, korporativ sayt 1–2 həftə, kataloq və çoxdilli portal 3–5 həftə. Brifdən sonra 3–5 gün ərzində struktur, mərhələlər və dəqiq smeta veririk — bu mərhələ ödənişsizdir.',
     facts: [
       { label: 'Landing', value: '3–5 gün' },
       { label: 'Korporativ sayt', value: '1–2 həftə' },
@@ -175,7 +175,7 @@ export const web: Record<Locale, ServiceCopy> = {
     },
     cta: {
       title: 'Saytınızdan danışaq',
-      text: 'Qısa brif kifayətdir: nə satırsınız, kimə, indi hansı sayt var. 3–5 gün ərzində struktur və smeta ilə qayıdırıq.',
+      text: 'Veb sayt sifarişi üçün qısa brif kifayətdir: nə satırsınız, kimə, indi hansı sayt var. 3–5 gün ərzində struktur və smeta ilə qayıdırıq.',
       subject: 'Brief — Veb sayt (az)',
     },
   },
@@ -202,7 +202,7 @@ export const web: Record<Locale, ServiceCopy> = {
       'Собранный статически сайт отдаётся с CDN, картинки конвертируются в avif и webp автоматически, шрифты лежат на своём домене — страница открывается меньше чем за секунду.',
       'Многоязычность конструкторы делают криво: один адрес, переключение текста на лету, поисковик видит одну страницу вместо трёх. В Баку она нужна почти всегда. Мы разносим языки по отдельным маршрутам с собственными адресами, мета-описаниями и разметкой `hreflang` — три языка индексируются отдельно, каждый находится по своему запросу.',
       'И вы владеете результатом.',
-      'Репозиторий в вашем аккаунте, домен на вас, абонплаты за конструктор нет. Захотите через два года передать сайт другой команде — передаёте код и документацию, а не логин от чужой платформы.',
+      'Репозиторий в вашем аккаунте, домен на вас, абонплаты за конструктор нет. Захотите через два года передать сайт другой веб-студии — передаёте код и документацию, а не логин от чужой платформы.',
     ],
     scope: {
       title: 'Что входит в работу',
@@ -236,7 +236,7 @@ export const web: Record<Locale, ServiceCopy> = {
       ],
     },
     pricing: {
-      title: 'От чего зависит цена',
+      title: 'От чего зависит цена создания сайта',
       lead: 'Прайс-листа не даём: словом «сайт» называют и визитку на пять страниц, и каталог на тысячу позиций. Смету двигает вот что.',
       drivers: [
         'Количество страниц и сколько из них требуют уникального макета',
@@ -313,7 +313,7 @@ export const web: Record<Locale, ServiceCopy> = {
           text: 'Иногда вместо редизайна достаточно починить скорость, тексты и мобильную версию. Проведём аудит и скажем прямо — это дешевле полной переделки.',
         },
       ],
-      close: 'Узнали себя — всё равно напишите. Аудит и рекомендацию дадим бесплатно; иногда вывод звучит как «переделывать сайт не нужно».',
+      close: 'Узнали себя — всё равно напишите. Аудит и рекомендацию дадим бесплатно; иногда вывод звучит как «переделывать сайт не нужно». Веб-студия, которая отговаривает от лишней работы, в итоге обходится дешевле той, которая берётся за всё.',
     },
     cases: { title: 'Кейсы по направлению', slugs: ['smart-fashion', 'merkuri'] },
     faq: {
@@ -343,7 +343,7 @@ export const web: Record<Locale, ServiceCopy> = {
     },
     cta: {
       title: 'Расскажите про сайт',
-      text: 'Хватит короткого брифа: что продаёте, кому, что за сайт сейчас. За 3–5 дней вернёмся со структурой и сметой.',
+      text: 'Чтобы заказать сайт, хватит короткого брифа: что продаёте, кому, что за сайт сейчас. За 3–5 дней вернёмся со структурой и сметой.',
       subject: 'Бриф — Сайт (ru)',
     },
   },
