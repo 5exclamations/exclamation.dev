@@ -1,0 +1,428 @@
+---
+import Icon from './Icon.astro';
+import BriefForm from './BriefForm.astro';
+import { localePath, type Dict, type Locale } from '../i18n';
+import { serviceByKey } from '../data/services';
+import type { GuideCopy } from '../i18n/guides';
+import { guideUi } from '../i18n/guides';
+
+interface Props {
+  locale: Locale;
+  dict: Dict;
+  copy: GuideCopy;
+  serviceKey: string;
+}
+
+const { locale, dict, copy, serviceKey } = Astro.props;
+const service = serviceByKey(serviceKey);
+const serviceHref = localePath(locale, service.slugs[locale]);
+const dateLocale = locale === 'az' ? 'az-AZ' : locale === 'ru' ? 'ru-RU' : 'en-GB';
+const updated = new Intl.DateTimeFormat(dateLocale, {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+}).format(new Date(`${copy.modified}T00:00:00Z`));
+---
+
+<article class="guide">
+  <header class="guide-head">
+    <div class="shell">
+      <div class="guide-head-in">
+        <p class="mono">{copy.eyebrow}</p>
+        <h1 class="guide-title">
+          <span class="muted">{copy.titleMuted}</span> {copy.titleMain}
+        </h1>
+        <p class="guide-lead">{copy.lead}</p>
+        <dl class="guide-facts">
+          {copy.facts.map((fact) => (
+            <div class="guide-fact">
+              <dt class="mono">{fact.label}</dt>
+              <dd class="num">{fact.value}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </div>
+  </header>
+
+  <div class="shell">
+    <nav class="guide-toc" aria-labelledby="guide-toc-title">
+      <h2 id="guide-toc-title" class="mono">{copy.contentsTitle}</h2>
+      <ol>
+        {copy.sections.map((section, index) => (
+          <li>
+            <a href={`#${section.id}`}>
+              <span class="mono" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+              <span>{section.title}</span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </nav>
+
+    {copy.sections.map((section, sectionIndex) => (
+      <section class="guide-section" id={section.id} aria-labelledby={`${section.id}-title`}>
+        <div class="guide-section-head" data-reveal>
+          <span class="mono guide-section-n" aria-hidden="true">
+            {String(sectionIndex + 1).padStart(2, '0')}
+          </span>
+          <h2 id={`${section.id}-title`} class="guide-h2">{section.title}</h2>
+        </div>
+
+        {section.lead && <p class="guide-section-lead" data-reveal>{section.lead}</p>}
+
+        {section.paragraphs && (
+          <div class="guide-prose">
+            {section.paragraphs.map((paragraph) => <p data-reveal>{paragraph}</p>)}
+          </div>
+        )}
+
+        {section.points && (
+          <dl class="guide-points">
+            {section.points.map((point) => (
+              <div data-reveal>
+                <dt>{point.title}</dt>
+                <dd>{point.text}</dd>
+              </div>
+            ))}
+          </dl>
+        )}
+
+        {section.table && (
+          <div class="guide-table-wrap" data-reveal tabindex="0">
+            <table>
+              <caption>{section.table.caption}</caption>
+              <thead>
+                <tr>{section.table.headers.map((header) => <th scope="col">{header}</th>)}</tr>
+              </thead>
+              <tbody>
+                {section.table.rows.map((row) => (
+                  <tr>{row.map((cell, index) => index === 0 ? <th scope="row">{cell}</th> : <td>{cell}</td>)}</tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </section>
+    ))}
+
+    <aside class="guide-service" data-reveal>
+      <a href={serviceHref}>
+        <span>{copy.serviceLink}</span>
+        <Icon name="arrow-right" size={19} />
+      </a>
+    </aside>
+
+    <section class="guide-faq" aria-labelledby="guide-faq-title">
+      <h2 id="guide-faq-title" class="guide-h2" data-reveal>{copy.faq.title}</h2>
+      <div class="guide-faq-list">
+        {copy.faq.items.map((item) => (
+          <details class="guide-faq-item" name="guide-faq" data-reveal>
+            <summary>
+              <span>{item.q}</span>
+              <Icon name="plus" size={20} class="guide-faq-mark" />
+            </summary>
+            <div><p>{item.a}</p></div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <section class="guide-form" id="brief" aria-labelledby="guide-form-title">
+      <div class="guide-form-grid">
+        <div>
+          <h2 id="guide-form-title" class="guide-h2" data-reveal>{copy.cta.title}</h2>
+          <p class="guide-form-note" data-reveal>{copy.cta.text}</p>
+          <p class="mono guide-updated">
+            {guideUi[locale].updated}: <time datetime={copy.modified}>{updated}</time>
+          </p>
+        </div>
+        <BriefForm copy={dict.contact.form} formId="guide-brief" subject={copy.cta.subject} />
+      </div>
+    </section>
+  </div>
+</article>
+
+<style>
+  .guide {
+    position: relative;
+    z-index: 1;
+  }
+  .guide-head-in,
+  .guide-toc,
+  .guide-section,
+  .guide-service,
+  .guide-faq,
+  .guide-form {
+    padding-left: var(--rail);
+  }
+  .guide-head-in {
+    padding-block: var(--sp-section);
+  }
+  .guide-title {
+    margin: 1rem 0 clamp(1.5rem, 3vw, 2rem);
+    font-size: var(--fs-700);
+    font-weight: 300;
+    max-width: 20ch;
+  }
+  .guide-title .muted {
+    display: block;
+    color: var(--fg-muted);
+  }
+  .guide-lead {
+    font-size: var(--fs-400);
+    line-height: 1.55;
+    max-width: 62ch;
+  }
+  .guide-facts {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--sp-block) clamp(1rem, 3vw, 2.5rem);
+    margin-top: var(--sp-section);
+    padding-top: var(--sp-block);
+    border-top: 1px solid var(--line);
+  }
+  @media (min-width: 560px) {
+    .guide-facts {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  .guide-fact dt {
+    color: var(--fg-muted);
+    margin-bottom: 0.5rem;
+  }
+  .guide-fact dd {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--fs-500);
+    font-weight: 300;
+    line-height: 1.1;
+  }
+  .guide-toc,
+  .guide-section,
+  .guide-service,
+  .guide-faq,
+  .guide-form {
+    padding-block: var(--sp-chapter);
+    border-top: 1px solid var(--line);
+  }
+  .guide-toc h2 {
+    color: var(--fg-muted);
+    margin-bottom: var(--sp-block);
+  }
+  .guide-toc ol {
+    max-width: 58rem;
+  }
+  .guide-toc li {
+    border-top: 1px solid var(--line);
+  }
+  .guide-toc li:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+  .guide-toc a {
+    display: grid;
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+    gap: 1rem;
+    padding-block: 1rem;
+    color: inherit;
+    text-decoration: none;
+  }
+  .guide-toc a .mono {
+    color: var(--fg-muted);
+  }
+  @media (hover: hover) {
+    .guide-toc a:hover {
+      color: var(--accent);
+    }
+  }
+  .guide-section-head {
+    display: grid;
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+    gap: 1rem;
+    align-items: baseline;
+    margin-bottom: var(--sp-block);
+  }
+  .guide-section-n {
+    color: var(--fg-muted);
+  }
+  .guide-h2 {
+    font-size: var(--fs-600);
+    font-weight: 300;
+    max-width: 24ch;
+  }
+  .guide-section-lead,
+  .guide-prose {
+    max-width: 62ch;
+    margin-left: clamp(0rem, 4vw, 3.5rem);
+  }
+  .guide-section-lead {
+    font-size: var(--fs-400);
+    line-height: 1.55;
+    margin-bottom: var(--sp-block);
+  }
+  .guide-prose p {
+    font-size: var(--fs-300);
+    line-height: 1.68;
+  }
+  .guide-prose p + p {
+    margin-top: 1.25em;
+  }
+  .guide-points {
+    margin-top: var(--sp-block);
+    max-width: 62rem;
+  }
+  .guide-points > div {
+    display: grid;
+    grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+    gap: clamp(1rem, 4vw, 3.5rem);
+    padding-block: clamp(1rem, 2.4vw, 1.5rem);
+    border-top: 1px solid var(--line);
+  }
+  .guide-points > div:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+  .guide-points dt {
+    font-family: var(--font-display);
+    font-size: var(--fs-400);
+    line-height: 1.35;
+  }
+  .guide-points dd {
+    color: var(--fg-muted);
+    line-height: 1.6;
+  }
+  .guide-table-wrap {
+    margin-top: var(--sp-block);
+    max-width: 68rem;
+    overflow-x: auto;
+    border-block: 1px solid var(--line);
+  }
+  .guide-table-wrap:focus-visible {
+    outline-offset: 4px;
+  }
+  .guide-table-wrap table {
+    width: 100%;
+    min-width: 42rem;
+    border-collapse: collapse;
+    font-size: var(--fs-200);
+    line-height: 1.5;
+  }
+  .guide-table-wrap caption {
+    text-align: left;
+    font-family: var(--font-mono);
+    color: var(--fg-muted);
+    padding-block: 1rem;
+  }
+  .guide-table-wrap th,
+  .guide-table-wrap td {
+    text-align: left;
+    vertical-align: top;
+    padding: 1rem;
+    border-top: 1px solid var(--line);
+  }
+  .guide-table-wrap thead th {
+    font-family: var(--font-mono);
+    color: var(--fg-muted);
+    font-weight: 400;
+  }
+  .guide-table-wrap tbody th {
+    font-family: var(--font-display);
+    font-size: var(--fs-300);
+    font-weight: 400;
+  }
+  .guide-service {
+    padding-block: var(--sp-section);
+  }
+  .guide-service a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    max-width: 50rem;
+    color: inherit;
+    font-family: var(--font-display);
+    font-size: var(--fs-500);
+    text-decoration: underline;
+    text-decoration-color: var(--line-strong);
+    text-underline-offset: 0.22em;
+  }
+  .guide-faq-list {
+    max-width: 56rem;
+    margin-top: var(--sp-block);
+  }
+  .guide-faq-item {
+    border-top: 1px solid var(--line);
+  }
+  .guide-faq-item:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+  .guide-faq-item summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding-block: clamp(1rem, 2.2vw, 1.375rem);
+    cursor: pointer;
+    list-style: none;
+    font-family: var(--font-display);
+    font-size: var(--fs-400);
+    line-height: 1.3;
+  }
+  .guide-faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+  .guide-faq-item summary:focus-visible {
+    outline-offset: -2px;
+  }
+  .guide-faq-item > div {
+    padding: 0 2.75rem clamp(1rem, 2.2vw, 1.5rem) 0;
+  }
+  .guide-faq-item p {
+    max-width: 62ch;
+    color: var(--fg-muted);
+  }
+  .guide-faq-mark {
+    flex: none;
+    color: var(--fg-muted);
+    transition: transform 180ms var(--ease), color 140ms var(--ease);
+  }
+  .guide-faq-item[open] .guide-faq-mark {
+    transform: rotate(45deg);
+    color: var(--fg);
+  }
+  .guide-form-grid {
+    display: grid;
+    gap: var(--sp-section) clamp(1.5rem, 4vw, 3.5rem);
+  }
+  .guide-form-note {
+    max-width: 42ch;
+    margin-top: 1rem;
+    color: var(--fg-muted);
+    line-height: 1.6;
+  }
+  .guide-updated {
+    margin-top: var(--sp-block);
+    color: var(--fg-muted);
+  }
+  @media (min-width: 900px) {
+    .guide-form-grid {
+      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    }
+  }
+  @media (max-width: 559px) {
+    .guide-points > div {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0.5rem;
+    }
+  }
+  @media (hover: hover) {
+    .guide-service a:hover {
+      color: var(--accent);
+      text-decoration-color: var(--accent);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .guide-faq-mark {
+      transition: none;
+    }
+  }
+</style>

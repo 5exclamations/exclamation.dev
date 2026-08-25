@@ -24,6 +24,18 @@ Each carries the whole offer on one page: services, process, work, technology, f
 
 The reasoning is spelled out on the FAQ page: [Why is there no price list?](https://exclamationdev.com/en/faq/)
 
+## Cost and selection guides
+
+These pages answer commercial research questions without publishing a false fixed price. Each explains scope, delivery time, quote drivers and what a buyer should include in a brief.
+
+- [Website development cost in Baku](https://exclamationdev.com/en/blog/website-development-cost-baku/)
+- [CRM system cost in Azerbaijan](https://exclamationdev.com/en/blog/crm-system-cost-azerbaijan/)
+- [Bitrix24, amoCRM or custom CRM](https://exclamationdev.com/en/blog/bitrix24-amocrm-or-custom-crm/)
+- [Mobile app development cost](https://exclamationdev.com/en/blog/mobile-app-development-cost/)
+- [E-commerce development cost](https://exclamationdev.com/en/blog/ecommerce-development-cost/)
+
+All five guides also have Azerbaijani and Russian versions connected with canonical and hreflang metadata.
+
 ## Services and typical timelines
 
 Timelines below are the ones stated on each service page, not sales estimates.

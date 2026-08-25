@@ -12,6 +12,8 @@ import { integrations } from '../../i18n/services/integrations';
 import { botsAi } from '../../i18n/services/bots-ai';
 import { services } from '../../data/services';
 import { faqPage } from '../../i18n/faq';
+import { guides } from '../../data/guides';
+import { guideCopy } from '../../i18n/guides';
 
 /** service key -> its copy, so a new service page gets a card by adding one line */
 const serviceCopy: Record<string, typeof crmErp> = { 'crm-erp': crmErp, web, mobile, ecommerce, integrations, 'bots-ai': botsAi };
@@ -204,9 +206,8 @@ function card(c: Card, locale: Locale) {
 }
 
 /**
- * One card per page that has a URL worth sharing: the three home pages, the
- * eighteen case pages, and a generic per-locale card the error page uses (and
- * that service pages can take over when they exist).
+ * One card per page that has a URL worth sharing: home, FAQ, services, guides
+ * and case studies, plus a generic per-locale card the error page can use.
  */
 export const getStaticPaths = () => {
   const paths: { params: { key: string }; props: { locale: Locale; card: Card } }[] = [];
@@ -261,6 +262,23 @@ export const getStaticPaths = () => {
       if (!copy) continue;
       paths.push({
         params: { key: `service-${svc.key}-${locale}` },
+        props: {
+          locale,
+          card: {
+            eyebrow: copy.eyebrow,
+            muted: copy.titleMuted,
+            title: copy.titleMain,
+            note: copy.facts.map((f) => `${f.label}: ${f.value}`).slice(0, 2).join('  ·  '),
+            foot: 'exclamationdev.com',
+          },
+        },
+      });
+    }
+
+    for (const guide of guides) {
+      const copy = guideCopy[locale][guide.key];
+      paths.push({
+        params: { key: `guide-${guide.key}-${locale}` },
         props: {
           locale,
           card: {

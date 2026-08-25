@@ -1,6 +1,7 @@
 import type { APIRoute } from 'astro';
 import { locales, localePath, t } from '../i18n';
 import { allServicePaths } from '../data/services';
+import { allGuidePaths } from '../data/guides';
 
 /**
  * Built from the same route list the pages are built from, so a page cannot
@@ -10,6 +11,8 @@ import { allServicePaths } from '../data/services';
  * x-default, and every locale's variant of one page carries the identical
  * alternates block — that is what tells a crawler the three are one document
  * in three languages rather than three competing pages.
+ *
+ * Service and guide routes use their own localised slug tables.
  *
  * Deliberately absent: the 404 routes (noindex, and an error page in a
  * sitemap is a crawl instruction to index an error), and the OG image
@@ -73,7 +76,25 @@ export const GET: APIRoute = () => {
     })
   );
 
-  const urls = [...sharedUrls, ...serviceUrls];
+  const guideUrls = allGuidePaths().flatMap(({ paths: alt }) =>
+    locales.map((locale) => {
+      const alternates = [
+        ...locales.map(
+          (l) => `    <xhtml:link rel="alternate" hreflang="${l}" href="${SITE}${alt[l]}"/>`
+        ),
+        `    <xhtml:link rel="alternate" hreflang="x-default" href="${SITE}${alt.az}"/>`,
+      ].join('\n');
+      return [
+        '  <url>',
+        `    <loc>${SITE}${alt[locale]}</loc>`,
+        alternates,
+        '    <priority>0.85</priority>',
+        '  </url>',
+      ].join('\n');
+    })
+  );
+
+  const urls = [...sharedUrls, ...serviceUrls, ...guideUrls];
 
   const xml = [
     '<?xml version="1.0" encoding="UTF-8"?>',
