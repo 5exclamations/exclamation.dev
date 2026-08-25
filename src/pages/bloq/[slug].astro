@@ -1,0 +1,33 @@
+---
+import Base from '../../layouts/Base.astro';
+import GuidePage from '../../components/GuidePage.astro';
+import { guides, guideAlternates } from '../../data/guides';
+import { guideCopy } from '../../i18n/guides';
+import { t } from '../../i18n';
+
+const locale = 'az' as const;
+
+export function getStaticPaths() {
+  return guides.map((guide) => ({
+    params: { slug: guide.slugs.az.split('/').pop()! },
+    props: { guideKey: guide.key, serviceKey: guide.serviceKeys[0] },
+  }));
+}
+
+const { guideKey, serviceKey } = Astro.props;
+const dict = t(locale);
+const copy = guideCopy[locale][guideKey];
+---
+
+<Base
+  locale={locale}
+  dict={dict}
+  meta={copy.meta}
+  ogKey={`guide-${guideKey}`}
+  schemaKind="guide"
+  faq={copy.faq.items}
+  alternates={guideAlternates(guideKey)}
+  article={{ published: copy.published, modified: copy.modified }}
+>
+  <GuidePage locale={locale} dict={dict} copy={copy} serviceKey={serviceKey} />
+</Base>

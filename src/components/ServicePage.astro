@@ -6,6 +6,8 @@ import CaseChat from './CaseChat.astro';
 import { mediaFor } from '../data/cases';
 import { localePath, type Dict, type Locale } from '../i18n';
 import type { ServiceCopy } from '../i18n/services/types';
+import { guidesForService, guideAlternates } from '../data/guides';
+import { guideCopy, guideUi } from '../i18n/guides';
 
 /**
  * The skeleton every service page is built on.
@@ -24,8 +26,18 @@ interface Props {
   locale: Locale;
   dict: Dict;
   copy: ServiceCopy;
+  /** route key, used to attach the relevant search guides */
+  serviceKey?: string;
 }
-const { locale, dict, copy } = Astro.props;
+const { locale, dict, copy, serviceKey } = Astro.props;
+
+const relatedGuides = serviceKey
+  ? guidesForService(serviceKey).map((guide) => ({
+      key: guide.key,
+      href: guideAlternates(guide.key)[locale],
+      copy: guideCopy[locale][guide.key],
+    }))
+  : [];
 
 const cases = copy.cases.slugs
   .map((slug) => {
@@ -105,6 +117,27 @@ const cases = copy.cases.slugs
       </ol>
       <p class="svc-price-note" data-reveal>{copy.pricing.note}</p>
     </section>
+
+    {relatedGuides.length > 0 && (
+      <aside class="svc-guides" aria-labelledby="svc-guides-title">
+        <h2 id="svc-guides-title" class="svc-h2" data-reveal>{guideUi[locale].relatedTitle}</h2>
+        <ul>
+          {relatedGuides.map((guide) => (
+            <li data-reveal>
+              <a href={guide.href}>
+                <span>
+                  <strong>{guide.copy.meta.title}</strong>
+                  <small>{guide.copy.meta.description}</small>
+                </span>
+                <span class="mono svc-guide-action">
+                  {guideUi[locale].read}<Icon name="arrow-right" size={17} />
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </aside>
+    )}
 
     <section class="svc-stack" aria-labelledby="svc-stack-title">
       <h2 id="svc-stack-title" class="svc-h2" data-reveal>{copy.stack.title}</h2>
@@ -306,6 +339,7 @@ const cases = copy.cases.slugs
   /* ---- scope: two columns of hairline rows ---- */
   .svc-scope,
   .svc-price,
+  .svc-guides,
   .svc-stack,
   .svc-steps,
   .svc-not,
@@ -315,6 +349,58 @@ const cases = copy.cases.slugs
     padding-left: var(--rail);
     padding-block: var(--sp-chapter);
     border-top: 1px solid var(--line);
+  }
+
+  /* ---- guides: search-intent answers connected to the service ---- */
+  .svc-guides ul {
+    max-width: 62rem;
+  }
+  .svc-guides li {
+    border-top: 1px solid var(--line);
+  }
+  .svc-guides li:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+  .svc-guides a {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: clamp(1rem, 4vw, 3.5rem);
+    padding-block: clamp(1rem, 2.4vw, 1.5rem);
+    color: inherit;
+    text-decoration: none;
+  }
+  .svc-guides strong {
+    display: block;
+    font-family: var(--font-display);
+    font-size: var(--fs-400);
+    font-weight: 400;
+    line-height: 1.35;
+  }
+  .svc-guides small {
+    display: block;
+    max-width: 62ch;
+    margin-top: 0.5rem;
+    color: var(--fg-muted);
+    font-size: var(--fs-200);
+    line-height: 1.55;
+  }
+  .svc-guide-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--fg-muted);
+  }
+  @media (hover: hover) {
+    .svc-guides a:hover strong,
+    .svc-guides a:hover .svc-guide-action {
+      color: var(--accent);
+    }
+  }
+  @media (max-width: 559px) {
+    .svc-guides a {
+      grid-template-columns: minmax(0, 1fr);
+    }
   }
 
   .svc-scope-grid {

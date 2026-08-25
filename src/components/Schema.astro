@@ -19,7 +19,7 @@ interface Props {
   path: string;
   /** true when `path` is already the full per-locale path */
   absolute?: boolean;
-  kind: 'home' | 'case' | 'service' | 'other';
+  kind: 'home' | 'case' | 'service' | 'guide' | 'other';
   /**
    * Questions to publish as FAQPage. Passed in rather than read from the
    * dictionary, because service pages carry their own FAQ — and whatever is
@@ -29,6 +29,10 @@ interface Props {
   faq?: { q: string; a: string }[];
   /** page title, for the breadcrumb leaf */
   title: string;
+  /** page description, reused verbatim by Article */
+  description: string;
+  /** publication dates for a guide; omitted for other page kinds */
+  article?: { published: string; modified: string };
   /**
    * The OG key, which for a service page is `service-<key>` and is the only
    * thing on a service route that says *which* service this is. Used to look
@@ -36,7 +40,7 @@ interface Props {
    */
   ogKey?: string;
 }
-const { locale, dict, path, kind, title, absolute = false, faq, ogKey } = Astro.props;
+const { locale, dict, path, kind, title, description, article, absolute = false, faq, ogKey } = Astro.props;
 
 const SITE = 'https://exclamationdev.com';
 const url = `${SITE}${absolute ? path : localePath(locale, path)}`;
@@ -203,7 +207,26 @@ const breadcrumb =
         ],
       };
 
-const graph = [organization, website, service, serviceOffered, faqPage, breadcrumb].filter(Boolean);
+const articleNode =
+  kind === 'guide' && article
+    ? {
+        '@type': 'Article',
+        '@id': `${url}#article`,
+        headline: title,
+        description,
+        url,
+        mainEntityOfPage: { '@id': url },
+        inLanguage: locale,
+        datePublished: article.published,
+        dateModified: article.modified,
+        image: `${SITE}/og/${ogKey}-${locale}.png`,
+        author: { '@id': ORG_ID },
+        publisher: { '@id': ORG_ID },
+        isPartOf: { '@id': `${SITE}/#website` },
+      }
+    : null;
+
+const graph = [organization, website, service, serviceOffered, articleNode, faqPage, breadcrumb].filter(Boolean);
 const json = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph });
 ---
 

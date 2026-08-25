@@ -21,9 +21,11 @@ interface Props {
    */
   ogKey?: string;
   /** which structured-data shape this route is */
-  schemaKind?: 'home' | 'case' | 'service' | 'other';
+  schemaKind?: 'home' | 'case' | 'service' | 'guide' | 'other';
   /** questions to publish as FAQPage; must match what the page renders */
   faq?: { q: string; a: string }[];
+  /** publication dates for search guides and their Article node */
+  article?: { published: string; modified: string };
   /**
    * Explicit per-locale paths, for routes whose slug differs by language
    * (the service pages). Without this the alternates are derived by stripping
@@ -40,6 +42,7 @@ const {
   schemaKind = 'other',
   alternates,
   faq,
+  article,
 } = Astro.props;
 const head = meta ?? dict.meta;
 const subset = localeSubset[locale];
@@ -110,7 +113,7 @@ const selfPath = hrefFor(locale);
       <link rel="preload" as="font" type="font/woff2" href={href} crossorigin />
     ))}
 
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={schemaKind === 'guide' ? 'article' : 'website'} />
     <meta property="og:title" content={head.title} />
     <meta property="og:description" content={head.description} />
     <meta property="og:locale" content={locale} />
@@ -128,8 +131,10 @@ const selfPath = hrefFor(locale);
         path={selfPath}
         kind={schemaKind}
         title={head.title}
+        description={head.description}
         faq={faq}
         ogKey={ogKey}
+        article={article}
         absolute
       />
     )}

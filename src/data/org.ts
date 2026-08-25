@@ -25,6 +25,7 @@ export const FOUNDING_LOCATION = 'Baku, Azerbaijan';
 export const SAME_AS: string[] = [
   'https://github.com/5exclamations',
   'https://t.me/exclamationdev',
+  'https://www.instagram.com/exclamation.dev/',
   // 'https://www.linkedin.com/company/...',  <- needs the real URL
 ].filter(Boolean);
 
