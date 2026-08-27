@@ -14,7 +14,7 @@ export interface Channel {
 export const EMAIL = 'info@exclamationdev.com';
 
 export const channels: Channel[] = [
-  { key: 'phone', href: 'tel:+994706565909', value: '+994 70 656 59 09' },
+  { key: 'phone', href: 'tel:+994702054171', value: '+994 70 205 41 71' },
   { key: 'email', href: `mailto:${EMAIL}`, value: EMAIL },
   { key: 'telegram', href: 'https://t.me/exclamationdev', value: '@exclamationdev', external: true },
   { key: 'whatsapp', href: 'https://wa.me/994702054171', value: '+994 70 205 41 71', external: true },
