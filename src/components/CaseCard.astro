@@ -1,0 +1,174 @@
+---
+import { Picture } from 'astro:assets';
+import Icon from './Icon.astro';
+import CaseChat from './CaseChat.astro';
+import { localePath, type Dict, type Locale } from '../i18n';
+import { mediaFor } from '../data/cases';
+
+/**
+ * One case, as a link: screenshot, name, domain, one number. Nothing else —
+ * the image does the talking, and a description under every card turns the
+ * grid into a wall of prose nobody reads.
+ *
+ * Extracted from `Work.astro` on 2026-08-27, when `/is/` became a second
+ * place these cards are rendered. Two copies of the affordance rules below
+ * would have drifted the first time one of them was touched.
+ *
+ * Two variants, one set of styles: `lead` is the single wide card that opens
+ * the landing section, `card` is the grid cell. They differ in the frame's
+ * aspect ratio and in how many pixels the image is asked for; everything
+ * below the frame is identical and stays that way.
+ */
+interface Props {
+  locale: Locale;
+  dict: Dict;
+  slug: string;
+  variant?: 'lead' | 'card';
+}
+const { locale, dict, slug, variant = 'card' } = Astro.props;
+
+const item = dict.cases.find((c) => c.slug === slug)!;
+const media = mediaFor(slug);
+const lead = variant === 'lead';
+---
+
+<a
+  class:list={['case-link', lead ? 'is-lead' : 'is-card']}
+  href={localePath(locale, `/is/${slug}`)}
+>
+  <span class:list={['frame', `fit-${media.fit}`, lead && 'frame-lead']}>
+    {media.shots.length ? (
+      <Picture
+        src={media.shots[0].img}
+        alt={item.alts[0]}
+        widths={lead ? [640, 960, 1280] : [320, 480, 720]}
+        sizes={
+          lead
+            ? '(min-width: 1240px) 1060px, 92vw'
+            : '(min-width: 1024px) 380px, (min-width: 640px) 46vw, 100vw'
+        }
+        formats={['avif', 'webp']}
+        fallbackFormat="webp"
+        loading="lazy"
+        decoding="async"
+      />
+    ) : (
+      /* `ai-assistent` ships no screenshot and draws the chat mockup instead;
+         any new component rendering case media has to handle the empty array */
+      <CaseChat dict={dict} compact />
+    )}
+  </span>
+  <span class="case-meta">
+    <span class="case-name"
+      >{item.short}<span class="case-arrow"><Icon name="arrow-right" size={16} /></span></span
+    >
+    <span class="case-domain mono">{item.domain}</span>
+    <span class="case-metric num">{item.results[media.headline].value}</span>
+  </span>
+</a>
+
+<style>
+  .case-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  /* images do the talking: name, domain, one number, nothing else */
+  .frame {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    background: var(--bg-raised);
+    border: 1px solid var(--line);
+    aspect-ratio: 4 / 3;
+  }
+  .frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
+  .frame.fit-contain img {
+    object-fit: contain;
+    object-position: center top;
+  }
+  @media (min-width: 640px) {
+    .frame-lead {
+      aspect-ratio: 16 / 9;
+    }
+  }
+
+  /* Every cell placed explicitly. The old grid auto-placed them into
+     name / (empty), domain / metric, (empty) / open — which is why the link
+     read as a caption hanging off the number rather than an action. */
+  .case-meta {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: baseline;
+    column-gap: 1rem;
+    padding-top: 0.875rem;
+  }
+  /* ---------------------------------------------------------------
+     AFFORDANCE. Shadows and hover-lift were banned as template tells
+     (SKILL.md §7) and took the only signal of interactivity with them.
+     What replaces them is typographic: the case name IS the link —
+     hairline underline plus an inline arrow — and all of it is visible
+     before any hover, which is the point, because 390px has none.
+
+     Two alternates were built and shown (an explicit "open case" line,
+     and a marker notched into the frame's corner) and both dropped.
+     --------------------------------------------------------------- */
+  .case-name {
+    grid-column: 1;
+    grid-row: 1;
+    font-family: var(--font-display);
+    font-size: var(--fs-400);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    text-decoration: underline;
+    text-decoration-color: var(--line-strong);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.22em;
+    transition: color 140ms var(--ease), text-decoration-color 140ms var(--ease);
+  }
+  .case-metric {
+    grid-column: 2;
+    grid-row: 1;
+    font-family: var(--font-display);
+    font-size: var(--fs-400);
+    font-weight: 400;
+    text-align: right;
+  }
+  .case-domain {
+    grid-column: 1;
+    grid-row: 2;
+    text-transform: none;
+    letter-spacing: 0.02em;
+    color: var(--fg-muted);
+  }
+  .case-arrow {
+    display: inline-block;
+    margin-left: 0.4em;
+    vertical-align: -0.12em;
+    color: var(--fg-muted);
+    transition: color 140ms var(--ease);
+  }
+
+  @media (hover: hover) {
+    .case-link:hover .frame {
+      border-color: var(--fg);
+    }
+    /* one accent per hovered case, so the five-per-viewport budget holds */
+    .case-link:hover .case-name {
+      color: var(--accent);
+      text-decoration-color: var(--accent);
+    }
+    .case-link:hover .case-arrow {
+      color: var(--accent);
+    }
+  }
+  .case-link:focus-visible {
+    outline-offset: 4px;
+  }
+</style>

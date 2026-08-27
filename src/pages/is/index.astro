@@ -1,0 +1,21 @@
+---
+import Base from '../../layouts/Base.astro';
+import WorkIndex from '../../components/WorkIndex.astro';
+import { workIndex, fillCount } from '../../i18n/work';
+import { t } from '../../i18n';
+
+const locale = 'az' as const;
+const dict = t(locale);
+const copy = workIndex[locale];
+
+/* the count in the title and the description is the length of the case list,
+   not a figure typed beside it */
+const meta = {
+  title: fillCount(copy.meta.title, dict.cases.length),
+  description: fillCount(copy.meta.description, dict.cases.length),
+};
+---
+
+<Base locale={locale} dict={dict} meta={meta} ogKey="work" schemaKind="other">
+  <WorkIndex locale={locale} dict={dict} copy={copy} />
+</Base>

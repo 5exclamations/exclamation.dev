@@ -34,8 +34,18 @@ export type Shot = {
   crop?: [number, number, number];
 };
 
+/**
+ * Client work and work with no client are different claims, and the index
+ * page groups them apart rather than letting a studio product borrow the
+ * credibility of a delivered system. Nothing on the landing page reads this
+ * field — there the six are all client work — but `/is/` does, and a new case
+ * cannot be added without answering the question.
+ */
+export type CaseKind = 'client' | 'product';
+
 export type CaseMedia = {
   slug: string;
+  kind: CaseKind;
   /** portrait phone screens are letterboxed rather than cropped */
   shape: 'desktop' | 'phone';
   /** how the index thumbnail fills its 4:3 frame */
@@ -50,6 +60,7 @@ export type CaseMedia = {
 export const caseMedia: CaseMedia[] = [
   {
     slug: 'crm-portal',
+    kind: 'client',
     shape: 'desktop',
     fit: 'cover',
     shots: [
@@ -62,6 +73,7 @@ export const caseMedia: CaseMedia[] = [
   },
   {
     slug: 'fleks',
+    kind: 'client',
     /** these are wide, shallow panels — cropping to 4:3 would eat the content */
     shape: 'desktop',
     fit: 'contain',
@@ -71,6 +83,7 @@ export const caseMedia: CaseMedia[] = [
   },
   {
     slug: 'merkuri',
+    kind: 'client',
     shape: 'desktop',
     fit: 'cover',
     shots: [
@@ -83,6 +96,7 @@ export const caseMedia: CaseMedia[] = [
   },
   {
     slug: 'mindtrick',
+    kind: 'client',
     shape: 'phone',
     fit: 'contain',
     shots: [{ img: mob1 }, { img: mob2 }, { img: mob3 }],
@@ -91,6 +105,7 @@ export const caseMedia: CaseMedia[] = [
   },
   {
     slug: 'smart-fashion',
+    kind: 'client',
     shape: 'desktop',
     fit: 'cover',
     shots: [{ img: shop1 }, { img: shop2 }, { img: shop3 }],
@@ -100,6 +115,7 @@ export const caseMedia: CaseMedia[] = [
   {
     /** no screenshot exists for this one — the case page draws a mockup */
     slug: 'ai-assistent',
+    kind: 'client',
     shape: 'desktop',
     fit: 'cover',
     shots: [],
@@ -109,6 +125,10 @@ export const caseMedia: CaseMedia[] = [
 ];
 
 export const mediaFor = (slug: string) => caseMedia.find((m) => m.slug === slug)!;
+
+/** slugs of one kind, in the order they are declared above */
+export const slugsOfKind = (kind: CaseKind) =>
+  caseMedia.filter((m) => m.kind === kind).map((m) => m.slug);
 
 /**
  * `heroShot` and `HERO_IMAGE` were removed on 2026-08-09 along with the first

@@ -17,7 +17,7 @@ Two documents sit beside it and are not optional:
 ## 1. Where the project is
 
 A full rewrite on Astro, replacing a legacy static site that is still what
-GitHub Pages serves. **45 pages build.** Everything is built and every word on
+GitHub Pages serves. **63 pages build.** Everything is built and every word on
 the site has been through the tone pass (§4). The full FAQ page landed
 2026-08-05. What is left is the cutover (§7).
 
@@ -32,6 +32,7 @@ npm run build && npm run preview   # http://localhost:4321
 | Kind | az (root) | ru | en |
 | --- | --- | --- | --- |
 | Home | `/` | `/ru/` | `/en/` |
+| Work index | `/is/` | `/ru/is/` | `/en/is/` |
 | Cases (6) | `/is/<slug>/` | `/ru/is/<slug>/` | `/en/is/<slug>/` |
 | FAQ | `/faq/` | `/ru/faq/` | `/en/faq/` |
 | 404 | `/404` | `/ru/404` | `/en/404` |
@@ -574,6 +575,30 @@ deliberately demanding — a half-written page will not compile.
 
 **Service pages are written three times, not translated once.** Each language
 argues differently because each is chasing different queries.
+
+**Adding a case is six steps**, and the sixth is the one that gets forgotten:
+
+1. Screenshots into `src/assets/pics/<name>/` — in `src/`, not `public/`, or
+   `astro:assets` cannot see them.
+2. An entry in `caseMedia` (`src/data/cases.ts`): `slug`, `kind`, `shape`,
+   `fit`, `shots`, `crop`, `headline`. **`kind` decides which group it lands in
+   on `/is/`** — `client` for work with a buyer, `product` for the studio's
+   own. A product case shown as client work is the one mistake on that page
+   that costs something.
+3. A block in `cases` and one in `caseSeo`, in all three dictionaries. Alt text
+   is written with the screenshot open — see §6, this has gone wrong twice.
+4. The slug added to `cases.slugs` on whichever service pages it belongs to
+   (`src/i18n/services/*.ts`), in all three locales.
+5. Nothing for the OG card, the sitemap or `/is/` — all three read the case
+   list. The card and the URL appear on the next build.
+6. `node scripts/shots.mjs` on `/is/` **and** on the new case page, six widths,
+   both themes. Then look at them.
+
+The landing `work` section deliberately does **not** grow: it slices the first
+six and links to `/is/`. `LANDING` in `Work.astro` throws if the case list ever
+falls below it, because `work.titleMuted` spells "six" as a word in three
+languages and cannot be computed. Move the count and you correct three
+headings by hand.
 
 **Adding a service page is four steps:** a route entry in
 `src/data/services.ts` with the slug for each locale; a copy file; three

@@ -1,0 +1,187 @@
+---
+import CaseCard from './CaseCard.astro';
+import { caseMedia, type CaseKind } from '../data/cases';
+import { fillCount, type WorkIndexPage } from '../i18n/work';
+import type { Dict, Locale } from '../i18n';
+
+/**
+ * The work index — every case, grouped by whether it had a client.
+ *
+ * Structure only; the copy lives in `src/i18n/work.ts`. The landing section
+ * (`Work.astro`) shows six and links here, so this page is the one that grows:
+ * a new case is an entry in `caseMedia`, a block of copy in the three
+ * dictionaries, and nothing else.
+ *
+ * Skeleton, deliberately not the landing section's: no lead card, one uniform
+ * grid per group, and each group's heading held in a left column beside it.
+ * The landing section is a glance and needs a card to lead the eye; an archive
+ * that ranks its own contents makes the reader wonder what is wrong with the
+ * rest.
+ *
+ * A group with no cases renders nothing — the studio's own products came
+ * later than the client work, and an empty heading advertises the gap.
+ */
+interface Props {
+  locale: Locale;
+  dict: Dict;
+  copy: WorkIndexPage;
+}
+const { locale, dict, copy } = Astro.props;
+
+const order: CaseKind[] = ['client', 'product'];
+
+/**
+ * Grouped from `caseMedia`, then read back through the dictionary, so the
+ * order on the page is the order the media is declared in and a case missing
+ * from either side cannot be rendered half-way.
+ */
+const groups = order
+  .map((kind) => ({
+    kind,
+    copy: copy.groups[kind],
+    slugs: caseMedia
+      .filter((m) => m.kind === kind)
+      .map((m) => m.slug)
+      .filter((slug) => dict.cases.some((c) => c.slug === slug)),
+  }))
+  .filter((g) => g.slugs.length > 0);
+
+const count = dict.cases.length;
+const groupId = (kind: CaseKind) => `work-${kind}`;
+---
+
+<article class="workp">
+  <header class="workp-head">
+    <div class="shell">
+      <div class="workp-head-in">
+        <p class="mono">{copy.eyebrow}</p>
+        <h1 class="workp-title">
+          <span class="muted">{copy.titleMuted}</span> {copy.titleMain}
+        </h1>
+        {copy.lead.map((p, i) => (
+          <p class:list={['workp-lead', i === 0 && 'is-answer']}>{fillCount(p, count)}</p>
+        ))}
+      </div>
+    </div>
+  </header>
+
+  <div class="shell">
+    {groups.map((group) => (
+      <section class="workp-group" aria-labelledby={groupId(group.kind)}>
+        <div class="workp-group-grid">
+          <div class="workp-group-head" data-reveal>
+            <h2 class="mono" id={groupId(group.kind)}>
+              <span class="workp-group-n num" aria-hidden="true">{group.slugs.length}</span>
+              {group.copy.title}
+            </h2>
+            <p class="workp-group-note">{group.copy.note}</p>
+          </div>
+
+          <ul class="workp-cases">
+            {group.slugs.map((slug) => (
+              <li data-reveal>
+                <CaseCard locale={locale} dict={dict} slug={slug} />
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    ))}
+  </div>
+</article>
+
+<style>
+  .workp-head {
+    padding-block: var(--sp-section);
+    border-bottom: 1px solid var(--line);
+  }
+  .workp-head-in {
+    padding-left: var(--rail);
+  }
+  .workp-title {
+    margin-top: 1rem;
+    font-size: var(--fs-600);
+    font-weight: 300;
+    max-width: 24ch;
+  }
+  .workp-title .muted {
+    display: block;
+    color: var(--fg-muted);
+  }
+  .workp-lead {
+    margin-top: 1.5rem;
+    max-width: 62ch;
+    color: var(--fg-muted);
+  }
+  /* the first paragraph answers the question in the heading, so it carries the
+     page's own colour rather than the muted register of the two behind it.
+     Marked in the template, not selected with `:first-of-type` — the eyebrow
+     is the first <p> among these siblings, so that selector matched nothing
+     and all three paragraphs rendered muted. */
+  .workp-lead.is-answer {
+    color: var(--fg);
+  }
+
+  .workp-group {
+    padding-block: var(--sp-chapter);
+    border-bottom: 1px solid var(--line);
+  }
+  .workp-group:last-child {
+    border-bottom: 0;
+  }
+
+  .workp-group-head {
+    padding-left: var(--rail);
+    margin-bottom: var(--sp-section);
+  }
+  /* The figure leads the heading. Trailing it, the title wrapped inside a
+     16rem column and left the number hanging beside the first line with the
+     second line under it. Leading, it wraps like any other word. */
+  .workp-group-head h2 {
+    font-size: var(--fs-300);
+    font-weight: 400;
+  }
+  .workp-group-n {
+    margin-right: 0.5rem;
+    color: var(--fg-muted);
+  }
+  .workp-group-note {
+    margin-top: 0.5rem;
+    max-width: 40ch;
+    color: var(--fg-muted);
+  }
+
+  .workp-cases {
+    display: grid;
+    gap: var(--sp-section) clamp(1rem, 2.5vw, 2rem);
+    margin-left: var(--rail);
+  }
+  @media (min-width: 640px) {
+    .workp-cases {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (min-width: 1024px) {
+    .workp-cases {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  /* From 1400px the heading sits beside its grid rather than above it, which
+     is what stops two stacked groups reading as one long list. Not earlier:
+     at 1100 the 16rem column left room for two cards per row, so the page
+     showed three across at 1024 and two across at 1200. */
+  @media (min-width: 1400px) {
+    .workp-group-grid {
+      display: grid;
+      grid-template-columns: 16rem minmax(0, 1fr);
+      gap: clamp(1rem, 2.5vw, 2rem);
+    }
+    .workp-group-head {
+      margin-bottom: 0;
+    }
+    .workp-cases {
+      margin-left: 0;
+    }
+  }
+</style>

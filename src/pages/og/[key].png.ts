@@ -3,7 +3,7 @@ import satori from 'satori';
 import sharp from 'sharp';
 import { instanceFont } from '../../lib/instance-font';
 import { locales, localeSubset, t, fill, type Locale } from '../../i18n';
-import { mediaFor } from '../../data/cases';
+import { caseMedia, mediaFor } from '../../data/cases';
 import { crmErp } from '../../i18n/services/crm-erp';
 import { web } from '../../i18n/services/web';
 import { mobile } from '../../i18n/services/mobile';
@@ -12,6 +12,7 @@ import { integrations } from '../../i18n/services/integrations';
 import { botsAi } from '../../i18n/services/bots-ai';
 import { services } from '../../data/services';
 import { faqPage } from '../../i18n/faq';
+import { workIndex } from '../../i18n/work';
 import { guides } from '../../data/guides';
 import { guideCopy } from '../../i18n/guides';
 
@@ -206,8 +207,9 @@ function card(c: Card, locale: Locale) {
 }
 
 /**
- * One card per page that has a URL worth sharing: home, FAQ, services, guides
- * and case studies, plus a generic per-locale card the error page can use.
+ * One card per page that has a URL worth sharing: home, FAQ, the work index,
+ * services, guides and case studies, plus a generic per-locale card the error
+ * page can use.
  */
 export const getStaticPaths = () => {
   const paths: { params: { key: string }; props: { locale: Locale; card: Card } }[] = [];
@@ -251,6 +253,31 @@ export const getStaticPaths = () => {
             eyebrow: faq.eyebrow,
             muted: faq.titleMuted,
             title: faq.titleMain,
+            foot: 'exclamationdev.com',
+          },
+        },
+      });
+    }
+
+    {
+      /**
+       * The work index. Its note is computed from the case list rather than
+       * written, in the same shape the service cards use — a group with no
+       * cases yet must not appear on the card announcing an empty section.
+       */
+      const wi = workIndex[locale];
+      const counts = (['client', 'product'] as const)
+        .map((k) => ({ label: wi.groups[k].title, n: caseMedia.filter((m) => m.kind === k).length }))
+        .filter((g) => g.n > 0);
+      paths.push({
+        params: { key: `work-${locale}` },
+        props: {
+          locale,
+          card: {
+            eyebrow: wi.eyebrow,
+            muted: wi.titleMuted,
+            title: wi.titleMain,
+            note: counts.map((g) => `${g.label}: ${g.n}`).join('  ·  '),
             foot: 'exclamationdev.com',
           },
         },
