@@ -122,10 +122,16 @@ export const caseMedia: CaseMedia[] = [
     fit: 'cover',
     shots: [
       { img: raiton1 },
-      { img: raiton2, crop: [780, 330, 140] },
-      { img: raiton3, crop: [800, 40, 470] },
+      /* the two sector headlines run wider than the hero's, so their slices
+         render the screenshot smaller to fit the line at 320 — computed from
+         the frame width there, not from the source pixels */
+      { img: raiton2, crop: [530, 111, 50] },
+      /* the Turkish headline cannot fit a 320px frame without shrinking the
+         page past reading size, so this slice takes the Dubai address block
+         instead — whole words, and still unmistakably the Turkish build */
+      { img: raiton3, crop: [820, 20, 359] },
     ],
-    crop: [740, 40, 540],
+    crop: [740, 18, 305],
     headline: 0,
   },
   {

@@ -40,13 +40,13 @@ export const workIndex: Record<Locale, WorkIndexPage> = {
     meta: {
       title: 'İşlər və keyslər — EXCLAMATION',
       description:
-        '{count} layihə: daşınmaz əmlak agentlikləri üçün CRM, psixoloji mərkəzin ERP-si, gömrük və yükdaşıma üçün bulud platforması, vərdiş izləyicisi, onlayn mağaza və AI köməkçi. Hər keysdə tapşırıq, həll və nəticə.',
+        '{count} layihə: daşınmaz əmlak agentlikləri üçün CRM, psixoloji mərkəzin ERP-si, gömrük və yükdaşıma üçün bulud platforması, vərdiş izləyicisi, onlayn mağaza, korporativ sayt və AI köməkçi. Hər keysdə tapşırıq, həll və nəticə.',
     },
     eyebrow: 'İşlər',
     titleMuted: 'Studiyanın işləri.',
     titleMain: 'Kimə və nə qurulub.',
     lead: [
-      '{count} layihə, hamısı işləyir: daşınmaz əmlak agentlikləri üçün CRM, psixoloji mərkəz üçün ERP, yükdaşıma və gömrük üçün bulud portalı, vərdiş izləyicisi, onlayn mağaza və çatda cavab verən AI köməkçi.',
+      '{count} layihə, hamısı işləyir: daşınmaz əmlak agentlikləri üçün CRM, psixoloji mərkəz üçün ERP, yükdaşıma və gömrük üçün bulud portalı, vərdiş izləyicisi, onlayn mağaza, Dubay şirkəti üçün korporativ sayt və çatda cavab verən AI köməkçi.',
       'Hər biri tam açılır — nədən başladıq, nə qurduq, sonu necə oldu və hansı texnologiya ilə yazılıb.',
       'Sistemlərin bir hissəsi daxilidir, açıq linki yoxdur.',
     ],
@@ -68,13 +68,13 @@ export const workIndex: Record<Locale, WorkIndexPage> = {
     meta: {
       title: 'Кейсы и работы студии — EXCLAMATION',
       description:
-        '{count} проектов EXCLAMATION: CRM для агентств недвижимости, ERP психологического центра, платформа для логистики и таможни, трекер привычек, интернет-магазин, AI-ассистент. Задача, решение и результат по каждому.',
+        '{count} проектов EXCLAMATION: CRM для агентств недвижимости, ERP психологического центра, платформа для логистики и таможни, трекер привычек, интернет-магазин, корпоративный сайт, AI-ассистент. Задача, решение и результат по каждому.',
     },
     eyebrow: 'Работы',
     titleMuted: 'Портфолио студии.',
     titleMain: 'Что и для кого сделано.',
     lead: [
-      '{count} проектов, все в работе: CRM для агентств недвижимости, ERP психологического центра, облачный портал для грузоперевозок и таможни, трекер привычек, интернет-магазин и AI-ассистент в чате.',
+      '{count} проектов, все в работе: CRM для агентств недвижимости, ERP психологического центра, облачный портал для грузоперевозок и таможни, трекер привычек, интернет-магазин, корпоративный сайт дубайской компании и AI-ассистент в чате.',
       'Каждый открывается целиком — с чего начали, что построили, чем это кончилось и на чём написано.',
       'Часть систем внутренние, публичной ссылки у них нет.',
     ],
@@ -94,13 +94,13 @@ export const workIndex: Record<Locale, WorkIndexPage> = {
     meta: {
       title: 'Case studies and work — EXCLAMATION',
       description:
-        '{count} projects by EXCLAMATION: a CRM for estate agencies, an ERP for a psychology centre, a freight and customs platform, a habit tracker, an online shop and an AI assistant. Problem, build and outcome for each.',
+        '{count} projects by EXCLAMATION: a CRM for estate agencies, an ERP for a psychology centre, a freight and customs platform, a habit tracker, an online shop, a corporate site and an AI assistant. Problem, build and outcome for each.',
     },
     eyebrow: 'Work',
     titleMuted: 'The studio’s portfolio.',
     titleMain: 'What was built, and who for.',
     lead: [
-      '{count} projects, all of them running: a CRM for estate agencies, an ERP for a psychology centre, a cloud portal for freight and customs, a habit tracker, an online shop and an AI assistant that answers in chat.',
+      '{count} projects, all of them running: a CRM for estate agencies, an ERP for a psychology centre, a cloud portal for freight and customs, a habit tracker, an online shop, a corporate site for a Dubai company and an AI assistant that answers in chat.',
       'Each one opens in full — where it started, what we built, how it ended and what it runs on.',
       'Some of them are internal systems, with no public link to give.',
     ],
