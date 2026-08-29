@@ -1,0 +1,3 @@
+[mcp_servers.codex-implementer]
+command = "/Users/5exclamations/.nvm/versions/node/v24.18.0/bin/codex"
+args = ["mcp-server"]
