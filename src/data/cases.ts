@@ -24,6 +24,9 @@ import merk3 from '../assets/pics/merk/screen2.png';
 import mob1 from '../assets/pics/mobile/photo_2026-04-27_17-55-50.jpg';
 import mob2 from '../assets/pics/mobile/photo_2026-04-27_17-55-51.jpg';
 import mob3 from '../assets/pics/mobile/photo_2026-04-27_17-55-52.jpg';
+import raiton1 from '../assets/pics/raiton/screen1.jpg';
+import raiton2 from '../assets/pics/raiton/screen2.jpg';
+import raiton3 from '../assets/pics/raiton/screen3.png';
 import shop1 from '../assets/pics/website/2.png';
 import shop2 from '../assets/pics/website/3.jpg';
 import shop3 from '../assets/pics/website/4.jpg';
@@ -110,6 +113,19 @@ export const caseMedia: CaseMedia[] = [
     fit: 'cover',
     shots: [{ img: shop1 }, { img: shop2 }, { img: shop3 }],
     crop: [740, 60, 40],
+    headline: 0,
+  },
+  {
+    slug: 'raiton-llc-fz',
+    kind: 'client',
+    shape: 'desktop',
+    fit: 'cover',
+    shots: [
+      { img: raiton1 },
+      { img: raiton2, crop: [780, 330, 140] },
+      { img: raiton3, crop: [800, 40, 470] },
+    ],
+    crop: [740, 40, 540],
     headline: 0,
   },
   {

@@ -270,6 +270,23 @@ export default {
         alts: ['Smart Fashion: məhsul kartı, ölçü seçimi və təsvir', 'Smart Fashion: iki mövqe və sifariş yekunu ilə səbət', 'Smart Fashion: mövsümi lookbook və kataloq bölmələri ilə ana səhifə'],
       },
       {
+        slug: 'raiton-llc-fz',
+        short: 'RAITON',
+        domain: 'Beynəlxalq ticarət',
+        tag: 'Korporativ sayt',
+        title: 'RAITON — Dubay ticarət şirkəti üçün korporativ sayt',
+        task: 'Sayt ümumiyyətlə yox idi. Müraciətlər şəxsi əlaqələr üzərindən gəlirdi, sorğular heç yerdə qeydə alınmırdı, türkcə materiallar da yox idi. Dubaydan üç istiqamətdə ticarət aparan şirkət — və link verməyə bir səhifə də yox.',
+        solution: 'Next.js üzərində altı marşrutdan ibarət sayt qurduq — ana səhifə, şirkət haqqında, üç istiqamət səhifəsi və əlaqə. Türk versiyası ayrıca /tr qolunda yaşayır, altı marşrutun hamısı təkrarlanıb, cəmi on iki səhifə. Maket olmadan, birbaşa kodda verstka etdik, sifarişçi işin gedişində baxırdı. Saytda forma yoxdur, yalnız əlaqə məlumatları — telefon, WhatsApp, iki e-poçt və Dubaydakı ofisin ünvanı.',
+        diff: ['şəxsi əlaqələr · sayt yoxdur', 'raitonllc.com · altı marşrut · EN/TR'],
+        results: [
+          { value: '4 gün', label: 'ilk işlək versiyaya qədər' },
+          { value: '2 həftə', label: 'düzəlişlərlə birlikdə təhvilə qədər' },
+          { value: '12', label: 'iki dil versiyasında səhifə' },
+        ],
+        stack: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS'],
+        alts: ['RAITON: ilk ekran — konteyner kranı və çənlərlə neft terminalının panoramı, üstündə «Trade. Energy. Logistics.» başlığı və «Diversified trading company · Dubai, U.A.E.» sətri; başlıqda beş bölmə və EN / TR keçidi', 'RAITON: Offshore Crude Oil Trading istiqamətinin səhifəsi — iri «Offshore crude oil. Commercial discipline.» başlığı, sağda xam neft və enerji əmtəələrinin ticarəti haqqında abzas, aşağıda gün batımında körpüdəki quru yük gəmisinin fotosu', 'RAITON: əlaqə səhifəsinin türk versiyası — «İhtiyacınızı birlikte değerlendirelim.» başlığı, solda dörd sətirlik Dubay ofisinin ünvanı, sağda telefon, iki e-poçt və WhatsApp siyahısı'],
+      },
+      {
         slug: 'ai-assistent',
         short: 'AI assistent',
         domain: 'Müştəri servisi',
@@ -438,6 +455,10 @@ export default {
     'smart-fashion': {
       title: 'Onlayn mağaza hazırlanması — EXCLAMATION',
       description: 'Next.js mağaza: tövsiyə sistemi, real vaxt anbar, satış analitikası. Redizayndan sonra konversiya +65%, səhifə 0.8 saniyəyə açılır, gəlir +30%.',
+    },
+    'raiton-llc-fz': {
+      title: 'Ticarət şirkəti üçün korporativ sayt — EXCLAMATION',
+      description: 'RAITON L.L.C-FZ saytı Next.js üzərində: altı marşrut, ingilis və türk versiyaları, on iki səhifə. İlk işlək versiya 4 günə, düzəlişlərlə təhvil 2 həftəyə.',
     },
     'ai-assistent': {
       title: 'Müştəri servisi üçün AI assistent — EXCLAMATION',

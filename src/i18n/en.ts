@@ -270,6 +270,23 @@ export default {
         alts: ['Smart Fashion: product page with size selection and description', 'Smart Fashion: cart with two items and the order summary', 'Smart Fashion: home page with the seasonal lookbook and featured catalogue sections'],
       },
       {
+        slug: 'raiton-llc-fz',
+        short: 'RAITON',
+        domain: 'International trade',
+        tag: 'Corporate site',
+        title: 'RAITON — a corporate site for a Dubai trading company',
+        task: 'There was no site at all. Enquiries came through personal contacts, nothing was recorded anywhere, and no Turkish material existed. A Dubai company trading in three directions, and not one page to link to.',
+        solution: 'We built six routes on Next.js — home, about, three sector pages and contact. The Turkish version lives on its own /tr branch with all six routes mirrored, twelve pages in total. Layout went straight into code with no mockup, and the client watched it take shape. There is no form on the site, only contact details — phone, WhatsApp, two email addresses and the Dubai office.',
+        diff: ['personal contacts · no site', 'raitonllc.com · six routes · EN/TR'],
+        results: [
+          { value: '4 days', label: 'to the first working version' },
+          { value: '2 weeks', label: 'to handover, revisions included' },
+          { value: '12', label: 'pages across two languages' },
+        ],
+        stack: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS'],
+        alts: ['RAITON: the first screen — a panorama of an oil terminal with a container crane and storage tanks, the headline “Trade. Energy. Logistics.” over it and the line “Diversified trading company · Dubai, U.A.E.”; the header carries five sections and an EN / TR switch', 'RAITON: the Offshore Crude Oil Trading sector page — the large headline “Offshore crude oil. Commercial discipline.”, a paragraph on the right about trading crude oil and related energy commodities, and a photograph of a bulk carrier at a berth at sunset below', 'RAITON: the Turkish version of the contact page — the headline “İhtiyacınızı birlikte değerlendirelim.”, the four-line Dubai office address on the left, and a list of the phone number, two email addresses and WhatsApp on the right'],
+      },
+      {
         slug: 'ai-assistent',
         short: 'AI assistant',
         domain: 'Customer service',
@@ -438,6 +455,10 @@ export default {
     'smart-fashion': {
       title: 'E-commerce store development — EXCLAMATION',
       description: 'A Next.js store: recommendations, real-time stock, sales analytics. Conversion after the redesign +65%, pages load in 0.8s, revenue up 30% in 6 months.',
+    },
+    'raiton-llc-fz': {
+      title: 'A corporate site for a trading company — EXCLAMATION',
+      description: 'RAITON L.L.C-FZ on Next.js: six routes, English and Turkish, twelve pages. First working version in 4 days, handover with revisions in 2 weeks.',
     },
     'ai-assistent': {
       title: 'AI assistant for customer service — EXCLAMATION',
