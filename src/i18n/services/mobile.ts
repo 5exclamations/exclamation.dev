@@ -147,7 +147,7 @@ export const mobile: Record<Locale, ServiceCopy> = {
       ],
       close: 'Bəndlərdən birində özünüzü tanıdınızsa, yenə yazın. Pulsuz deyəcəyik ki, mobil sayt, PWA və ya tətbiq — hansı sizin tapşırığınıza uyğundur; bəzən cavab «tətbiq lazım deyil» olur.',
     },
-    cases: { title: 'Bu istiqamətdə keys', slugs: ['mindtrick'] },
+    cases: { title: 'Bu istiqamətdə keyslər', slugs: ['mindtrick', 'fast-reader'] },
     faq: {
       title: 'Tez-tez verilən suallar',
       items: [
@@ -315,7 +315,7 @@ export const mobile: Record<Locale, ServiceCopy> = {
       ],
       close: 'Узнали себя — всё равно напишите. Бесплатно скажем, что подходит: мобильный сайт, PWA или приложение; иногда ответ — «приложение не нужно».',
     },
-    cases: { title: 'Кейс по направлению', slugs: ['mindtrick'] },
+    cases: { title: 'Кейсы по направлению', slugs: ['mindtrick', 'fast-reader'] },
     faq: {
       title: 'Частые вопросы',
       items: [
@@ -483,7 +483,7 @@ export const mobile: Record<Locale, ServiceCopy> = {
       ],
       close: 'If one of these describes you, write anyway. We will tell you for free whether a mobile site, a PWA or an app fits the job; sometimes the answer is that you do not need an app.',
     },
-    cases: { title: 'Related work', slugs: ['mindtrick'] },
+    cases: { title: 'Related work', slugs: ['mindtrick', 'fast-reader'] },
     faq: {
       title: 'Frequent questions',
       items: [

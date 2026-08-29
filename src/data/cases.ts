@@ -21,6 +21,9 @@ import dv3 from '../assets/pics/drvusala/screen3.jpg';
 import erp1 from '../assets/pics/ERP/photo_1_2026-04-27_01-03-50.jpg';
 import erp2 from '../assets/pics/ERP/photo_2_2026-04-27_01-03-50.jpg';
 import erp3 from '../assets/pics/ERP/photo_3_2026-04-27_01-03-50.jpg';
+import fr1 from '../assets/pics/fastreader/screen1.png';
+import fr2 from '../assets/pics/fastreader/screen2.png';
+import fr3 from '../assets/pics/fastreader/screen3.png';
 import merk1 from '../assets/pics/merk/screen1.png';
 import merk2 from '../assets/pics/merk/screen.png';
 import merk3 from '../assets/pics/merk/screen2.png';
@@ -160,6 +163,16 @@ export const caseMedia: CaseMedia[] = [
     fit: 'cover',
     shots: [],
     crop: [0, 0, 0],
+    headline: 0,
+  },
+  {
+    slug: 'fast-reader',
+    kind: 'product',
+    /** portrait phone screens are letterboxed rather than cropped */
+    shape: 'phone',
+    fit: 'contain',
+    shots: [{ img: fr1 }, { img: fr2 }, { img: fr3 }],
+    crop: [420, 0, 0],
     headline: 0,
   },
 ];

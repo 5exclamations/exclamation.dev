@@ -320,6 +320,23 @@ export default {
         stack: ['LLM API', 'RAG', 'FastAPI', 'Webhooks'],
         alts: [],
       },
+      {
+        slug: 'fast-reader',
+        short: 'Fast Reader',
+        domain: 'Speed reading',
+        tag: 'iOS app',
+        title: 'Fast Reader — one word at a time, and a camera for printed pages',
+        task: 'Speed-reading apps are sold by subscription and ask for an account, and the text comes from wherever they allow: the clipboard is there, your own EPUB or a page you photographed is not. We wanted the opposite. No subscription, no account, and the reader choosing where the text comes from.',
+        solution: 'A SwiftUI app shows words one at a time, highlighting the letter the eye settles on, and on pause prints the whole sentence underneath. The engine and the document importers are separate frameworks, so the reader can be tested without the parsers and the parsers without the interface. Text arrives five ways: PDF, EPUB, a page photographed with the camera, the clipboard and an article by URL; on top of that, extensions for Safari and the Share menu. The library ships with Project Gutenberg texts, everything is computed on the device, and the network is needed only to import an article. The app is not on the App Store yet — the build is ready and submission comes next.',
+        diff: ['subscription · account · their text', 'no account · five sources'],
+        results: [
+          { value: '18 days', label: 'from the first commit to the last' },
+          { value: '5', label: 'sources of text — PDF, EPUB, camera, clipboard, web' },
+          { value: '0', label: 'subscriptions, accounts and adverts' },
+        ],
+        stack: ['SwiftUI', 'SwiftData', 'PDFKit', 'Vision'],
+        alts: ['Fast Reader: the library — three texts with word counts and reading times, “Alice’s Adventures in Wonderland” 26,822 words in 1 hour 30 minutes, “Frankenstein” 75,441 words in 4 hours 12 minutes, “Moby Dick” 214,630 words in 11 hours 56 minutes; an import button on the left and settings on the right', 'Fast Reader: the reading screen paused — the single word “sitting” centred with an orange t, the title “Alice’s Adventures in Wonderland” and a Contents button above, the whole sentence and 300 WPM below', 'Fast Reader: the “Add text” sheet — PDF or EPUB from Files, a page scanned with the camera, text from the clipboard, and a field for an article address with an import button'],
+      },
   ],
   process: {
     eyebrow: 'How we work',
@@ -484,6 +501,10 @@ export default {
     'ai-assistent': {
       title: 'AI assistant for customer service — EXCLAMATION',
       description: 'An LLM assistant: FAQ answers, stock checks and cart building inside the chat, 24/7. Operator load −60%, replies in under 30 seconds instead of 5 minutes.',
+    },
+    'fast-reader': {
+      title: 'A speed-reading app for iOS — EXCLAMATION',
+      description: 'The studio’s own app: one word at a time with the fixation point marked, imports from PDF, EPUB, camera, clipboard and the web, extensions for Safari and Share. No subscription, no account, everything computed on the device.',
     },
   },
 } as const;

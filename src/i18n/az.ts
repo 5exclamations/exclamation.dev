@@ -320,6 +320,23 @@ export default {
         stack: ['LLM API', 'RAG', 'FastAPI', 'Webhooks'],
         alts: [],
       },
+      {
+        slug: 'fast-reader',
+        short: 'Fast Reader',
+        domain: 'Sürətli oxu',
+        tag: 'iOS tətbiqi',
+        title: 'Fast Reader — sözbəsöz oxu və səhifənin tanınması',
+        task: 'Sürətli oxu tətbiqləri abunə ilə satılır və hesab açmağı istəyir, mətni isə verdikləri yerdən götürürsən: mübadilə buferi var, öz EPUB kitabın və ya kameraya çəkilmiş səhifə yoxdur. Əksini istəyirdik. Abunəsiz, hesabsız, mətnin haradan gələcəyini isə oxucu seçsin.',
+        solution: 'SwiftUI tətbiqi sözləri bir-bir göstərir, gözün dayandığı hərfi işıqlandırır, pauzada isə sözün altında cümləni bütöv verir. Mühərrik və sənəd idxalı ayrı freymvorklara çıxarılıb, ona görə oxucunu parserlərsiz, parserləri isə interfeyssiz test etmək olur. Mətn beş yolla girir: PDF, EPUB, kameraya çəkilmiş səhifə, mübadilə buferi və ünvana görə məqalə; üstəlik Safari və «Paylaş» menyusu üçün genişlənmələr. Kitabxana Project Gutenberg mətnləri ilə gəlir, hesablama cihazın özündə gedir, şəbəkə yalnız məqalə idxalına lazımdır. App Store-da tətbiq hələ çıxmayıb — yığım hazırdır, baxışa göndərmək qabaqdadır.',
+        diff: ['abunə · hesab · yad mətn', 'hesabsız · beş mənbə'],
+        results: [
+          { value: '18 gün', label: 'ilk commitdən sonuncuya qədər' },
+          { value: '5', label: 'mətn mənbəyi — PDF, EPUB, kamera, bufer, veb' },
+          { value: '0', label: 'abunə, hesab və reklam' },
+        ],
+        stack: ['SwiftUI', 'SwiftData', 'PDFKit', 'Vision'],
+        alts: ['Fast Reader: kitabxana — söz sayı və oxu vaxtı ilə üç mətn, «Alice’s Adventures in Wonderland» 26 822 söz 1 saat 30 dəqiqəyə, «Frankenstein» 75 441 söz 4 saat 12 dəqiqəyə, «Moby Dick» 214 630 söz 11 saat 56 dəqiqəyə; solda idxal düyməsi, sağda ayarlar', 'Fast Reader: pauzadakı oxu ekranı — mərkəzdə narıncı t hərfi ilə «sitting» sözü, yuxarıda «Alice’s Adventures in Wonderland» adı və Contents düyməsi, aşağıda bütöv cümlə və 300 WPM sürəti', 'Fast Reader: «Add text» paneli — «Files»dan PDF və ya EPUB, kameraya çəkilmiş səhifə, buferdəki mətn və məqalə ünvanı üçün sahə ilə idxal düyməsi'],
+      },
   ],
   process: {
     eyebrow: 'Necə işləyirik',
@@ -484,6 +501,10 @@ export default {
     'ai-assistent': {
       title: 'Müştəri servisi üçün AI assistent — EXCLAMATION',
       description: 'LLM əsaslı assistent: FAQ cavabları, stok yoxlaması və səbətin çat içində yığılması, 24/7 rejimdə. Operator yükü −60%, cavab 5 dəqiqə əvəzinə 30 saniyədən az.',
+    },
+    'fast-reader': {
+      title: 'iOS üçün sürətli oxu tətbiqi — EXCLAMATION',
+      description: 'Studiyanın öz tətbiqi: sözlər bir-bir, fiksasiya nöqtəsi işıqlandırılmış; PDF, EPUB, kamera, bufer və vebdən idxal, Safari və «Paylaş» üçün genişlənmələr. Abunəsiz və hesabsız, hesablama cihazda.',
     },
   },
 } as const;

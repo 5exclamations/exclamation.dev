@@ -77,7 +77,7 @@ const groupId = (kind: CaseKind) => `work-${kind}`;
             <p class="workp-group-note">{group.copy.note}</p>
           </div>
 
-          <ul class="workp-cases">
+          <ul class:list={['workp-cases', group.slugs.length === 1 && 'is-lone']}>
             {group.slugs.map((slug) => (
               <li data-reveal>
                 <CaseCard locale={locale} dict={dict} slug={slug} />
@@ -171,6 +171,15 @@ const groupId = (kind: CaseKind) => `work-${kind}`;
      is what stops two stacked groups reading as one long list. Not earlier:
      at 1100 the 16rem column left room for two cards per row, so the page
      showed three across at 1024 and two across at 1200. */
+  /* A single card in a three-up grid reads as two that failed to load, so a
+     lone case is capped instead — the same rule the service pages follow. The
+     studio's own products arrive one at a time; the client group has never
+     been alone. */
+  .workp-cases.is-lone {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 24rem;
+  }
+
   @media (min-width: 1400px) {
     .workp-group-grid {
       display: grid;

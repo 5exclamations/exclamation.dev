@@ -40,13 +40,13 @@ export const workIndex: Record<Locale, WorkIndexPage> = {
     meta: {
       title: 'İşlər və keyslər — EXCLAMATION',
       description:
-        '{count} layihə: daşınmaz əmlak agentlikləri üçün CRM, psixoloji mərkəzin ERP-si, gömrük və yükdaşıma üçün bulud platforması, ticarət şirkəti və həkim üçün saytlar, vərdiş izləyicisi, onlayn mağaza və AI köməkçi. Hər keysdə tapşırıq, həll və nəticə.',
+        '{count} layihə: daşınmaz əmlak agentlikləri üçün CRM, psixoloji mərkəzin ERP-si, gömrük və yükdaşıma üçün bulud platforması, ticarət şirkəti və həkim üçün saytlar, vərdiş izləyicisi, onlayn mağaza, AI köməkçi və sürətli oxu tətbiqi. Hər keysdə tapşırıq, həll və nəticə.',
     },
     eyebrow: 'İşlər',
     titleMuted: 'Studiyanın işləri.',
     titleMain: 'Kimə və nə qurulub.',
     lead: [
-      '{count} layihə, hamısı işləyir: daxili iş üçün CRM və ERP, yükdaşıma və gömrük üçün bulud portalı, iki sayt — Dubaydakı ticarət şirkəti və Bakıdakı həkim üçün, vərdiş izləyicisi, onlayn mağaza və çatda cavab verən AI köməkçi.',
+      '{count} layihə: daxili iş üçün CRM və ERP, yükdaşıma və gömrük üçün bulud portalı, iki sayt — Dubaydakı ticarət şirkəti və Bakıdakı həkim üçün, vərdiş izləyicisi, onlayn mağaza, çatda cavab verən AI köməkçi və sürətli oxu tətbiqi.',
       'Hər biri tam açılır — nədən başladıq, nə qurduq, sonu necə oldu və hansı texnologiya ilə yazılıb.',
       'Sistemlərin bir hissəsi daxilidir, açıq linki yoxdur.',
     ],
@@ -68,13 +68,13 @@ export const workIndex: Record<Locale, WorkIndexPage> = {
     meta: {
       title: 'Кейсы и работы студии — EXCLAMATION',
       description:
-        '{count} проектов EXCLAMATION: CRM для агентств недвижимости, ERP психологического центра, платформа для логистики и таможни, сайты торговой компании и врача, трекер привычек, интернет-магазин, AI-ассистент. Задача, решение и результат по каждому.',
+        '{count} проектов EXCLAMATION: CRM для агентств недвижимости, ERP психологического центра, платформа для логистики и таможни, сайты торговой компании и врача, трекер привычек, интернет-магазин, AI-ассистент, читалка со скорочтением. Задача, решение и результат по каждому.',
     },
     eyebrow: 'Работы',
     titleMuted: 'Портфолио студии.',
     titleMain: 'Что и для кого сделано.',
     lead: [
-      '{count} проектов, все в работе: CRM и ERP для внутренней работы, облачный портал для грузоперевозок и таможни, два сайта — торговой компании в Дубае и врача в Баку, трекер привычек, интернет-магазин и AI-ассистент в чате.',
+      '{count} проектов: CRM и ERP для внутренней работы, облачный портал для грузоперевозок и таможни, два сайта — торговой компании в Дубае и врача в Баку, трекер привычек, интернет-магазин, AI-ассистент в чате и читалка со скорочтением.',
       'Каждый открывается целиком — с чего начали, что построили, чем это кончилось и на чём написано.',
       'Часть систем внутренние, публичной ссылки у них нет.',
     ],
@@ -94,13 +94,13 @@ export const workIndex: Record<Locale, WorkIndexPage> = {
     meta: {
       title: 'Case studies and work — EXCLAMATION',
       description:
-        '{count} projects by EXCLAMATION: a CRM for estate agencies, an ERP for a psychology centre, a freight and customs platform, sites for a trading company and a doctor, a habit tracker, an online shop and an AI assistant. Problem, build and outcome for each.',
+        '{count} projects by EXCLAMATION: a CRM for estate agencies, an ERP for a psychology centre, a freight and customs platform, sites for a trading company and a doctor, a habit tracker, an online shop, an AI assistant and a speed-reading app. Problem, build and outcome for each.',
     },
     eyebrow: 'Work',
     titleMuted: 'The studio’s portfolio.',
     titleMain: 'What was built, and who for.',
     lead: [
-      '{count} projects, all of them running: a CRM and an ERP for internal work, a cloud portal for freight and customs, two sites — one for a Dubai trading company and one for a doctor in Baku — a habit tracker, an online shop and an AI assistant that answers in chat.',
+      '{count} projects: a CRM and an ERP for internal work, a cloud portal for freight and customs, two sites — one for a Dubai trading company and one for a doctor in Baku — a habit tracker, an online shop, an AI assistant that answers in chat and a speed-reading app.',
       'Each one opens in full — where it started, what we built, how it ended and what it runs on.',
       'Some of them are internal systems, with no public link to give.',
     ],
