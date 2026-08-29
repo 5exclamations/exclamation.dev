@@ -15,6 +15,9 @@ import type { ImageMetadata } from 'astro';
 import crm1 from '../assets/pics/crm/screen1.png';
 import crm2 from '../assets/pics/crm/screen2.png';
 import crm3 from '../assets/pics/crm/screen3.png';
+import dv1 from '../assets/pics/drvusala/screen1.jpg';
+import dv2 from '../assets/pics/drvusala/screen2.jpg';
+import dv3 from '../assets/pics/drvusala/screen3.jpg';
 import erp1 from '../assets/pics/ERP/photo_1_2026-04-27_01-03-50.jpg';
 import erp2 from '../assets/pics/ERP/photo_2_2026-04-27_01-03-50.jpg';
 import erp3 from '../assets/pics/ERP/photo_3_2026-04-27_01-03-50.jpg';
@@ -116,7 +119,7 @@ export const caseMedia: CaseMedia[] = [
     headline: 0,
   },
   {
-    slug: 'raiton-llc-fz',
+    slug: 'raiton',
     kind: 'client',
     shape: 'desktop',
     fit: 'cover',
@@ -132,6 +135,21 @@ export const caseMedia: CaseMedia[] = [
       { img: raiton3, crop: [820, 20, 359] },
     ],
     crop: [740, 18, 305],
+    headline: 0,
+  },
+  {
+    slug: 'drvusalagasimova',
+    kind: 'client',
+    shape: 'desktop',
+    fit: 'cover',
+    shots: [
+      { img: dv1 },
+      { img: dv2, crop: [610, 84, 42] },
+      /* the modal sits mid-screen, so this slice starts at the top edge to
+         keep the AZ / RU / EN / DE switch in frame beside it */
+      { img: dv3, crop: [620, 194, 0] },
+    ],
+    crop: [620, 87, 70],
     headline: 0,
   },
   {

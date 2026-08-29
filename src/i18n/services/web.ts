@@ -147,7 +147,7 @@ export const web: Record<Locale, ServiceCopy> = {
       ],
       close: 'Bəndlərdən birində özünüzü tanıdınızsa, yenə yazın. Auditi və tövsiyəni pulsuz veririk; bəzən nəticə «saytı yenidən yazmaq lazım deyil» olur.',
     },
-    cases: { title: 'Bu istiqamətdə keyslər', slugs: ['raiton-llc-fz', 'smart-fashion', 'merkuri'] },
+    cases: { title: 'Bu istiqamətdə keyslər', slugs: ['raiton', 'drvusalagasimova', 'smart-fashion'] },
     faq: {
       title: 'Tez-tez verilən suallar',
       items: [
@@ -315,7 +315,7 @@ export const web: Record<Locale, ServiceCopy> = {
       ],
       close: 'Узнали себя — всё равно напишите. Аудит и рекомендацию дадим бесплатно; иногда вывод звучит как «переделывать сайт не нужно». Веб-студия, которая отговаривает от лишней работы, в итоге обходится дешевле той, которая берётся за всё.',
     },
-    cases: { title: 'Кейсы по направлению', slugs: ['raiton-llc-fz', 'smart-fashion', 'merkuri'] },
+    cases: { title: 'Кейсы по направлению', slugs: ['raiton', 'drvusalagasimova', 'smart-fashion'] },
     faq: {
       title: 'Частые вопросы',
       items: [
@@ -483,7 +483,7 @@ export const web: Record<Locale, ServiceCopy> = {
       ],
       close: 'If one of these describes you, write anyway. The audit and the recommendation are free; sometimes the conclusion is “do not rebuild the site”.',
     },
-    cases: { title: 'Related work', slugs: ['raiton-llc-fz', 'smart-fashion', 'merkuri'] },
+    cases: { title: 'Related work', slugs: ['raiton', 'drvusalagasimova', 'smart-fashion'] },
     faq: {
       title: 'Frequent questions',
       items: [

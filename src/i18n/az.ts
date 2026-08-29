@@ -270,7 +270,7 @@ export default {
         alts: ['Smart Fashion: məhsul kartı, ölçü seçimi və təsvir', 'Smart Fashion: iki mövqe və sifariş yekunu ilə səbət', 'Smart Fashion: mövsümi lookbook və kataloq bölmələri ilə ana səhifə'],
       },
       {
-        slug: 'raiton-llc-fz',
+        slug: 'raiton',
         short: 'RAITON',
         domain: 'Beynəlxalq ticarət',
         tag: 'Korporativ sayt',
@@ -285,6 +285,23 @@ export default {
         ],
         stack: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS'],
         alts: ['RAITON: ilk ekran — konteyner kranı və çənlərlə neft terminalının panoramı, üstündə «Trade. Energy. Logistics.» başlığı və «Diversified trading company · Dubai, U.A.E.» sətri; başlıqda beş bölmə və EN / TR keçidi', 'RAITON: Offshore Crude Oil Trading istiqamətinin səhifəsi — iri «Offshore crude oil. Commercial discipline.» başlığı, sağda xam neft və enerji əmtəələrinin ticarəti haqqında abzas, aşağıda gün batımında körpüdəki quru yük gəmisinin fotosu', 'RAITON: əlaqə səhifəsinin türk versiyası — «İhtiyacınızı birlikte değerlendirelim.» başlığı, solda dörd sətirlik Dubay ofisinin ünvanı, sağda telefon, iki e-poçt və WhatsApp siyahısı'],
+      },
+      {
+        slug: 'drvusalagasimova',
+        short: 'Dr. Qasımova',
+        domain: 'Neyropsixologiya',
+        tag: 'Çoxdilli sayt',
+        title: 'Bakıda neyropsixoloqun saytı — dörd dil və qəbula yazılma',
+        task: 'Öz saytı yox idi. Qəbula zənglə yazılırdılar, nömrəni haradan tapdıqlarını izləmək isə mümkün deyildi. Instagram vardı, sayt yox.',
+        solution: 'HTML, CSS və JS üzərində statik sayt, yığılması Node skripti ilə. Dörd dil versiyası — azərbaycanca kökdə, rusca, ingiliscə və almanca yanında, hər birində doqquz səhifə, üstəgəl dörd dilə çevrilmiş yeddi məqalə. Məqalələri Vüsalə xanım özü yazır, tərcümə bizdən. Qəbula yazılma modal pəncərədəki formadan gedir və poçta düşür, zənglər ikinci kanal olaraq qalıb. Metodun tibbi diaqnostikanı və müalicəni əvəz etmədiyi qeydi mətndə durur və sitat gətirəndə də qalır.',
+        diff: ['qəbul yalnız zənglə · sayt yoxdur', 'dörd dil · formadan yazılma'],
+        results: [
+          { value: '2 gün', label: 'dərc olunana qədər' },
+          { value: '4', label: 'dil versiyası, hreflang və x-default ilə' },
+          { value: '28', label: 'məqalə səhifəsi — yeddi material dörd dildə' },
+        ],
+        stack: ['HTML/CSS/JS', 'Node', 'GitHub Pages', 'Web3Forms'],
+        alts: ['Dr. Qasımova saytı: ilk ekran — «Bakıda neyropsixoloq Vüsalə Qasımova» başlığı, sağda həkimin portreti, altında 20+ il təcrübə, Bakı ünvanı və ilkin konsultasiya telefonu; başlıqda AZ RU EN DE keçidi', 'Dr. Qasımova saytı: BAK terapiyası səhifəsi — EEG sensorları taxılmış uşağın fotosu üzərində «BAK terapiyası nədir?» başlığı və prosedurun qeyri-invaziv olduğunu, uyğunluğun seanslardan əvvəl müzakirə edildiyini deyən abzas', 'Dr. Qasımova saytı: qəbula yazılma modalı — ad, nömrə və sual sahələri, məxfilik siyasəti ilə razılıq xanası və «Göndər» düyməsi; arxada başlıqdakı AZ RU EN DE keçidi görünür'],
       },
       {
         slug: 'ai-assistent',
@@ -456,9 +473,13 @@ export default {
       title: 'Onlayn mağaza hazırlanması — EXCLAMATION',
       description: 'Next.js mağaza: tövsiyə sistemi, real vaxt anbar, satış analitikası. Redizayndan sonra konversiya +65%, səhifə 0.8 saniyəyə açılır, gəlir +30%.',
     },
-    'raiton-llc-fz': {
+    'raiton': {
       title: 'Ticarət şirkəti üçün korporativ sayt — EXCLAMATION',
       description: 'RAITON L.L.C-FZ saytı Next.js üzərində: altı marşrut, ingilis və türk versiyaları, on iki səhifə. İlk işlək versiya 4 günə, düzəlişlərlə təhvil 2 həftəyə.',
+    },
+    'drvusalagasimova': {
+      title: 'Neyropsixoloq üçün çoxdilli sayt — EXCLAMATION',
+      description: 'Həkim üçün statik sayt dörd dildə — az, ru, en, de; hər versiyada doqquz səhifə, dörd dilə çevrilmiş yeddi məqalə, modal pəncərədə qəbula yazılma forması. Dərc 2 günə.',
     },
     'ai-assistent': {
       title: 'Müştəri servisi üçün AI assistent — EXCLAMATION',

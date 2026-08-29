@@ -270,7 +270,7 @@ export default {
         alts: ['Smart Fashion: product page with size selection and description', 'Smart Fashion: cart with two items and the order summary', 'Smart Fashion: home page with the seasonal lookbook and featured catalogue sections'],
       },
       {
-        slug: 'raiton-llc-fz',
+        slug: 'raiton',
         short: 'RAITON',
         domain: 'International trade',
         tag: 'Corporate site',
@@ -285,6 +285,23 @@ export default {
         ],
         stack: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS'],
         alts: ['RAITON: the first screen — a panorama of an oil terminal with a container crane and storage tanks, the headline “Trade. Energy. Logistics.” over it and the line “Diversified trading company · Dubai, U.A.E.”; the header carries five sections and an EN / TR switch', 'RAITON: the Offshore Crude Oil Trading sector page — the large headline “Offshore crude oil. Commercial discipline.”, a paragraph on the right about trading crude oil and related energy commodities, and a photograph of a bulk carrier at a berth at sunset below', 'RAITON: the Turkish version of the contact page — the headline “İhtiyacınızı birlikte değerlendirelim.”, the four-line Dubai office address on the left, and a list of the phone number, two email addresses and WhatsApp on the right'],
+      },
+      {
+        slug: 'drvusalagasimova',
+        short: 'Dr. Qasimova',
+        domain: 'Neuropsychology',
+        tag: 'Multilingual site',
+        title: 'A neuropsychologist’s site in Baku — four languages and booking',
+        task: 'There was no site of her own. Appointments were booked by phone, and where the caller found the number could not be traced. Instagram existed; a site did not.',
+        solution: 'A static site in HTML, CSS and JavaScript, built by a Node script. Four language versions — Azerbaijani at the root, Russian, English and German beside it, nine pages in each, plus seven articles mirrored across all four. Vusala writes the articles herself and we translated them. Booking runs through a form in a modal and lands in an inbox, with the phone kept as the second channel. The note that the method does not replace medical diagnosis or treatment sits in the text and stays there in any quotation.',
+        diff: ['booked by phone · no site', 'four languages · booking form'],
+        results: [
+          { value: '2 days', label: 'to publication' },
+          { value: '4', label: 'language versions with hreflang and x-default' },
+          { value: '28', label: 'article pages — seven pieces in four languages' },
+        ],
+        stack: ['HTML/CSS/JS', 'Node', 'GitHub Pages', 'Web3Forms'],
+        alts: ['The Dr. Qasimova site: the first screen — the headline “Bakıda neyropsixoloq Vüsalə Qasımova”, the doctor’s portrait on the right, and a band below carrying 20+ years of practice, the Baku address and a phone number for a first consultation; the header holds an AZ RU EN DE switch', 'The Dr. Qasimova site: the BAC therapy page — the headline “BAK terapiyası nədir?” over a photograph of a child wearing EEG sensors, with a paragraph saying the procedure is non-invasive and that suitability is discussed before any session', 'The Dr. Qasimova site: the booking modal — fields for name, number and question, a privacy-policy consent box and a “Göndər” button; the AZ RU EN DE switch is visible in the header behind it'],
       },
       {
         slug: 'ai-assistent',
@@ -456,9 +473,13 @@ export default {
       title: 'E-commerce store development — EXCLAMATION',
       description: 'A Next.js store: recommendations, real-time stock, sales analytics. Conversion after the redesign +65%, pages load in 0.8s, revenue up 30% in 6 months.',
     },
-    'raiton-llc-fz': {
+    'raiton': {
       title: 'A corporate site for a trading company — EXCLAMATION',
       description: 'RAITON L.L.C-FZ on Next.js: six routes, English and Turkish, twelve pages. First working version in 4 days, handover with revisions in 2 weeks.',
+    },
+    'drvusalagasimova': {
+      title: 'A multilingual site for a neuropsychologist — EXCLAMATION',
+      description: 'A static site for a doctor in four languages — az, ru, en, de; nine pages per version, seven articles in every language, booking through a form in a modal. Published in 2 days.',
     },
     'ai-assistent': {
       title: 'AI assistant for customer service — EXCLAMATION',
