@@ -1,0 +1,11 @@
+import { chromium } from 'playwright';
+const b = await chromium.launch();
+const ctx = await b.newContext({ viewport: { width: 1600, height: 1280 }, deviceScaleFactor: 1 });
+const p = await ctx.newPage();
+await p.goto('https://drvusalagasimova.com/', { waitUntil: 'networkidle', timeout: 60000 });
+await p.waitForTimeout(2000);
+await p.click('.book-appointment-trigger');
+await p.waitForTimeout(1500);
+await p.screenshot({ path: 'refs/dv-case/modal.png' });
+console.log('modal captured');
+await b.close();

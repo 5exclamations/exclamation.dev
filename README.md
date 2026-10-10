@@ -14,6 +14,31 @@ Read these in this order:
 | `SEO-AUDIT.md` | Indexability, structured data and AI visibility findings |
 | `.claude/skills/exclamation-design/SKILL.md` | The design system. A contract, not a suggestion |
 
+## Working on another computer
+
+Clone `https://github.com/5exclamations/exclamation.dev.git`, then run:
+
+```bash
+cd exclamation.dev
+nvm install
+nvm use
+npm ci
+cp .env.example .env
+npm run dev
+```
+
+`.nvmrc` selects Node 24. Without nvm, install Node 24 directly. The example
+configuration preserves the current local form ID, which is already public
+in the legacy site. Production secrets stay outside Git; configure them using
+`CLOUDFLARE-SETUP.md`.
+
+For the optional Codex MCP integration, install Codex and make its `codex`
+command available on PATH. `.mcp.json` uses that command on every computer.
+The design references and their helper scripts are tracked in `refs/`.
+Historical test screenshots are preserved as an archive in the GitHub release
+`workspace-backup-2026-10-10`; they are not required to run the site.
+Dependencies, build output and local tool caches are recreated by the tools.
+
 ## Commands
 
 | What | Command |
